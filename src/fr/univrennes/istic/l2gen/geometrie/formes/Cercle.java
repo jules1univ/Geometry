@@ -1,4 +1,6 @@
-package fr.univrennes.istic.l2gen.geometrie;
+package fr.univrennes.istic.l2gen.geometrie.formes;
+
+import fr.univrennes.istic.l2gen.geometrie.Point;
 
 public class Cercle implements IForme {
     private double rayon;
@@ -46,8 +48,6 @@ public class Cercle implements IForme {
 
     @Override
     public void redimensionner(double px, double py) {
-        // Redimensionner un cercle en augmentant le rayon
-        // px et py représentent les facteurs de redimensionnement
         this.rayon = this.rayon * px;
     }
 

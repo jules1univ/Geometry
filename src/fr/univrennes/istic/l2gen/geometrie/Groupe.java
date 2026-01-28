@@ -3,6 +3,8 @@ package fr.univrennes.istic.l2gen.geometrie;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.univrennes.istic.l2gen.geometrie.formes.IForme;
+
 public class Groupe<T extends IForme> implements IForme {
     private List<T> shapes = new ArrayList<>();
 

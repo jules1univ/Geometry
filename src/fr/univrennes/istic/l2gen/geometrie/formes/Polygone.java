@@ -1,6 +1,8 @@
-package fr.univrennes.istic.l2gen.geometrie;
+package fr.univrennes.istic.l2gen.geometrie.formes;
 
 import java.util.ArrayList;
+
+import fr.univrennes.istic.l2gen.geometrie.Point;
 
 public class Polygone implements IForme {
     private ArrayList<Point> sommet;
