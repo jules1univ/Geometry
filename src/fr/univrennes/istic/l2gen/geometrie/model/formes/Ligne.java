@@ -8,12 +8,15 @@ import fr.univrennes.istic.l2gen.geometrie.model.Point;
 public class Ligne implements IForme {
 
     private List<Point> sommets;
+    private String couleur;
+
 
     public Ligne(double... n){
         this.sommets = new ArrayList<Point>();
         for(int i = 0; i<n.length; i+=2){
             this.sommets.add(new Point(n[i], n[i+1]));
         }
+        this.couleur = "black";
     }
 
     public void ajouterSommet(Point pt){
@@ -110,9 +113,13 @@ public class Ligne implements IForme {
     }
 
     @Override
-    public String enSVG() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'enSVG'");
+    public String enSVG(){
+        String svg = "<polyline points=\"";
+        for(int i = 0; i<sommets.size(); i++){
+            svg = svg + sommets.get(i).x() + " " + sommets.get(i).y() + " ";
+        }
+        svg = svg + "\" \n" + "fill=\"white\" stroke=\""+ this.couleur+"\"/>";
+        return svg;
     }
 
 }

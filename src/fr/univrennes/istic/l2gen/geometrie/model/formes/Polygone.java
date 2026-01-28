@@ -131,7 +131,14 @@ public class Polygone implements IForme {
 
     @Override
     public String enSVG() {
-        throw new UnsupportedOperationException("Unimplemented method 'enSVG'");
+    String str = "<polygon points=\"";
+
+    for ( int i = 0; i < this.sommet.size(); i++ ) {
+    str += this.sommet.get(i).x() + " " + this.sommet.get(i).y() + " ";
+    }
+    str += "\"fill=\"white\" stroke=\"black\"/>";
+
+    return str;
     }
 
 }
