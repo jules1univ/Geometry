@@ -17,6 +17,12 @@ public class Point {
         return y;
     }
 
+    public boolean equals(Object e) {
+        if (e instanceof Point) {
+            return this.x == ((Point)e).x() && this.y == ((Point)e).y(); 
+        }
+        return false;
+    }
     public Point plus(double dx, double dy) {
         this.x += dx;
         this.y += dy;
