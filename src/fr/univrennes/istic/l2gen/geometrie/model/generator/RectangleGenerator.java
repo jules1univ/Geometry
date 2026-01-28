@@ -3,7 +3,7 @@ package fr.univrennes.istic.l2gen.geometrie.model.generator;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.univrennes.istic.l2gen.geometrie.model.formes.Rectangle;
+import fr.univrennes.istic.l2gen.geometrie.model.shapes.Rectangle;
 
 public class RectangleGenerator implements IGenerator<Rectangle> {
 

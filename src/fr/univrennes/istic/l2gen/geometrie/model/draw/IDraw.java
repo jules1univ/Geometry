@@ -1,6 +1,6 @@
 package fr.univrennes.istic.l2gen.geometrie.model.draw;
 
-import fr.univrennes.istic.l2gen.geometrie.model.formes.IShape;
+import fr.univrennes.istic.l2gen.geometrie.model.shapes.IShape;
 
 public interface IDraw {
     

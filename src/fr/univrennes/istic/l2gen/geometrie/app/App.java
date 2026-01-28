@@ -2,7 +2,7 @@ package fr.univrennes.istic.l2gen.geometrie.app;
 
 import fr.univrennes.istic.l2gen.geometrie.model.draw.Fractal;
 import fr.univrennes.istic.l2gen.geometrie.model.export.SvgExporter;
-import fr.univrennes.istic.l2gen.geometrie.model.formes.Rectangle;
+import fr.univrennes.istic.l2gen.geometrie.model.shapes.Rectangle;
 
 public class App {
 

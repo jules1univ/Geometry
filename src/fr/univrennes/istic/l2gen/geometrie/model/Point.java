@@ -1,6 +1,6 @@
 package fr.univrennes.istic.l2gen.geometrie.model;
 
-import fr.univrennes.istic.l2gen.geometrie.model.formes.IShape;
+import fr.univrennes.istic.l2gen.geometrie.model.shapes.IShape;
 
 public final class Point implements IShape {
     private double x;

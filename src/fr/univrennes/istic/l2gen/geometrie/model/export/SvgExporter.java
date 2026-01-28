@@ -2,7 +2,7 @@ package fr.univrennes.istic.l2gen.geometrie.model.export;
 
 import java.io.FileWriter;
 
-import fr.univrennes.istic.l2gen.geometrie.model.formes.IShape;
+import fr.univrennes.istic.l2gen.geometrie.model.shapes.IShape;
 
 public final class SvgExporter {
 

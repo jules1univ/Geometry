@@ -3,7 +3,7 @@ package fr.univrennes.istic.l2gen.geometrie.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.univrennes.istic.l2gen.geometrie.model.formes.IShape;
+import fr.univrennes.istic.l2gen.geometrie.model.shapes.IShape;
 
 public final class Groupe<Shape extends IShape> implements IShape {
     private List<Shape> shapes = new ArrayList<>();
