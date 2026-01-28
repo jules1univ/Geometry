@@ -21,7 +21,7 @@ public class Cercle implements IForme {
 
     @Override
     public String description(int indentation) {
-        return "Centre centre = " + this.centre.x() + "," + this.centre.y() + " r=" + this.rayon;
+        return " ".repeat(indentation) + "Centre centre = " + this.centre.x() + "," + this.centre.y() + " r=" + this.rayon;
     }
 
     @Override
@@ -46,8 +46,6 @@ public class Cercle implements IForme {
 
     @Override
     public void redimensionner(double px, double py) {
-        // Redimensionner un cercle en augmentant le rayon
-        // px et py représentent les facteurs de redimensionnement
         this.rayon = this.rayon * px;
     }
 }
