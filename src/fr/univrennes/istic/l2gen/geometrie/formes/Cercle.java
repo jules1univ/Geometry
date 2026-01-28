@@ -53,6 +53,6 @@ public class Cercle implements IForme {
 
     @Override
     public String enSVG() {
-        throw new UnsupportedOperationException("Unimplemented method 'enSVG'");
+        return "<circle cx=\"" + this.centre.x() + "\" cy=\"" + this.centre.y() + "\" r=\"" + this.rayon + "\" fill=\"white\" stroke=\"black\"/>";
     }
 }
