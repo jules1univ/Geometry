@@ -1,5 +1,5 @@
 name: Build Geometry Jar
-on: [push, pull_request]
+on: [release]
 jobs:
   build:
     runs-on: ubuntu-latest
