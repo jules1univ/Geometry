@@ -1,12 +1,12 @@
 package fr.univrennes.istic.l2gen.geometrie.app;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import fr.univrennes.istic.l2gen.geometrie.model.Groupe;
 import fr.univrennes.istic.l2gen.geometrie.model.export.SvgExporter;
+import fr.univrennes.istic.l2gen.geometrie.model.formes.Cercle;
 import fr.univrennes.istic.l2gen.geometrie.model.formes.IForme;
 import fr.univrennes.istic.l2gen.geometrie.model.formes.Rectangle;
+import java.util.ArrayList;
+import java.util.List;
 
 public class App {
 
@@ -74,6 +74,6 @@ public class App {
     public static void main(String[] args) throws Exception {
 
         SvgExporter exporter = new SvgExporter(1000, "white");
-        exporter.export(fractal(new Rectangle(250, 250, 100, 50), 4), "./output.svg");
+        exporter.export(fractal(new Cercle(256, 256, 128), 4), "./output.svg");
     }
 }
