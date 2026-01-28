@@ -1,31 +1,31 @@
 package fr.univrennes.istic.l2gen.geometrie.model.draw;
 
 import fr.univrennes.istic.l2gen.geometrie.model.Groupe;
-import fr.univrennes.istic.l2gen.geometrie.model.formes.IForme;
+import fr.univrennes.istic.l2gen.geometrie.model.formes.IShape;
 
-public class Arbre implements IDraw {
+public final class Arbre implements IDraw {
 
     public Arbre() {
     }
 
     @Override
-    public IForme draw(IForme shape) {
-        Groupe<IForme> g = new Groupe<>();
-        g.ajouter(shape);
+    public IShape draw(IShape shape) {
+        Groupe<IShape> g = new Groupe<>();
+        g.add(shape);
 
-        IForme mini = shape.dupliquer();
-        mini.redimensionner(0.5, 0.5);
-        g.ajouter(mini);
+        IShape mini = shape.copy();
+        mini.resize(0.5, 0.5);
+        g.add(mini);
 
-        IForme miniG = g.dupliquer();
-        miniG.redimensionner(0.25, 0.25);
-        g.ajouter(miniG);
+        IShape miniG = g.copy();
+        miniG.resize(0.25, 0.25);
+        g.add(miniG);
 
         return g;
     }
 
     @Override
-    public IForme draw(IForme forme, int level) {
+    public IShape draw(IShape forme, int level) {
         throw new UnsupportedOperationException("Unimplemented method 'draw'");
     }
 

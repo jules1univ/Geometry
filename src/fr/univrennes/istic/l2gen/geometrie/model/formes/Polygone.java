@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import fr.univrennes.istic.l2gen.geometrie.model.Point;
 
-public class Polygone implements IForme {
+public final class Polygone implements IShape {
     private ArrayList<Point> sommet;
 
     public Polygone(double... coord) {
@@ -15,34 +15,31 @@ public class Polygone implements IForme {
     }
 
     @Override
-    public Point centre() {
+    public Point getCenter() {
         double totalX = 0.;
         double totalY = 0.;
         int nbSommet = 0;
         for (Point elem : sommet) {
-            totalX += elem.x();
-            totalY += elem.y();
+            totalX += elem.getX();
+            totalY += elem.getY();
             nbSommet++;
         }
         return new Point(totalX / nbSommet, totalY / nbSommet);
     }
 
     @Override
-    public String description(int indentation) {
-        String str = "Polygone";
-        String esp = "";
-
-        for (int i = 0; i < indentation; i++) {
-            esp += "  ";
+    public String getDescription(int indent) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(" ".repeat(Math.max(0, indent)));
+        sb.append("Polygone ");
+        for (Point p : sommet) {
+            sb.append( p.getX()).append(",").append(p.getY()).append(" ");
         }
-        for (int i = 0; i < this.sommet.size(); i++) {
-            str += esp + this.sommet.get(i).x() + "," + this.sommet.get(i).y();
-        }
-        return str;
+        return sb.toString();
     }
 
     @Override
-    public double hauteur() {
+    public double getHeight() {
         Point max = null;
         Point min = null;
 
@@ -54,16 +51,16 @@ public class Polygone implements IForme {
         }
 
         for (int i = 0; i < this.sommet.size(); i++) {
-            if (this.sommet.get(i).x() < min.x())
+            if (this.sommet.get(i).getX() < min.getX())
                 min = this.sommet.get(i);
-            if (this.sommet.get(i).x() > max.x())
+            if (this.sommet.get(i).getX() > max.getX())
                 max = this.sommet.get(i);
         }
-        return max.x() - min.x();
+        return max.getX() - min.getX();
     }
 
     @Override
-    public double largeur() {
+    public double getWidth() {
         Point max = null;
         Point min = null;
 
@@ -75,12 +72,12 @@ public class Polygone implements IForme {
         }
 
         for (int i = 0; i < this.sommet.size(); i++) {
-            if (this.sommet.get(i).y() < min.y())
+            if (this.sommet.get(i).getY() < min.getY())
                 min = this.sommet.get(i);
-            if (this.sommet.get(i).y() > max.y())
+            if (this.sommet.get(i).getY() > max.getY())
                 max = this.sommet.get(i);
         }
-        return max.y() - min.y();
+        return max.getY() - min.getY();
 
     }
 
@@ -97,7 +94,7 @@ public class Polygone implements IForme {
     }
 
     @Override
-    public IForme dupliquer() {
+    public IShape copy() {
         Polygone copie = new Polygone();
 
         for (int i = 0; i < this.sommet.size(); i++) {
@@ -107,34 +104,34 @@ public class Polygone implements IForme {
     }
 
     @Override
-    public void redimensionner(double x, double y) {
+    public void resize(double x, double y) {
         for (Point elem : sommet) {
-            if (elem.x() < centre().x()) {
-                elem.plus(x * (-1), 0.);
+            if (elem.getX() < getCenter().getX()) {
+                elem.add(x * (-1), 0.);
             } else {
-                elem.plus(x, 0.);
+                elem.add(x, 0.);
             }
-            if (elem.y() < centre().x()) {
-                elem.plus(0., y * (-1));
+            if (elem.getY() < getCenter().getX()) {
+                elem.add(0., y * (-1));
             } else {
-                elem.plus(0., y);
+                elem.add(0., y);
             }
         }
     }
 
     @Override
-    public void deplacer(double x, double y) {
+    public void move(double x, double y) {
         for (Point elem : sommet) {
-            elem.plus(x, y);
+            elem.add(x, y);
         }
     }
 
     @Override
-    public String enSVG() {
+    public String toSVG() {
     String str = "<polygon points=\"";
 
     for ( int i = 0; i < this.sommet.size(); i++ ) {
-    str += this.sommet.get(i).x() + " " + this.sommet.get(i).y() + " ";
+    str += this.sommet.get(i).getX() + " " + this.sommet.get(i).getY() + " ";
     }
     str += "\n\"fill=\"white\" stroke=\"black\"/>";
 

@@ -1,49 +1,49 @@
 package fr.univrennes.istic.l2gen.geometrie.model.draw;
 
 import fr.univrennes.istic.l2gen.geometrie.model.Groupe;
-import fr.univrennes.istic.l2gen.geometrie.model.formes.IForme;
+import fr.univrennes.istic.l2gen.geometrie.model.formes.IShape;
 
-public class Fractal implements IDraw {
+public final class Fractal implements IDraw {
 
     public Fractal() {
     }
 
     @Override
-    public IForme draw(IForme forme) {
+    public IShape draw(IShape forme) {
         throw new UnsupportedOperationException("Unimplemented method 'draw'");
     }
 
     @Override
-    public IForme draw(IForme base, int niveau) {
+    public IShape draw(IShape base, int niveau) {
         if (niveau <= 0) {
             return new Groupe<>(base);
         }
-        Groupe<IForme> g = new Groupe<>();
+        Groupe<IShape> g = new Groupe<>();
 
-        Groupe<IForme> subG = new Groupe<>();
-        subG.ajouter(base);
+        Groupe<IShape> subG = new Groupe<>();
+        subG.add(base);
 
-        IForme topRight = base.dupliquer();
-        topRight.redimensionner(0.5, 0.5);
-        topRight.deplacer(base.hauteur(), base.largeur() / -4);
-        subG.ajouter(this.draw(topRight, niveau - 1));
+        IShape topRight = base.copy();
+        topRight.resize(0.5, 0.5);
+        topRight.move(base.getHeight(), base.getWidth() / -4);
+        subG.add(this.draw(topRight, niveau - 1));
 
-        IForme bottomRight = base.dupliquer();
-        bottomRight.redimensionner(0.5, 0.5);
-        bottomRight.deplacer(base.hauteur(), base.largeur() / 4);
-        subG.ajouter(this.draw(bottomRight, niveau - 1));
+        IShape bottomRight = base.copy();
+        bottomRight.resize(0.5, 0.5);
+        bottomRight.move(base.getHeight(), base.getWidth() / 4);
+        subG.add(this.draw(bottomRight, niveau - 1));
 
-        IForme topLeft = base.dupliquer();
-        topLeft.redimensionner(0.5, 0.5);
-        topLeft.deplacer(-base.hauteur(), base.largeur() / -4);
-        subG.ajouter(this.draw(topLeft, niveau - 1));
+        IShape topLeft = base.copy();
+        topLeft.resize(0.5, 0.5);
+        topLeft.move(-base.getHeight(), base.getWidth() / -4);
+        subG.add(this.draw(topLeft, niveau - 1));
 
-        IForme bottomLeft = base.dupliquer();
-        bottomLeft.redimensionner(0.5, 0.5);
-        bottomLeft.deplacer(-base.hauteur(), base.largeur() / 4);
-        subG.ajouter(this.draw(bottomLeft, niveau - 1));
+        IShape bottomLeft = base.copy();
+        bottomLeft.resize(0.5, 0.5);
+        bottomLeft.move(-base.getHeight(), base.getWidth() / 4);
+        subG.add(this.draw(bottomLeft, niveau - 1));
 
-        g.ajouter(subG);
+        g.add(subG);
 
         return g;
     }

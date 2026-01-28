@@ -2,9 +2,9 @@ package fr.univrennes.istic.l2gen.geometrie.model.export;
 
 import java.io.FileWriter;
 
-import fr.univrennes.istic.l2gen.geometrie.model.formes.IForme;
+import fr.univrennes.istic.l2gen.geometrie.model.formes.IShape;
 
-public class SvgExporter {
+public final class SvgExporter {
 
     private final double canvasSize;
     private final String canvasBackgroundColor;
@@ -14,13 +14,13 @@ public class SvgExporter {
         this.canvasBackgroundColor = backgroundColor;
     }
 
-    public boolean export(IForme forme, String filename) {
+    public boolean export(IShape forme, String filename) {
         StringBuilder sb = new StringBuilder();
 
         sb.append("<svg xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\" width=\"" + canvasSize + "\" height=\""
                 + canvasSize + "\">\n");
         sb.append("<rect width=\"100%\" height=\"100%\" fill=\"" + canvasBackgroundColor + "\"/>\n");
-        sb.append(forme.enSVG());
+        sb.append(forme.toSVG());
         sb.append("\n</svg>");
 
         try {

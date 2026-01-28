@@ -2,7 +2,7 @@ package fr.univrennes.istic.l2gen.geometrie.model.formes;
 
 import fr.univrennes.istic.l2gen.geometrie.model.Point;
 
-public class Triangle implements IForme {
+public final class Triangle implements IShape {
     private Point point1;
     private Point point2;
     private Point point3;
@@ -19,68 +19,68 @@ public class Triangle implements IForme {
         point3  = p3;
     }
 
-    public Point centre(){
-        double x = (point1.x() + point2.x() + point3.x()) / 3;
-        double y = (point1.y() + point2.y() + point3.y()) / 3;
+    public Point getCenter(){
+        double x = (point1.getX() + point2.getX() + point3.getX()) / 3;
+        double y = (point1.getY() + point2.getY() + point3.getY()) / 3;
         return new Point(x,y);
     }
 
-    public double largeur(){
-        double minX = Math.min(point1.x(), Math.min(point2.x(), point3.x()));
-        double maxX = Math.max(point1.x(), Math.max(point2.x(), point3.x()));
+    public double getWidth(){
+        double minX = Math.min(point1.getX(), Math.min(point2.getX(), point3.getX()));
+        double maxX = Math.max(point1.getX(), Math.max(point2.getX(), point3.getX()));
         return maxX - minX;
     }
 
-    public double hauteur(){
-        double minY = Math.min(point1.y(), Math.min(point2.y(), point3.y()));
-        double maxY = Math.max(point1.y(), Math.max(point2.y(), point3.y()));
+    public double getHeight(){
+        double minY = Math.min(point1.getY(), Math.min(point2.getY(), point3.getY()));
+        double maxY = Math.max(point1.getY(), Math.max(point2.getY(), point3.getY()));
         return maxY - minY;
     }
 
-    public String description(int indentation){
+    public String getDescription(int indentation){
         StringBuilder sb = new StringBuilder();
         for(int i = 0; i < indentation*2; i++){
             sb.append(" ");
         }
         sb.append("Triangle ");
-        sb.append((int)point1.x() + "," + (int)point1.y() + " ");
-        sb.append((int)point2.x() + "," + (int)point2.y() + " ");
-        sb.append((int)point3.x() + "," + (int)point3.y());
+        sb.append((int)point1.getX() + "," + (int)point1.getY() + " ");
+        sb.append((int)point2.getX() + "," + (int)point2.getY() + " ");
+        sb.append((int)point3.getX() + "," + (int)point3.getY());
         return sb.toString();
     }
 
-    public void deplacer(double dx, double dy){
-        Point newP1 = point1.plus(dx, dy);
-        Point newP2 = point2.plus(dx, dy);
-        Point newP3 = point3.plus(dx, dy);
+    public void move(double dx, double dy){
+        Point newP1 = point1.add(dx, dy);
+        Point newP2 = point2.add(dx, dy);
+        Point newP3 = point3.add(dx, dy);
         point1 = newP1;
         point2 = newP2;
         point3 = newP3;
     }
 
-    public IForme dupliquer(){
-        return new Triangle(new Point(point1.x(), point1.y()),
-                            new Point(point2.x(), point2.y()),
-                            new Point(point3.x(), point3.y()));
+    public IShape copy(){
+        return new Triangle(new Point(point1.getX(), point1.getY()),
+                            new Point(point2.getX(), point2.getY()),
+                            new Point(point3.getX(), point3.getY()));
     }
 
-    public void redimensionner(double px, double py){
-        Point centre = centre();
-        point1 = new Point(centre.x() + (point1.x() - centre.x()) * px, 
-                          centre.y() + (point1.y() - centre.y()) * py);
-        point2 = new Point(centre.x() + (point2.x() - centre.x()) * px, 
-                          centre.y() + (point2.y() - centre.y()) * py);
-        point3 = new Point(centre.x() + (point3.x() - centre.x()) * px, 
-                          centre.y() + (point3.y() - centre.y()) * py);
+    public void resize(double px, double py){
+        Point centre = getCenter();
+        point1 = new Point(centre.getX() + (point1.getX() - centre.getX()) * px, 
+                          centre.getY() + (point1.getY() - centre.getY()) * py);
+        point2 = new Point(centre.getX() + (point2.getX() - centre.getX()) * px, 
+                          centre.getY() + (point2.getY() - centre.getY()) * py);
+        point3 = new Point(centre.getX() + (point3.getX() - centre.getX()) * px, 
+                          centre.getY() + (point3.getY() - centre.getY()) * py);
     }
 
     @Override
-    public String enSVG() {
+    public String toSVG() {
         StringBuilder sb = new StringBuilder();
         sb.append("<polygon points=\"");
-        sb.append(point1.x()).append(",").append(point1.y()).append(" ");
-        sb.append(point2.x()).append(",").append(point2.y()).append(" ");
-        sb.append(point3.x()).append(",").append(point3.y()).append("\" ");
+        sb.append(point1.getX()).append(",").append(point1.getY()).append(" ");
+        sb.append(point2.getX()).append(",").append(point2.getY()).append(" ");
+        sb.append(point3.getX()).append(",").append(point3.getY()).append("\" ");
         sb.append("fill=\"white\" stroke=\"black\" ");
         sb.append("/>");
         return sb.toString();

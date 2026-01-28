@@ -1,10 +1,10 @@
 package fr.univrennes.istic.l2gen.geometrie.model.draw;
 
-import fr.univrennes.istic.l2gen.geometrie.model.formes.IForme;
+import fr.univrennes.istic.l2gen.geometrie.model.formes.IShape;
 
 public interface IDraw {
     
-    public IForme draw(IForme forme);
+    public IShape draw(IShape forme);
 
-    public IForme draw(IForme forme, int level);
+    public IShape draw(IShape forme, int level);
 }

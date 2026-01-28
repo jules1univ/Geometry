@@ -2,7 +2,7 @@ package fr.univrennes.istic.l2gen.geometrie.model.formes;
 
 import fr.univrennes.istic.l2gen.geometrie.model.Point;
 
-public class Text implements IForme {
+public final class Text implements IShape {
     private final String text;
     private Point center;
 
@@ -12,53 +12,53 @@ public class Text implements IForme {
     }
 
     @Override
-    public String description(int indentation) {
+    public String getDescription(int indentation) {
         StringBuilder sb = new StringBuilder();
         sb.append(" ".repeat(Math.max(0, indentation)));
         sb.append("Text ");
         sb.append(text);
         sb.append(" x=");
-        sb.append(this.center.x());
+        sb.append(this.center.getX());
         sb.append(" y=");
-        sb.append(this.center.y());
+        sb.append(this.center.getY());
         return sb.toString();
     }
 
     @Override
-    public double largeur() {
+    public double getWidth() {
         return this.text.length();
     }
 
     @Override
-    public double hauteur() {
+    public double getHeight() {
         return 1;
     }
 
 
     @Override
-    public Point centre() {
+    public Point getCenter() {
         return this.center;
     }
 
     @Override
-    public void deplacer(double dx, double dy) {
-        this.center.plus(dx, dy);
+    public void move(double dx, double dy) {
+        this.center.add(dx, dy);
     }
 
     @Override
-    public IForme dupliquer() {
-        return new Text(this.center.x(), this.center.y(), this.text);
+    public IShape copy() {
+        return new Text(this.center.getX(), this.center.getY(), this.text);
     }
 
     @Override
-    public void redimensionner(double px, double py) {  
+    public void resize(double px, double py) {  
         // Ne rien faire car le texte n'est pas redimensionnable
     }
 
     @Override
-    public String enSVG() {
+    public String toSVG() {
         StringBuilder sb = new StringBuilder();
-        sb.append("<text x=\"").append(this.center.x()).append("\" y=\"").append(this.center.y())
+        sb.append("<text x=\"").append(this.center.getX()).append("\" y=\"").append(this.center.getY())
                 .append("\" font-family=\"Arial\" font-size=\"64\" fill=\"black\" text-anchor=\"middle\">")
                 .append(this.text)
                 .append("</text>\n");

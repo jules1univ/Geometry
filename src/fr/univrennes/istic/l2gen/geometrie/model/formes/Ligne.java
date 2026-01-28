@@ -5,17 +5,15 @@ import java.util.List;
 
 import fr.univrennes.istic.l2gen.geometrie.model.Point;
 
-public class Ligne implements IForme {
+public final class Ligne implements IShape {
 
     private List<Point> sommets;
-    private String couleur;
 
     public Ligne(double... n) {
         this.sommets = new ArrayList<Point>();
         for (int i = 0; i < n.length; i += 2) {
             this.sommets.add(new Point(n[i], n[i + 1]));
         }
-        this.couleur = "black";
     }
 
     public void ajouterSommet(Point pt) {
@@ -28,12 +26,12 @@ public class Ligne implements IForme {
     }
 
     @Override
-    public Point centre() {
+    public Point getCenter() {
         double x = 0;
         double y = 0;
         for (int i = 0; i < this.sommets.size(); i++) {
-            x += this.sommets.get(i).x();
-            y += this.sommets.get(i).y();
+            x += this.sommets.get(i).getX();
+            y += this.sommets.get(i).getY();
         }
         x /= this.sommets.size();
         y /= this.sommets.size();
@@ -41,42 +39,42 @@ public class Ligne implements IForme {
     }
 
     @Override
-    public double hauteur() {
-        double min = this.sommets.get(0).y();
-        double max = this.sommets.get(0).y();
+    public double getHeight() {
+        double min = this.sommets.get(0).getY();
+        double max = this.sommets.get(0).getY();
         for (int i = 1; i < this.sommets.size(); i++) {
-            if (this.sommets.get(i).y() < min) {
-                min = this.sommets.get(i).y();
+            if (this.sommets.get(i).getY() < min) {
+                min = this.sommets.get(i).getY();
             }
-            if (this.sommets.get(i).y() > max) {
-                max = this.sommets.get(i).y();
+            if (this.sommets.get(i).getY() > max) {
+                max = this.sommets.get(i).getY();
             }
         }
         return max - min;
     }
 
     @Override
-    public double largeur() {
-        double min = this.sommets.get(0).x();
-        double max = this.sommets.get(0).x();
+    public double getWidth() {
+        double min = this.sommets.get(0).getX();
+        double max = this.sommets.get(0).getX();
         for (int i = 1; i < this.sommets.size(); i++) {
-            if (this.sommets.get(i).x() < min) {
-                min = this.sommets.get(i).x();
+            if (this.sommets.get(i).getX() < min) {
+                min = this.sommets.get(i).getX();
             }
-            if (this.sommets.get(i).x() > max) {
-                max = this.sommets.get(i).x();
+            if (this.sommets.get(i).getX() > max) {
+                max = this.sommets.get(i).getX();
             }
         }
         return max - min;
     }
 
     @Override
-    public String description(int desc) {
+    public String getDescription(int indent) {
         StringBuilder sb = new StringBuilder();
-        sb.append(" ".repeat((desc * 2)));
+        sb.append(" ".repeat(Math.max(0, indent)));
         sb.append("Ligne ");
         for (Point p : sommets) {
-            sb.append((int) p.x()).append(",").append((int) p.y()).append(" ");
+            sb.append((int) p.getX()).append(",").append((int) p.getY()).append(" ");
         }
         return sb.toString();
     }
@@ -86,37 +84,37 @@ public class Ligne implements IForme {
     }
 
     @Override
-    public void deplacer(double x, double y) {
+    public void move(double x, double y) {
         for (Point p : this.sommets) {
-            p = p.plus(x, y);
+            p = p.add(x, y);
         }
     }
 
     @Override
-    public IForme dupliquer() {
+    public IShape copy() {
         double[] points = new double[this.sommets.size() * 2];
         int index = 0;
         for (Point p : this.sommets) {
-            points[index++] = p.x();
-            points[index++] = p.y();
+            points[index++] = p.getX();
+            points[index++] = p.getY();
         }
         Ligne clone = new Ligne(points);
         return clone;
     }
 
-    public void redimensionner(double x, double y) {
+    public void resize(double x, double y) {
         for (Point p : this.sommets) {
-            p = p.plus(x, y);
+            p = p.add(x, y);
         }
     }
 
     @Override
-    public String enSVG() {
+    public String toSVG() {
         String svg = "<polyline points=\"";
         for (int i = 0; i < sommets.size(); i++) {
-            svg = svg + sommets.get(i).x() + " " + sommets.get(i).y() + " ";
+            svg = svg + sommets.get(i).getX() + " " + sommets.get(i).getY() + " ";
         }
-        svg = svg + "\" \n" + "fill=\"white\" stroke=\"" + this.couleur + "\"/>";
+        svg = svg + "\" \n" + "fill=\"white\" stroke=\"black\"/>";
         return svg;
     }
 
