@@ -15,7 +15,7 @@ Dans le terminal, à la racine du projet :
 ```cmd
 git add .
 git commit -m "ajoute de <ma forme>"
-git push -u origin main
+git push origin main
 ```
 
 Ou via VSCode dans l'onglet Source Control.
