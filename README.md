@@ -12,10 +12,11 @@ git clone https://github.com/jules1univ/GEN.git
 
 ```cmd
 git commit -m "ajoute de <ma forme>"
+git push origin main
 ```
 
 > Récupérer les modifications
 
 ```cmd
-git fetch origin main
+git pull origin main
 ```
