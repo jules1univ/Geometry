@@ -1,9 +1,9 @@
-package fr.univrennes.istic.l2gen.geometrie;
+package fr.univrennes.istic.l2gen.geometrie.model;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.univrennes.istic.l2gen.geometrie.formes.IForme;
+import fr.univrennes.istic.l2gen.geometrie.model.formes.IForme;
 
 public class Groupe<T extends IForme> implements IForme {
     private List<T> shapes = new ArrayList<>();

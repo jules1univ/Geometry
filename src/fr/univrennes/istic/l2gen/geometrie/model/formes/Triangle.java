@@ -1,6 +1,6 @@
-package fr.univrennes.istic.l2gen.geometrie.formes;
+package fr.univrennes.istic.l2gen.geometrie.model.formes;
 
-import fr.univrennes.istic.l2gen.geometrie.Point;
+import fr.univrennes.istic.l2gen.geometrie.model.Point;
 
 public class Triangle implements IForme {
     private Point point1;
@@ -76,6 +76,13 @@ public class Triangle implements IForme {
 
     @Override
     public String enSVG() {
-        throw new UnsupportedOperationException("Unimplemented method 'enSVG'");
+        StringBuilder sb = new StringBuilder();
+        sb.append("<polygon points=\"");
+        sb.append(point1.x()).append(",").append(point1.y()).append(" ");
+        sb.append(point2.x()).append(",").append(point2.y()).append(" ");
+        sb.append(point3.x()).append(",").append(point3.y()).append("\" ");
+        sb.append("fill=\"white\" stroke=\"black\" ");
+        sb.append("/>");
+        return sb.toString();
     }
 }
