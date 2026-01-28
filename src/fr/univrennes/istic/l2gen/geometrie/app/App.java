@@ -1,10 +1,10 @@
 package fr.univrennes.istic.l2gen.geometrie.app;
 
-import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.List;
 
 import fr.univrennes.istic.l2gen.geometrie.model.Groupe;
+import fr.univrennes.istic.l2gen.geometrie.model.export.SvgExporter;
 import fr.univrennes.istic.l2gen.geometrie.model.formes.IForme;
 import fr.univrennes.istic.l2gen.geometrie.model.formes.Rectangle;
 
@@ -73,14 +73,7 @@ public class App {
 
     public static void main(String[] args) throws Exception {
 
-        String svg = "<svg xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\" width=\"500\" height=\"500\">\n";
-        svg += "<rect width=\"100%\" height=\"100%\" fill=\"white\"/>\n";
-        svg += fractal(new Rectangle(250, 250, 100, 50), 4).enSVG();
-        svg += "\n</svg>";
-
-        FileWriter fw = new FileWriter("./output.svg");
-        ;
-        fw.write(svg);
-        fw.close();
+        SvgExporter exporter = new SvgExporter(1000, "white");
+        exporter.export(fractal(new Rectangle(250, 250, 100, 50), 4), "./output.svg");
     }
 }
