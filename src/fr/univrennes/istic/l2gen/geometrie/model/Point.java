@@ -47,19 +47,6 @@ public final class Point implements IShape {
     }
 
     @Override
-    public String toString() {
-        return (int) x + "," + (int) y;
-    }
-
-    @Override
-    public boolean equals(Object e) {
-        if (e instanceof Point) {
-            return this.x == ((Point) e).getX() && this.y == ((Point) e).getY();
-        }
-        return false;
-    }
-
-    @Override
     public double getWidth() {
         return 1;
     }
@@ -108,5 +95,18 @@ public final class Point implements IShape {
     @Override
     public IShape copy() {
         return new Point(this.x, this.y);
+    }
+
+    @Override
+    public String toString() {
+        return (int) x + "," + (int) y;
+    }
+
+    @Override
+    public boolean equals(Object e) {
+        if (e instanceof Point) {
+            return this.x == ((Point) e).getX() && this.y == ((Point) e).getY();
+        }
+        return false;
     }
 }

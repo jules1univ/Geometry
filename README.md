@@ -1,35 +1,46 @@
 # Projet GEN
 
-## Installation du projet 
 
-> Télécharger le projet
+>Prérequis
 
-```cmd
+- Git installé
+- VS Code (recommandé)
+- Un compte GitHub avec accès au dépôt
+
+## Utilisation de Git
+
+> Cloner le dépôt
+
+```bash
 git clone https://github.com/jules1univ/GEN.git
+cd GEN
 ```
 
-> Ajouter les modifications
+> Récupérer les dernières modifications 
 
-Dans le terminal, à la racine du projet :
+**Il faut le faire avant de commencer à travailler.**
 
-```cmd
+```bash
+git pull origin main
+```
+
+> Ajouter des modifications
+
+```bash
 git add .
 git commit -m "ajoute de <ma forme>"
-git push
 ```
 
-Ou via VSCode dans l'onglet Source Control.
-Source Control > + (staging) > Message de commit > (commit) > ... (push)
+> Envoyer ces modifications
 
+```bash
+git push origin main
+```
 
-> Récupérer les modifications
+> Le push ne fonctionne pas ?
 
-Dans le terminal, à la racine du projet :
-
-```cmd
-git pull --no-rebase origin main
+```bash
+git pull --no-rebase --tags origin main
 git pull
+git push origin main
 ```
-
-Ou via VSCode dans l'onglet Source Control.
-Source Control > ... > Pull
