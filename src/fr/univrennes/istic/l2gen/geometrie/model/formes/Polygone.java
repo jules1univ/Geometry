@@ -136,7 +136,7 @@ public class Polygone implements IForme {
     for ( int i = 0; i < this.sommet.size(); i++ ) {
     str += this.sommet.get(i).x() + " " + this.sommet.get(i).y() + " ";
     }
-    str += "\"fill=\"white\" stroke=\"black\"/>";
+    str += "\n\"fill=\"white\" stroke=\"black\"/>";
 
     return str;
     }
