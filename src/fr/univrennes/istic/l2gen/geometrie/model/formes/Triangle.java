@@ -76,6 +76,13 @@ public class Triangle implements IForme {
 
     @Override
     public String enSVG() {
-        throw new UnsupportedOperationException("Unimplemented method 'enSVG'");
+        StringBuilder sb = new StringBuilder();
+        sb.append("<polygon points=\"");
+        sb.append(point1.x()).append(",").append(point1.y()).append(" ");
+        sb.append(point2.x()).append(",").append(point2.y()).append(" ");
+        sb.append(point3.x()).append(",").append(point3.y()).append("\" ");
+        sb.append("fill=\"white\" stroke=\"black\" ");
+        sb.append("/>");
+        return sb.toString();
     }
 }
