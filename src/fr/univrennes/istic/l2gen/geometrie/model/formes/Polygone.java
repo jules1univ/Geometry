@@ -1,141 +1,131 @@
 package fr.univrennes.istic.l2gen.geometrie.model.formes;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import fr.univrennes.istic.l2gen.geometrie.model.Point;
 
 public final class Polygone implements IShape {
-    private ArrayList<Point> sommet;
+
+    private final List<Point> sommets;
+
+    public Polygone() {
+        this.sommets = new ArrayList<>();
+    }
 
     public Polygone(double... coord) {
-        sommet = new ArrayList<Point>();
+        this();
+        if (coord.length % 2 != 0) {
+            throw new IllegalArgumentException("Nombre de coordonnées invalide");
+        }
         for (int i = 0; i < coord.length; i += 2) {
-            sommet.add(new Point(coord[i], coord[i + 1]));
+            sommets.add(new Point(coord[i], coord[i + 1]));
         }
     }
 
     @Override
     public Point getCenter() {
-        double totalX = 0.;
-        double totalY = 0.;
-        int nbSommet = 0;
-        for (Point elem : sommet) {
-            totalX += elem.getX();
-            totalY += elem.getY();
-            nbSommet++;
+        if (sommets.isEmpty()) {
+            return new Point(0, 0);
         }
-        return new Point(totalX / nbSommet, totalY / nbSommet);
+
+        double totalX = 0;
+        double totalY = 0;
+
+        for (Point p : sommets) {
+            totalX += p.getX();
+            totalY += p.getY();
+        }
+
+        return new Point(totalX / sommets.size(), totalY / sommets.size());
     }
 
     @Override
     public String getDescription(int indent) {
-        StringBuilder sb = new StringBuilder();
-        sb.append(" ".repeat(Math.max(0, indent)));
+        StringBuilder sb = new StringBuilder(" ".repeat(Math.max(0, indent)));
         sb.append("Polygone ");
-        for (Point p : sommet) {
-            sb.append( p.getX()).append(",").append(p.getY()).append(" ");
+        for (Point p : sommets) {
+            sb.append(p.getX()).append(",").append(p.getY()).append(" ");
         }
         return sb.toString();
     }
 
     @Override
-    public double getHeight() {
-        Point max = null;
-        Point min = null;
+    public double getWidth() {
+        if (sommets.isEmpty()) return -1;
 
-        if (this.sommet.isEmpty()) {
-            return -1.0;
-        } else {
-            min = this.sommet.get(0);
-            max = this.sommet.get(0);
-        }
+        double minX = sommets.get(0).getX();
+        double maxX = minX;
 
-        for (int i = 0; i < this.sommet.size(); i++) {
-            if (this.sommet.get(i).getX() < min.getX())
-                min = this.sommet.get(i);
-            if (this.sommet.get(i).getX() > max.getX())
-                max = this.sommet.get(i);
+        for (Point p : sommets) {
+            minX = Math.min(minX, p.getX());
+            maxX = Math.max(maxX, p.getX());
         }
-        return max.getX() - min.getX();
+        return maxX - minX;
     }
 
     @Override
-    public double getWidth() {
-        Point max = null;
-        Point min = null;
+    public double getHeight() {
+        if (sommets.isEmpty()) return -1;
 
-        if (this.sommet.isEmpty()) {
-            return -1.0;
-        } else {
-            min = this.sommet.get(0);
-            max = this.sommet.get(0);
+        double minY = sommets.get(0).getY();
+        double maxY = minY;
+
+        for (Point p : sommets) {
+            minY = Math.min(minY, p.getY());
+            maxY = Math.max(maxY, p.getY());
         }
-
-        for (int i = 0; i < this.sommet.size(); i++) {
-            if (this.sommet.get(i).getY() < min.getY())
-                min = this.sommet.get(i);
-            if (this.sommet.get(i).getY() > max.getY())
-                max = this.sommet.get(i);
-        }
-        return max.getY() - min.getY();
-
+        return maxY - minY;
     }
 
     public void ajouterSommet(Point p) {
-        this.sommet.add(p);
+        sommets.add(new Point(p.getX(), p.getY()));
     }
 
     public void ajouterSommet(double x, double y) {
-        this.sommet.add(new Point(x, y));
+        sommets.add(new Point(x, y));
     }
 
-    public ArrayList<Point> getSommets() {
-        return this.sommet;
+    public List<Point> getSommets() {
+        return new ArrayList<>(sommets);
     }
 
     @Override
     public IShape copy() {
         Polygone copie = new Polygone();
-
-        for (int i = 0; i < this.sommet.size(); i++) {
-            copie.ajouterSommet(this.sommet.get(i));
+        for (Point p : sommets) {
+            copie.ajouterSommet(p);
         }
         return copie;
     }
 
     @Override
-    public void resize(double x, double y) {
-        for (Point elem : sommet) {
-            if (elem.getX() < getCenter().getX()) {
-                elem.add(x * (-1), 0.);
-            } else {
-                elem.add(x, 0.);
-            }
-            if (elem.getY() < getCenter().getX()) {
-                elem.add(0., y * (-1));
-            } else {
-                elem.add(0., y);
-            }
+    public void resize(double dx, double dy) {
+        Point center = getCenter();
+
+        for (Point p : sommets) {
+            double newX = p.getX() + (p.getX() < center.getX() ? -dx : dx);
+            double newY = p.getY() + (p.getY() < center.getY() ? -dy : dy);
+            p.set(newX, newY);
         }
     }
 
     @Override
-    public void move(double x, double y) {
-        for (Point elem : sommet) {
-            elem.add(x, y);
+    public void move(double dx, double dy) {
+        for (Point p : sommets) {
+            p.add(dx, dy);
         }
     }
 
     @Override
     public String toSVG() {
-    String str = "<polygon points=\"";
+        StringBuilder sb = new StringBuilder("<polygon points=\"");
 
-    for ( int i = 0; i < this.sommet.size(); i++ ) {
-    str += this.sommet.get(i).getX() + " " + this.sommet.get(i).getY() + " ";
+        for (Point p : sommets) {
+            sb.append(p.getX()).append(" ").append(p.getY()).append(" ");
+        }
+
+        sb.append("\" fill=\"white\" stroke=\"black\"/>");
+        return sb.toString();
     }
-    str += "\n\"fill=\"white\" stroke=\"black\"/>";
-
-    return str;
-    }
-
 }
