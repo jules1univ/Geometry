@@ -1,6 +1,6 @@
-package fr.univrennes.istic.l2gen.geometrie.formes;
+package fr.univrennes.istic.l2gen.geometrie.model.formes;
 
-import fr.univrennes.istic.l2gen.geometrie.Point;
+import fr.univrennes.istic.l2gen.geometrie.model.Point;
 
 public class Cercle implements IForme {
     private double rayon;
@@ -23,7 +23,7 @@ public class Cercle implements IForme {
 
     @Override
     public String description(int indentation) {
-        return " ".repeat(indentation) + "Centre centre = " + this.centre.x() + "," + this.centre.y() + " r=" + this.rayon;
+        return "Centre centre = " + this.centre.x() + "," + this.centre.y() + " r=" + this.rayon;
     }
 
     @Override

@@ -1,7 +1,9 @@
-package fr.univrennes.istic.l2gen.geometrie;
+package fr.univrennes.istic.l2gen.geometrie.model.formes;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import fr.univrennes.istic.l2gen.geometrie.model.Point;
 
 public class Ligne implements IForme {
 
@@ -105,6 +107,12 @@ public class Ligne implements IForme {
         for(Point p: this.sommets){
             p=p.plus(x, y);
         }
+    }
+
+    @Override
+    public String enSVG() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'enSVG'");
     }
 
 }

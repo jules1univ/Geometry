@@ -1,11 +1,12 @@
-package fr.univrennes.istic.l2gen.geometrie;
+package fr.univrennes.istic.l2gen.geometrie.app;
 
 import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.univrennes.istic.l2gen.geometrie.formes.IForme;
-import fr.univrennes.istic.l2gen.geometrie.formes.Rectangle;
+import fr.univrennes.istic.l2gen.geometrie.model.Groupe;
+import fr.univrennes.istic.l2gen.geometrie.model.formes.IForme;
+import fr.univrennes.istic.l2gen.geometrie.model.formes.Rectangle;
 
 public class App {
 

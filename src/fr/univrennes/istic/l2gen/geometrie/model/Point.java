@@ -1,4 +1,4 @@
-package fr.univrennes.istic.l2gen.geometrie;
+package fr.univrennes.istic.l2gen.geometrie.model;
 
 public class Point {
     private double x;

@@ -1,6 +1,6 @@
-package fr.univrennes.istic.l2gen.geometrie.formes;
+package fr.univrennes.istic.l2gen.geometrie.model.formes;
 
-import fr.univrennes.istic.l2gen.geometrie.Point;
+import fr.univrennes.istic.l2gen.geometrie.model.Point;
 
 public class Triangle implements IForme {
     private Point point1;
