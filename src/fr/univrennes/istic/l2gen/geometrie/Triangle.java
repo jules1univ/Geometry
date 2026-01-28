@@ -71,4 +71,9 @@ public class Triangle implements IForme {
         point3 = new Point(centre.x() + (point3.x() - centre.x()) * px, 
                           centre.y() + (point3.y() - centre.y()) * py);
     }
+
+    @Override
+    public String enSVG() {
+        throw new UnsupportedOperationException("Unimplemented method 'enSVG'");
+    }
 }

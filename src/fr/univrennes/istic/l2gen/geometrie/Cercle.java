@@ -3,19 +3,19 @@ package fr.univrennes.istic.l2gen.geometrie;
 public class Cercle implements IForme {
     private double rayon;
     private Point centre;
-    
-    public Cercle (double x, double y, double rayon) {
+
+    public Cercle(double x, double y, double rayon) {
         this.rayon = rayon;
         this.centre = new Point(x, y);
     }
 
-    public Cercle (Point centre, double rayon) {
+    public Cercle(Point centre, double rayon) {
         this.centre = centre;
         this.rayon = rayon;
     }
 
     @Override
-    public Point centre(){
+    public Point centre() {
         return this.centre;
     }
 
@@ -26,12 +26,12 @@ public class Cercle implements IForme {
 
     @Override
     public double hauteur() {
-        return 2*this.rayon;
+        return 2 * this.rayon;
     }
 
     @Override
     public double largeur() {
-        return 2*this.rayon;
+        return 2 * this.rayon;
     }
 
     @Override
@@ -49,5 +49,10 @@ public class Cercle implements IForme {
         // Redimensionner un cercle en augmentant le rayon
         // px et py représentent les facteurs de redimensionnement
         this.rayon = this.rayon * px;
+    }
+
+    @Override
+    public String enSVG() {
+        throw new UnsupportedOperationException("Unimplemented method 'enSVG'");
     }
 }
