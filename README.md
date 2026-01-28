@@ -1,17 +1,21 @@
-> Etapes pour ajouter le projet (initialiser un dépôt git)
+# Projet GEN
+
+## Installation du projet 
+
+> Télécharger le projet
 
 ```cmd
 git clone https://github.com/jules1univ/GEN.git
 ```
 
-> Faire un commit (ajouter des modifications)
+> Ajouter les modifications
 
 ```cmd
 git commit -m "ajoute de <ma forme>"
 ```
 
-> Faire un fetch (pour avoir les dernières modifications)
+> Récupérer les modifications
 
-```
+```cmd
 git fetch origin main
 ```
