@@ -10,15 +10,19 @@ public class RectangleGenerator implements IGenerator<Rectangle> {
     public RectangleGenerator() {
     }
 
+    public Rectangle generate() {
+        double x = Math.random() * 500;
+        double y = Math.random() * 500;
+        double width = 20 + Math.random() * 100;
+        double height = 20 + Math.random() * 100;
+        return new Rectangle(x, y, width, height);
+    }
+
     @Override
     public List<Rectangle> generate(int size) {
         List<Rectangle> rectangles = new ArrayList<>();
         for (int i = 0; i < size; i++) {
-            double x = Math.random() * 500;
-            double y = Math.random() * 500;
-            double width = 20 + Math.random() * 100;
-            double height = 20 + Math.random() * 100;
-            rectangles.add(new Rectangle(x, y, width, height));
+            rectangles.add(generate());
         }
         return rectangles;
     }

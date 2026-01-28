@@ -5,15 +5,15 @@ import java.util.List;
 
 import fr.univrennes.istic.l2gen.geometrie.model.Point;
 
-public final class Polygone implements IShape {
+public final class Polygon implements IShape {
 
     private final List<Point> sommets;
 
-    public Polygone() {
+    public Polygon() {
         this.sommets = new ArrayList<>();
     }
 
-    public Polygone(double... coord) {
+    public Polygon(double... coord) {
         this();
         if (coord.length % 2 != 0) {
             throw new IllegalArgumentException("Nombre de coordonnées invalide");
@@ -92,7 +92,7 @@ public final class Polygone implements IShape {
 
     @Override
     public IShape copy() {
-        Polygone copie = new Polygone();
+        Polygon copie = new Polygon();
         for (Point p : sommets) {
             copie.ajouterSommet(p);
         }

@@ -5,15 +5,15 @@ import java.util.List;
 
 import fr.univrennes.istic.l2gen.geometrie.model.Point;
 
-public final class Ligne implements IShape {
+public final class Line implements IShape {
 
     private final List<Point> sommets;
 
-    private Ligne() {
+    private Line() {
         this.sommets = new ArrayList<>();
     }
 
-    public Ligne(double... coords) {
+    public Line(double... coords) {
         if (coords.length % 2 != 0) {
             throw new IllegalArgumentException("Nombre de coordonnées invalide");
         }
@@ -107,7 +107,7 @@ public final class Ligne implements IShape {
 
     @Override
     public IShape copy() {
-        Ligne copie = new Ligne();
+        Line copie = new Line();
         for (Point p : sommets) {
             copie.ajouterSommet(p);
         }

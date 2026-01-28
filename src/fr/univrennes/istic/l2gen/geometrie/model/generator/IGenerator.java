@@ -6,5 +6,7 @@ import fr.univrennes.istic.l2gen.geometrie.model.shapes.IShape;
 
 public interface IGenerator<Shape extends IShape> {
 
+    public Shape generate();
+
     public List<Shape> generate(int size);
 }
