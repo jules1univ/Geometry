@@ -1,0 +1,30 @@
+name: Build Geometry Jar
+on: [push, pull_request]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+            distribution: 'temurin'
+            java-version: 21
+
+      - name: Compile Java sources
+        run: |
+          mkdir -p out
+          javac -d out $(find src -name "*.java")
+
+      - name: Create JAR
+        run: |
+          echo "Main-Class: fr.univrennes.istic.l2gen.geometrie.app.App" > manifest.txt
+          jar cfm Geometry.jar manifest.txt -C out .
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Geometry
+          path: Geometry.jar
