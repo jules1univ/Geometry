@@ -3,8 +3,12 @@ package fr.univrennes.istic.l2gen.geometrie.model.formes;
 import fr.univrennes.istic.l2gen.geometrie.model.Point;
 
 public class Text implements IForme {
+    private final String text;
+    private Point center;
 
     public Text(double x, double y, String text) {
+        this.center = new Point(x, y);
+        this.text = text;
     }
 
     @Override
@@ -51,8 +55,13 @@ public class Text implements IForme {
 
     @Override
     public String enSVG() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'enSVG'");
+        StringBuilder sb = new StringBuilder();
+        sb.append("<text x=\"").append(this.center.x()).append("\" y=\"").append(this.center.y())
+                .append("\" font-family=\"Arial\" font-size=\"12\" fill=\"black\">")
+                .append(this.text)
+                .append("</text>\n");
+
+        return sb.toString();
     }
-    
+
 }
