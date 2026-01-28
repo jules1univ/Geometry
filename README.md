@@ -1,13 +1,14 @@
-# Projet GEN
+# Projet Geométrie (GEN)
 
 
->Prérequis
+## Utilisation de Git
+
+> Prérequis
 
 - Git installé
 - VS Code (recommandé)
 - Un compte GitHub avec accès au dépôt
 
-## Utilisation de Git
 
 > Cloner le dépôt
 
