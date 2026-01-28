@@ -4,6 +4,9 @@ import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.univrennes.istic.l2gen.geometrie.formes.IForme;
+import fr.univrennes.istic.l2gen.geometrie.formes.Rectangle;
+
 public class App {
 
     public static List<Rectangle> genererRectangles(int n) {

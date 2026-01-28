@@ -1,21 +1,23 @@
-package fr.univrennes.istic.l2gen.geometrie;
+package fr.univrennes.istic.l2gen.geometrie.formes;
+
+import fr.univrennes.istic.l2gen.geometrie.Point;
 
 public class Cercle implements IForme {
     private double rayon;
     private Point centre;
-    
-    public Cercle (double x, double y, double rayon) {
+
+    public Cercle(double x, double y, double rayon) {
         this.rayon = rayon;
         this.centre = new Point(x, y);
     }
 
-    public Cercle (Point centre, double rayon) {
+    public Cercle(Point centre, double rayon) {
         this.centre = centre;
         this.rayon = rayon;
     }
 
     @Override
-    public Point centre(){
+    public Point centre() {
         return this.centre;
     }
 
@@ -26,12 +28,12 @@ public class Cercle implements IForme {
 
     @Override
     public double hauteur() {
-        return 2*this.rayon;
+        return 2 * this.rayon;
     }
 
     @Override
     public double largeur() {
-        return 2*this.rayon;
+        return 2 * this.rayon;
     }
 
     @Override
@@ -47,5 +49,10 @@ public class Cercle implements IForme {
     @Override
     public void redimensionner(double px, double py) {
         this.rayon = this.rayon * px;
+    }
+
+    @Override
+    public String enSVG() {
+        throw new UnsupportedOperationException("Unimplemented method 'enSVG'");
     }
 }

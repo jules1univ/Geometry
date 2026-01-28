@@ -1,4 +1,6 @@
-package fr.univrennes.istic.l2gen.geometrie;
+package fr.univrennes.istic.l2gen.geometrie.formes;
+
+import fr.univrennes.istic.l2gen.geometrie.Point;
 
 public class Triangle implements IForme {
     private Point point1;
@@ -70,5 +72,10 @@ public class Triangle implements IForme {
                           centre.y() + (point2.y() - centre.y()) * py);
         point3 = new Point(centre.x() + (point3.x() - centre.x()) * px, 
                           centre.y() + (point3.y() - centre.y()) * py);
+    }
+
+    @Override
+    public String enSVG() {
+        throw new UnsupportedOperationException("Unimplemented method 'enSVG'");
     }
 }

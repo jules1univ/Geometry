@@ -17,26 +17,31 @@ public class Point {
         return y;
     }
 
-
-    public void plus(double dx, double dy) {
+    public Point plus(double dx, double dy) {
         this.x += dx;
         this.y += dy;
+        return this;
+
     }
 
-    public void plus(Point p) {
+    public Point plus(Point p) {
         this.x += p.x;
         this.y += p.y;
+        return this;
     }
 
-    public void mult(double dx, double dy) {
+    public Point mult(double dx, double dy) {
         this.x *= dx;
         this.y *= dy;
+        return this;
+
     }
 
-
-    public void mult(Point p) {
+    public Point mult(Point p) {
         this.x *= p.x;
         this.y *= p.y;
+        return this;
+
     }
 
     public void deplacer(double dx, double dy) {
