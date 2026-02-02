@@ -1,47 +1,27 @@
-# Projet Geométrie (GEN)
+# Projet Géométrie
 
+## Setup
 
-## Utilisation de Git
+### Logiciels nécessaires
 
-> Prérequis
+* **VS Code** (éditeur recommandé)
+* **Git**
+* **Java JDK 11** ou supérieur
 
-- Git installé
-- VS Code (recommandé)
-- Un compte GitHub avec accès au dépôt
+## Installation
 
-
-> Cloner le dépôt
-
-```bash
-git clone https://github.com/jules1univ/GEN.git
-cd GEN
-```
-
-> Récupérer les dernières modifications 
-
-**Il faut le faire avant de commencer à travailler.**
+### Cloner le dépôt
 
 ```bash
-git pull origin main
+git clone https://github.com/jules1univ/Geometrie.git
+cd Geometrie
 ```
 
-> Ajouter des modifications
+### Ouvrir le projet
 
-```bash
-git add .
-git commit -m "ajoute de <ma forme>"
-```
+* Ouvrir le dossier `Geometrie` dans **VS Code**
+* Vérifier que le JDK est bien configuré (`java --version`)
 
-> Envoyer ces modifications
+## Contribution
 
-```bash
-git push origin main
-```
-
-> Le push ne fonctionne pas ?
-
-```bash
-git pull --no-rebase --tags origin main
-git pull
-git push origin main
-```
+**Lisez impérativement** le [guide de contribution](CONTRIBUTING.md) avant de commencer à travailler sur le projet.
