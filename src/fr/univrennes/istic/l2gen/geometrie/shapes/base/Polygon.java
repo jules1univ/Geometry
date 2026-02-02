@@ -1,25 +1,30 @@
-package fr.univrennes.istic.l2gen.geometrie.model.shapes;
+package fr.univrennes.istic.l2gen.geometrie.shapes.base;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.univrennes.istic.l2gen.geometrie.model.Point;
+import fr.univrennes.istic.l2gen.geometrie.infrastructure.xml.model.XMLTag;
+import fr.univrennes.istic.l2gen.geometrie.shapes.AbstractShape;
+import fr.univrennes.istic.l2gen.geometrie.shapes.Point;
 
-public final class Polygon implements IShape {
+public final class Polygon extends AbstractShape {
 
     private final List<Point> sommets;
 
     public Polygon() {
+        super("polygon");
         this.sommets = new ArrayList<>();
     }
 
-    public Polygon(double... coord) {
-        this();
-        if (coord.length % 2 != 0) {
+    public Polygon(double... coords) {
+        super("polygon");
+
+        this.sommets = new ArrayList<>();
+        if (coords.length % 2 != 0) {
             throw new IllegalArgumentException("Nombre de coordonnées invalide");
         }
-        for (int i = 0; i < coord.length; i += 2) {
-            sommets.add(new Point(coord[i], coord[i + 1]));
+        for (int i = 0; i < coords.length; i += 2) {
+            this.sommets.add(new Point(coords[i], coords[i + 1]));
         }
     }
 
@@ -52,7 +57,8 @@ public final class Polygon implements IShape {
 
     @Override
     public double getWidth() {
-        if (sommets.isEmpty()) return -1;
+        if (sommets.isEmpty())
+            return -1;
 
         double minX = sommets.get(0).getX();
         double maxX = minX;
@@ -66,7 +72,8 @@ public final class Polygon implements IShape {
 
     @Override
     public double getHeight() {
-        if (sommets.isEmpty()) return -1;
+        if (sommets.isEmpty())
+            return -1;
 
         double minY = sommets.get(0).getY();
         double maxY = minY;
@@ -91,7 +98,7 @@ public final class Polygon implements IShape {
     }
 
     @Override
-    public IShape copy() {
+    public AbstractShape copy() {
         Polygon copie = new Polygon();
         for (Point p : sommets) {
             copie.ajouterSommet(p);
@@ -118,14 +125,13 @@ public final class Polygon implements IShape {
     }
 
     @Override
-    public String toSVG() {
-        StringBuilder sb = new StringBuilder("<polygon points=\"");
-
-        for (Point p : sommets) {
-            sb.append(p.getX()).append(" ").append(p.getY()).append(" ");
-        }
-
-        sb.append("\" fill=\"white\" stroke=\"black\"/>");
-        return sb.toString();
+    public XMLTag toSVG() {
+        this.setAttribute("points", sommets.stream()
+                .map(p -> p.getX() + "," + p.getY())
+                .reduce((p1, p2) -> p1 + " " + p2)
+                .orElse(""));
+        this.setAttribute("fill", "white");
+        this.setAttribute("stroke", "black");
+        return this;
     }
 }

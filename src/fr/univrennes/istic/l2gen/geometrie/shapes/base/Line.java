@@ -1,19 +1,24 @@
-package fr.univrennes.istic.l2gen.geometrie.model.shapes;
+package fr.univrennes.istic.l2gen.geometrie.shapes.base;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.univrennes.istic.l2gen.geometrie.model.Point;
+import fr.univrennes.istic.l2gen.geometrie.infrastructure.xml.model.XMLTag;
+import fr.univrennes.istic.l2gen.geometrie.shapes.AbstractShape;
+import fr.univrennes.istic.l2gen.geometrie.shapes.Point;
 
-public final class Line implements IShape {
+public final class Line extends AbstractShape {
 
     private final List<Point> sommets;
 
     private Line() {
+        super("polyline");
         this.sommets = new ArrayList<>();
     }
 
     public Line(double... coords) {
+        super("polyline");
+
         if (coords.length % 2 != 0) {
             throw new IllegalArgumentException("Nombre de coordonnées invalide");
         }
@@ -106,21 +111,20 @@ public final class Line implements IShape {
     }
 
     @Override
-    public IShape copy() {
+    public AbstractShape copy() {
         Line copie = new Line();
-        for (Point p : sommets) {
-            copie.ajouterSommet(p);
-        }
+        copie.sommets.addAll(this.sommets);
         return copie;
     }
 
     @Override
-    public String toSVG() {
-        StringBuilder sb = new StringBuilder("<polyline points=\"");
-        for (Point p : sommets) {
-            sb.append(p.getX()).append(" ").append(p.getY()).append(" ");
-        }
-        sb.append("\" fill=\"white\" stroke=\"black\"/>");
-        return sb.toString();
+    public XMLTag toSVG() {
+        this.setAttribute("points", sommets.stream()
+                .map(p -> p.getX() + "," + p.getY())
+                .reduce((p1, p2) -> p1 + " " + p2)
+                .orElse(""));
+        this.setAttribute("fill", "white");
+        this.setAttribute("stroke", "black");
+        return this;
     }
 }

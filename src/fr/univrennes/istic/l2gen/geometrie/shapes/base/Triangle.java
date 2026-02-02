@@ -1,24 +1,26 @@
-package fr.univrennes.istic.l2gen.geometrie.model.shapes;
+package fr.univrennes.istic.l2gen.geometrie.shapes.base;
 
-import fr.univrennes.istic.l2gen.geometrie.model.Point;
+import fr.univrennes.istic.l2gen.geometrie.infrastructure.xml.model.XMLTag;
+import fr.univrennes.istic.l2gen.geometrie.shapes.AbstractShape;
+import fr.univrennes.istic.l2gen.geometrie.shapes.Point;
 
-public final class Triangle implements IShape {
+public final class Triangle extends AbstractShape {
 
     private Point point1;
     private Point point2;
     private Point point3;
 
     public Triangle(double x1, double y1,
-                    double x2, double y2,
-                    double x3, double y3) {
+            double x2, double y2,
+            double x3, double y3) {
         this(
-            new Point(x1, y1),
-            new Point(x2, y2),
-            new Point(x3, y3)
-        );
+                new Point(x1, y1),
+                new Point(x2, y2),
+                new Point(x3, y3));
     }
 
     public Triangle(Point p1, Point p2, Point p3) {
+        super("polypgon");
         this.point1 = new Point(p1.getX(), p1.getY());
         this.point2 = new Point(p2.getX(), p2.getY());
         this.point3 = new Point(p3.getX(), p3.getY());
@@ -63,7 +65,7 @@ public final class Triangle implements IShape {
     }
 
     @Override
-    public IShape copy() {
+    public AbstractShape copy() {
         return new Triangle(point1, point2, point3);
     }
 
@@ -78,17 +80,18 @@ public final class Triangle implements IShape {
 
     private Point scalePoint(Point p, Point c, double sx, double sy) {
         return new Point(
-            c.getX() + (p.getX() - c.getX()) * sx,
-            c.getY() + (p.getY() - c.getY()) * sy
-        );
+                c.getX() + (p.getX() - c.getX()) * sx,
+                c.getY() + (p.getY() - c.getY()) * sy);
     }
 
     @Override
-    public String toSVG() {
-        return "<polygon points=\"" +
-               point1.getX() + " " + point1.getY() + " " +
-               point2.getX() + " " + point2.getY() + " " +
-               point3.getX() + " " + point3.getY() +
-               "\" fill=\"white\" stroke=\"black\"/>";
+    public XMLTag toSVG() {
+        this.setAttribute("points",
+                point1.getX() + "," + point1.getY() + " " +
+                        point2.getX() + "," + point2.getY() + " " +
+                        point3.getX() + "," + point3.getY());
+        this.setAttribute("fill", "white");
+        this.setAttribute("stroke", "black");
+        return this;
     }
 }

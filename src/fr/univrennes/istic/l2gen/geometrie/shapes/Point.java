@@ -1,12 +1,13 @@
-package fr.univrennes.istic.l2gen.geometrie.model;
+package fr.univrennes.istic.l2gen.geometrie.shapes;
 
-import fr.univrennes.istic.l2gen.geometrie.model.shapes.IShape;
+import fr.univrennes.istic.l2gen.geometrie.infrastructure.xml.model.XMLTag;
 
-public final class Point implements IShape {
+public final class Point extends AbstractShape {
     private double x;
     private double y;
 
     public Point(double x, double y) {
+        super("circle");
         this.x = x;
         this.y = y;
     }
@@ -98,15 +99,16 @@ public final class Point implements IShape {
     }
 
     @Override
-    public String toSVG() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("<circle cx=\"").append(this.x).append("\" cy=\"").append(this.y)
-                .append("\" r=\"2\" fill=\"black\" />");
-        return sb.toString();
+    public XMLTag toSVG() {
+        this.setAttribute("cx", this.x);
+        this.setAttribute("cy", this.y);
+        this.setAttribute("r", 2);
+        this.setAttribute("fill", "black");
+        return this;
     }
 
     @Override
-    public IShape copy() {
+    public AbstractShape copy() {
         return new Point(this.x, this.y);
     }
 

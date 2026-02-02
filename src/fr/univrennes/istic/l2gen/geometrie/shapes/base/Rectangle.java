@@ -1,18 +1,22 @@
-package fr.univrennes.istic.l2gen.geometrie.model.shapes;
+package fr.univrennes.istic.l2gen.geometrie.shapes.base;
 
-import fr.univrennes.istic.l2gen.geometrie.model.Point;
+import fr.univrennes.istic.l2gen.geometrie.infrastructure.xml.model.XMLTag;
+import fr.univrennes.istic.l2gen.geometrie.shapes.AbstractShape;
+import fr.univrennes.istic.l2gen.geometrie.shapes.Point;
 
-public final class Rectangle implements IShape {
+public final class Rectangle extends AbstractShape {
 
     private Point center;
     private Point size;
 
     public Rectangle(double x, double y, double width, double height) {
+        super("rect");
         this.center = new Point(x, y);
         this.size = new Point(width, height);
     }
 
     public Rectangle(Point position, double width, double height) {
+        super("rect");
         this.center = new Point(position.getX(), position.getY());
         this.size = new Point(width, height);
     }
@@ -54,21 +58,19 @@ public final class Rectangle implements IShape {
     }
 
     @Override
-    public IShape copy() {
-        return new Rectangle((Point)this.center.copy(), this.size.getX(), this.size.getY());
+    public AbstractShape copy() {
+        return new Rectangle((Point) this.center.copy(), this.size.getX(), this.size.getY());
     }
 
     @Override
-    public String toSVG() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("<rect ");
-        sb.append("x=\"").append((this.center.getX() - this.size.getX() / 2)).append("\" ");
-        sb.append("y=\"").append((this.center.getY() - this.size.getY() / 2)).append("\" ");
-        sb.append("width=\"").append(this.size.getX()).append("\" ");
-        sb.append("height=\"").append(this.size.getY()).append("\" ");
-        sb.append("fill=\"white\" stroke=\"black\" ");
-        sb.append("/>");
-        return sb.toString();
+    public XMLTag toSVG() {
+        this.setAttribute("x", this.center.getX() - this.size.getX() / 2);
+        this.setAttribute("y", this.center.getY() - this.size.getY() / 2);
+        this.setAttribute("width", this.size.getX());
+        this.setAttribute("height", this.size.getY());
+        this.setAttribute("fill", "white");
+        this.setAttribute("stroke", "black");
+        return this;
     }
 
 }

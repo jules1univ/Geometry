@@ -1,12 +1,15 @@
-package fr.univrennes.istic.l2gen.geometrie.model.shapes;
+package fr.univrennes.istic.l2gen.geometrie.shapes.base;
 
-import fr.univrennes.istic.l2gen.geometrie.model.Point;
+import fr.univrennes.istic.l2gen.geometrie.infrastructure.xml.model.XMLTag;
+import fr.univrennes.istic.l2gen.geometrie.shapes.AbstractShape;
+import fr.univrennes.istic.l2gen.geometrie.shapes.Point;
 
-public final class Text implements IShape {
+public final class Text extends AbstractShape {
     private final String text;
     private Point center;
 
     public Text(double x, double y, String text) {
+        super("text");
         this.center = new Point(x, y);
         this.text = text;
     }
@@ -34,7 +37,6 @@ public final class Text implements IShape {
         return 1;
     }
 
-
     @Override
     public Point getCenter() {
         return this.center;
@@ -46,24 +48,27 @@ public final class Text implements IShape {
     }
 
     @Override
-    public IShape copy() {
+    public AbstractShape copy() {
         return new Text(this.center.getX(), this.center.getY(), this.text);
     }
 
     @Override
-    public void resize(double px, double py) {  
+    public void resize(double px, double py) {
         // Ne rien faire car le texte n'est pas redimensionnable
     }
 
     @Override
-    public String toSVG() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("<text x=\"").append(this.center.getX()).append("\" y=\"").append(this.center.getY())
-                .append("\" font-family=\"Arial\" font-size=\"64\" fill=\"black\" text-anchor=\"middle\">")
-                .append(this.text)
-                .append("</text>\n");
+    public XMLTag toSVG() {
 
-        return sb.toString();
+        this.setAttribute("x", this.center.getX());
+        this.setAttribute("y", this.center.getY());
+        this.setAttribute("font-family", "Arial");
+        this.setAttribute("font-size", "64");
+        this.setAttribute("fill", "black");
+        this.setAttribute("text-anchor", "middle");
+        this.setTextContent(this.text);
+
+        return this;
     }
 
 }

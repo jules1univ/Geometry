@@ -1,31 +1,26 @@
-package fr.univrennes.istic.l2gen.geometrie.model;
+package fr.univrennes.istic.l2gen.geometrie.shapes;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.univrennes.istic.l2gen.geometrie.model.shapes.IShape;
+import fr.univrennes.istic.l2gen.geometrie.infrastructure.xml.model.XMLTag;
 
-public final class Groupe<Shape extends IShape> implements IShape {
-    private List<Shape> shapes = new ArrayList<>();
+public final class Group<T extends AbstractShape> extends AbstractShape {
+    private List<T> shapes = new ArrayList<>();
 
-    public Groupe(@SuppressWarnings("unchecked") Shape... formes) {
-        for (Shape shape : formes) {
-            this.shapes.add(shape);
-        }
+    public Group() {
+        super("g");
     }
 
-    public Groupe(List<Shape> shapes) {
+    public Group(List<T> shapes) {
+        super("g");
         this.shapes = shapes;
-    }
-
-    public void add(Shape shape) {
-        this.shapes.add(shape);
     }
 
     public Point getCenter() {
         double sumX = 0;
         double sumY = 0;
-        for (IShape shape : shapes) {
+        for (T shape : shapes) {
             sumX += shape.getCenter().getX();
             sumY += shape.getCenter().getY();
         }
@@ -36,7 +31,7 @@ public final class Groupe<Shape extends IShape> implements IShape {
         double maxY = Double.NEGATIVE_INFINITY;
         double minY = Double.POSITIVE_INFINITY;
 
-        for (IShape shape : shapes) {
+        for (T shape : shapes) {
             double topY = shape.getCenter().getY() - shape.getHeight() / 2;
             double bottomY = shape.getCenter().getY() + shape.getHeight() / 2;
             if (topY < minY) {
@@ -52,8 +47,8 @@ public final class Groupe<Shape extends IShape> implements IShape {
     public double getWidth() {
         double maxX = Double.NEGATIVE_INFINITY;
         double minX = Double.POSITIVE_INFINITY;
-        
-        for (IShape shape : shapes) {
+
+        for (T shape : shapes) {
             double leftX = shape.getCenter().getX() - shape.getWidth() / 2;
             double rightX = shape.getCenter().getX() + shape.getWidth() / 2;
             if (leftX < minX) {
@@ -67,19 +62,19 @@ public final class Groupe<Shape extends IShape> implements IShape {
     }
 
     public void move(double dx, double dy) {
-        for (IShape shape : shapes) {
+        for (T shape : shapes) {
             shape.move(dx, dy);
         }
     }
 
     public void resize(double px, double py) {
-        for (IShape shape : shapes) {
+        for (T shape : shapes) {
             shape.resize(px, py);
         }
     }
 
-    public Groupe<Shape> copy() {
-        return new Groupe<>(new ArrayList<>(this.shapes));
+    public Group<T> copy() {
+        return new Group<>(new ArrayList<>(this.shapes));
     }
 
     @Override
@@ -87,22 +82,27 @@ public final class Groupe<Shape extends IShape> implements IShape {
         StringBuilder sb = new StringBuilder();
         sb.append(" ".repeat(indentation));
         sb.append("Groupe\n");
-        for (IShape shape : shapes) {
+        for (T shape : shapes) {
             sb.append(shape.getDescription(indentation + 1));
             sb.append("\n");
         }
         return sb.toString();
     }
 
+    @SuppressWarnings("unchecked")
     @Override
-    public String toSVG() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("<g>\n");
-        for (IShape shape : shapes) {
-            sb.append(shape.toSVG());
-            sb.append("\n");
+    public void addChild(XMLTag child) {
+        if (child instanceof AbstractShape shape) {
+            this.shapes.add((T) shape);
+            this.children.add(child);
+            return;
         }
-        sb.append("</g>");
-        return sb.toString();
+
+        throw new IllegalArgumentException("Child is not a Shape");
+    }
+
+    @Override
+    public XMLTag toSVG() {
+        return this;
     }
 }

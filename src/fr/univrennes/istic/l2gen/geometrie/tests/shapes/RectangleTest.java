@@ -1,11 +1,11 @@
 package fr.univrennes.istic.l2gen.geometrie.tests.shapes;
 
-import fr.univrennes.istic.l2gen.geometrie.model.shapes.IShape;
+import fr.univrennes.istic.l2gen.geometrie.shapes.AbstractShape;
 
-public final class RectangleTest extends IShapeTest {
+public final class RectangleTest extends AbstractShapeTest {
 
     @Override
-    public IShape create() {
+    public AbstractShape create() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'create'");
     }

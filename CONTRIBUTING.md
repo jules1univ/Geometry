@@ -14,7 +14,7 @@
 #### Java
 
 - Installer [les extentions recommandées pour VSCode](.vscode/extensions.json)
-- Indentation : **2 espaces**
+- Indentation : **4 espaces**
 - Noms de classes : `MyClasse`
 - Noms de méthodes et variables : `camelCase`
 - Une classe = un fichier

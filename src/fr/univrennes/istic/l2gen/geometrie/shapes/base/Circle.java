@@ -1,17 +1,21 @@
-package fr.univrennes.istic.l2gen.geometrie.model.shapes;
+package fr.univrennes.istic.l2gen.geometrie.shapes.base;
 
-import fr.univrennes.istic.l2gen.geometrie.model.Point;
+import fr.univrennes.istic.l2gen.geometrie.infrastructure.xml.model.XMLTag;
+import fr.univrennes.istic.l2gen.geometrie.shapes.AbstractShape;
+import fr.univrennes.istic.l2gen.geometrie.shapes.Point;
 
-public final class Circle implements IShape {
+public final class Circle extends AbstractShape {
     private double radius;
     private Point center;
 
     public Circle(double x, double y, double radius) {
+        super("circle");
         this.radius = radius;
         this.center = new Point(x, y);
     }
 
     public Circle(Point centre, double radius) {
+        super("circle");
         this.center = centre;
         this.radius = radius;
     }
@@ -49,7 +53,7 @@ public final class Circle implements IShape {
     }
 
     @Override
-    public IShape copy() {
+    public AbstractShape copy() {
         return new Circle(this.center, this.radius);
     }
 
@@ -59,8 +63,14 @@ public final class Circle implements IShape {
     }
 
     @Override
-    public String toSVG() {
-        return "<circle cx=\"" + this.center.getX() + "\" cy=\"" + this.center.getY() + "\" r=\"" + this.radius
-                + "\" fill=\"white\" stroke=\"black\"/>";
+    public XMLTag toSVG() {
+
+        this.setAttribute("cx", this.center.getX());
+        this.setAttribute("cy", this.center.getY());
+        this.setAttribute("r", this.radius);
+        this.setAttribute("fill", "white");
+        this.setAttribute("stroke", "black");
+
+        return this;
     }
 }
