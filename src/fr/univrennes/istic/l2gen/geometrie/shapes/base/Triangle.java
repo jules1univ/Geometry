@@ -1,14 +1,14 @@
 package fr.univrennes.istic.l2gen.geometrie.shapes.base;
 
-import fr.univrennes.istic.l2gen.geometrie.infrastructure.xml.model.XMLTag;
-import fr.univrennes.istic.l2gen.geometrie.shapes.AbstractShape;
+import fr.univrennes.istic.l2gen.geometrie.shapes.IShape;
 import fr.univrennes.istic.l2gen.geometrie.shapes.Point;
+import fr.univrennes.istic.l2gen.geometrie.xml.model.XMLTag;
 
-public final class Triangle extends AbstractShape {
+public final class Triangle implements IShape {
 
-    private Point point1;
-    private Point point2;
-    private Point point3;
+    private Point vertex1;
+    private Point vertex2;
+    private Point vertex3;
 
     public Triangle(double x1, double y1,
             double x2, double y2,
@@ -20,30 +20,29 @@ public final class Triangle extends AbstractShape {
     }
 
     public Triangle(Point p1, Point p2, Point p3) {
-        super("polypgon");
-        this.point1 = new Point(p1.getX(), p1.getY());
-        this.point2 = new Point(p2.getX(), p2.getY());
-        this.point3 = new Point(p3.getX(), p3.getY());
+        this.vertex1 = new Point(p1.getX(), p1.getY());
+        this.vertex2 = new Point(p2.getX(), p2.getY());
+        this.vertex3 = new Point(p3.getX(), p3.getY());
     }
 
     @Override
     public Point getCenter() {
-        double x = (point1.getX() + point2.getX() + point3.getX()) / 3.0;
-        double y = (point1.getY() + point2.getY() + point3.getY()) / 3.0;
+        double x = (vertex1.getX() + vertex2.getX() + vertex3.getX()) / 3.0;
+        double y = (vertex1.getY() + vertex2.getY() + vertex3.getY()) / 3.0;
         return new Point(x, y);
     }
 
     @Override
     public double getWidth() {
-        double minX = Math.min(point1.getX(), Math.min(point2.getX(), point3.getX()));
-        double maxX = Math.max(point1.getX(), Math.max(point2.getX(), point3.getX()));
+        double minX = Math.min(vertex1.getX(), Math.min(vertex2.getX(), vertex3.getX()));
+        double maxX = Math.max(vertex1.getX(), Math.max(vertex2.getX(), vertex3.getX()));
         return maxX - minX;
     }
 
     @Override
     public double getHeight() {
-        double minY = Math.min(point1.getY(), Math.min(point2.getY(), point3.getY()));
-        double maxY = Math.max(point1.getY(), Math.max(point2.getY(), point3.getY()));
+        double minY = Math.min(vertex1.getY(), Math.min(vertex2.getY(), vertex3.getY()));
+        double maxY = Math.max(vertex1.getY(), Math.max(vertex2.getY(), vertex3.getY()));
         return maxY - minY;
     }
 
@@ -51,31 +50,26 @@ public final class Triangle extends AbstractShape {
     public String getDescription(int indent) {
         StringBuilder sb = new StringBuilder(" ".repeat(Math.max(0, indent)));
         sb.append("Triangle ");
-        sb.append(point1.getX()).append(",").append(point1.getY()).append(" ");
-        sb.append(point2.getX()).append(",").append(point2.getY()).append(" ");
-        sb.append(point3.getX()).append(",").append(point3.getY());
+        sb.append(vertex1.getX()).append(",").append(vertex1.getY()).append(" ");
+        sb.append(vertex2.getX()).append(",").append(vertex2.getY()).append(" ");
+        sb.append(vertex3.getX()).append(",").append(vertex3.getY());
         return sb.toString();
     }
 
     @Override
     public void move(double dx, double dy) {
-        point1.add(dx, dy);
-        point2.add(dx, dy);
-        point3.add(dx, dy);
-    }
-
-    @Override
-    public AbstractShape copy() {
-        return new Triangle(point1, point2, point3);
+        vertex1.add(dx, dy);
+        vertex2.add(dx, dy);
+        vertex3.add(dx, dy);
     }
 
     @Override
     public void resize(double sx, double sy) {
         Point center = getCenter();
 
-        point1 = scalePoint(point1, center, sx, sy);
-        point2 = scalePoint(point2, center, sx, sy);
-        point3 = scalePoint(point3, center, sx, sy);
+        vertex1 = scalePoint(vertex1, center, sx, sy);
+        vertex2 = scalePoint(vertex2, center, sx, sy);
+        vertex3 = scalePoint(vertex3, center, sx, sy);
     }
 
     private Point scalePoint(Point p, Point c, double sx, double sy) {
@@ -85,13 +79,19 @@ public final class Triangle extends AbstractShape {
     }
 
     @Override
+    public IShape copy() {
+        return new Triangle(vertex1, vertex2, vertex3);
+    }
+
+    @Override
     public XMLTag toSVG() {
-        this.setAttribute("points",
-                point1.getX() + "," + point1.getY() + " " +
-                        point2.getX() + "," + point2.getY() + " " +
-                        point3.getX() + "," + point3.getY());
-        this.setAttribute("fill", "white");
-        this.setAttribute("stroke", "black");
-        return this;
+        XMLTag triangle = new XMLTag("polygon");
+        triangle.setAttribute("points",
+                vertex1.getX() + "," + vertex1.getY() + " " +
+                        vertex2.getX() + "," + vertex2.getY() + " " +
+                        vertex3.getX() + "," + vertex3.getY());
+        triangle.setAttribute("fill", "white");
+        triangle.setAttribute("stroke", "black");
+        return triangle;
     }
 }

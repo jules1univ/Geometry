@@ -1,15 +1,14 @@
 package fr.univrennes.istic.l2gen.geometrie.shapes.base;
 
-import fr.univrennes.istic.l2gen.geometrie.infrastructure.xml.model.XMLTag;
-import fr.univrennes.istic.l2gen.geometrie.shapes.AbstractShape;
+import fr.univrennes.istic.l2gen.geometrie.shapes.IShape;
 import fr.univrennes.istic.l2gen.geometrie.shapes.Point;
+import fr.univrennes.istic.l2gen.geometrie.xml.model.XMLTag;
 
-public final class Text extends AbstractShape {
+public final class Text implements IShape {
     private final String text;
     private Point center;
 
     public Text(double x, double y, String text) {
-        super("text");
         this.center = new Point(x, y);
         this.text = text;
     }
@@ -48,7 +47,7 @@ public final class Text extends AbstractShape {
     }
 
     @Override
-    public AbstractShape copy() {
+    public IShape copy() {
         return new Text(this.center.getX(), this.center.getY(), this.text);
     }
 
@@ -59,16 +58,15 @@ public final class Text extends AbstractShape {
 
     @Override
     public XMLTag toSVG() {
-
-        this.setAttribute("x", this.center.getX());
-        this.setAttribute("y", this.center.getY());
-        this.setAttribute("font-family", "Arial");
-        this.setAttribute("font-size", "64");
-        this.setAttribute("fill", "black");
-        this.setAttribute("text-anchor", "middle");
-        this.setTextContent(this.text);
-
-        return this;
+        XMLTag textTag = new XMLTag("text");
+        textTag.setAttribute("x", this.center.getX());
+        textTag.setAttribute("y", this.center.getY());
+        textTag.setAttribute("font-family", "Arial");
+        textTag.setAttribute("font-size", "64");
+        textTag.setAttribute("fill", "black");
+        textTag.setAttribute("text-anchor", "middle");
+        textTag.setTextContent(this.text);
+        return textTag;
     }
 
 }

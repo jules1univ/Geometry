@@ -1,22 +1,20 @@
 package fr.univrennes.istic.l2gen.geometrie.shapes.base;
 
-import fr.univrennes.istic.l2gen.geometrie.infrastructure.xml.model.XMLTag;
-import fr.univrennes.istic.l2gen.geometrie.shapes.AbstractShape;
+import fr.univrennes.istic.l2gen.geometrie.shapes.IShape;
 import fr.univrennes.istic.l2gen.geometrie.shapes.Point;
+import fr.univrennes.istic.l2gen.geometrie.xml.model.XMLTag;
 
-public final class Rectangle extends AbstractShape {
+public final class Rectangle implements IShape {
 
     private Point center;
     private Point size;
 
     public Rectangle(double x, double y, double width, double height) {
-        super("rect");
         this.center = new Point(x, y);
         this.size = new Point(width, height);
     }
 
     public Rectangle(Point position, double width, double height) {
-        super("rect");
         this.center = new Point(position.getX(), position.getY());
         this.size = new Point(width, height);
     }
@@ -58,19 +56,20 @@ public final class Rectangle extends AbstractShape {
     }
 
     @Override
-    public AbstractShape copy() {
+    public IShape copy() {
         return new Rectangle((Point) this.center.copy(), this.size.getX(), this.size.getY());
     }
 
     @Override
     public XMLTag toSVG() {
-        this.setAttribute("x", this.center.getX() - this.size.getX() / 2);
-        this.setAttribute("y", this.center.getY() - this.size.getY() / 2);
-        this.setAttribute("width", this.size.getX());
-        this.setAttribute("height", this.size.getY());
-        this.setAttribute("fill", "white");
-        this.setAttribute("stroke", "black");
-        return this;
+        XMLTag rectangle = new XMLTag("rect");
+        rectangle.setAttribute("x", this.center.getX() - this.size.getX() / 2);
+        rectangle.setAttribute("y", this.center.getY() - this.size.getY() / 2);
+        rectangle.setAttribute("width", this.size.getX());
+        rectangle.setAttribute("height", this.size.getY());
+        rectangle.setAttribute("fill", "white");
+        rectangle.setAttribute("stroke", "black");
+        return rectangle;
     }
 
 }

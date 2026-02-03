@@ -1,4 +1,4 @@
-package fr.univrennes.istic.l2gen.geometrie.infrastructure.xml.parser;
+package fr.univrennes.istic.l2gen.geometrie.xml.parser;
 
 public final class XMLParseException extends Exception {
     public XMLParseException(String message) {

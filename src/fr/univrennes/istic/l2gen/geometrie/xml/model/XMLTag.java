@@ -1,4 +1,4 @@
-package fr.univrennes.istic.l2gen.geometrie.infrastructure.xml.model;
+package fr.univrennes.istic.l2gen.geometrie.xml.model;
 
 import java.util.ArrayList;
 import java.util.HashMap;

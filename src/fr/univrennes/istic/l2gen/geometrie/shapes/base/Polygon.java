@@ -3,21 +3,19 @@ package fr.univrennes.istic.l2gen.geometrie.shapes.base;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.univrennes.istic.l2gen.geometrie.infrastructure.xml.model.XMLTag;
-import fr.univrennes.istic.l2gen.geometrie.shapes.AbstractShape;
+import fr.univrennes.istic.l2gen.geometrie.shapes.IShape;
 import fr.univrennes.istic.l2gen.geometrie.shapes.Point;
+import fr.univrennes.istic.l2gen.geometrie.xml.model.XMLTag;
 
-public final class Polygon extends AbstractShape {
+public final class Polygon implements IShape {
 
     private final List<Point> sommets;
 
     public Polygon() {
-        super("polygon");
         this.sommets = new ArrayList<>();
     }
 
     public Polygon(double... coords) {
-        super("polygon");
 
         this.sommets = new ArrayList<>();
         if (coords.length % 2 != 0) {
@@ -93,16 +91,14 @@ public final class Polygon extends AbstractShape {
         sommets.add(new Point(x, y));
     }
 
-    public List<Point> getSommets() {
+    public List<Point> getVertex() {
         return new ArrayList<>(sommets);
     }
 
     @Override
-    public AbstractShape copy() {
+    public IShape copy() {
         Polygon copie = new Polygon();
-        for (Point p : sommets) {
-            copie.ajouterSommet(p);
-        }
+        copie.sommets.addAll(this.sommets);
         return copie;
     }
 
@@ -126,12 +122,13 @@ public final class Polygon extends AbstractShape {
 
     @Override
     public XMLTag toSVG() {
-        this.setAttribute("points", sommets.stream()
+        XMLTag polygon = new XMLTag("polygon");
+        polygon.setAttribute("points", sommets.stream()
                 .map(p -> p.getX() + "," + p.getY())
                 .reduce((p1, p2) -> p1 + " " + p2)
                 .orElse(""));
-        this.setAttribute("fill", "white");
-        this.setAttribute("stroke", "black");
-        return this;
+        polygon.setAttribute("fill", "white");
+        polygon.setAttribute("stroke", "black");
+        return polygon;
     }
 }

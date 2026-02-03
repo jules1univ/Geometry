@@ -1,7 +1,6 @@
-package fr.univrennes.istic.l2gen.geometrie.app;
+package fr.univrennes.istic.l2gen.application;
 
-import fr.univrennes.istic.l2gen.geometrie.infrastructure.export.svg.SVGExporter;
-import fr.univrennes.istic.l2gen.geometrie.services.drawing.Fractal;
+import fr.univrennes.istic.l2gen.application.svg.out.SVGExporter;
 import fr.univrennes.istic.l2gen.geometrie.shapes.base.Rectangle;
 
 public class App {

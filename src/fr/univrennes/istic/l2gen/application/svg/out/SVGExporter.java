@@ -1,18 +1,17 @@
-package fr.univrennes.istic.l2gen.geometrie.infrastructure.export.svg;
+package fr.univrennes.istic.l2gen.application.svg.out;
 
 import java.io.FileWriter;
 
-import fr.univrennes.istic.l2gen.geometrie.infrastructure.export.Exporter;
-import fr.univrennes.istic.l2gen.geometrie.infrastructure.xml.model.XMLAttribute;
-import fr.univrennes.istic.l2gen.geometrie.infrastructure.xml.model.XMLTag;
-import fr.univrennes.istic.l2gen.geometrie.shapes.AbstractShape;
+import fr.univrennes.istic.l2gen.geometrie.shapes.IShape;
+import fr.univrennes.istic.l2gen.geometrie.xml.model.XMLAttribute;
+import fr.univrennes.istic.l2gen.geometrie.xml.model.XMLTag;
 
 public final class SVGExporter extends Exporter {
 
     public SVGExporter() {
     }
 
-    public boolean export(AbstractShape forme, String filename) {
+    public boolean export(IShape forme, String filename) {
         XMLTag svg = new XMLTag("svg");
         svg.addAttribute(new XMLAttribute("xmlns", "http://www.w3.org/2000/svg"));
         svg.addAttribute(new XMLAttribute("version", "1.1"));

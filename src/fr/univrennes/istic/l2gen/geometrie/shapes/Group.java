@@ -3,20 +3,23 @@ package fr.univrennes.istic.l2gen.geometrie.shapes;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.univrennes.istic.l2gen.geometrie.infrastructure.xml.model.XMLTag;
+import fr.univrennes.istic.l2gen.geometrie.xml.model.XMLTag;
 
-public final class Group<T extends AbstractShape> extends AbstractShape {
+public final class Group<T extends IShape> implements IShape {
     private List<T> shapes = new ArrayList<>();
 
     public Group() {
-        super("g");
     }
 
     public Group(List<T> shapes) {
-        super("g");
         this.shapes = shapes;
     }
 
+    public void add(T child) {
+        this.shapes.add(child);
+    }
+
+    @Override
     public Point getCenter() {
         double sumX = 0;
         double sumY = 0;
@@ -27,6 +30,7 @@ public final class Group<T extends AbstractShape> extends AbstractShape {
         return new Point(sumX / shapes.size(), sumY / shapes.size());
     }
 
+    @Override
     public double getHeight() {
         double maxY = Double.NEGATIVE_INFINITY;
         double minY = Double.POSITIVE_INFINITY;
@@ -44,6 +48,7 @@ public final class Group<T extends AbstractShape> extends AbstractShape {
         return maxY - minY;
     }
 
+    @Override
     public double getWidth() {
         double maxX = Double.NEGATIVE_INFINITY;
         double minX = Double.POSITIVE_INFINITY;
@@ -61,20 +66,18 @@ public final class Group<T extends AbstractShape> extends AbstractShape {
         return maxX - minX;
     }
 
+    @Override
     public void move(double dx, double dy) {
         for (T shape : shapes) {
             shape.move(dx, dy);
         }
     }
 
+    @Override
     public void resize(double px, double py) {
         for (T shape : shapes) {
             shape.resize(px, py);
         }
-    }
-
-    public Group<T> copy() {
-        return new Group<>(new ArrayList<>(this.shapes));
     }
 
     @Override
@@ -89,20 +92,18 @@ public final class Group<T extends AbstractShape> extends AbstractShape {
         return sb.toString();
     }
 
-    @SuppressWarnings("unchecked")
     @Override
-    public void addChild(XMLTag child) {
-        if (child instanceof AbstractShape shape) {
-            this.shapes.add((T) shape);
-            this.children.add(child);
-            return;
-        }
 
-        throw new IllegalArgumentException("Child is not a Shape");
+    public Group<T> copy() {
+        return new Group<>(new ArrayList<>(this.shapes));
     }
 
     @Override
     public XMLTag toSVG() {
-        return this;
+        XMLTag groupTag = new XMLTag("g");
+        for (T shape : shapes) {
+            groupTag.addChild(shape.toSVG());
+        }
+        return groupTag;
     }
 }

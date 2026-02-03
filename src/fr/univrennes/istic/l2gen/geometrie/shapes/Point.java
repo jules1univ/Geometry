@@ -1,13 +1,12 @@
 package fr.univrennes.istic.l2gen.geometrie.shapes;
 
-import fr.univrennes.istic.l2gen.geometrie.infrastructure.xml.model.XMLTag;
+import fr.univrennes.istic.l2gen.geometrie.xml.model.XMLTag;
 
-public final class Point extends AbstractShape {
+public final class Point implements IShape {
     private double x;
     private double y;
 
     public Point(double x, double y) {
-        super("circle");
         this.x = x;
         this.y = y;
     }
@@ -100,15 +99,16 @@ public final class Point extends AbstractShape {
 
     @Override
     public XMLTag toSVG() {
-        this.setAttribute("cx", this.x);
-        this.setAttribute("cy", this.y);
-        this.setAttribute("r", 2);
-        this.setAttribute("fill", "black");
-        return this;
+        XMLTag circle = new XMLTag("circle");
+        circle.setAttribute("cx", this.x);
+        circle.setAttribute("cy", this.y);
+        circle.setAttribute("r", 2);
+        circle.setAttribute("fill", "black");
+        return circle;
     }
 
     @Override
-    public AbstractShape copy() {
+    public IShape copy() {
         return new Point(this.x, this.y);
     }
 

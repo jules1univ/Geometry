@@ -1,7 +1,7 @@
-package fr.univrennes.istic.l2gen.geometrie.infrastructure.xml.parser;
+package fr.univrennes.istic.l2gen.geometrie.xml.parser;
 
-import fr.univrennes.istic.l2gen.geometrie.infrastructure.xml.model.XMLAttribute;
-import fr.univrennes.istic.l2gen.geometrie.infrastructure.xml.model.XMLTag;
+import fr.univrennes.istic.l2gen.geometrie.xml.model.XMLAttribute;
+import fr.univrennes.istic.l2gen.geometrie.xml.model.XMLTag;
 
 public class XMLParser {
     private String xml;
