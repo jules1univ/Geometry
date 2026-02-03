@@ -1,6 +1,6 @@
 package fr.univrennes.istic.l2gen.tests.geometrie.shapes;
 
-import fr.univrennes.istic.l2gen.geometrie.shapes.base.Rectangle;
+import fr.univrennes.istic.l2gen.geometrie.base.Rectangle;
 
 public final class RectangleTest implements IShapeTest<Rectangle> {
 

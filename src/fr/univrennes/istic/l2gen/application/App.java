@@ -1,7 +1,7 @@
 package fr.univrennes.istic.l2gen.application;
 
-import fr.univrennes.istic.l2gen.geometrie.shapes.IShape;
-import fr.univrennes.istic.l2gen.geometrie.shapes.base.Rectangle;
+import fr.univrennes.istic.l2gen.geometrie.IShape;
+import fr.univrennes.istic.l2gen.geometrie.base.Rectangle;
 import fr.univrennes.istic.l2gen.svg.interfaces.ISVGShape;
 import fr.univrennes.istic.l2gen.svg.io.SVGExport;
 import fr.univrennes.istic.l2gen.svg.io.SVGImport;

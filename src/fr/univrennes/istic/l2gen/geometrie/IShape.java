@@ -1,4 +1,4 @@
-package fr.univrennes.istic.l2gen.geometrie.shapes;
+package fr.univrennes.istic.l2gen.geometrie;
 
 import fr.univrennes.istic.l2gen.svg.interfaces.ISVGShape;
 

@@ -2,8 +2,8 @@ package fr.univrennes.istic.l2gen.application;
 
 import java.util.List;
 
-import fr.univrennes.istic.l2gen.geometrie.shapes.IShape;
-import fr.univrennes.istic.l2gen.geometrie.shapes.Group;
+import fr.univrennes.istic.l2gen.geometrie.Group;
+import fr.univrennes.istic.l2gen.geometrie.IShape;
 
 public final class Fractal {
     // TODO: definir une methode general pour les classes de dessin du style
