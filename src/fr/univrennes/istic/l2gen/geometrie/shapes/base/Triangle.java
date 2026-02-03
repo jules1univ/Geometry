@@ -1,92 +1,99 @@
 package fr.univrennes.istic.l2gen.geometrie.shapes.base;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import fr.univrennes.istic.l2gen.geometrie.shapes.IShape;
 import fr.univrennes.istic.l2gen.geometrie.shapes.Point;
-import fr.univrennes.istic.l2gen.svg.interfaces.fields.SVGField;
+import fr.univrennes.istic.l2gen.svg.interfaces.SVGField;
 
 public final class Triangle implements IShape {
 
-    private Point vertex1;
-    private Point vertex2;
-    private Point vertex3;
+    @SVGField("points")
+    private final List<Point> vertices;
 
     public Triangle(double x1, double y1,
             double x2, double y2,
             double x3, double y3) {
-        this(
-                new Point(x1, y1),
-                new Point(x2, y2),
-                new Point(x3, y3));
+        this(new Point(x1, y1), new Point(x2, y2), new Point(x3, y3));
     }
 
     public Triangle(Point p1, Point p2, Point p3) {
-        this.vertex1 = new Point(p1.getX(), p1.getY());
-        this.vertex2 = new Point(p2.getX(), p2.getY());
-        this.vertex3 = new Point(p3.getX(), p3.getY());
+        this.vertices = new ArrayList<>(3);
+        this.vertices.add(new Point(p1.getX(), p1.getY()));
+        this.vertices.add(new Point(p2.getX(), p2.getY()));
+        this.vertices.add(new Point(p3.getX(), p3.getY()));
     }
 
-    @SVGField(name = "points", points = true)
     public List<Point> getVertices() {
-        return List.of(vertex1, vertex2, vertex3);
+        return List.copyOf(vertices);
     }
 
     @Override
     public Point getCenter() {
-        double x = (vertex1.getX() + vertex2.getX() + vertex3.getX()) / 3.0;
-        double y = (vertex1.getY() + vertex2.getY() + vertex3.getY()) / 3.0;
-        return new Point(x, y);
+        double sumX = 0.0;
+        double sumY = 0.0;
+        for (Point p : vertices) {
+            sumX += p.getX();
+            sumY += p.getY();
+        }
+        return new Point(sumX / 3.0, sumY / 3.0);
     }
 
     @Override
     public double getWidth() {
-        double minX = Math.min(vertex1.getX(), Math.min(vertex2.getX(), vertex3.getX()));
-        double maxX = Math.max(vertex1.getX(), Math.max(vertex2.getX(), vertex3.getX()));
+        double minX = Double.POSITIVE_INFINITY;
+        double maxX = Double.NEGATIVE_INFINITY;
+        for (Point p : vertices) {
+            minX = Math.min(minX, p.getX());
+            maxX = Math.max(maxX, p.getX());
+        }
         return maxX - minX;
     }
 
     @Override
     public double getHeight() {
-        double minY = Math.min(vertex1.getY(), Math.min(vertex2.getY(), vertex3.getY()));
-        double maxY = Math.max(vertex1.getY(), Math.max(vertex2.getY(), vertex3.getY()));
+        double minY = Double.POSITIVE_INFINITY;
+        double maxY = Double.NEGATIVE_INFINITY;
+        for (Point p : vertices) {
+            minY = Math.min(minY, p.getY());
+            maxY = Math.max(maxY, p.getY());
+        }
         return maxY - minY;
     }
 
     @Override
     public String getDescription(int indent) {
         StringBuilder sb = new StringBuilder(" ".repeat(Math.max(0, indent)));
-        sb.append("Triangle ");
-        sb.append(vertex1.getX()).append(",").append(vertex1.getY()).append(" ");
-        sb.append(vertex2.getX()).append(",").append(vertex2.getY()).append(" ");
-        sb.append(vertex3.getX()).append(",").append(vertex3.getY());
+        sb.append("Triangle");
+        for (Point p : vertices) {
+            sb.append(" ").append(p.getX()).append(",").append(p.getY());
+        }
         return sb.toString();
     }
 
     @Override
     public void move(double dx, double dy) {
-        vertex1.add(dx, dy);
-        vertex2.add(dx, dy);
-        vertex3.add(dx, dy);
+        for (Point p : vertices) {
+            p.add(dx, dy);
+        }
     }
 
     @Override
     public void resize(double sx, double sy) {
         Point center = getCenter();
-
-        vertex1 = scalePoint(vertex1, center, sx, sy);
-        vertex2 = scalePoint(vertex2, center, sx, sy);
-        vertex3 = scalePoint(vertex3, center, sx, sy);
+        for (int i = 0; i < vertices.size(); i++) {
+            vertices.set(i, scalePoint(vertices.get(i), center, sx, sy));
+        }
     }
 
     @Override
     public void rotate(double deg) {
         Point center = getCenter();
         double rad = Math.toRadians(deg);
-
-        vertex1 = rotatePoint(vertex1, center, rad);
-        vertex2 = rotatePoint(vertex2, center, rad);
-        vertex3 = rotatePoint(vertex3, center, rad);
+        for (int i = 0; i < vertices.size(); i++) {
+            vertices.set(i, rotatePoint(vertices.get(i), center, rad));
+        }
     }
 
     private Point scalePoint(Point p, Point c, double sx, double sy) {
@@ -111,6 +118,6 @@ public final class Triangle implements IShape {
 
     @Override
     public IShape copy() {
-        return new Triangle(vertex1, vertex2, vertex3);
+        return new Triangle(vertices.get(0), vertices.get(1), vertices.get(2));
     }
 }

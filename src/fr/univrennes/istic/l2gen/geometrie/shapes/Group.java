@@ -3,13 +3,13 @@ package fr.univrennes.istic.l2gen.geometrie.shapes;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.univrennes.istic.l2gen.svg.interfaces.SVGField;
 import fr.univrennes.istic.l2gen.svg.interfaces.SVGTag;
-import fr.univrennes.istic.l2gen.svg.interfaces.fields.SVGFieldGroup;
 
 @SVGTag("g")
 public final class Group<T extends IShape> implements IShape {
 
-    @SVGFieldGroup
+    @SVGField
     private List<T> shapes = new ArrayList<>();
 
     public Group() {

@@ -2,24 +2,25 @@ package fr.univrennes.istic.l2gen.geometrie.shapes.base;
 
 import fr.univrennes.istic.l2gen.geometrie.shapes.IShape;
 import fr.univrennes.istic.l2gen.geometrie.shapes.Point;
+import fr.univrennes.istic.l2gen.svg.interfaces.SVGField;
 import fr.univrennes.istic.l2gen.svg.interfaces.SVGTag;
-import fr.univrennes.istic.l2gen.svg.interfaces.fields.SVGFieldPoint;
 
 @SVGTag("rect")
 public final class Rectangle implements IShape {
 
-    private Point center;
+    @SVGField({ "x", "y" })
+    private Point position;
 
-    @SVGFieldPoint(x = "width", y = "height")
+    @SVGField({ "width", "height" })
     private Point size;
 
     public Rectangle(double x, double y, double width, double height) {
-        this.center = new Point(x, y);
+        this.position = new Point(x, y);
         this.size = new Point(width, height);
     }
 
     public Rectangle(Point position, double width, double height) {
-        this.center = new Point(position.getX(), position.getY());
+        this.position = new Point(position.getX(), position.getY());
         this.size = new Point(width, height);
     }
 
@@ -31,15 +32,11 @@ public final class Rectangle implements IShape {
         return this.size.getX();
     }
 
-    @SVGFieldPoint()
-    public Point getPosition() {
-        return new Point(
-                this.center.getX() - this.size.getX() / 2,
-                this.center.getY() - this.size.getY() / 2);
-    }
-
+    @Override
     public Point getCenter() {
-        return center;
+        return new Point(
+                this.position.getX() + this.size.getX() / 2,
+                this.position.getY() + this.size.getY() / 2);
     }
 
     @Override
@@ -47,8 +44,8 @@ public final class Rectangle implements IShape {
         StringBuilder sb = new StringBuilder();
         sb.append(" ".repeat(indentation));
         sb.append("Rectangle");
-        sb.append(" Centre=");
-        sb.append(this.center.toString());
+        sb.append(" Position=");
+        sb.append(this.position.toString());
         sb.append(" L=");
         sb.append(this.size.getX());
         sb.append(" H=");
@@ -58,7 +55,7 @@ public final class Rectangle implements IShape {
 
     @Override
     public void move(double dx, double dy) {
-        this.center.add(dx, dy);
+        this.position.add(dx, dy);
     }
 
     @Override
@@ -68,11 +65,12 @@ public final class Rectangle implements IShape {
 
     @Override
     public void rotate(double deg) {
-        // Ne rien faire car le rectangle reste un rectangle après rotation
+        // No-op: rectangle remains rectangle after rotation (no orientation stored)
     }
 
     @Override
     public IShape copy() {
-        return new Rectangle((Point) this.center.copy(), this.size.getX(), this.size.getY());
+        return new Rectangle((Point) this.position.copy(), this.size.getX(), this.size.getY());
     }
+
 }

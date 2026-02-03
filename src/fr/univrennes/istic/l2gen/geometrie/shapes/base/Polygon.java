@@ -5,13 +5,13 @@ import java.util.List;
 
 import fr.univrennes.istic.l2gen.geometrie.shapes.IShape;
 import fr.univrennes.istic.l2gen.geometrie.shapes.Point;
+import fr.univrennes.istic.l2gen.svg.interfaces.SVGField;
 import fr.univrennes.istic.l2gen.svg.interfaces.SVGTag;
-import fr.univrennes.istic.l2gen.svg.interfaces.fields.SVGField;
 
 @SVGTag("polygon")
 public final class Polygon implements IShape {
 
-    @SVGField(name = "points", points = true)
+    @SVGField("points")
     private final List<Point> vertices;
 
     public Polygon() {

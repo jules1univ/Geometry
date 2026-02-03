@@ -7,7 +7,10 @@ import fr.univrennes.istic.l2gen.svg.interfaces.point.SVGPointY;
 @SVGPoint
 public final class Point implements IShape {
 
+    @SVGPointX
     private double x;
+
+    @SVGPointY
     private double y;
 
     public Point(double x, double y) {
@@ -15,12 +18,10 @@ public final class Point implements IShape {
         this.y = y;
     }
 
-    @SVGPointX()
     public double getX() {
         return x;
     }
 
-    @SVGPointY()
     public double getY() {
         return y;
     }

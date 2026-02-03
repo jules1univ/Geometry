@@ -2,17 +2,16 @@ package fr.univrennes.istic.l2gen.geometrie.shapes.base;
 
 import fr.univrennes.istic.l2gen.geometrie.shapes.IShape;
 import fr.univrennes.istic.l2gen.geometrie.shapes.Point;
+import fr.univrennes.istic.l2gen.svg.interfaces.SVGField;
 import fr.univrennes.istic.l2gen.svg.interfaces.SVGTag;
-import fr.univrennes.istic.l2gen.svg.interfaces.fields.SVGField;
-import fr.univrennes.istic.l2gen.svg.interfaces.fields.SVGFieldPoint;
 
 @SVGTag("circle")
 public final class Circle implements IShape {
 
-    @SVGField(name = "r")
+    @SVGField("r")
     private double radius;
 
-    @SVGFieldPoint(x = "cx", y = "cy")
+    @SVGField({ "x", "y" })
     private Point center;
 
     public Circle(double x, double y, double radius) {
