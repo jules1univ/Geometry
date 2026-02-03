@@ -55,6 +55,22 @@ public class XMLTag {
     children.add(child);
   }
 
+  public XMLTag getFirstChildByName(String tagName) {
+    for (XMLTag child : children) {
+      if (child.name.equals(tagName)) {
+        return child;
+      }
+    }
+    return null;
+  }
+
+  public XMLTag getFirstChild() {
+    if (this.children.size() <= 0) {
+      return null;
+    }
+    return this.children.get(0);
+  }
+
   public final String toXMLString() {
     StringBuilder sb = new StringBuilder();
     sb.append("<").append(name);

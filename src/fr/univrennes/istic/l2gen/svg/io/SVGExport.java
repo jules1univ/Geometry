@@ -1,4 +1,4 @@
-package fr.univrennes.istic.l2gen.svg.export;
+package fr.univrennes.istic.l2gen.svg.io;
 
 import java.io.FileWriter;
 import java.lang.reflect.AccessibleObject;
@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.function.Function;
 
 import fr.univrennes.istic.l2gen.svg.interfaces.ISVGShape;
+import fr.univrennes.istic.l2gen.svg.interfaces.SVGStyle;
 import fr.univrennes.istic.l2gen.svg.interfaces.SVGTag;
 import fr.univrennes.istic.l2gen.svg.interfaces.fields.SVGField;
 import fr.univrennes.istic.l2gen.svg.interfaces.fields.SVGFieldGroup;
@@ -19,15 +20,9 @@ import fr.univrennes.istic.l2gen.svg.xml.model.XMLAttribute;
 import fr.univrennes.istic.l2gen.svg.xml.model.XMLTag;
 
 public final class SVGExport {
-
-    private final ISVGShape root;
-
     // TODO: passer un object Style/SVGStyle pour customizer le rendu du SVG
-    public SVGExport(ISVGShape shape) {
-        this.root = shape;
-    }
 
-    private String getObjectPointValue(Object point) {
+    private static String getObjectPointValue(Object point) {
 
         if (point == null)
             return null;
@@ -80,7 +75,7 @@ public final class SVGExport {
         return null;
     }
 
-    private String getObjectPoints(List<?> pointsList) {
+    private static String getObjectPoints(List<?> pointsList) {
         StringBuilder sb = new StringBuilder();
         for (Object point : pointsList) {
             String value = getObjectPointValue(point);
@@ -91,7 +86,7 @@ public final class SVGExport {
         return sb.toString().trim();
     }
 
-    private void addFromClassElements(Object obj, AccessibleObject[] classElements,
+    private static void addFromClassElements(Object obj, AccessibleObject[] classElements,
             Function<AccessibleObject, Object> elementValue,
             XMLTag tag) {
         for (AccessibleObject element : classElements) {
@@ -138,7 +133,7 @@ public final class SVGExport {
                 if (value instanceof List listObj) {
                     for (Object shape : listObj) {
                         if (shape instanceof ISVGShape svgShape) {
-                            tag.addChild(this.convertShape(svgShape));
+                            tag.addChild(convertShapeToXML(svgShape));
                         }
                     }
                 }
@@ -146,7 +141,7 @@ public final class SVGExport {
         }
     }
 
-    private void addAttributesFromFields(ISVGShape shape, XMLTag tag) {
+    private static void addAttributesFromFields(ISVGShape shape, XMLTag tag) {
         addFromClassElements(shape, shape.getClass().getDeclaredFields(), element -> {
             try {
                 Field field = (Field) element;
@@ -158,7 +153,7 @@ public final class SVGExport {
         }, tag);
     }
 
-    private void addAttributesFromMethods(ISVGShape shape, XMLTag tag) {
+    private static void addAttributesFromMethods(ISVGShape shape, XMLTag tag) {
         addFromClassElements(shape, shape.getClass().getDeclaredMethods(), element -> {
             try {
                 Method method = (Method) element;
@@ -170,7 +165,7 @@ public final class SVGExport {
         }, tag);
     }
 
-    private XMLTag convertShape(ISVGShape shape) {
+    private static XMLTag convertShapeToXML(ISVGShape shape) {
         Class<?> shapeClass = shape.getClass();
         SVGTag tagName = shapeClass.getAnnotation(SVGTag.class);
         if (tagName == null) {
@@ -183,10 +178,15 @@ public final class SVGExport {
         addAttributesFromFields(shape, tag);
         addAttributesFromMethods(shape, tag);
 
+        SVGStyle style = shapeClass.getAnnotation(SVGStyle.class);
+        if (style != null) {
+            tag.addAttribute(new XMLAttribute("style", style.value()));
+        }
+
         return tag;
     }
 
-    public boolean export(String filename) {
+    public static boolean export(ISVGShape root, String filename) {
         XMLTag svg = new XMLTag("svg");
         svg.addAttribute(new XMLAttribute("xmlns", "http://www.w3.org/2000/svg"));
         svg.addAttribute(new XMLAttribute("version", "1.1"));
@@ -199,7 +199,7 @@ public final class SVGExport {
         background.addAttribute(new XMLAttribute("fill", "white"));
         svg.addChild(background);
 
-        svg.addChild(this.convertShape(this.root));
+        svg.addChild(convertShapeToXML(root));
 
         try (FileWriter fw = new FileWriter(filename)) {
             fw.write(svg.toXMLString());
