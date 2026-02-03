@@ -13,8 +13,8 @@
 ### Cloner le dépôt
 
 ```bash
-git clone https://github.com/jules1univ/Geometrie.git
-cd Geometrie
+git clone https://github.com/jules1univ/Geometry.git
+cd Geometry
 ```
 
 ### Ouvrir le projet
