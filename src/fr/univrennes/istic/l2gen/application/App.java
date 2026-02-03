@@ -16,6 +16,7 @@ public class App {
         IShape fractal = new Fractal().draw(new Rectangle(500, 500, 100, 50), 5);
         SVGExport.export(fractal, "output.svg");
 
+        // FIXME: import svg ne fonctionne pas correctement pour le moment
         ISVGShape svgShape = SVGImport.load("output.svg");
         if (svgShape instanceof IShape shape) {
 

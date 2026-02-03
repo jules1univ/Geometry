@@ -6,6 +6,8 @@ import fr.univrennes.istic.l2gen.geometrie.IShape;
 
 public interface IShapeTest<T extends IShape> {
 
+    // TODO: ajouter des tests pour la rotation & pour les autres formes
+
     T create();
 
     @Test

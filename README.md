@@ -1,12 +1,12 @@
-# Projet Géométrie
+# Project Geometry
 
 ## Setup
 
 ### Logiciels nécessaires
 
-* **VS Code** (éditeur recommandé)
-* **Git**
-* **Java JDK 11** ou supérieur
+- **VS Code** (éditeur recommandé)
+- **Git**
+- **Java JDK 11** ou supérieur
 
 ## Installation
 
@@ -19,8 +19,8 @@ cd Geometry
 
 ### Ouvrir le projet
 
-* Ouvrir le dossier `Geometrie` dans **VS Code**
-* Vérifier que le JDK est bien configuré (`java --version`)
+- Ouvrir le dossier `Geometrie` dans **VS Code**
+- Vérifier que le JDK est bien configuré (`java --version`)
 
 ## Contribution
 
