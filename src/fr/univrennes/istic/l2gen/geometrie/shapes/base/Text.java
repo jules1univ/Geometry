@@ -2,7 +2,7 @@ package fr.univrennes.istic.l2gen.geometrie.shapes.base;
 
 import fr.univrennes.istic.l2gen.geometrie.shapes.IShape;
 import fr.univrennes.istic.l2gen.geometrie.shapes.Point;
-import fr.univrennes.istic.l2gen.geometrie.xml.model.XMLTag;
+import fr.univrennes.istic.l2gen.svg.xml.model.XMLTag;
 
 public final class Text implements IShape {
     private final String text;
@@ -54,6 +54,11 @@ public final class Text implements IShape {
     @Override
     public void resize(double px, double py) {
         // Ne rien faire car le texte n'est pas redimensionnable
+    }
+
+    @Override
+    public void rotate(double deg) {
+        // Ne rien faire car le texte reste du texte après rotation
     }
 
     @Override

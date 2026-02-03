@@ -2,7 +2,7 @@ package fr.univrennes.istic.l2gen.geometrie.shapes.base;
 
 import fr.univrennes.istic.l2gen.geometrie.shapes.IShape;
 import fr.univrennes.istic.l2gen.geometrie.shapes.Point;
-import fr.univrennes.istic.l2gen.geometrie.xml.model.XMLTag;
+import fr.univrennes.istic.l2gen.svg.xml.model.XMLTag;
 
 public final class Rectangle implements IShape {
 
@@ -53,6 +53,11 @@ public final class Rectangle implements IShape {
     @Override
     public void resize(double px, double py) {
         this.size.mult(px, py);
+    }
+
+    @Override
+    public void rotate(double deg) {
+        // Ne rien faire car le rectangle reste un rectangle après rotation
     }
 
     @Override

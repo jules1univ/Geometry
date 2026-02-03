@@ -1,7 +1,7 @@
 package fr.univrennes.istic.l2gen.application;
 
-import fr.univrennes.istic.l2gen.application.svg.out.SVGExporter;
 import fr.univrennes.istic.l2gen.geometrie.shapes.base.Rectangle;
+import fr.univrennes.istic.l2gen.svg.out.SVGExporter;
 
 public class App {
 

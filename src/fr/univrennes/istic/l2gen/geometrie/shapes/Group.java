@@ -3,7 +3,7 @@ package fr.univrennes.istic.l2gen.geometrie.shapes;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.univrennes.istic.l2gen.geometrie.xml.model.XMLTag;
+import fr.univrennes.istic.l2gen.svg.xml.model.XMLTag;
 
 public final class Group<T extends IShape> implements IShape {
     private List<T> shapes = new ArrayList<>();
@@ -67,6 +67,18 @@ public final class Group<T extends IShape> implements IShape {
     }
 
     @Override
+    public String getDescription(int indentation) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(" ".repeat(indentation));
+        sb.append("Groupe\n");
+        for (T shape : shapes) {
+            sb.append(shape.getDescription(indentation + 1));
+            sb.append("\n");
+        }
+        return sb.toString();
+    }
+
+    @Override
     public void move(double dx, double dy) {
         for (T shape : shapes) {
             shape.move(dx, dy);
@@ -81,19 +93,13 @@ public final class Group<T extends IShape> implements IShape {
     }
 
     @Override
-    public String getDescription(int indentation) {
-        StringBuilder sb = new StringBuilder();
-        sb.append(" ".repeat(indentation));
-        sb.append("Groupe\n");
+    public void rotate(double deg) {
         for (T shape : shapes) {
-            sb.append(shape.getDescription(indentation + 1));
-            sb.append("\n");
+            shape.rotate(deg);
         }
-        return sb.toString();
     }
 
     @Override
-
     public Group<T> copy() {
         return new Group<>(new ArrayList<>(this.shapes));
     }

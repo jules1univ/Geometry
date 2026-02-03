@@ -1,6 +1,6 @@
 package fr.univrennes.istic.l2gen.geometrie.shapes;
 
-import fr.univrennes.istic.l2gen.geometrie.xml.model.XMLTag;
+import fr.univrennes.istic.l2gen.svg.xml.model.XMLTag;
 
 public final class Point implements IShape {
     private double x;
@@ -75,6 +75,17 @@ public final class Point implements IShape {
     }
 
     @Override
+    public String getDescription(int indent) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < indent * 2; i++) {
+            sb.append(" ");
+        }
+        sb.append("Point ");
+        sb.append(this.toString());
+        return sb.toString();
+    }
+
+    @Override
     public void move(double dx, double dy) {
         this.x += dx;
         this.y += dy;
@@ -87,14 +98,14 @@ public final class Point implements IShape {
     }
 
     @Override
-    public String getDescription(int indent) {
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < indent * 2; i++) {
-            sb.append(" ");
-        }
-        sb.append("Point ");
-        sb.append(this.toString());
-        return sb.toString();
+    public void rotate(double deg) {
+        double rad = Math.toRadians(deg);
+        double cos = Math.cos(rad);
+        double sin = Math.sin(rad);
+        double newX = x * cos - y * sin;
+        double newY = x * sin + y * cos;
+        this.x = newX;
+        this.y = newY;
     }
 
     @Override

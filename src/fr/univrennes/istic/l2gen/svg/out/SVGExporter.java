@@ -1,10 +1,10 @@
-package fr.univrennes.istic.l2gen.application.svg.out;
+package fr.univrennes.istic.l2gen.svg.out;
 
 import java.io.FileWriter;
 
 import fr.univrennes.istic.l2gen.geometrie.shapes.IShape;
-import fr.univrennes.istic.l2gen.geometrie.xml.model.XMLAttribute;
-import fr.univrennes.istic.l2gen.geometrie.xml.model.XMLTag;
+import fr.univrennes.istic.l2gen.svg.xml.model.XMLAttribute;
+import fr.univrennes.istic.l2gen.svg.xml.model.XMLTag;
 
 public final class SVGExporter extends Exporter {
 

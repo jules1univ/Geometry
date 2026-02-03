@@ -5,49 +5,48 @@ import java.util.List;
 
 import fr.univrennes.istic.l2gen.geometrie.shapes.IShape;
 import fr.univrennes.istic.l2gen.geometrie.shapes.Point;
-import fr.univrennes.istic.l2gen.geometrie.xml.model.XMLTag;
+import fr.univrennes.istic.l2gen.svg.xml.model.XMLTag;
 
 public final class Polygon implements IShape {
 
-    private final List<Point> sommets;
+    private final List<Point> vertices;
 
     public Polygon() {
-        this.sommets = new ArrayList<>();
+        this.vertices = new ArrayList<>();
     }
 
     public Polygon(double... coords) {
-
-        this.sommets = new ArrayList<>();
+        this.vertices = new ArrayList<>();
         if (coords.length % 2 != 0) {
-            throw new IllegalArgumentException("Nombre de coordonnées invalide");
+            throw new IllegalArgumentException("Invalid number of coordinates");
         }
         for (int i = 0; i < coords.length; i += 2) {
-            this.sommets.add(new Point(coords[i], coords[i + 1]));
+            this.vertices.add(new Point(coords[i], coords[i + 1]));
         }
     }
 
     @Override
     public Point getCenter() {
-        if (sommets.isEmpty()) {
+        if (vertices.isEmpty()) {
             return new Point(0, 0);
         }
 
         double totalX = 0;
         double totalY = 0;
 
-        for (Point p : sommets) {
+        for (Point p : vertices) {
             totalX += p.getX();
             totalY += p.getY();
         }
 
-        return new Point(totalX / sommets.size(), totalY / sommets.size());
+        return new Point(totalX / vertices.size(), totalY / vertices.size());
     }
 
     @Override
     public String getDescription(int indent) {
         StringBuilder sb = new StringBuilder(" ".repeat(Math.max(0, indent)));
-        sb.append("Polygone ");
-        for (Point p : sommets) {
+        sb.append("Polygon ");
+        for (Point p : vertices) {
             sb.append(p.getX()).append(",").append(p.getY()).append(" ");
         }
         return sb.toString();
@@ -55,13 +54,13 @@ public final class Polygon implements IShape {
 
     @Override
     public double getWidth() {
-        if (sommets.isEmpty())
+        if (vertices.isEmpty())
             return -1;
 
-        double minX = sommets.get(0).getX();
+        double minX = vertices.get(0).getX();
         double maxX = minX;
 
-        for (Point p : sommets) {
+        for (Point p : vertices) {
             minX = Math.min(minX, p.getX());
             maxX = Math.max(maxX, p.getX());
         }
@@ -70,43 +69,43 @@ public final class Polygon implements IShape {
 
     @Override
     public double getHeight() {
-        if (sommets.isEmpty())
+        if (vertices.isEmpty())
             return -1;
 
-        double minY = sommets.get(0).getY();
+        double minY = vertices.get(0).getY();
         double maxY = minY;
 
-        for (Point p : sommets) {
+        for (Point p : vertices) {
             minY = Math.min(minY, p.getY());
             maxY = Math.max(maxY, p.getY());
         }
         return maxY - minY;
     }
 
-    public void ajouterSommet(Point p) {
-        sommets.add(new Point(p.getX(), p.getY()));
+    public void addVertex(Point p) {
+        vertices.add(new Point(p.getX(), p.getY()));
     }
 
-    public void ajouterSommet(double x, double y) {
-        sommets.add(new Point(x, y));
+    public void addVertex(double x, double y) {
+        vertices.add(new Point(x, y));
     }
 
-    public List<Point> getVertex() {
-        return new ArrayList<>(sommets);
+    public List<Point> getVertices() {
+        return new ArrayList<>(vertices);
     }
 
     @Override
     public IShape copy() {
-        Polygon copie = new Polygon();
-        copie.sommets.addAll(this.sommets);
-        return copie;
+        Polygon copy = new Polygon();
+        copy.vertices.addAll(this.vertices);
+        return copy;
     }
 
     @Override
     public void resize(double dx, double dy) {
         Point center = getCenter();
 
-        for (Point p : sommets) {
+        for (Point p : vertices) {
             double newX = p.getX() + (p.getX() < center.getX() ? -dx : dx);
             double newY = p.getY() + (p.getY() < center.getY() ? -dy : dy);
             p.set(newX, newY);
@@ -115,18 +114,38 @@ public final class Polygon implements IShape {
 
     @Override
     public void move(double dx, double dy) {
-        for (Point p : sommets) {
+        for (Point p : vertices) {
             p.add(dx, dy);
+        }
+    }
+
+    @Override
+    public void rotate(double deg) {
+        Point center = getCenter();
+        double radians = Math.toRadians(deg);
+        double cos = Math.cos(radians);
+        double sin = Math.sin(radians);
+
+        for (Point p : vertices) {
+            double translatedX = p.getX() - center.getX();
+            double translatedY = p.getY() - center.getY();
+
+            double rotatedX = translatedX * cos - translatedY * sin;
+            double rotatedY = translatedX * sin + translatedY * cos;
+
+            p.set(rotatedX + center.getX(), rotatedY + center.getY());
         }
     }
 
     @Override
     public XMLTag toSVG() {
         XMLTag polygon = new XMLTag("polygon");
-        polygon.setAttribute("points", sommets.stream()
-                .map(p -> p.getX() + "," + p.getY())
-                .reduce((p1, p2) -> p1 + " " + p2)
-                .orElse(""));
+        polygon.setAttribute(
+                "points",
+                vertices.stream()
+                        .map(p -> p.getX() + "," + p.getY())
+                        .reduce((p1, p2) -> p1 + " " + p2)
+                        .orElse(""));
         polygon.setAttribute("fill", "white");
         polygon.setAttribute("stroke", "black");
         return polygon;

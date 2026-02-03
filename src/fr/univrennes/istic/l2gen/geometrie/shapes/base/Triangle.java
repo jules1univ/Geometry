@@ -2,7 +2,7 @@ package fr.univrennes.istic.l2gen.geometrie.shapes.base;
 
 import fr.univrennes.istic.l2gen.geometrie.shapes.IShape;
 import fr.univrennes.istic.l2gen.geometrie.shapes.Point;
-import fr.univrennes.istic.l2gen.geometrie.xml.model.XMLTag;
+import fr.univrennes.istic.l2gen.svg.xml.model.XMLTag;
 
 public final class Triangle implements IShape {
 
@@ -72,10 +72,34 @@ public final class Triangle implements IShape {
         vertex3 = scalePoint(vertex3, center, sx, sy);
     }
 
+    @Override
+    public void rotate(double deg) {
+        Point center = getCenter();
+        double rad = Math.toRadians(deg);
+
+        vertex1 = rotatePoint(vertex1, center, rad);
+        vertex2 = rotatePoint(vertex2, center, rad);
+        vertex3 = rotatePoint(vertex3, center, rad);
+    }
+
     private Point scalePoint(Point p, Point c, double sx, double sy) {
         return new Point(
                 c.getX() + (p.getX() - c.getX()) * sx,
                 c.getY() + (p.getY() - c.getY()) * sy);
+    }
+
+    private Point rotatePoint(Point point, Point center, double rad) {
+        double cosTheta = Math.cos(rad);
+        double sinTheta = Math.sin(rad);
+        double translatedX = point.getX() - center.getX();
+        double translatedY = point.getY() - center.getY();
+
+        double rotatedX = translatedX * cosTheta - translatedY * sinTheta;
+        double rotatedY = translatedX * sinTheta + translatedY * cosTheta;
+
+        return new Point(
+                rotatedX + center.getX(),
+                rotatedY + center.getY());
     }
 
     @Override

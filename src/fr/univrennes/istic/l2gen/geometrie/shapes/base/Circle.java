@@ -2,7 +2,7 @@ package fr.univrennes.istic.l2gen.geometrie.shapes.base;
 
 import fr.univrennes.istic.l2gen.geometrie.shapes.IShape;
 import fr.univrennes.istic.l2gen.geometrie.shapes.Point;
-import fr.univrennes.istic.l2gen.geometrie.xml.model.XMLTag;
+import fr.univrennes.istic.l2gen.svg.xml.model.XMLTag;
 
 public final class Circle implements IShape {
     private double radius;
@@ -58,6 +58,11 @@ public final class Circle implements IShape {
     @Override
     public void resize(double px, double py) {
         this.radius = this.radius * px;
+    }
+
+    @Override
+    public void rotate(double deg) {
+        // Ne rien faire car le cercle est invariant par rotation
     }
 
     @Override
