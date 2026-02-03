@@ -2,10 +2,17 @@ package fr.univrennes.istic.l2gen.geometrie.shapes.base;
 
 import fr.univrennes.istic.l2gen.geometrie.shapes.IShape;
 import fr.univrennes.istic.l2gen.geometrie.shapes.Point;
-import fr.univrennes.istic.l2gen.svg.xml.model.XMLTag;
+import fr.univrennes.istic.l2gen.svg.interfaces.SVGTag;
+import fr.univrennes.istic.l2gen.svg.interfaces.fields.SVGField;
+import fr.univrennes.istic.l2gen.svg.interfaces.fields.SVGFieldPoint;
 
+@SVGTag("circle")
 public final class Circle implements IShape {
+
+    @SVGField(name = "r")
     private double radius;
+
+    @SVGFieldPoint(x = "cx", y = "cy")
     private Point center;
 
     public Circle(double x, double y, double radius) {
@@ -63,16 +70,5 @@ public final class Circle implements IShape {
     @Override
     public void rotate(double deg) {
         // Ne rien faire car le cercle est invariant par rotation
-    }
-
-    @Override
-    public XMLTag toSVG() {
-        XMLTag circle = new XMLTag("circle");
-        circle.setAttribute("cx", this.center.getX());
-        circle.setAttribute("cy", this.center.getY());
-        circle.setAttribute("r", this.radius);
-        circle.setAttribute("fill", "white");
-        circle.setAttribute("stroke", "black");
-        return circle;
     }
 }

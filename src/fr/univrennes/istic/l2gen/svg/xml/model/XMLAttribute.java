@@ -34,6 +34,9 @@ public record XMLAttribute(String name, String value) {
 
   @Override
   public String toString() {
+    if (value == null) {
+      return name;
+    }
     return name + "=\"" + value + "\"";
   }
 }

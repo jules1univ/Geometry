@@ -1,8 +1,12 @@
 package fr.univrennes.istic.l2gen.geometrie.shapes;
 
-import fr.univrennes.istic.l2gen.svg.xml.model.XMLTag;
+import fr.univrennes.istic.l2gen.svg.interfaces.point.SVGPoint;
+import fr.univrennes.istic.l2gen.svg.interfaces.point.SVGPointX;
+import fr.univrennes.istic.l2gen.svg.interfaces.point.SVGPointY;
 
+@SVGPoint
 public final class Point implements IShape {
+
     private double x;
     private double y;
 
@@ -11,10 +15,12 @@ public final class Point implements IShape {
         this.y = y;
     }
 
+    @SVGPointX()
     public double getX() {
         return x;
     }
 
+    @SVGPointY()
     public double getY() {
         return y;
     }
@@ -106,16 +112,6 @@ public final class Point implements IShape {
         double newY = x * sin + y * cos;
         this.x = newX;
         this.y = newY;
-    }
-
-    @Override
-    public XMLTag toSVG() {
-        XMLTag circle = new XMLTag("circle");
-        circle.setAttribute("cx", this.x);
-        circle.setAttribute("cy", this.y);
-        circle.setAttribute("r", 2);
-        circle.setAttribute("fill", "black");
-        return circle;
     }
 
     @Override

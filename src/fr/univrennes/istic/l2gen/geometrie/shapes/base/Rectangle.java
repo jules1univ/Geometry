@@ -2,11 +2,15 @@ package fr.univrennes.istic.l2gen.geometrie.shapes.base;
 
 import fr.univrennes.istic.l2gen.geometrie.shapes.IShape;
 import fr.univrennes.istic.l2gen.geometrie.shapes.Point;
-import fr.univrennes.istic.l2gen.svg.xml.model.XMLTag;
+import fr.univrennes.istic.l2gen.svg.interfaces.SVGTag;
+import fr.univrennes.istic.l2gen.svg.interfaces.fields.SVGFieldPoint;
 
+@SVGTag("rect")
 public final class Rectangle implements IShape {
 
     private Point center;
+
+    @SVGFieldPoint(x = "width", y = "height")
     private Point size;
 
     public Rectangle(double x, double y, double width, double height) {
@@ -25,6 +29,13 @@ public final class Rectangle implements IShape {
 
     public double getWidth() {
         return this.size.getX();
+    }
+
+    @SVGFieldPoint()
+    public Point getPosition() {
+        return new Point(
+                this.center.getX() - this.size.getX() / 2,
+                this.center.getY() - this.size.getY() / 2);
     }
 
     public Point getCenter() {
@@ -64,17 +75,4 @@ public final class Rectangle implements IShape {
     public IShape copy() {
         return new Rectangle((Point) this.center.copy(), this.size.getX(), this.size.getY());
     }
-
-    @Override
-    public XMLTag toSVG() {
-        XMLTag rectangle = new XMLTag("rect");
-        rectangle.setAttribute("x", this.center.getX() - this.size.getX() / 2);
-        rectangle.setAttribute("y", this.center.getY() - this.size.getY() / 2);
-        rectangle.setAttribute("width", this.size.getX());
-        rectangle.setAttribute("height", this.size.getY());
-        rectangle.setAttribute("fill", "white");
-        rectangle.setAttribute("stroke", "black");
-        return rectangle;
-    }
-
 }

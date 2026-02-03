@@ -1,8 +1,10 @@
 package fr.univrennes.istic.l2gen.geometrie.shapes.base;
 
+import java.util.List;
+
 import fr.univrennes.istic.l2gen.geometrie.shapes.IShape;
 import fr.univrennes.istic.l2gen.geometrie.shapes.Point;
-import fr.univrennes.istic.l2gen.svg.xml.model.XMLTag;
+import fr.univrennes.istic.l2gen.svg.interfaces.fields.SVGField;
 
 public final class Triangle implements IShape {
 
@@ -23,6 +25,11 @@ public final class Triangle implements IShape {
         this.vertex1 = new Point(p1.getX(), p1.getY());
         this.vertex2 = new Point(p2.getX(), p2.getY());
         this.vertex3 = new Point(p3.getX(), p3.getY());
+    }
+
+    @SVGField(name = "points", points = true)
+    public List<Point> getVertices() {
+        return List.of(vertex1, vertex2, vertex3);
     }
 
     @Override
@@ -105,17 +112,5 @@ public final class Triangle implements IShape {
     @Override
     public IShape copy() {
         return new Triangle(vertex1, vertex2, vertex3);
-    }
-
-    @Override
-    public XMLTag toSVG() {
-        XMLTag triangle = new XMLTag("polygon");
-        triangle.setAttribute("points",
-                vertex1.getX() + "," + vertex1.getY() + " " +
-                        vertex2.getX() + "," + vertex2.getY() + " " +
-                        vertex3.getX() + "," + vertex3.getY());
-        triangle.setAttribute("fill", "white");
-        triangle.setAttribute("stroke", "black");
-        return triangle;
     }
 }

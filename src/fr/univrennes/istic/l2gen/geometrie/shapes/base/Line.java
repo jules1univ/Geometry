@@ -5,10 +5,13 @@ import java.util.List;
 
 import fr.univrennes.istic.l2gen.geometrie.shapes.IShape;
 import fr.univrennes.istic.l2gen.geometrie.shapes.Point;
-import fr.univrennes.istic.l2gen.svg.xml.model.XMLTag;
+import fr.univrennes.istic.l2gen.svg.interfaces.SVGTag;
+import fr.univrennes.istic.l2gen.svg.interfaces.fields.SVGField;
 
+@SVGTag("polyline")
 public final class Line implements IShape {
 
+    @SVGField(name = "points", points = true)
     private final List<Point> vertices;
 
     private Line() {
@@ -84,14 +87,6 @@ public final class Line implements IShape {
         return sb.toString();
     }
 
-    public List<Point> getVertices() {
-        List<Point> copy = new ArrayList<>();
-        for (Point p : vertices) {
-            copy.add(new Point(p.getX(), p.getY()));
-        }
-        return copy;
-    }
-
     @Override
     public void move(double dx, double dy) {
         for (Point p : vertices) {
@@ -139,17 +134,5 @@ public final class Line implements IShape {
         Line copie = new Line();
         copie.vertices.addAll(this.vertices);
         return copie;
-    }
-
-    @Override
-    public XMLTag toSVG() {
-        XMLTag polyline = new XMLTag("polyline");
-        polyline.setAttribute("points", vertices.stream()
-                .map(p -> p.getX() + "," + p.getY())
-                .reduce((p1, p2) -> p1 + " " + p2)
-                .orElse(""));
-        polyline.setAttribute("fill", "white");
-        polyline.setAttribute("stroke", "black");
-        return polyline;
     }
 }

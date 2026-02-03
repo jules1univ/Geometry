@@ -2,10 +2,19 @@ package fr.univrennes.istic.l2gen.geometrie.shapes.base;
 
 import fr.univrennes.istic.l2gen.geometrie.shapes.IShape;
 import fr.univrennes.istic.l2gen.geometrie.shapes.Point;
-import fr.univrennes.istic.l2gen.svg.xml.model.XMLTag;
+import fr.univrennes.istic.l2gen.svg.interfaces.SVGStyle;
+import fr.univrennes.istic.l2gen.svg.interfaces.SVGTag;
+import fr.univrennes.istic.l2gen.svg.interfaces.fields.SVGField;
+import fr.univrennes.istic.l2gen.svg.interfaces.fields.SVGFieldPoint;
 
+@SVGTag("text")
+@SVGStyle("text-anchor:middle;")
 public final class Text implements IShape {
+
+    @SVGField(name = "text")
     private final String text;
+
+    @SVGFieldPoint
     private Point center;
 
     public Text(double x, double y, String text) {
@@ -60,18 +69,4 @@ public final class Text implements IShape {
     public void rotate(double deg) {
         // Ne rien faire car le texte reste du texte après rotation
     }
-
-    @Override
-    public XMLTag toSVG() {
-        XMLTag textTag = new XMLTag("text");
-        textTag.setAttribute("x", this.center.getX());
-        textTag.setAttribute("y", this.center.getY());
-        textTag.setAttribute("font-family", "Arial");
-        textTag.setAttribute("font-size", "64");
-        textTag.setAttribute("fill", "black");
-        textTag.setAttribute("text-anchor", "middle");
-        textTag.setTextContent(this.text);
-        return textTag;
-    }
-
 }

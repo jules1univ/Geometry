@@ -1,8 +1,8 @@
 package fr.univrennes.istic.l2gen.geometrie.shapes;
 
-import fr.univrennes.istic.l2gen.svg.xml.model.XMLTag;
+import fr.univrennes.istic.l2gen.svg.interfaces.ISVGShape;
 
-public interface IShape {
+public interface IShape extends ISVGShape {
 
     double getWidth();
 
@@ -17,8 +17,6 @@ public interface IShape {
     void resize(double px, double py);
 
     void rotate(double deg);
-
-    XMLTag toSVG();
 
     IShape copy();
 

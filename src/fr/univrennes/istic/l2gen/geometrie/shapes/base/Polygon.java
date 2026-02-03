@@ -5,10 +5,13 @@ import java.util.List;
 
 import fr.univrennes.istic.l2gen.geometrie.shapes.IShape;
 import fr.univrennes.istic.l2gen.geometrie.shapes.Point;
-import fr.univrennes.istic.l2gen.svg.xml.model.XMLTag;
+import fr.univrennes.istic.l2gen.svg.interfaces.SVGTag;
+import fr.univrennes.istic.l2gen.svg.interfaces.fields.SVGField;
 
+@SVGTag("polygon")
 public final class Polygon implements IShape {
 
+    @SVGField(name = "points", points = true)
     private final List<Point> vertices;
 
     public Polygon() {
@@ -90,10 +93,6 @@ public final class Polygon implements IShape {
         vertices.add(new Point(x, y));
     }
 
-    public List<Point> getVertices() {
-        return new ArrayList<>(vertices);
-    }
-
     @Override
     public IShape copy() {
         Polygon copy = new Polygon();
@@ -135,19 +134,5 @@ public final class Polygon implements IShape {
 
             p.set(rotatedX + center.getX(), rotatedY + center.getY());
         }
-    }
-
-    @Override
-    public XMLTag toSVG() {
-        XMLTag polygon = new XMLTag("polygon");
-        polygon.setAttribute(
-                "points",
-                vertices.stream()
-                        .map(p -> p.getX() + "," + p.getY())
-                        .reduce((p1, p2) -> p1 + " " + p2)
-                        .orElse(""));
-        polygon.setAttribute("fill", "white");
-        polygon.setAttribute("stroke", "black");
-        return polygon;
     }
 }
