@@ -1,6 +1,5 @@
 package fr.univrennes.istic.l2gen.application;
 
-import fr.univrennes.istic.l2gen.geometrie.shapes.Group;
 import fr.univrennes.istic.l2gen.geometrie.shapes.IShape;
 import fr.univrennes.istic.l2gen.geometrie.shapes.base.Rectangle;
 import fr.univrennes.istic.l2gen.svg.interfaces.ISVGShape;
@@ -10,13 +9,18 @@ import fr.univrennes.istic.l2gen.svg.io.SVGImport;
 public class App {
 
     public static void main(String[] args) throws Exception {
+        // IMPORTANT: ne pas mettre a jour le code present ici
+        // il faut séparer les fonctionnalité dans d'autre fichier de l'app puis les
+        // charger ici
 
         IShape fractal = new Fractal().draw(new Rectangle(250, 250, 100, 50), 4);
         SVGExport.export(fractal, "output.svg");
 
         ISVGShape svgShape = SVGImport.load("output.svg");
-        if (svgShape instanceof Group<?> groupShape) {
-            System.out.println(groupShape.getDescription(0));
+        if (svgShape instanceof IShape shape) {
+
+            // TODO: faire un system de description automatique comme pour les SVG
+            System.out.println(shape.getDescription(0));
         }
     }
 }

@@ -11,10 +11,8 @@ import fr.univrennes.istic.l2gen.svg.xml.model.XMLTag;
 import fr.univrennes.istic.l2gen.svg.xml.parser.XMLParser;
 
 public final class SVGImport {
-    // TODO: replacer VOID par ISVGShapeImport une interface qui permettera de
-    // charger les svg depuis les elements enregistrer.
-    // du style ISVGShapeImport.check(XMLTag) -> boolean
-    // et ISVGShapeImport.load(XMLTag) -> ISVGShape
+    // TODO: forcer les fields only sur les annotation SVG pour pouvoir charger
+    // directement les class et forcer un constructeur vide au moment du register
 
     private static final Map<String, List<Class<Void>>> shapes = new HashMap<>();
 
