@@ -23,22 +23,22 @@ public final class Fractal {
 
         IShape topRight = base.copy();
         topRight.resize(0.5, 0.5);
-        topRight.move(base.getHeight(), base.getWidth() / -4);
+        topRight.move(base.getHeight() * 2.5, base.getWidth() * 10 / 16);
         subG.add(this.draw(topRight, niveau - 1));
 
         IShape bottomRight = base.copy();
         bottomRight.resize(0.5, 0.5);
-        bottomRight.move(base.getHeight(), base.getWidth() / 4);
+        bottomRight.move(base.getHeight() * 0.5, base.getWidth() * 10 / 16);
         subG.add(this.draw(bottomRight, niveau - 1));
 
         IShape topLeft = base.copy();
         topLeft.resize(0.5, 0.5);
-        topLeft.move(-base.getHeight(), base.getWidth() / -4);
+        topLeft.move(base.getHeight() / 2, base.getWidth() / 8);
         subG.add(this.draw(topLeft, niveau - 1));
 
         IShape bottomLeft = base.copy();
         bottomLeft.resize(0.5, 0.5);
-        bottomLeft.move(-base.getHeight(), base.getWidth() / 4);
+        bottomLeft.move(base.getHeight() * 2.5, base.getWidth() / 8);
         subG.add(this.draw(bottomLeft, niveau - 1));
 
         g.add(subG);

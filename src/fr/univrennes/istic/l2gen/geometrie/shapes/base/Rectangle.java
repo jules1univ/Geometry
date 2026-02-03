@@ -3,9 +3,11 @@ package fr.univrennes.istic.l2gen.geometrie.shapes.base;
 import fr.univrennes.istic.l2gen.geometrie.shapes.IShape;
 import fr.univrennes.istic.l2gen.geometrie.shapes.Point;
 import fr.univrennes.istic.l2gen.svg.interfaces.SVGField;
+import fr.univrennes.istic.l2gen.svg.interfaces.SVGStyle;
 import fr.univrennes.istic.l2gen.svg.interfaces.SVGTag;
 
 @SVGTag("rect")
+@SVGStyle("fill:white;stroke:black;stroke-width:1")
 public final class Rectangle implements IShape {
 
     @SVGField({ "x", "y" })
@@ -14,13 +16,12 @@ public final class Rectangle implements IShape {
     @SVGField({ "width", "height" })
     private Point size;
 
-    public Rectangle(double x, double y, double width, double height) {
-        this.position = new Point(x, y);
-        this.size = new Point(width, height);
+    public Rectangle(Point position, double width, double height) {
+        this(position.getX(), position.getY(), width, height);
     }
 
-    public Rectangle(Point position, double width, double height) {
-        this.position = new Point(position.getX(), position.getY());
+    public Rectangle(double x, double y, double width, double height) {
+        this.position = new Point(x - width / 2, y - height / 2);
         this.size = new Point(width, height);
     }
 
@@ -34,8 +35,7 @@ public final class Rectangle implements IShape {
 
     @Override
     public Point getCenter() {
-        return new Point(
-                this.position.getX() + this.size.getX() / 2,
+        return new Point(this.position.getX() + this.size.getX() / 2,
                 this.position.getY() + this.size.getY() / 2);
     }
 
@@ -44,8 +44,10 @@ public final class Rectangle implements IShape {
         StringBuilder sb = new StringBuilder();
         sb.append(" ".repeat(indentation));
         sb.append("Rectangle");
-        sb.append(" Position=");
-        sb.append(this.position.toString());
+        sb.append(" X=");
+        sb.append(this.getCenter().getX());
+        sb.append(" Y=");
+        sb.append(this.getCenter().getY());
         sb.append(" L=");
         sb.append(this.size.getX());
         sb.append(" H=");

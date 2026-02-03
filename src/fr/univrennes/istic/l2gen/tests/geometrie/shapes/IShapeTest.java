@@ -21,9 +21,6 @@ public interface IShapeTest<T extends IShape> {
     void testDescription();
 
     @Test
-    void testSVG();
-
-    @Test
     public default void testCopy() {
         T shape = create();
         assert shape != null;

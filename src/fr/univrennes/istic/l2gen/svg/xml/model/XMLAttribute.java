@@ -4,8 +4,8 @@ import java.util.Optional;
 
 public record XMLAttribute(String name, String value) {
 
-  public Optional<String> getValue() {
-    return Optional.ofNullable(value);
+  public String getValue() {
+    return value;
   }
 
   public Optional<Integer> getIntValue() {

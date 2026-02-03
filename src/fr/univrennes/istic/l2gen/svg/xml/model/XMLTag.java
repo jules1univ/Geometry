@@ -35,6 +35,10 @@ public class XMLTag {
     this.content = Optional.ofNullable(content);
   }
 
+  public final boolean hasAttribute(String name) {
+    return attributes.containsKey(name);
+  }
+
   public final XMLAttribute getAttribute(String name) {
     return attributes.get(name);
   }

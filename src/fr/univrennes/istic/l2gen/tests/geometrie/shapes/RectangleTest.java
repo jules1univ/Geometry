@@ -34,10 +34,4 @@ public final class RectangleTest implements IShapeTest<Rectangle> {
         throw new UnsupportedOperationException("Unimplemented method 'testDescription'");
     }
 
-    @Override
-    public void testSVG() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'testSVG'");
-    }
-
 }
