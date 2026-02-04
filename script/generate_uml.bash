@@ -1,12 +1,9 @@
 #!/bin/bash
 
 # Accorder les droit au script bash
-# Ne pas oublier de faire: chmod +x generate_docs.bash
+# Ne pas oublier de faire: chmod +x generate_uml.bash
 
-
-SRC_DIR="src"
-DOC_DIR="uml"
-
+UML_FILE="uml/src.puml"
 PLANTUML_JAR="lib/plantuml.jar"
 
 if [ ! -f "$PLANTUML_JAR" ]; then
@@ -14,21 +11,16 @@ if [ ! -f "$PLANTUML_JAR" ]; then
     exit 1
 fi
 
-if [ ! -d "$SRC_DIR" ]; then
-    echo "Dossier src introuvable"
+if [ ! -f "$UML_FILE" ]; then
+    echo "diagram .puml introuvable"
     exit 1
 fi
 
-mkdir -p "$DOC_DIR"
-echo "Génération des diagrammes UML depuis '$SRC_DIR' vers '$DOC_DIR'..."
-
-java -jar "$PLANTUML_JAR" \
-     -recursive \
-     "$SRC_DIR" \
-     -o "../../$DOC_DIR"
-
-if [ $? -eq 0 ]; then
-    echo "Diagrammes UML générés avec succès dans '$DOC_DIR'"
-else
-    echo "Erreur lors de la génération des diagrammes UML !"
+if ! command -v dot &> /dev/null; then
+    echo "Graphviz non trouvé, installation..."
+    sudo apt update
+    sudo apt install -y graphviz
 fi
+
+java -jar "$PLANTUML_JAR" -tsvg "$UML_FILE"
+
