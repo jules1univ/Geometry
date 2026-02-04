@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# Accorder les droit au script bash
+# Ne pas oublier de faire: chmod +x generate_docs.bash
+
+
 SRC_DIR="src"
 DOC_DIR="uml"
 
