@@ -4,11 +4,13 @@ import fr.univrennes.istic.l2gen.geometrie.base.Text;
 
 public class TextTest implements IShapeTest<Text> {
     // TODO Keylem add more asserts
+    @Test
     @Override
     public Text create() {
         return new Text(0, 0, "Hello World");
     }
 
+    @Test
     @Override
     public void testCenter() {
         Text text = create();
@@ -16,6 +18,7 @@ public class TextTest implements IShapeTest<Text> {
         assert text.getCenter().getY() == 0;
     }
 
+    @Test
     @Override
     public void testMove() {
         Text text = create();
@@ -24,6 +27,7 @@ public class TextTest implements IShapeTest<Text> {
         assert text.getCenter().getY() == 15;
     }
 
+    @Test
     @Override
     public void testResize() {
         Text text = create();
@@ -32,6 +36,7 @@ public class TextTest implements IShapeTest<Text> {
         assert text.getHeight() == 50;
     }
 
+    @Test
     @Override
     public void testDescription() {
         Text text = create();
