@@ -16,6 +16,8 @@ public final class Text implements IShape {
     @SVGField({ "x", "y" })
     private Point center;
 
+    // private Transform transform;
+
     public Text(double x, double y, String text) {
         this.center = new Point(x, y);
         this.text = text;

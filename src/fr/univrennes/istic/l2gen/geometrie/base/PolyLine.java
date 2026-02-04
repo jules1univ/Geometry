@@ -9,12 +9,12 @@ import fr.univrennes.istic.l2gen.svg.interfaces.SVGField;
 import fr.univrennes.istic.l2gen.svg.interfaces.SVGTag;
 
 @SVGTag("polyline")
-public final class Line implements IShape {
+public final class PolyLine implements IShape {
 
     @SVGField("points")
     private final List<Point> vertices;
 
-    private Line() {
+    private PolyLine() {
         this.vertices = new ArrayList<>();
     }
 
@@ -28,7 +28,7 @@ public final class Line implements IShape {
      *               doubles, où chaque paire consécutive représente les coordonnées
      *               d'un point.
      */
-    public Line(double... coords) {
+    public PolyLine(double... coords) {
         if (coords.length % 2 != 0) {
             throw new IllegalArgumentException("Invalid number of coordinates");
         }
@@ -208,7 +208,7 @@ public final class Line implements IShape {
      */
     @Override
     public IShape copy() {
-        Line copie = new Line();
+        PolyLine copie = new PolyLine();
         copie.vertices.addAll(this.vertices);
         return copie;
     }

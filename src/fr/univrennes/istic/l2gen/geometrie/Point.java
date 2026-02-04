@@ -106,13 +106,7 @@ public final class Point implements IShape {
 
     @Override
     public void rotate(double deg) {
-        double rad = Math.toRadians(deg);
-        double cos = Math.cos(rad);
-        double sin = Math.sin(rad);
-        double newX = x * cos - y * sin;
-        double newY = x * sin + y * cos;
-        this.x = newX;
-        this.y = newY;
+        // Ne rien faire car un point reste un point après rotation
     }
 
     @Override

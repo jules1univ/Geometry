@@ -4,7 +4,7 @@ import fr.univrennes.istic.l2gen.geometrie.Group;
 import fr.univrennes.istic.l2gen.geometrie.IShape;
 import fr.univrennes.istic.l2gen.geometrie.Point;
 import fr.univrennes.istic.l2gen.geometrie.base.Circle;
-import fr.univrennes.istic.l2gen.geometrie.base.Line;
+import fr.univrennes.istic.l2gen.geometrie.base.PolyLine;
 import fr.univrennes.istic.l2gen.geometrie.base.Polygon;
 import fr.univrennes.istic.l2gen.geometrie.base.Rectangle;
 import fr.univrennes.istic.l2gen.geometrie.base.Text;
@@ -20,7 +20,7 @@ public class App {
         SVGImport.register(Group.class);
 
         SVGImport.register(Circle.class);
-        SVGImport.register(Line.class);
+        SVGImport.register(PolyLine.class);
         SVGImport.register(Polygon.class);
         SVGImport.register(Rectangle.class);
         SVGImport.register(Text.class);

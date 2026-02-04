@@ -16,6 +16,12 @@ public final class Rectangle implements IShape {
     @SVGField({ "width", "height" })
     private Point size;
 
+    @SVGField({ "rx", "ry" })
+    private Point radius;
+
+    // @SVGField
+    // private Transform transform = new Transform();
+
     public Rectangle(Point position, double width, double height) {
         this(position.getX(), position.getY(), width, height);
     }
@@ -76,7 +82,15 @@ public final class Rectangle implements IShape {
 
     @Override
     public void rotate(double deg) {
-        // No-op: rectangle remains rectangle after rotation (no orientation stored)
+        // this.transform.rotate(deg);
+    }
+
+    public void radius(double rx, double ry) {
+        if (rx < 0 || ry < 0 || rx > this.size.getX() / 2 || ry > this.size.getY() / 2) {
+            throw new IllegalArgumentException(
+                    "Invalid border radius values, must be between 0 and half of width/height");
+        }
+        this.radius = new Point(rx, ry);
     }
 
     @Override
