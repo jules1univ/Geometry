@@ -1,7 +1,6 @@
 package fr.univrennes.istic.l2gen.tests.geometrie.shapes;
 
 import org.junit.Test;
-import static org.junit.Assert.assertThrows;
 
 import fr.univrennes.istic.l2gen.geometrie.Point;
 import fr.univrennes.istic.l2gen.geometrie.base.Polygon;

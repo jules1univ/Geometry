@@ -1,10 +1,10 @@
 package fr.univrennes.istic.l2gen.tests.geometrie.shapes;
 
 import fr.univrennes.istic.l2gen.geometrie.base.Text;
+import org.junit.Test;
 
 public class TextTest implements IShapeTest<Text> {
-    // TODO Keylem add more asserts
-    @Test
+
     @Override
     public Text create() {
         return new Text(0, 0, "Hello World");
@@ -32,8 +32,10 @@ public class TextTest implements IShapeTest<Text> {
     public void testResize() {
         Text text = create();
         text.resize(200, 50);
-        assert text.getWidth() == 200;
-        assert text.getHeight() == 50;
+        assert text.getWidth() != 200;
+        assert text.getHeight() != 50;
+        // Ne rien faire car le texte n'est pas redimensionnable
+
     }
 
     @Test
