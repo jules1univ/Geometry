@@ -1,0 +1,68 @@
+package fr.univrennes.istic.l2gen.tests.geometrie.shapes;
+
+import static org.junit.Assert.assertThrows;
+
+import fr.univrennes.istic.l2gen.geometrie.Point;
+import fr.univrennes.istic.l2gen.geometrie.base.Polygon;
+
+public final class PolygonTest implements IShapeTest<Polygon> {
+
+    @Override
+    public Polygon create() {
+        Polygon poly = new Polygon();
+
+        assert poly != null;
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            new Polygon(1.0);
+        });
+
+        assert new Polygon(1.0, 1000.0) != null;
+        assert new Polygon(1.0, 1000.0, 5000.0, 7560.0, 3254.0, 99999.0) != null;
+
+        return poly;
+    }
+
+    @Override
+    public void testCenter() {
+
+        Polygon poly = new Polygon(1.0, 5.0, 7.0, 60.0);
+        Polygon polyVide = new Polygon();
+
+        assert polyVide.getCenter().equals(new Point(1.0, 1.0));
+        assert poly.getCenter().equals(new Point(8.0 / 4, 65.0 / 4));
+    }
+
+    @Override
+    public void testMove() {
+        Polygon poly = new Polygon(1.0, 2.0);
+        poly.move(1.0, 1.0);
+        assert poly.equals(new Polygon(2.0, 3.0));
+        poly.move(-1.0, -1.0);
+        assert poly.equals(new Polygon(1.0, 2.0));
+
+        poly = new Polygon(1.0, 2.0, 5.0, 10.0);
+        poly.move(1.0, 1.0);
+        assert poly.equals(new Polygon(2.0, 3.0, 6.0, 11.0));
+        poly.move(-1.0, -1.0);
+        assert poly.equals(new Polygon(1.0, 2.0, 5.0, 10.0));
+    }
+
+    @Override
+    public void testResize() {
+        Polygon poly = new Polygon(20.0, 30.0);
+        poly.resize(10.0, 20.0);
+        assert poly != null;
+    }
+
+    @Override
+    public void testDescription() {
+        Polygon poly = new Polygon();
+        assert poly.getDescription(1).equals("Polygone 0,0");
+        poly = new Polygon(1.0, 5.0, 6.0, 7.0);
+        assert poly.getDescription(1).equals("Polygone 1,5 6,7");
+        poly = new Polygon(1.0, 5.0, 6.0, 7.0);
+        assert poly.getDescription(2).equals("Polygone 1,5  6,7");
+    }
+
+}
