@@ -10,6 +10,7 @@ import fr.univrennes.istic.l2gen.svg.interfaces.SVGField;
 import fr.univrennes.istic.l2gen.svg.interfaces.SVGTag;
 import fr.univrennes.istic.l2gen.svg.interfaces.point.SVGPoint;
 import fr.univrennes.istic.l2gen.svg.interfaces.point.SVGPointX;
+import fr.univrennes.istic.l2gen.svg.interfaces.point.SVGPointY;
 import fr.univrennes.istic.l2gen.svg.xml.model.XMLTag;
 import fr.univrennes.istic.l2gen.svg.xml.parser.XMLParser;
 
@@ -43,6 +44,15 @@ public final class SVGImport {
         shapes.add(shape);
     }
 
+    private static ISVGShape createPoint(SVGField pointField, XMLTag tag) {
+        if (pointField.value().length < 2) {
+            return null;
+        }
+        String rawPoint = tag.getAttribute(pointField.value()[0]).getValue() + "," +
+                tag.getAttribute(pointField.value()[1]).getValue();
+        return createPoint(rawPoint);
+    }
+
     private static ISVGShape createPoint(String rawPoint) {
         if (point == null) {
             return null;
@@ -55,6 +65,10 @@ public final class SVGImport {
             boolean foundX = false;
             boolean foundY = false;
             for (Field pointField : pointShape.getClass().getDeclaredFields()) {
+                if (foundX && foundY) {
+                    break;
+                }
+
                 SVGPointX fieldX = pointField.getAnnotation(SVGPointX.class);
                 if (fieldX != null) {
                     pointField.setAccessible(true);
@@ -63,7 +77,7 @@ public final class SVGImport {
                     continue;
                 }
 
-                SVGPointX fieldY = pointField.getAnnotation(SVGPointX.class);
+                SVGPointY fieldY = pointField.getAnnotation(SVGPointY.class);
                 if (fieldY != null) {
                     pointField.setAccessible(true);
                     pointField.set(pointShape, Double.parseDouble(coords[1]));
@@ -71,9 +85,10 @@ public final class SVGImport {
                     continue;
                 }
 
-                if (foundX && foundY) {
-                    return pointShape;
-                }
+            }
+
+            if (foundX && foundY) {
+                return pointShape;
             }
 
             return null;
@@ -110,7 +125,7 @@ public final class SVGImport {
                     }
 
                     String attrName = attr.value().length > 0 ? attr.value()[0] : shapeField.getName();
-                    if (tag.hasAttribute(tagName)) {
+                    if (tag.hasAttribute(attrName)) {
                         String attrValue = tag.getAttribute(attrName).getValue();
                         if (attrValue == null) {
                             continue;
@@ -127,7 +142,7 @@ public final class SVGImport {
                             shapeField.set(shape, Boolean.parseBoolean(attrValue));
                         } else if (point != null) {
                             if (shapeField.getType().isAssignableFrom(point)) {
-                                shapeField.set(shape, createPoint(attrValue));
+                                shapeField.set(shape, createPoint(attr, tag));
                             } else if (shapeField.getType().isAssignableFrom(List.class)) {
                                 shapeField.set(shape, createPointList(attrValue));
                             }
