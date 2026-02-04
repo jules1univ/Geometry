@@ -18,6 +18,16 @@ public final class Line implements IShape {
         this.vertices = new ArrayList<>();
     }
 
+    /**
+     * constructeur de la classe Line .Ce constructeur crée une Line en utilisant la
+     * liste de double pris en paramètre
+     * 2 doubles = 1 point
+     * 
+     * @param coords Les coordonnées (x, y) des points de Line. Les coordonnées
+     *               doivent être fournies sous forme de
+     *               doubles, où chaque paire consécutive représente les coordonnées
+     *               d'un point.
+     */
     public Line(double... coords) {
         if (coords.length % 2 != 0) {
             throw new IllegalArgumentException("Invalid number of coordinates");
@@ -28,18 +38,41 @@ public final class Line implements IShape {
         }
     }
 
+    /**
+     * ajoute un Point à la fin de la liste de Point vertices.
+     * 
+     * @param pt le Point à ajouter à la fin de la liste.
+     */
     public void addVertex(Point pt) {
         this.vertices.add(new Point(pt.getX(), pt.getY()));
     }
 
+    /**
+     * ajoute un point a la fin de la liste vertices grace a des double x et y
+     * 
+     * @param x coordonnée x du Point à ajouter
+     * @param y coordonnée y du Point à ajouter
+     */
     public void addVertex(double x, double y) {
         this.vertices.add(new Point(x, y));
     }
 
+    /**
+     * modifie le Point à l'index spécifié dans la liste vertices.
+     * 
+     * @param index l'index du Point à modifier
+     * @param pt    le nouveau Point à placer à l'index spécifié
+     */
     public void setVertex(int index, Point pt) {
         this.vertices.set(index, new Point(pt.getX(), pt.getY()));
     }
 
+    /**
+     * calcule et retourne le centre de la Line en calculant la moyenne des
+     * coordonnées x et y de tous les Points dans la liste vertices.
+     * 
+     * @return un Point représentant le centre de la Line
+     */
     @Override
     public Point getCenter() {
         double sumX = 0, sumY = 0;
@@ -51,6 +84,12 @@ public final class Line implements IShape {
         return n > 0 ? new Point(sumX / n, sumY / n) : new Point(0, 0);
     }
 
+    /**
+     * calcule et retourne la largeur de la Line en trouvant les coordonnées x
+     * minimales et maximales parmi tous les Points dans la liste vertices.
+     * 
+     * @return la largeur de la Line
+     */
     @Override
     public double getWidth() {
         if (vertices.isEmpty())
@@ -64,6 +103,12 @@ public final class Line implements IShape {
         return maxX - minX;
     }
 
+    /**
+     * calcule et retourne la hauteur de la Line en trouvant les coordonnées y
+     * minimales et maximales parmi tous les Points dans la liste vertices.
+     * 
+     * @return la hauteur de la Line
+     */
     @Override
     public double getHeight() {
         if (vertices.isEmpty())
@@ -77,6 +122,13 @@ public final class Line implements IShape {
         return maxY - minY;
     }
 
+    /**
+     * génère une description textuelle de la Line avec un certain niveau
+     * d'indentation.
+     * 
+     * @param indent le nombre d'espaces à utiliser pour l'indentation
+     * @return une chaîne de caractères décrivant la Line et ses Points
+     */
     @Override
     public String getDescription(int indent) {
         StringBuilder sb = new StringBuilder(" ".repeat(Math.max(0, indent)));
@@ -87,6 +139,13 @@ public final class Line implements IShape {
         return sb.toString();
     }
 
+    /**
+     * déplace la Line en ajoutant les valeurs dx et dy aux coordonnées x et y de
+     * chaque Point dans la liste vertices.
+     * 
+     * @param dx le déplacement en x
+     * @param dy le déplacement en y
+     */
     @Override
     public void move(double dx, double dy) {
         for (Point p : vertices) {
@@ -94,6 +153,14 @@ public final class Line implements IShape {
         }
     }
 
+    /**
+     * redimensionne la Line en fonction des facteurs sx et sy en utilisant le
+     * centre de
+     * la Line comme point de référence.
+     * 
+     * @param sx le facteur d'échelle en x
+     * @param sy le facteur d'échelle en y
+     */
     @Override
     public void resize(double sx, double sy) {
         Point center = getCenter();
@@ -106,6 +173,11 @@ public final class Line implements IShape {
         }
     }
 
+    /**
+     * fait pivoter la Line autour de son centre d'un certain angle en degrés.
+     * 
+     * @param deg l'angle de rotation en degrés
+     */
     @Override
     public void rotate(double deg) {
         Point center = getCenter();
@@ -129,6 +201,11 @@ public final class Line implements IShape {
         }
     }
 
+    /**
+     * crée et retourne une copie de la Line actuelle.
+     * 
+     * @return une nouvelle instance de Line avec les mêmes Points que l'original
+     */
     @Override
     public IShape copy() {
         Line copie = new Line();
