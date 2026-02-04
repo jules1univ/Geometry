@@ -32,7 +32,7 @@ public final class Circle implements IShape {
     @Override
     public String getDescription(int indentation) {
         StringBuilder sb = new StringBuilder();
-        sb.append(" ".repeat(Math.max(0, indentation)));
+        sb.append("  ".repeat(Math.max(0, indentation)));
         sb.append("Circle ");
         sb.append("Centre=");
         sb.append(this.center.toString());
@@ -61,6 +61,15 @@ public final class Circle implements IShape {
         return new Circle(this.center, this.radius);
     }
 
+    /**
+     * on ignore le deuxième argument, la valeur n'a pas d'impact, cependant il est
+     * nécessaire d'en avoir une pour appeler la méthode
+     * 
+     * @utilité
+     *          multiplie le rayon du cercle par la valeur en entrée
+     * 
+     * @param py mettez 0 ou -1 par exemple
+     */
     @Override
     public void resize(double px, double py) {
         this.radius = this.radius * px;
