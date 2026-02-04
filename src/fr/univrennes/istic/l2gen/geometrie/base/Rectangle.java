@@ -2,12 +2,11 @@ package fr.univrennes.istic.l2gen.geometrie.base;
 
 import fr.univrennes.istic.l2gen.geometrie.IShape;
 import fr.univrennes.istic.l2gen.geometrie.Point;
+import fr.univrennes.istic.l2gen.svg.attributes.SVGTransform;
 import fr.univrennes.istic.l2gen.svg.interfaces.SVGField;
-import fr.univrennes.istic.l2gen.svg.interfaces.SVGStyle;
 import fr.univrennes.istic.l2gen.svg.interfaces.SVGTag;
 
 @SVGTag("rect")
-@SVGStyle("fill:white;stroke:black;stroke-width:1")
 public final class Rectangle implements IShape {
 
     @SVGField({ "x", "y" })
@@ -19,8 +18,8 @@ public final class Rectangle implements IShape {
     @SVGField({ "rx", "ry" })
     private Point radius;
 
-    // @SVGField
-    // private Transform transform = new Transform();
+    @SVGField
+    private SVGTransform transform = new SVGTransform();
 
     public Rectangle(Point position, double width, double height) {
         this(position.getX(), position.getY(), width, height);
@@ -82,7 +81,7 @@ public final class Rectangle implements IShape {
 
     @Override
     public void rotate(double deg) {
-        // this.transform.rotate(deg);
+        this.transform.rotate(deg);
     }
 
     public void radius(double rx, double ry) {

@@ -4,6 +4,7 @@ import java.io.FileWriter;
 import java.lang.reflect.Field;
 import java.util.List;
 import fr.univrennes.istic.l2gen.svg.interfaces.ISVGShape;
+import fr.univrennes.istic.l2gen.svg.interfaces.SVGAttribute;
 import fr.univrennes.istic.l2gen.svg.interfaces.SVGField;
 import fr.univrennes.istic.l2gen.svg.interfaces.SVGStyle;
 import fr.univrennes.istic.l2gen.svg.interfaces.SVGTag;
@@ -115,13 +116,7 @@ public final class SVGExport {
                 }
             } else {
                 tag.addAttribute(new XMLAttribute(attrName, value.toString()));
-
             }
-        }
-
-        SVGStyle style = shapeClass.getAnnotation(SVGStyle.class);
-        if (style != null) {
-            tag.addAttribute(new XMLAttribute("style", style.value()));
         }
 
         return tag;
@@ -143,7 +138,7 @@ public final class SVGExport {
         svg.addChild(convertShapeToXML(root));
 
         try (FileWriter fw = new FileWriter(filename)) {
-            fw.write(svg.toXMLString());
+            fw.write(svg.toString());
         } catch (Exception e) {
             return false;
         }

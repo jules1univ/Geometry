@@ -75,7 +75,8 @@ public class XMLTag {
     return this.children.get(0);
   }
 
-  public final String toXMLString() {
+  @Override
+  public final String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("<").append(name);
     for (XMLAttribute attr : attributes.values()) {
@@ -89,7 +90,7 @@ public class XMLTag {
 
     content.ifPresent(sb::append);
     for (XMLTag child : children) {
-      sb.append(child.toXMLString());
+      sb.append(child.toString());
     }
     sb.append("</").append(name).append(">");
     return sb.toString();

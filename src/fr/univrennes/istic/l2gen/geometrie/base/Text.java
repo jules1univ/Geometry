@@ -2,12 +2,11 @@ package fr.univrennes.istic.l2gen.geometrie.base;
 
 import fr.univrennes.istic.l2gen.geometrie.IShape;
 import fr.univrennes.istic.l2gen.geometrie.Point;
+import fr.univrennes.istic.l2gen.svg.attributes.SVGTransform;
 import fr.univrennes.istic.l2gen.svg.interfaces.SVGField;
-import fr.univrennes.istic.l2gen.svg.interfaces.SVGStyle;
 import fr.univrennes.istic.l2gen.svg.interfaces.SVGTag;
 
 @SVGTag("text")
-@SVGStyle("text-anchor:middle;")
 public final class Text implements IShape {
 
     @SVGField
@@ -16,7 +15,8 @@ public final class Text implements IShape {
     @SVGField({ "x", "y" })
     private Point center;
 
-    // private Transform transform;
+    @SVGField
+    private SVGTransform transform = new SVGTransform();
 
     public Text(double x, double y, String text) {
         this.center = new Point(x, y);
@@ -63,11 +63,11 @@ public final class Text implements IShape {
 
     @Override
     public void resize(double px, double py) {
-        // Ne rien faire car le texte n'est pas redimensionnable
+        this.transform.scale(px, py);
     }
 
     @Override
     public void rotate(double deg) {
-        // Ne rien faire car le texte reste du texte après rotation
+        this.transform.rotate(deg);
     }
 }
