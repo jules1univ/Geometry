@@ -4,5 +4,8 @@
 # Resultat de l'app
 /output.svg
 
-# Java docs générer avec javadoc -d doc src\*
+# Java docs 
 /doc
+
+# PlantUML dossier uml avec les diagram generer
+/uml
