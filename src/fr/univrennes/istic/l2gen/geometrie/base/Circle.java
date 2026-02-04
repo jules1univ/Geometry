@@ -11,7 +11,7 @@ public final class Circle implements IShape {
     @SVGField("r")
     private double radius;
 
-    @SVGField({ "x", "y" })
+    @SVGField({ "cx", "cy" })
     private Point center;
 
     public Circle(double x, double y, double radius) {
