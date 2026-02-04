@@ -6,7 +6,6 @@ import fr.univrennes.istic.l2gen.geometrie.base.Rectangle;
 
 public final class RectangleTest implements IShapeTest<Rectangle> {
 
-    @NonNull
     @Override
     public Rectangle create() {
         // TODO Auto-generated method stub

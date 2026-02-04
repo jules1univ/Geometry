@@ -10,7 +10,6 @@ import org.jspecify.annotations.NonNull;
 
 public class LineTest implements IShapeTest<Line> {
 
-    @NonNull
     @Override
     public Line create() {
         return new Line(0, 0, 4, 0, 3, 4, 0, 4);

@@ -11,7 +11,6 @@ import java.util.List;
 
 public class TriangleTest implements IShapeTest<Triangle> {
 
-    @NonNull
     @Override
     public Triangle create() {
         return new Triangle(0, 0, 3, 0, 0, 4);

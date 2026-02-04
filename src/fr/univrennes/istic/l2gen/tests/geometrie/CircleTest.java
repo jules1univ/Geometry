@@ -12,7 +12,6 @@ public class CircleTest implements IShapeTest<Circle> {
     /**
      * @return Circle
      */
-    @NonNull
     @Override
     public Circle create() {
         Circle c1 = new Circle(0, 0, 1);

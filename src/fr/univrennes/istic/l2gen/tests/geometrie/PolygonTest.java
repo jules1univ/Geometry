@@ -8,7 +8,6 @@ import fr.univrennes.istic.l2gen.geometrie.base.Polygon;
 
 public final class PolygonTest implements IShapeTest<Polygon> {
 
-    @NonNull
     @Override
     public Polygon create() {
         return new Polygon(1.0, 1000.0, 5000.0, 7560.0, 3254.0, 99999.0);

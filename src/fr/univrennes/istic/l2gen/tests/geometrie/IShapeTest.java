@@ -16,7 +16,6 @@ public interface IShapeTest<T extends IShape> {
      * 
      * @return T extends IShape
      */
-    @NonNull
     T create();
 
     @Test

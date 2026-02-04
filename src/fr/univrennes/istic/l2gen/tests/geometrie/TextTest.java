@@ -7,7 +7,6 @@ import org.junit.Test;
 
 public class TextTest implements IShapeTest<Text> {
 
-    @NonNull
     @Override
     public Text create() {
         return new Text(0, 0, "Hello World");
