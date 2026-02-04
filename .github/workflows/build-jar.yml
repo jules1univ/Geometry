@@ -20,7 +20,7 @@ jobs:
 
       - name: Create JAR
         run: |
-          echo "Main-Class: fr.univrennes.istic.l2gen.geometrie.app.App" > manifest.txt
+          echo "Main-Class: fr.univrennes.istic.l2gen.geometry.app.App" > manifest.txt
           jar cfm Geometry.jar manifest.txt -C out .
 
       - name: Upload Artifact

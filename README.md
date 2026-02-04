@@ -19,7 +19,7 @@ cd Geometry
 
 ### Ouvrir le projet
 
-- Ouvrir le dossier `Geometrie` dans **VS Code**
+- Ouvrir le dossier `Geometry` dans **VS Code**
 - Vérifier que le JDK est bien configuré (`java --version`)
 
 ### Librairies
