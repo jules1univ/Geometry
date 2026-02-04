@@ -16,6 +16,7 @@ public class LineTest implements IShapeTest<Line> {
         return new Line(0, 0, 4, 0, 3, 4, 0, 4);
     }
 
+    @Test
     @Override
     public void testCenter() {
         Line line = create();
@@ -25,6 +26,7 @@ public class LineTest implements IShapeTest<Line> {
         assertEquals(centreLogique.getY(), center.getY(), 0.0001);
     }
 
+    @Test
     @Override
     public void testMove() {
         Line line = create();
@@ -34,18 +36,21 @@ public class LineTest implements IShapeTest<Line> {
 
     }
 
+    // à vérifier
+    @Test
     @Override
     public void testResize() {
         Line line = create();
-        Line lineAfterResize = new Line(-2, -2, 6, -2, 5, 6, -2, 6);
+        Line lineAfterResize = new Line(-1.75, -2, 6.25, -2, 4.25, 6, -1.75, 6);
         line.resize(2, 2);
         assertEquals(lineAfterResize.getDescription(0), line.getDescription(0));
     }
 
+    @Test
     @Override
     public void testDescription() {
         Line line = create();
-        String expectedDescription = "Ligne 0.0,0.0 4.0,0.0 3.0,4.0 0.0,4.0";
+        String expectedDescription = "Ligne 0.0,0.0 4.0,0.0 3.0,4.0 0.0,4.0 ";
         assertEquals(expectedDescription, line.getDescription(0));
     }
 
