@@ -1,2 +1,8 @@
+# Dossier de compilation java
 /bin
+
+# Resultat de l'app
 /output.svg
+
+# Java docs générer avec javadoc -d doc src\*
+/doc
