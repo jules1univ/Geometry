@@ -2,10 +2,9 @@ package fr.univrennes.istic.l2gen.svg.attributes;
 
 import java.util.Optional;
 
-import fr.univrennes.istic.l2gen.svg.interfaces.SVGAttribute;
+import fr.univrennes.istic.l2gen.svg.interfaces.ISVGAttribute;
 
-@SVGAttribute
-public final class SVGStyle {
+public final class SVGStyle implements ISVGAttribute {
     private Optional<Double> strokeWidth = Optional.empty();
     private Optional<String> strokeColor = Optional.empty();
     private Optional<String> fillColor = Optional.empty();
@@ -30,7 +29,12 @@ public final class SVGStyle {
     }
 
     @Override
-    public String toString() {
+    public boolean hasContent() {
+        return strokeWidth.isPresent() || strokeColor.isPresent() || fillColor.isPresent();
+    }
+
+    @Override
+    public String getContent() {
         StringBuilder sb = new StringBuilder();
         strokeWidth.ifPresent(w -> sb.append("stroke-width:").append(w).append(";"));
         strokeColor.ifPresent(c -> sb.append("stroke:").append(c).append(";"));

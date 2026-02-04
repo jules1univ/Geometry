@@ -97,7 +97,7 @@ public final class SVGImport {
         for (Class<? extends ISVGShape> shapeClass : shapes) {
             String tagName = shapeClass.getAnnotation(SVGTag.class).value();
             if (!tagName.equals(tag.getTagName())) {
-                break;
+                continue;
             }
 
             try {
@@ -131,6 +131,17 @@ public final class SVGImport {
                                 shapeField.set(shape, createPointList(attrValue));
                             }
                         }
+                    } else if (shapeField.getType().isAssignableFrom(List.class)) {
+                        List<ISVGShape> childrenShapes = new ArrayList<>();
+                        for (XMLTag childTag : tag.getChildren()) {
+                            ISVGShape childShape = convertXMLToShape(childTag);
+                            if (childShape != null) {
+                                childrenShapes.add(childShape);
+                            }
+                        }
+                        shapeField.setAccessible(true);
+                        shapeField.set(shape, childrenShapes);
+
                     }
                 }
                 return shape;
@@ -146,28 +157,23 @@ public final class SVGImport {
     public static ISVGShape load(String filename) {
         try (FileReader fr = new FileReader(filename)) {
             StringBuilder sb = new StringBuilder();
-            char ch;
-            while ((ch = (char) fr.read()) != -1) {
-                sb.append(ch);
+            int c;
+            while ((c = fr.read()) != -1) {
+                sb.append((char) c);
             }
             String source = sb.toString();
 
             XMLParser parser = new XMLParser(source);
 
             XMLTag root = parser.parse();
-            if (root == null) {
-                return null;
-            }
-            XMLTag svg = root.getFirstChildByName("svg");
-            if (svg == null) {
-                return null;
-            }
-            XMLTag backgroundRect = svg.getFirstChildByName("rect");
-            if (backgroundRect == null) {
+            if (root == null || !root.getTagName().equals("svg")) {
                 return null;
             }
 
-            XMLTag mainShape = backgroundRect.getFirstChild();
+            XMLTag mainShape = root.getFirstChildByName("g");
+            if (mainShape == null) {
+                return null;
+            }
             return convertXMLToShape(mainShape);
         } catch (Exception e) {
             return null;

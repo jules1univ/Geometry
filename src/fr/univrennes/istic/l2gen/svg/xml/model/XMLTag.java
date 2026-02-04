@@ -59,6 +59,10 @@ public class XMLTag {
     children.add(child);
   }
 
+  public Iterable<XMLTag> getChildren() {
+    return children;
+  }
+
   public XMLTag getFirstChildByName(String tagName) {
     for (XMLTag child : children) {
       if (child.name.equals(tagName)) {

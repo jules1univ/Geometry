@@ -2,10 +2,9 @@ package fr.univrennes.istic.l2gen.svg.attributes;
 
 import java.util.Optional;
 
-import fr.univrennes.istic.l2gen.svg.interfaces.SVGAttribute;
+import fr.univrennes.istic.l2gen.svg.interfaces.ISVGAttribute;
 
-@SVGAttribute
-public final class SVGTransform {
+public final class SVGTransform implements ISVGAttribute {
     private Optional<Double> rotate = Optional.empty();
     private Optional<Double> rotatePointX = Optional.empty();
     private Optional<Double> rotatePointY = Optional.empty();
@@ -79,7 +78,14 @@ public final class SVGTransform {
     }
 
     @Override
-    public String toString() {
+    public boolean hasContent() {
+        return rotate.isPresent() || translateX.isPresent() || scaleX.isPresent() || skewX.isPresent()
+                || matrix.isPresent();
+    }
+
+    @Override
+    public String getContent() {
+
         StringBuilder sb = new StringBuilder();
         matrix.ifPresent(m -> sb.append(String.format("matrix(%f %f %f %f %f %f) ",
                 m[0], m[1], m[2], m[3], m[4], m[5])));
