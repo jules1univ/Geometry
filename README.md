@@ -22,6 +22,12 @@ cd Geometry
 - Ouvrir le dossier `Geometrie` dans **VS Code**
 - Vérifier que le JDK est bien configuré (`java --version`)
 
+### Librairies
+
+- JUnit 4
+
 ## Contribution
 
-**Lisez impérativement** le [guide de contribution](CONTRIBUTING.md) avant de commencer à travailler sur le projet.
+**Membres**: [list des mebres](docs/MEMBERS.md)
+
+**Lisez impérativement**: [le guide de contribution](CONTRIBUTING.md) avant de commencer à travailler sur le projet.
