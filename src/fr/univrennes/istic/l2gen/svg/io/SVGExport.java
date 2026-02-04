@@ -3,6 +3,7 @@ package fr.univrennes.istic.l2gen.svg.io;
 import java.io.FileWriter;
 import java.lang.reflect.Field;
 import java.util.List;
+import java.util.Optional;
 
 import fr.univrennes.istic.l2gen.svg.interfaces.ISVGAttribute;
 import fr.univrennes.istic.l2gen.svg.interfaces.ISVGShape;
@@ -114,8 +115,15 @@ public final class SVGExport {
                         tag.addAttribute(new XMLAttribute(field.value()[1], parts[1]));
                     }
                 }
-            } else if (value instanceof ISVGAttribute svgAttr && svgAttr.hasContent()) {
-                tag.addAttribute(new XMLAttribute(attrName, svgAttr.getContent()));
+            } else if (ISVGAttribute.class.isAssignableFrom(value.getClass())) {
+                ISVGAttribute svgAttr = (ISVGAttribute) value;
+                if (svgAttr.hasContent()) {
+                    tag.setAttribute(attrName, svgAttr.getContent());
+                }
+            } else if (value instanceof Optional<?> optValue) {
+                if (optValue.isPresent()) {
+                    tag.setAttribute(attrName, optValue.get().toString());
+                }
             } else {
                 tag.addAttribute(new XMLAttribute(attrName, value.toString()));
             }

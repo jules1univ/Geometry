@@ -3,8 +3,11 @@ package fr.univrennes.istic.l2gen.svg.io;
 import java.io.FileReader;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
+import java.lang.reflect.ParameterizedType;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+
 import fr.univrennes.istic.l2gen.svg.interfaces.ISVGShape;
 import fr.univrennes.istic.l2gen.svg.interfaces.SVGField;
 import fr.univrennes.istic.l2gen.svg.interfaces.SVGTag;
@@ -140,6 +143,18 @@ public final class SVGImport {
                             shapeField.set(shape, Double.parseDouble(attrValue));
                         } else if (shapeField.getType().equals(Boolean.class)) {
                             shapeField.set(shape, Boolean.parseBoolean(attrValue));
+                        } else if (shapeField.getType().equals(Optional.class)) {
+                            Class<?> optionalValueType = (Class<?>) ((ParameterizedType) shapeField.getGenericType())
+                                    .getActualTypeArguments()[0];
+                            if (optionalValueType.equals(String.class)) {
+                                shapeField.set(shape, Optional.of(attrValue));
+                            } else if (optionalValueType.equals(Integer.class)) {
+                                shapeField.set(shape, Optional.of(Integer.parseInt(attrValue)));
+                            } else if (optionalValueType.equals(Double.class)) {
+                                shapeField.set(shape, Optional.of(Double.parseDouble(attrValue)));
+                            } else if (optionalValueType.equals(Boolean.class)) {
+                                shapeField.set(shape, Optional.of(Boolean.parseBoolean(attrValue)));
+                            }
                         } else if (point != null) {
                             if (shapeField.getType().isAssignableFrom(point)) {
                                 shapeField.set(shape, createPoint(attr, tag));
