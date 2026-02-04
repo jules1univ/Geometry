@@ -1,7 +1,6 @@
 package fr.univrennes.istic.l2gen.tests.geometrie.shapes;
 
 import fr.univrennes.istic.l2gen.geometrie.Point;
-import fr.univrennes.istic.l2gen.geometrie.base.Text;
 import fr.univrennes.istic.l2gen.geometrie.base.Triangle;
 
 import org.junit.Test;
