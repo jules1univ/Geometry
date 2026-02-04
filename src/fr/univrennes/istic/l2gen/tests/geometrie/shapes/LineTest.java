@@ -3,6 +3,7 @@ package fr.univrennes.istic.l2gen.tests.geometrie.shapes;
 import fr.univrennes.istic.l2gen.geometrie.base.Line;
 import fr.univrennes.istic.l2gen.geometrie.Point;
 
+import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 public class LineTest implements IShapeTest<Line> {
