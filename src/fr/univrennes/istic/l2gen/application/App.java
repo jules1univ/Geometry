@@ -1,12 +1,18 @@
 package fr.univrennes.istic.l2gen.application;
 
 import fr.univrennes.istic.l2gen.geometrie.IShape;
+import fr.univrennes.istic.l2gen.geometrie.Point;
 import fr.univrennes.istic.l2gen.geometrie.base.Rectangle;
 import fr.univrennes.istic.l2gen.svg.interfaces.ISVGShape;
 import fr.univrennes.istic.l2gen.svg.io.SVGExport;
 import fr.univrennes.istic.l2gen.svg.io.SVGImport;
 
 public class App {
+
+    static {
+        SVGImport.register(Point.class);
+        SVGImport.register(Rectangle.class);
+    }
 
     public static void main(String[] args) throws Exception {
         // IMPORTANT: ne pas mettre a jour le code present ici
@@ -16,7 +22,6 @@ public class App {
         IShape fractal = new Fractal().draw(new Rectangle(500, 500, 100, 50), 5);
         SVGExport.export(fractal, "output.svg");
 
-        // FIXME: import svg ne fonctionne pas correctement pour le moment
         ISVGShape svgShape = SVGImport.load("output.svg");
         if (svgShape instanceof IShape shape) {
 

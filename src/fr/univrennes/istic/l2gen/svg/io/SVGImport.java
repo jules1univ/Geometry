@@ -14,10 +14,10 @@ import fr.univrennes.istic.l2gen.svg.xml.model.XMLTag;
 import fr.univrennes.istic.l2gen.svg.xml.parser.XMLParser;
 
 public final class SVGImport {
-    private static final List<Class<ISVGShape>> shapes = new ArrayList<>();
-    private static Class<ISVGShape> point = null;
+    private static final List<Class<? extends ISVGShape>> shapes = new ArrayList<>();
+    private static Class<? extends ISVGShape> point = null;
 
-    public static boolean register(Class<ISVGShape> shape) {
+    public static <T extends ISVGShape> boolean register(Class<T> shape) {
         boolean hasDefaultConstructor = false;
         for (Constructor<?> constructor : shape.getConstructors()) {
             if (constructor.getParameterCount() == 0) {
@@ -94,7 +94,7 @@ public final class SVGImport {
     }
 
     private static ISVGShape convertXMLToShape(XMLTag tag) {
-        for (Class<ISVGShape> shapeClass : shapes) {
+        for (Class<? extends ISVGShape> shapeClass : shapes) {
             String tagName = shapeClass.getAnnotation(SVGTag.class).value();
             if (!tagName.equals(tag.getTagName())) {
                 break;
