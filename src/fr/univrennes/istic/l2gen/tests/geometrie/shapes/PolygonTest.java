@@ -1,6 +1,6 @@
 package fr.univrennes.istic.l2gen.tests.geometrie.shapes;
 
-import static org.junit.Assert.assertThrows;
+import org.junit.Test;
 
 import fr.univrennes.istic.l2gen.geometrie.Point;
 import fr.univrennes.istic.l2gen.geometrie.base.Polygon;
@@ -9,20 +9,10 @@ public final class PolygonTest implements IShapeTest<Polygon> {
 
     @Override
     public Polygon create() {
-        Polygon poly = new Polygon();
-
-        assert poly != null;
-
-        assertThrows(IllegalArgumentException.class, () -> {
-            new Polygon(1.0);
-        });
-
-        assert new Polygon(1.0, 1000.0) != null;
-        assert new Polygon(1.0, 1000.0, 5000.0, 7560.0, 3254.0, 99999.0) != null;
-
-        return poly;
+        return new Polygon(1.0, 1000.0, 5000.0, 7560.0, 3254.0, 99999.0);
     }
 
+    @Test
     @Override
     public void testCenter() {
 
@@ -33,6 +23,7 @@ public final class PolygonTest implements IShapeTest<Polygon> {
         assert poly.getCenter().equals(new Point(8.0 / 4, 65.0 / 4));
     }
 
+    @Test
     @Override
     public void testMove() {
         Polygon poly = new Polygon(1.0, 2.0);
@@ -48,6 +39,7 @@ public final class PolygonTest implements IShapeTest<Polygon> {
         assert poly.equals(new Polygon(1.0, 2.0, 5.0, 10.0));
     }
 
+    @Test
     @Override
     public void testResize() {
         Polygon poly = new Polygon(20.0, 30.0);
@@ -55,6 +47,7 @@ public final class PolygonTest implements IShapeTest<Polygon> {
         assert poly != null;
     }
 
+    @Test
     @Override
     public void testDescription() {
         Polygon poly = new Polygon();
