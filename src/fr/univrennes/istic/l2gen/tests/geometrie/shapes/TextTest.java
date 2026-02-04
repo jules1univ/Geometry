@@ -4,7 +4,6 @@ import fr.univrennes.istic.l2gen.geometrie.base.Text;
 import org.junit.Test;
 
 public class TextTest implements IShapeTest<Text> {
-    // TODO Keylem add more asserts
 
     @Override
     public Text create() {
