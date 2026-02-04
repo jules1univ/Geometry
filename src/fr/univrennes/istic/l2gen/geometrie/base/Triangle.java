@@ -6,7 +6,9 @@ import java.util.List;
 import fr.univrennes.istic.l2gen.geometrie.IShape;
 import fr.univrennes.istic.l2gen.geometrie.Point;
 import fr.univrennes.istic.l2gen.svg.interfaces.SVGField;
+import fr.univrennes.istic.l2gen.svg.interfaces.SVGTag;
 
+@SVGTag("polygon")
 public final class Triangle implements IShape {
 
     @SVGField("points")

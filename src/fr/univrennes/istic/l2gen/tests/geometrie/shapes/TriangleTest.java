@@ -1,13 +1,13 @@
 package fr.univrennes.istic.l2gen.tests.geometrie.shapes;
 
 import fr.univrennes.istic.l2gen.geometrie.Point;
+import fr.univrennes.istic.l2gen.geometrie.base.Text;
 import fr.univrennes.istic.l2gen.geometrie.base.Triangle;
 
+import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 import java.util.List;
-
-import org.junit.Test;
 
 public class TriangleTest implements IShapeTest<Triangle> {
     @Override
@@ -15,6 +15,7 @@ public class TriangleTest implements IShapeTest<Triangle> {
         return new Triangle(0, 0, 3, 0, 0, 4);
     }
 
+    @Test
     @Override
     public void testCenter() {
         Triangle t1 = create();
@@ -29,24 +30,61 @@ public class TriangleTest implements IShapeTest<Triangle> {
         }
         double centerX = sumX / liste.size();
         double centerY = sumY / liste.size();
+        assertEquals(centerX, center.getX(), 0.0001);
+        assertEquals(centerY, center.getY(), 0.0001);
     }
 
+    @Test
     @Override
     public void testMove() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'testMove'");
+        double MOVE_X = -2.0;
+        double MOVE_Y = 2.0;
+
+        Triangle t1 = create();
+        Point center = t1.getCenter();
+        double centerX = center.getX();
+        double centerY = center.getY();
+
+        t1.move(MOVE_X, MOVE_Y);
+
+        centerX += MOVE_X;
+        centerY += MOVE_Y;
+        center = t1.getCenter();
+        assertEquals(centerX, center.getX(), 0.0001);
+        assertEquals(centerY, center.getY(), 0.0001);
+
     }
 
+    @Test
     @Override
     public void testResize() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'testResize'");
+        Triangle t1 = create();
+        List<Point> originalVertices = t1.getVertices();
+        double[] originalX = new double[originalVertices.size()];
+        double[] originalY = new double[originalVertices.size()];
+        for (int i = 0; i < originalVertices.size(); i++) {
+            originalX[i] = originalVertices.get(i).getX();
+            originalY[i] = originalVertices.get(i).getY();
+        }
+        t1.resize(2, 0);
+        List<Point> resizedVertices = t1.getVertices();
+        for (int i = 0; i < resizedVertices.size(); i++) {
+            assertEquals(
+                    t1.getCenter().getX() + (originalX[i] - t1.getCenter().getX()) * 2,
+                    resizedVertices.get(i).getX(), 0.0001);
+            assertEquals(
+                    t1.getCenter().getY() + (originalY[i] - t1.getCenter().getY()) * 0,
+                    resizedVertices.get(i).getY(), 0.0001);
+        }
     }
 
+    @Test
     @Override
     public void testDescription() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'testDescription'");
+        Triangle text = create();
+        String desc = text.getDescription(1);
+        assert desc.contains("Triangle");
+        assert desc.contains("0.0,0.0 3.0,0.0 0.0,4.0");
     }
 
 }
