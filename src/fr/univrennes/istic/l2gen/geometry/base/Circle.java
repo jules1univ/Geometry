@@ -14,6 +14,11 @@ public final class Circle implements IShape {
     @SVGField({ "cx", "cy" })
     private Point center;
 
+    public Circle() {
+        this.radius = 0;
+        this.center = new Point(0, 0);
+    }
+
     public Circle(double x, double y, double radius) {
         this.radius = radius;
         this.center = new Point(x, y);
@@ -34,9 +39,9 @@ public final class Circle implements IShape {
         StringBuilder sb = new StringBuilder();
         sb.append("  ".repeat(Math.max(0, indentation)));
         sb.append("Circle ");
-        sb.append("Centre=");
+        sb.append("C=");
         sb.append(this.center.toString());
-        sb.append(" r=");
+        sb.append(" R=");
         sb.append(this.radius);
         return sb.toString();
     }

@@ -14,6 +14,13 @@ public final class Triangle implements IShape {
     @SVGField("points")
     private final List<Point> vertices;
 
+    public Triangle() {
+        this.vertices = new ArrayList<>(3);
+        this.vertices.add(new Point(0, 0));
+        this.vertices.add(new Point(0, 0));
+        this.vertices.add(new Point(0, 0));
+    }
+
     public Triangle(double x1, double y1,
             double x2, double y2,
             double x3, double y3) {
@@ -67,7 +74,8 @@ public final class Triangle implements IShape {
     @Override
     public String getDescription(int indent) {
         StringBuilder sb = new StringBuilder(" ".repeat(Math.max(0, indent)));
-        sb.append("Triangle");
+        sb.append("Triangle ");
+        sb.append("POINTS=");
         for (Point p : vertices) {
             sb.append(" ").append(p.getX()).append(",").append(p.getY());
         }

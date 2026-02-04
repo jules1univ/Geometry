@@ -74,11 +74,12 @@ public final class Group<T extends IShape> implements IShape {
     public String getDescription(int indentation) {
         StringBuilder sb = new StringBuilder();
         sb.append(" ".repeat(indentation));
-        sb.append("Groupe\n");
+        sb.append("Group\n");
         for (T shape : shapes) {
             sb.append(shape.getDescription(indentation + 1));
             sb.append("\n");
         }
+        sb.setLength(sb.length() - 1);
         return sb.toString();
     }
 

@@ -18,6 +18,11 @@ public final class Ellipse implements IShape {
     @SVGField
     private SVGTransform transform = new SVGTransform();
 
+    public Ellipse() {
+        this.center = new Point(0, 0);
+        this.radius = new Point(0, 0);
+    }
+
     public Ellipse(double cx, double cy, double rx, double ry) {
         this.center = new Point(cx, cy);
         this.radius = new Point(rx, ry);

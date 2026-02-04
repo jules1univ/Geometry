@@ -17,7 +17,7 @@ public final class SVGImport {
     private static final List<Class<? extends ISVGShape>> shapes = new ArrayList<>();
     private static Class<? extends ISVGShape> point = null;
 
-    public static <T extends ISVGShape> boolean register(Class<T> shape) {
+    public static <T extends ISVGShape> void register(Class<T> shape) {
         boolean hasDefaultConstructor = false;
         for (Constructor<?> constructor : shape.getConstructors()) {
             if (constructor.getParameterCount() == 0) {
@@ -27,19 +27,20 @@ public final class SVGImport {
         }
 
         if (!hasDefaultConstructor) {
-            return false;
+            throw new IllegalArgumentException(
+                    "Shape class \"" + shape.getSimpleName() + "\"must have a default constructor");
         }
 
         if (shape.getAnnotation(SVGPoint.class) != null) {
             point = shape;
-            return true;
+            return;
         }
 
         if (shape.getAnnotation(SVGTag.class) == null) {
-            return false;
+            throw new IllegalArgumentException(
+                    "Shape class \"" + shape.getSimpleName() + "\" must be annotated with @SVGTag");
         }
         shapes.add(shape);
-        return true;
     }
 
     private static ISVGShape createPoint(String rawPoint) {

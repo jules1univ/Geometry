@@ -18,6 +18,11 @@ public final class Text implements IShape {
     @SVGField
     private SVGTransform transform = new SVGTransform();
 
+    public Text() {
+        this.center = new Point(0, 0);
+        this.text = "";
+    }
+
     public Text(double x, double y, String text) {
         this.center = new Point(x, y);
         this.text = text;
@@ -27,11 +32,11 @@ public final class Text implements IShape {
     public String getDescription(int indentation) {
         StringBuilder sb = new StringBuilder();
         sb.append(" ".repeat(Math.max(0, indentation)));
-        sb.append("Text ");
+        sb.append("TEXT=");
         sb.append(text);
-        sb.append(" x=");
+        sb.append(" X=");
         sb.append(this.center.getX());
-        sb.append(" y=");
+        sb.append(" Y=");
         sb.append(this.center.getY());
         return sb.toString();
     }

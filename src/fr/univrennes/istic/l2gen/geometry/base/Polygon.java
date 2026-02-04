@@ -49,6 +49,7 @@ public final class Polygon implements IShape {
     public String getDescription(int indent) {
         StringBuilder sb = new StringBuilder(" ".repeat(Math.max(0, indent)));
         sb.append("Polygon ");
+        sb.append("POINTS=");
         for (Point p : vertices) {
             sb.append(p.getX()).append(",").append(p.getY()).append(" ");
         }

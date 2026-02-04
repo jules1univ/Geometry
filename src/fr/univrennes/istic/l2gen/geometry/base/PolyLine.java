@@ -14,7 +14,7 @@ public final class PolyLine implements IShape {
     @SVGField("points")
     private final List<Point> vertices;
 
-    private PolyLine() {
+    public PolyLine() {
         this.vertices = new ArrayList<>();
     }
 
@@ -133,6 +133,7 @@ public final class PolyLine implements IShape {
     public String getDescription(int indent) {
         StringBuilder sb = new StringBuilder(" ".repeat(Math.max(0, indent)));
         sb.append("Ligne ");
+        sb.append("POINTS=");
         for (Point p : vertices) {
             sb.append(p.getX()).append(",").append(p.getY()).append(" ");
         }

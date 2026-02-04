@@ -21,6 +21,11 @@ public final class Rectangle implements IShape {
     @SVGField
     private SVGTransform transform = new SVGTransform();
 
+    public Rectangle() {
+        this.position = new Point(0, 0);
+        this.size = new Point(0, 0);
+    }
+
     public Rectangle(Point position, double width, double height) {
         this(position.getX(), position.getY(), width, height);
     }
