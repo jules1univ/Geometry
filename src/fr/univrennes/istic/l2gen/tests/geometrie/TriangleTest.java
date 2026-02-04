@@ -1,14 +1,17 @@
-package fr.univrennes.istic.l2gen.tests.geometrie.shapes;
+package fr.univrennes.istic.l2gen.tests.geometrie;
 
 import fr.univrennes.istic.l2gen.geometrie.Point;
 import fr.univrennes.istic.l2gen.geometrie.base.Triangle;
 
+import org.jspecify.annotations.NonNull;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 import java.util.List;
 
 public class TriangleTest implements IShapeTest<Triangle> {
+
+    @NonNull
     @Override
     public Triangle create() {
         return new Triangle(0, 0, 3, 0, 0, 4);

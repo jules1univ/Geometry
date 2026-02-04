@@ -1,10 +1,13 @@
-package fr.univrennes.istic.l2gen.tests.geometrie.shapes;
+package fr.univrennes.istic.l2gen.tests.geometrie;
 
 import fr.univrennes.istic.l2gen.geometrie.base.Text;
+
+import org.jspecify.annotations.NonNull;
 import org.junit.Test;
 
 public class TextTest implements IShapeTest<Text> {
 
+    @NonNull
     @Override
     public Text create() {
         return new Text(0, 0, "Hello World");

@@ -1,20 +1,22 @@
-package fr.univrennes.istic.l2gen.tests.geometrie.shapes;
+package fr.univrennes.istic.l2gen.tests.geometrie;
 
 import static org.junit.Assert.assertTrue;
 
+import org.jspecify.annotations.NonNull;
 import org.junit.Test;
 
 import fr.univrennes.istic.l2gen.geometrie.base.Circle;
 
 public class CircleTest implements IShapeTest<Circle> {
 
+    /**
+     * @return Circle
+     */
+    @NonNull
     @Override
     public Circle create() {
         Circle c1 = new Circle(0, 0, 1);
         return c1;
-
-        // TODO Auto-generated method stub
-        // throw new UnsupportedOperationException("Unimplemented method 'create'");
     }
 
     @Test

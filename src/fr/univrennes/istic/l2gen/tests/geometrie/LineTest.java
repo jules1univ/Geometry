@@ -1,4 +1,4 @@
-package fr.univrennes.istic.l2gen.tests.geometrie.shapes;
+package fr.univrennes.istic.l2gen.tests.geometrie;
 
 import fr.univrennes.istic.l2gen.geometrie.base.Line;
 import fr.univrennes.istic.l2gen.geometrie.Point;
@@ -6,8 +6,11 @@ import fr.univrennes.istic.l2gen.geometrie.Point;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
+import org.jspecify.annotations.NonNull;
+
 public class LineTest implements IShapeTest<Line> {
 
+    @NonNull
     @Override
     public Line create() {
         return new Line(0, 0, 4, 0, 3, 4, 0, 4);

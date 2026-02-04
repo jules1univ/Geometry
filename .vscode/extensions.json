@@ -1,6 +1,7 @@
 {
-    "recommendations": [
-        "SimonSiefke.svg-preview",
-        "vscjava.vscode-java-pack"
-    ]
+  "recommendations": [
+    "SimonSiefke.svg-preview",
+    "vscjava.vscode-java-pack",
+    "0SMA0.uml-generator"
+  ]
 }
