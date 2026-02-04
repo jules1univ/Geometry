@@ -1,6 +1,5 @@
 package fr.univrennes.istic.l2gen.tests.geometrie;
 
-import org.jspecify.annotations.NonNull;
 import org.junit.Test;
 
 import fr.univrennes.istic.l2gen.geometrie.Point;

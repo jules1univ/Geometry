@@ -3,7 +3,6 @@ package fr.univrennes.istic.l2gen.tests.geometrie;
 import fr.univrennes.istic.l2gen.geometrie.Point;
 import fr.univrennes.istic.l2gen.geometrie.base.Triangle;
 
-import org.jspecify.annotations.NonNull;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 

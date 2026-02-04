@@ -1,7 +1,5 @@
 package fr.univrennes.istic.l2gen.tests.geometrie;
 
-import org.jspecify.annotations.NonNull;
-
 import fr.univrennes.istic.l2gen.geometrie.base.Rectangle;
 
 public final class RectangleTest implements IShapeTest<Rectangle> {

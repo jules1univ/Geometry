@@ -2,7 +2,6 @@ package fr.univrennes.istic.l2gen.tests.geometrie;
 
 import static org.junit.Assert.assertTrue;
 
-import org.jspecify.annotations.NonNull;
 import org.junit.Test;
 
 import fr.univrennes.istic.l2gen.geometrie.base.Circle;

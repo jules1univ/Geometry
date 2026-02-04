@@ -6,8 +6,6 @@ import fr.univrennes.istic.l2gen.geometrie.Point;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
-import org.jspecify.annotations.NonNull;
-
 public class LineTest implements IShapeTest<Line> {
 
     @Override

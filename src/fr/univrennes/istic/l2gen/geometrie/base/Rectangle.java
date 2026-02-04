@@ -62,7 +62,16 @@ public final class Rectangle implements IShape {
 
     @Override
     public void resize(double px, double py) {
-        this.size.mult(px, py);
+        double newWidth = this.size.getX() * px;
+        double newHeight = this.size.getY() * py;
+
+        double dx = (this.size.getX() - newWidth) / 2;
+        double dy = (this.size.getY() - newHeight) / 2;
+
+        this.position.add(dx, dy);
+
+        this.size.setX(newWidth);
+        this.size.setY(newHeight);
     }
 
     @Override

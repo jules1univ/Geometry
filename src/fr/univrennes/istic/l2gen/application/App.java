@@ -32,7 +32,7 @@ public class App {
         // il faut séparer les fonctionnalité dans d'autre fichier de l'app puis les
         // charger ici
 
-        IShape fractal = new Fractal().draw(new Rectangle(500, 500, 100, 50), 5);
+        IShape fractal = new Fractal().draw(new Rectangle(500, 500, 100, 50), 4);
         SVGExport.export(fractal, "output.svg");
 
         ISVGShape svgShape = SVGImport.load("output.svg");

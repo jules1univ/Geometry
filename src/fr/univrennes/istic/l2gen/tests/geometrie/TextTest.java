@@ -2,7 +2,6 @@ package fr.univrennes.istic.l2gen.tests.geometrie;
 
 import fr.univrennes.istic.l2gen.geometrie.base.Text;
 
-import org.jspecify.annotations.NonNull;
 import org.junit.Test;
 
 public class TextTest implements IShapeTest<Text> {
