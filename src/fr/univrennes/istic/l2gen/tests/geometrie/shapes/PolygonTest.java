@@ -19,8 +19,8 @@ public final class PolygonTest implements IShapeTest<Polygon> {
         Polygon poly = new Polygon(1.0, 5.0, 7.0, 60.0);
         Polygon polyVide = new Polygon();
 
-        assert polyVide.getCenter().equals(new Point(1.0, 1.0));
-        assert poly.getCenter().equals(new Point(8.0 / 4, 65.0 / 4));
+        assert polyVide.getCenter().equals(new Point(0.0, 0.0));
+        assert poly.getCenter().equals(new Point(8.0 / 2, 65.0 / 2));
     }
 
     @Test
@@ -28,7 +28,7 @@ public final class PolygonTest implements IShapeTest<Polygon> {
     public void testMove() {
         Polygon poly = new Polygon(1.0, 2.0);
         poly.move(1.0, 1.0);
-        assert poly.equals(new Polygon(2.0, 3.0));
+        assert poly.equals(new Polygon(1.0, 2.0, 2.0, 3.0));
         poly.move(-1.0, -1.0);
         assert poly.equals(new Polygon(1.0, 2.0));
 
