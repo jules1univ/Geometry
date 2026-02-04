@@ -118,19 +118,16 @@ public final class SVGImport {
                         shapeField.setAccessible(true);
                         if (shapeField.getType().equals(String.class)) {
                             shapeField.set(shape, attrValue);
-                        } else if (shapeField.getType().equals(Integer.class)
-                                || shapeField.getType().equals(Integer.class)) {
+                        } else if (shapeField.getType().equals(Integer.class)) {
                             shapeField.set(shape, Integer.parseInt(attrValue));
-                        } else if (shapeField.getType().equals(Double.class)
-                                || shapeField.getType().equals(Double.class)) {
+                        } else if (shapeField.getType().equals(Double.class)) {
                             shapeField.set(shape, Double.parseDouble(attrValue));
-                        } else if (shapeField.getType().equals(Double.class)
-                                || shapeField.getType().equals(Boolean.class)) {
+                        } else if (shapeField.getType().equals(Boolean.class)) {
                             shapeField.set(shape, Boolean.parseBoolean(attrValue));
                         } else if (point != null) {
                             if (shapeField.getType().isAssignableFrom(point)) {
                                 shapeField.set(shape, createPoint(attrValue));
-                            } else if (shapeField.getType().equals(List.class)) {
+                            } else if (shapeField.getType().isAssignableFrom(List.class)) {
                                 shapeField.set(shape, createPointList(attrValue));
                             }
                         }
@@ -148,7 +145,13 @@ public final class SVGImport {
 
     public static ISVGShape load(String filename) {
         try (FileReader fr = new FileReader(filename)) {
-            String source = fr.toString();
+            StringBuilder sb = new StringBuilder();
+            char ch;
+            while ((ch = (char) fr.read()) != -1) {
+                sb.append(ch);
+            }
+            String source = sb.toString();
+
             XMLParser parser = new XMLParser(source);
 
             XMLTag root = parser.parse();
