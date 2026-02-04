@@ -1,4 +1,4 @@
-package fr.univrennes.istic.l2gen.geometrie;
+package fr.univrennes.istic.l2gen.geometry;
 
 import java.util.ArrayList;
 import java.util.List;

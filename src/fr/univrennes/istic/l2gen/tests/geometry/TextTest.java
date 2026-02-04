@@ -1,8 +1,8 @@
-package fr.univrennes.istic.l2gen.tests.geometrie;
-
-import fr.univrennes.istic.l2gen.geometrie.base.Text;
+package fr.univrennes.istic.l2gen.tests.geometry;
 
 import org.junit.Test;
+
+import fr.univrennes.istic.l2gen.geometry.base.Text;
 
 public class TextTest implements IShapeTest<Text> {
 

@@ -1,9 +1,9 @@
-package fr.univrennes.istic.l2gen.tests.geometrie;
+package fr.univrennes.istic.l2gen.tests.geometry;
 
 import org.junit.Test;
 
-import fr.univrennes.istic.l2gen.geometrie.Point;
-import fr.univrennes.istic.l2gen.geometrie.base.Polygon;
+import fr.univrennes.istic.l2gen.geometry.Point;
+import fr.univrennes.istic.l2gen.geometry.base.Polygon;
 
 public final class PolygonTest implements IShapeTest<Polygon> {
 

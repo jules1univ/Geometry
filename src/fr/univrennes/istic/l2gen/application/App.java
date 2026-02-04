@@ -1,14 +1,14 @@
 package fr.univrennes.istic.l2gen.application;
 
-import fr.univrennes.istic.l2gen.geometrie.Group;
-import fr.univrennes.istic.l2gen.geometrie.IShape;
-import fr.univrennes.istic.l2gen.geometrie.Point;
-import fr.univrennes.istic.l2gen.geometrie.base.Circle;
-import fr.univrennes.istic.l2gen.geometrie.base.PolyLine;
-import fr.univrennes.istic.l2gen.geometrie.base.Polygon;
-import fr.univrennes.istic.l2gen.geometrie.base.Rectangle;
-import fr.univrennes.istic.l2gen.geometrie.base.Text;
-import fr.univrennes.istic.l2gen.geometrie.base.Triangle;
+import fr.univrennes.istic.l2gen.geometry.Group;
+import fr.univrennes.istic.l2gen.geometry.IShape;
+import fr.univrennes.istic.l2gen.geometry.Point;
+import fr.univrennes.istic.l2gen.geometry.base.Circle;
+import fr.univrennes.istic.l2gen.geometry.base.PolyLine;
+import fr.univrennes.istic.l2gen.geometry.base.Polygon;
+import fr.univrennes.istic.l2gen.geometry.base.Rectangle;
+import fr.univrennes.istic.l2gen.geometry.base.Text;
+import fr.univrennes.istic.l2gen.geometry.base.Triangle;
 import fr.univrennes.istic.l2gen.svg.interfaces.ISVGShape;
 import fr.univrennes.istic.l2gen.svg.io.SVGExport;
 import fr.univrennes.istic.l2gen.svg.io.SVGImport;

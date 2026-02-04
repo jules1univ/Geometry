@@ -1,7 +1,7 @@
-package fr.univrennes.istic.l2gen.geometrie.base;
+package fr.univrennes.istic.l2gen.geometry.base;
 
-import fr.univrennes.istic.l2gen.geometrie.IShape;
-import fr.univrennes.istic.l2gen.geometrie.Point;
+import fr.univrennes.istic.l2gen.geometry.IShape;
+import fr.univrennes.istic.l2gen.geometry.Point;
 import fr.univrennes.istic.l2gen.svg.interfaces.SVGField;
 import fr.univrennes.istic.l2gen.svg.interfaces.SVGTag;
 

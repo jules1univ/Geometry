@@ -1,4 +1,4 @@
-package fr.univrennes.istic.l2gen.geometrie;
+package fr.univrennes.istic.l2gen.geometry;
 
 import fr.univrennes.istic.l2gen.svg.interfaces.point.SVGPoint;
 import fr.univrennes.istic.l2gen.svg.interfaces.point.SVGPointX;

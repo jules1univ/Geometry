@@ -1,9 +1,10 @@
-package fr.univrennes.istic.l2gen.tests.geometrie;
-
-import fr.univrennes.istic.l2gen.geometrie.Point;
-import fr.univrennes.istic.l2gen.geometrie.base.Triangle;
+package fr.univrennes.istic.l2gen.tests.geometry;
 
 import org.junit.Test;
+
+import fr.univrennes.istic.l2gen.geometry.Point;
+import fr.univrennes.istic.l2gen.geometry.base.Triangle;
+
 import static org.junit.Assert.assertEquals;
 
 import java.util.List;

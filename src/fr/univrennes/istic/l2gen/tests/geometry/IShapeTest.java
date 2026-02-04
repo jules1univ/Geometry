@@ -1,8 +1,8 @@
-package fr.univrennes.istic.l2gen.tests.geometrie;
+package fr.univrennes.istic.l2gen.tests.geometry;
 
 import org.junit.Test;
 
-import fr.univrennes.istic.l2gen.geometrie.IShape;
+import fr.univrennes.istic.l2gen.geometry.IShape;
 
 public interface IShapeTest<T extends IShape> {
 

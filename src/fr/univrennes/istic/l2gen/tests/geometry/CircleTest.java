@@ -1,10 +1,10 @@
-package fr.univrennes.istic.l2gen.tests.geometrie;
+package fr.univrennes.istic.l2gen.tests.geometry;
 
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import fr.univrennes.istic.l2gen.geometrie.base.Circle;
+import fr.univrennes.istic.l2gen.geometry.base.Circle;
 
 public class CircleTest implements IShapeTest<Circle> {
 
