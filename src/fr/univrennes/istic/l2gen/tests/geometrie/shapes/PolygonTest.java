@@ -7,6 +7,7 @@ import fr.univrennes.istic.l2gen.geometrie.base.Polygon;
 
 public final class PolygonTest implements IShapeTest<Polygon> {
 
+    @Test
     @Override
     public Polygon create() {
         Polygon poly = new Polygon();
@@ -23,6 +24,7 @@ public final class PolygonTest implements IShapeTest<Polygon> {
         return poly;
     }
 
+    @Test
     @Override
     public void testCenter() {
 
@@ -33,6 +35,7 @@ public final class PolygonTest implements IShapeTest<Polygon> {
         assert poly.getCenter().equals(new Point(8.0 / 4, 65.0 / 4));
     }
 
+    @Test
     @Override
     public void testMove() {
         Polygon poly = new Polygon(1.0, 2.0);
@@ -48,6 +51,7 @@ public final class PolygonTest implements IShapeTest<Polygon> {
         assert poly.equals(new Polygon(1.0, 2.0, 5.0, 10.0));
     }
 
+    @Test
     @Override
     public void testResize() {
         Polygon poly = new Polygon(20.0, 30.0);
@@ -55,6 +59,7 @@ public final class PolygonTest implements IShapeTest<Polygon> {
         assert poly != null;
     }
 
+    @Test
     @Override
     public void testDescription() {
         Polygon poly = new Polygon();
