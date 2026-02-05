@@ -2,9 +2,9 @@ package fr.univrennes.istic.l2gen.svg.attributes.util;
 
 public final class PathBox {
 
-    public static Box computeBox(String data) {
+    public static BoundingBox computeBox(String data) {
         if (data.isEmpty()) {
-            return Box.empty();
+            return BoundingBox.empty();
         }
 
         double minX = Double.POSITIVE_INFINITY;
@@ -14,31 +14,31 @@ public final class PathBox {
 
         double currentX = 0;
         double currentY = 0;
-        double subpathStartX = 0;
-        double subpathStartY = 0;
+        double subpStartX = 0;
+        double subpStartY = 0;
 
-        double lastControlX = 0;
-        double lastControlY = 0;
-        char lastCommand = ' ';
+        double lastCtrlX = 0;
+        double lastCtrlY = 0;
+        char lastCmd = ' ';
 
-        int i = 0;
-        while (i < data.length()) {
-            while (i < data.length() && Character.isWhitespace(data.charAt(i))) {
-                i++;
+        int index = 0;
+        while (index < data.length()) {
+            while (index < data.length() && Character.isWhitespace(data.charAt(index))) {
+                index++;
             }
 
-            if (i >= data.length())
+            if (index >= data.length())
                 break;
 
-            char command = data.charAt(i);
-            boolean isRelative = Character.isLowerCase(command);
-            command = Character.toUpperCase(command);
-            i++;
+            char cmd = data.charAt(index);
+            boolean isRelative = Character.isLowerCase(cmd);
+            cmd = Character.toUpperCase(cmd);
+            index++;
 
-            switch (command) {
+            switch (cmd) {
                 case 'M':
-                    double[] mCoords = parseCoordinates(data, i, 2);
-                    i = mCoords[0] == -1 ? data.length() : (int) mCoords[0];
+                    double[] mCoords = parseCoordinates(data, index, 2);
+                    index = mCoords[0] == -1 ? data.length() : (int) mCoords[0];
                     if (mCoords.length >= 3) {
                         double x = mCoords[1];
                         double y = mCoords[2];
@@ -48,8 +48,8 @@ public final class PathBox {
                         }
                         currentX = x;
                         currentY = y;
-                        subpathStartX = x;
-                        subpathStartY = y;
+                        subpStartX = x;
+                        subpStartY = y;
                         minX = Math.min(minX, x);
                         minY = Math.min(minY, y);
                         maxX = Math.max(maxX, x);
@@ -58,8 +58,8 @@ public final class PathBox {
                     break;
 
                 case 'L':
-                    double[] lCoords = parseCoordinates(data, i, 2);
-                    i = lCoords[0] == -1 ? data.length() : (int) lCoords[0];
+                    double[] lCoords = parseCoordinates(data, index, 2);
+                    index = lCoords[0] == -1 ? data.length() : (int) lCoords[0];
                     if (lCoords.length >= 3) {
                         double x = lCoords[1];
                         double y = lCoords[2];
@@ -77,8 +77,8 @@ public final class PathBox {
                     break;
 
                 case 'H':
-                    double[] hCoords = parseCoordinates(data, i, 1);
-                    i = hCoords[0] == -1 ? data.length() : (int) hCoords[0];
+                    double[] hCoords = parseCoordinates(data, index, 1);
+                    index = hCoords[0] == -1 ? data.length() : (int) hCoords[0];
                     if (hCoords.length >= 2) {
                         double x = hCoords[1];
                         if (isRelative) {
@@ -91,8 +91,8 @@ public final class PathBox {
                     break;
 
                 case 'V':
-                    double[] vCoords = parseCoordinates(data, i, 1);
-                    i = vCoords[0] == -1 ? data.length() : (int) vCoords[0];
+                    double[] vCoords = parseCoordinates(data, index, 1);
+                    index = vCoords[0] == -1 ? data.length() : (int) vCoords[0];
                     if (vCoords.length >= 2) {
                         double y = vCoords[1];
                         if (isRelative) {
@@ -105,8 +105,8 @@ public final class PathBox {
                     break;
 
                 case 'C':
-                    double[] cCoords = parseCoordinates(data, i, 6);
-                    i = cCoords[0] == -1 ? data.length() : (int) cCoords[0];
+                    double[] cCoords = parseCoordinates(data, index, 6);
+                    index = cCoords[0] == -1 ? data.length() : (int) cCoords[0];
                     if (cCoords.length >= 7) {
                         double x1 = cCoords[1], y1 = cCoords[2];
                         double x2 = cCoords[3], y2 = cCoords[4];
@@ -121,31 +121,31 @@ public final class PathBox {
                             y += currentY;
                         }
 
-                        Box box = getCubicBezierBox(currentX, currentY, x1, y1, x2, y2, x, y);
+                        BoundingBox box = getCubicBezierBox(currentX, currentY, x1, y1, x2, y2, x, y);
                         minX = Math.min(minX, box.minX());
                         minY = Math.min(minY, box.minY());
                         maxX = Math.max(maxX, box.maxX());
                         maxY = Math.max(maxY, box.maxY());
 
-                        lastControlX = x2;
-                        lastControlY = y2;
+                        lastCtrlX = x2;
+                        lastCtrlY = y2;
                         currentX = x;
                         currentY = y;
                     }
                     break;
 
                 case 'S':
-                    double[] sCoords = parseCoordinates(data, i, 4);
-                    i = sCoords[0] == -1 ? data.length() : (int) sCoords[0];
+                    double[] sCoords = parseCoordinates(data, index, 4);
+                    index = sCoords[0] == -1 ? data.length() : (int) sCoords[0];
                     if (sCoords.length >= 5) {
                         double x2 = sCoords[1], y2 = sCoords[2];
                         double x = sCoords[3], y = sCoords[4];
 
                         double x1 = currentX;
                         double y1 = currentY;
-                        if (lastCommand == 'C' || lastCommand == 'S') {
-                            x1 = 2 * currentX - lastControlX;
-                            y1 = 2 * currentY - lastControlY;
+                        if (lastCmd == 'C' || lastCmd == 'S') {
+                            x1 = 2 * currentX - lastCtrlX;
+                            y1 = 2 * currentY - lastCtrlY;
                         }
 
                         if (isRelative) {
@@ -155,22 +155,22 @@ public final class PathBox {
                             y += currentY;
                         }
 
-                        Box box = getCubicBezierBox(currentX, currentY, x1, y1, x2, y2, x, y);
+                        BoundingBox box = getCubicBezierBox(currentX, currentY, x1, y1, x2, y2, x, y);
                         minX = Math.min(minX, box.minX());
                         minY = Math.min(minY, box.minY());
                         maxX = Math.max(maxX, box.maxX());
                         maxY = Math.max(maxY, box.maxY());
 
-                        lastControlX = x2;
-                        lastControlY = y2;
+                        lastCtrlX = x2;
+                        lastCtrlY = y2;
                         currentX = x;
                         currentY = y;
                     }
                     break;
 
                 case 'Q':
-                    double[] qCoords = parseCoordinates(data, i, 4);
-                    i = qCoords[0] == -1 ? data.length() : (int) qCoords[0];
+                    double[] qCoords = parseCoordinates(data, index, 4);
+                    index = qCoords[0] == -1 ? data.length() : (int) qCoords[0];
                     if (qCoords.length >= 5) {
                         double x1 = qCoords[1], y1 = qCoords[2];
                         double x = qCoords[3], y = qCoords[4];
@@ -182,30 +182,30 @@ public final class PathBox {
                             y += currentY;
                         }
 
-                        Box box = getQuadBezierBox(currentX, currentY, x1, y1, x, y);
+                        BoundingBox box = getQuadBezierBox(currentX, currentY, x1, y1, x, y);
                         minX = Math.min(minX, box.minX());
                         minY = Math.min(minY, box.minY());
                         maxX = Math.max(maxX, box.maxX());
                         maxY = Math.max(maxY, box.maxY());
 
-                        lastControlX = x1;
-                        lastControlY = y1;
+                        lastCtrlX = x1;
+                        lastCtrlY = y1;
                         currentX = x;
                         currentY = y;
                     }
                     break;
 
                 case 'T':
-                    double[] tCoords = parseCoordinates(data, i, 2);
-                    i = tCoords[0] == -1 ? data.length() : (int) tCoords[0];
+                    double[] tCoords = parseCoordinates(data, index, 2);
+                    index = tCoords[0] == -1 ? data.length() : (int) tCoords[0];
                     if (tCoords.length >= 3) {
                         double x = tCoords[1], y = tCoords[2];
 
                         double x1 = currentX;
                         double y1 = currentY;
-                        if (lastCommand == 'Q' || lastCommand == 'T') {
-                            x1 = 2 * currentX - lastControlX;
-                            y1 = 2 * currentY - lastControlY;
+                        if (lastCmd == 'Q' || lastCmd == 'T') {
+                            x1 = 2 * currentX - lastCtrlX;
+                            y1 = 2 * currentY - lastCtrlY;
                         }
 
                         if (isRelative) {
@@ -213,22 +213,22 @@ public final class PathBox {
                             y += currentY;
                         }
 
-                        Box box = getQuadBezierBox(currentX, currentY, x1, y1, x, y);
+                        BoundingBox box = getQuadBezierBox(currentX, currentY, x1, y1, x, y);
                         minX = Math.min(minX, box.minX());
                         minY = Math.min(minY, box.minY());
                         maxX = Math.max(maxX, box.maxX());
                         maxY = Math.max(maxY, box.maxY());
 
-                        lastControlX = x1;
-                        lastControlY = y1;
+                        lastCtrlX = x1;
+                        lastCtrlY = y1;
                         currentX = x;
                         currentY = y;
                     }
                     break;
 
                 case 'A':
-                    double[] aCoords = parseCoordinates(data, i, 7);
-                    i = aCoords[0] == -1 ? data.length() : (int) aCoords[0];
+                    double[] aCoords = parseCoordinates(data, index, 7);
+                    index = aCoords[0] == -1 ? data.length() : (int) aCoords[0];
                     if (aCoords.length >= 8) {
                         double rx = aCoords[1], ry = aCoords[2];
                         double xAxisRotation = aCoords[3];
@@ -241,7 +241,7 @@ public final class PathBox {
                             y += currentY;
                         }
 
-                        Box box = getArcBox(currentX, currentY, rx, ry, xAxisRotation,
+                        BoundingBox box = getArcBox(currentX, currentY, rx, ry, xAxisRotation,
                                 largeArcFlag, sweepFlag, x, y);
                         minX = Math.min(minX, box.minX());
                         minY = Math.min(minY, box.minY());
@@ -254,18 +254,18 @@ public final class PathBox {
                     break;
 
                 case 'Z':
-                    currentX = subpathStartX;
-                    currentY = subpathStartY;
+                    currentX = subpStartX;
+                    currentY = subpStartY;
                     break;
             }
 
-            lastCommand = command;
+            lastCmd = cmd;
         }
 
         if (Double.isInfinite(minX)) {
-            return Box.empty();
+            return BoundingBox.empty();
         } else {
-            return new Box(minX, minY, maxX, maxY);
+            return new BoundingBox(minX, minY, maxX, maxY);
         }
 
     }
@@ -337,7 +337,7 @@ public final class PathBox {
         return mt * mt * mt * p0 + 3 * mt * mt * t * p1 + 3 * mt * t * t * p2 + t * t * t * p3;
     }
 
-    private static Box getCubicBezierBox(double x0, double y0, double x1, double y1,
+    private static BoundingBox getCubicBezierBox(double x0, double y0, double x1, double y1,
             double x2, double y2, double x3, double y3) {
         double minX = Math.min(Math.min(x0, x3), Math.min(x1, x2));
         double minY = Math.min(Math.min(y0, y3), Math.min(y1, y2));
@@ -363,10 +363,10 @@ public final class PathBox {
             }
         }
 
-        return new Box(minX, minY, maxX, maxY);
+        return new BoundingBox(minX, minY, maxX, maxY);
     }
 
-    private static Box getQuadBezierBox(double x0, double y0, double x1, double y1,
+    private static BoundingBox getQuadBezierBox(double x0, double y0, double x1, double y1,
             double x2, double y2) {
         double minX = Math.min(Math.min(x0, x2), x1);
         double minY = Math.min(Math.min(y0, y2), y1);
@@ -388,10 +388,10 @@ public final class PathBox {
             maxY = Math.max(maxY, y);
         }
 
-        return new Box(minX, minY, maxX, maxY);
+        return new BoundingBox(minX, minY, maxX, maxY);
     }
 
-    private static Box getArcBox(double x0, double y0, double rx, double ry,
+    private static BoundingBox getArcBox(double x0, double y0, double rx, double ry,
             double xAxisRotation, boolean largeArcFlag,
             boolean sweepFlag, double x, double y) {
         double minX = Math.min(x0, x) - Math.abs(rx);
@@ -399,7 +399,7 @@ public final class PathBox {
         double maxX = Math.max(x0, x) + Math.abs(rx);
         double maxY = Math.max(y0, y) + Math.abs(ry);
 
-        return new Box(minX, minY, maxX, maxY);
+        return new BoundingBox(minX, minY, maxX, maxY);
     }
 
 }

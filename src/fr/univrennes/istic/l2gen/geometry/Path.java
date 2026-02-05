@@ -31,19 +31,17 @@ public class Path implements IShape {
 
     @Override
     public double getWidth() {
-        return this.path.getBox().maxX() - this.path.getBox().minX();
+        return this.path.getBoundingBox().getWidth();
     }
 
     @Override
     public double getHeight() {
-        return this.path.getBox().maxY() - this.path.getBox().minY();
+        return this.path.getBoundingBox().getHeight();
     }
 
     @Override
     public Point getCenter() {
-        return new Point(
-                (this.path.getBox().minX() + this.path.getBox().maxX()) / 2,
-                (this.path.getBox().minY() + this.path.getBox().maxY()) / 2);
+        return new Point(this.path.getBoundingBox().getCenterX(), this.path.getBoundingBox().getCenterY());
     }
 
     @Override

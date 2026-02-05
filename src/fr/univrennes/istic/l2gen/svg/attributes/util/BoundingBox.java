@@ -1,9 +1,9 @@
 package fr.univrennes.istic.l2gen.svg.attributes.util;
 
-public record Box(double minX, double minY, double maxX, double maxY) {
+public record BoundingBox(double minX, double minY, double maxX, double maxY) {
 
-    public static Box empty() {
-        return new Box(0.0, 0.0, 0.0, 0.0);
+    public static BoundingBox empty() {
+        return new BoundingBox(0.0, 0.0, 0.0, 0.0);
     }
 
     public double getWidth() {

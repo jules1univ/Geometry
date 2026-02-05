@@ -1,61 +1,66 @@
 package fr.univrennes.istic.l2gen.svg.attributes;
 
-import fr.univrennes.istic.l2gen.svg.attributes.util.Box;
+import fr.univrennes.istic.l2gen.svg.attributes.util.BoundingBox;
 import fr.univrennes.istic.l2gen.svg.attributes.util.PathBox;
 import fr.univrennes.istic.l2gen.svg.interfaces.ISVGAttribute;
 
 public class SVGPath implements ISVGAttribute {
 
-    private StringBuilder pathData = new StringBuilder();
+    private StringBuilder path = new StringBuilder();
 
     private boolean isDirty = true;
-    private Box cachedBox = null;
+    private BoundingBox cachedBox = null;
 
     public SVGPath() {
     }
 
     public void move(double x, double y) {
-        pathData.append("M").append(x).append(",").append(y).append(" ");
+        this.path.append("M").append(x).append(",").append(y).append(" ");
         refreshBox();
     }
 
     public void line(double x, double y) {
-        pathData.append("L").append(x).append(",").append(y).append(" ");
+        this.path.append("L").append(x).append(",").append(y).append(" ");
         refreshBox();
     }
 
     public void lineHorizontal(double x) {
-        pathData.append("H").append(x).append(" ");
+        this.path.append("H").append(x).append(" ");
         refreshBox();
     }
 
     public void lineVertical(double y) {
-        pathData.append("V").append(y).append(" ");
+        this.path.append("V").append(y).append(" ");
         refreshBox();
     }
 
     public void cubicBezier(double x1, double y1, double x2, double y2, double x, double y) {
-        pathData.append("C").append(x1).append(",").append(y1).append(" ")
+        this.path.append("C").append(x1).append(",").append(y1).append(" ")
                 .append(x2).append(",").append(y2).append(" ")
                 .append(x).append(",").append(y).append(" ");
         refreshBox();
     }
 
     public void cubicBezierSmooth(double x2, double y2, double x, double y) {
-        pathData.append("S").append(x2).append(",").append(y2).append(" ")
+        this.path.append("S").append(x2).append(",").append(y2).append(" ")
                 .append(x).append(",").append(y).append(" ");
         refreshBox();
     }
 
     public void quadraticBezier(double x1, double y1, double x, double y) {
-        pathData.append("Q").append(x1).append(",").append(y1).append(" ")
+        this.path.append("Q").append(x1).append(",").append(y1).append(" ")
                 .append(x).append(",").append(y).append(" ");
+        refreshBox();
+    }
+
+    public void quadraticBezierSmooth(double x, double y) {
+        this.path.append("T").append(x).append(",").append(y).append(" ");
         refreshBox();
     }
 
     public void arc(double rx, double ry, double xAxisRotation, boolean largeArcFlag, boolean sweepFlag, double x,
             double y) {
-        pathData.append("A").append(rx).append(",").append(ry).append(" ")
+        this.path.append("A").append(rx).append(",").append(ry).append(" ")
                 .append(xAxisRotation).append(" ")
                 .append(largeArcFlag ? "1" : "0").append(" ")
                 .append(sweepFlag ? "1" : "0").append(" ")
@@ -64,11 +69,11 @@ public class SVGPath implements ISVGAttribute {
     }
 
     public void close() {
-        pathData.append("Z ");
+        this.path.append("Z ");
     }
 
     public void reset() {
-        pathData.setLength(0);
+        this.path.setLength(0);
         refreshBox();
     }
 
@@ -77,25 +82,25 @@ public class SVGPath implements ISVGAttribute {
     }
 
     private void updateBox() {
-        if (!isDirty) {
+        if (!this.isDirty) {
             return;
         }
-        this.cachedBox = PathBox.computeBox(pathData.toString());
+        this.cachedBox = PathBox.computeBox(this.path.toString());
         this.isDirty = false;
     }
 
-    public Box getBox() {
+    public BoundingBox getBoundingBox() {
         updateBox();
         return this.cachedBox;
     }
 
     @Override
     public boolean hasContent() {
-        return pathData.length() > 0;
+        return this.path.length() > 0;
     }
 
     @Override
     public String getContent() {
-        return pathData.toString().trim();
+        return this.path.toString().trim();
     }
 }
