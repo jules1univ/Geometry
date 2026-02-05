@@ -37,7 +37,7 @@ public final class Circle implements IShape {
     @Override
     public String getDescription(int indentation) {
         StringBuilder sb = new StringBuilder();
-        sb.append("  ".repeat(Math.max(0, indentation)));
+        sb.append(" ".repeat(Math.max(0, indentation)));
         sb.append("Circle ");
         sb.append("C=");
         sb.append(this.center.toString());

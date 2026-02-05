@@ -1,0 +1,101 @@
+package fr.univrennes.istic.l2gen.svg.attributes;
+
+import fr.univrennes.istic.l2gen.svg.attributes.util.Box;
+import fr.univrennes.istic.l2gen.svg.attributes.util.PathBox;
+import fr.univrennes.istic.l2gen.svg.interfaces.ISVGAttribute;
+
+public class SVGPath implements ISVGAttribute {
+
+    private StringBuilder pathData = new StringBuilder();
+
+    private boolean isDirty = true;
+    private Box cachedBox = null;
+
+    public SVGPath() {
+    }
+
+    public void move(double x, double y) {
+        pathData.append("M").append(x).append(",").append(y).append(" ");
+        refreshBox();
+    }
+
+    public void line(double x, double y) {
+        pathData.append("L").append(x).append(",").append(y).append(" ");
+        refreshBox();
+    }
+
+    public void lineHorizontal(double x) {
+        pathData.append("H").append(x).append(" ");
+        refreshBox();
+    }
+
+    public void lineVertical(double y) {
+        pathData.append("V").append(y).append(" ");
+        refreshBox();
+    }
+
+    public void cubicBezier(double x1, double y1, double x2, double y2, double x, double y) {
+        pathData.append("C").append(x1).append(",").append(y1).append(" ")
+                .append(x2).append(",").append(y2).append(" ")
+                .append(x).append(",").append(y).append(" ");
+        refreshBox();
+    }
+
+    public void cubicBezierSmooth(double x2, double y2, double x, double y) {
+        pathData.append("S").append(x2).append(",").append(y2).append(" ")
+                .append(x).append(",").append(y).append(" ");
+        refreshBox();
+    }
+
+    public void quadraticBezier(double x1, double y1, double x, double y) {
+        pathData.append("Q").append(x1).append(",").append(y1).append(" ")
+                .append(x).append(",").append(y).append(" ");
+        refreshBox();
+    }
+
+    public void arc(double rx, double ry, double xAxisRotation, boolean largeArcFlag, boolean sweepFlag, double x,
+            double y) {
+        pathData.append("A").append(rx).append(",").append(ry).append(" ")
+                .append(xAxisRotation).append(" ")
+                .append(largeArcFlag ? "1" : "0").append(" ")
+                .append(sweepFlag ? "1" : "0").append(" ")
+                .append(x).append(",").append(y).append(" ");
+        refreshBox();
+    }
+
+    public void close() {
+        pathData.append("Z ");
+    }
+
+    public void reset() {
+        pathData.setLength(0);
+        refreshBox();
+    }
+
+    private void refreshBox() {
+        this.isDirty = true;
+    }
+
+    private void updateBox() {
+        if (!isDirty) {
+            return;
+        }
+        this.cachedBox = PathBox.computeBox(pathData.toString());
+        this.isDirty = false;
+    }
+
+    public Box getBox() {
+        updateBox();
+        return this.cachedBox;
+    }
+
+    @Override
+    public boolean hasContent() {
+        return pathData.length() > 0;
+    }
+
+    @Override
+    public String getContent() {
+        return pathData.toString().trim();
+    }
+}

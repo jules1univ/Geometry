@@ -9,7 +9,9 @@
   "[markdown]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "java.project.referencedLibraries": ["lib/**/*.jar"],
-  "java.compile.nullAnalysis.mode": "automatic",
+  "java.project.referencedLibraries": [
+    "lib/**/*.jar"
+  ],
+  "java.compile.nullAnalysis.mode": "disabled",
   "docwriter.style": "Javadoc"
 }

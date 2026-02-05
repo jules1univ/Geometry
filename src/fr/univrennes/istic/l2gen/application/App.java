@@ -2,8 +2,10 @@ package fr.univrennes.istic.l2gen.application;
 
 import fr.univrennes.istic.l2gen.geometry.Group;
 import fr.univrennes.istic.l2gen.geometry.IShape;
+import fr.univrennes.istic.l2gen.geometry.Path;
 import fr.univrennes.istic.l2gen.geometry.Point;
 import fr.univrennes.istic.l2gen.geometry.base.Circle;
+import fr.univrennes.istic.l2gen.geometry.base.Ellipse;
 import fr.univrennes.istic.l2gen.geometry.base.PolyLine;
 import fr.univrennes.istic.l2gen.geometry.base.Polygon;
 import fr.univrennes.istic.l2gen.geometry.base.Rectangle;
@@ -18,8 +20,10 @@ public class App {
     static {
         SVGImport.register(Point.class);
         SVGImport.register(Group.class);
+        SVGImport.register(Path.class);
 
         SVGImport.register(Circle.class);
+        SVGImport.register(Ellipse.class);
         SVGImport.register(PolyLine.class);
         SVGImport.register(Polygon.class);
         SVGImport.register(Rectangle.class);
@@ -37,8 +41,6 @@ public class App {
 
         ISVGShape svgShape = SVGImport.load("output.svg");
         if (svgShape instanceof IShape shape) {
-
-            // TODO: faire un system de description automatique comme pour les SVG
             System.out.println(shape.getDescription(0));
         }
     }
