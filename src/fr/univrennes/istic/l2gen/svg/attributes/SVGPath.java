@@ -1,12 +1,24 @@
 package fr.univrennes.istic.l2gen.svg.attributes;
 
-import fr.univrennes.istic.l2gen.svg.attributes.util.BoundingBox;
-import fr.univrennes.istic.l2gen.svg.attributes.util.PathBox;
+import java.util.ArrayList;
+import java.util.List;
+
+import fr.univrennes.istic.l2gen.svg.attributes.path.BoundingBox;
+import fr.univrennes.istic.l2gen.svg.attributes.path.commands.ArcCommand;
+import fr.univrennes.istic.l2gen.svg.attributes.path.commands.ArcCommandType;
+import fr.univrennes.istic.l2gen.svg.attributes.path.commands.CloseCommand;
+import fr.univrennes.istic.l2gen.svg.attributes.path.commands.CubicBezierCommand;
+import fr.univrennes.istic.l2gen.svg.attributes.path.commands.CubicBezierCommandType;
+import fr.univrennes.istic.l2gen.svg.attributes.path.commands.IPathCommand;
+import fr.univrennes.istic.l2gen.svg.attributes.path.commands.MoveCommand;
+import fr.univrennes.istic.l2gen.svg.attributes.path.commands.MoveCommandType;
+import fr.univrennes.istic.l2gen.svg.attributes.path.commands.QuadBezierCommand;
+import fr.univrennes.istic.l2gen.svg.attributes.path.commands.QuadBezierCommandType;
 import fr.univrennes.istic.l2gen.svg.interfaces.ISVGAttribute;
 
 public class SVGPath implements ISVGAttribute {
 
-    private StringBuilder path = new StringBuilder();
+    private List<IPathCommand> commands = new ArrayList<>();
 
     private boolean isDirty = true;
     private BoundingBox cachedBox = null;
@@ -14,66 +26,66 @@ public class SVGPath implements ISVGAttribute {
     public SVGPath() {
     }
 
-    public void move(double x, double y) {
-        this.path.append("M").append(x).append(",").append(y).append(" ");
+    public void close() {
+        this.commands.add(new CloseCommand());
         refreshBox();
     }
 
-    public void line(double x, double y) {
-        this.path.append("L").append(x).append(",").append(y).append(" ");
+    public void move(double x, double y, boolean relative) {
+        this.commands.add(new MoveCommand(x, y, relative ? MoveCommandType.RELATIVE : MoveCommandType.ABSOLUTE));
         refreshBox();
     }
 
-    public void lineHorizontal(double x) {
-        this.path.append("H").append(x).append(" ");
+    public void line(double x, double y, boolean relative) {
+        this.commands.add(new MoveCommand(x, y, relative ? MoveCommandType.LINE_RELATIVE : MoveCommandType.LINE));
         refreshBox();
     }
 
-    public void lineVertical(double y) {
-        this.path.append("V").append(y).append(" ");
+    public void horizontal(double x, double y, boolean relative) {
+        this.commands.add(
+                new MoveCommand(x, null, relative ? MoveCommandType.HORIZONTAL_RELATIVE : MoveCommandType.HORIZONTAL));
         refreshBox();
     }
 
-    public void cubicBezier(double x1, double y1, double x2, double y2, double x, double y) {
-        this.path.append("C").append(x1).append(",").append(y1).append(" ")
-                .append(x2).append(",").append(y2).append(" ")
-                .append(x).append(",").append(y).append(" ");
+    public void vertical(double y, boolean relative) {
+        this.commands
+                .add(new MoveCommand(null, y, relative ? MoveCommandType.VERTICAL_RELATIVE : MoveCommandType.VERTICAL));
         refreshBox();
     }
 
-    public void cubicBezierSmooth(double x2, double y2, double x, double y) {
-        this.path.append("S").append(x2).append(",").append(y2).append(" ")
-                .append(x).append(",").append(y).append(" ");
+    public void cubicBezier(double x1, double y1, double x2, double y2, double x, double y, boolean relative) {
+        this.commands.add(new CubicBezierCommand(x1, y1, x2, y2, x, y,
+                relative ? CubicBezierCommandType.RELATIVE : CubicBezierCommandType.ABSOLUTE));
         refreshBox();
     }
 
-    public void quadraticBezier(double x1, double y1, double x, double y) {
-        this.path.append("Q").append(x1).append(",").append(y1).append(" ")
-                .append(x).append(",").append(y).append(" ");
+    public void cubicBezierSmooth(double x2, double y2, double x, double y, boolean relative) {
+        this.commands.add(new CubicBezierCommand(null, null, x2, y2, x, y,
+                relative ? CubicBezierCommandType.SMOOTH_RELATIVE : CubicBezierCommandType.SMOOTH));
         refreshBox();
     }
 
-    public void quadraticBezierSmooth(double x, double y) {
-        this.path.append("T").append(x).append(",").append(y).append(" ");
+    public void quadBezier(double x1, double y1, double x, double y, boolean relative) {
+        this.commands.add(new QuadBezierCommand(x1, y1, x, y,
+                relative ? QuadBezierCommandType.RELATIVE : QuadBezierCommandType.ABSOLUTE));
+        refreshBox();
+    }
+
+    public void quadBezierSmooth(double x, double y, boolean relative) {
+        this.commands.add(new QuadBezierCommand(null, null, x, y,
+                relative ? QuadBezierCommandType.SMOOTH_RELATIVE : QuadBezierCommandType.SMOOTH));
         refreshBox();
     }
 
     public void arc(double rx, double ry, double xAxisRotation, boolean largeArcFlag, boolean sweepFlag, double x,
-            double y) {
-        this.path.append("A").append(rx).append(",").append(ry).append(" ")
-                .append(xAxisRotation).append(" ")
-                .append(largeArcFlag ? "1" : "0").append(" ")
-                .append(sweepFlag ? "1" : "0").append(" ")
-                .append(x).append(",").append(y).append(" ");
+            double y, boolean relative) {
+        this.commands.add(new ArcCommand(rx, ry, xAxisRotation, largeArcFlag, sweepFlag, x, y,
+                relative ? ArcCommandType.RELATIVE : ArcCommandType.ABSOLUTE));
         refreshBox();
     }
 
-    public void close() {
-        this.path.append("Z ");
-    }
-
     public void reset() {
-        this.path.setLength(0);
+        this.commands.clear();
         refreshBox();
     }
 
@@ -85,7 +97,140 @@ public class SVGPath implements ISVGAttribute {
         if (!this.isDirty) {
             return;
         }
-        this.cachedBox = PathBox.computeBox(this.path.toString());
+
+        if (this.commands.isEmpty()) {
+            this.cachedBox = BoundingBox.empty();
+            this.isDirty = false;
+            return;
+        }
+
+        double minX = Double.POSITIVE_INFINITY;
+        double minY = Double.POSITIVE_INFINITY;
+        double maxX = Double.NEGATIVE_INFINITY;
+        double maxY = Double.NEGATIVE_INFINITY;
+
+        double currentX = 0.0;
+        double currentY = 0.0;
+
+        double subpathStartX = 0.0;
+        double subpathStartY = 0.0;
+
+        for (IPathCommand command : this.commands) {
+            if (command instanceof MoveCommand move) {
+                double x = move.x() != null ? move.x() : 0.0;
+                double y = move.y() != null ? move.y() : 0.0;
+
+                switch (move.type()) {
+                    case ABSOLUTE, LINE -> {
+                        currentX = x;
+                        currentY = y;
+                    }
+                    case RELATIVE, LINE_RELATIVE -> {
+                        currentX += x;
+                        currentY += y;
+                    }
+                    case HORIZONTAL -> {
+                        currentX = x;
+                    }
+                    case HORIZONTAL_RELATIVE -> {
+                        currentX += x;
+                    }
+                    case VERTICAL -> {
+                        currentY = y;
+                    }
+                    case VERTICAL_RELATIVE -> {
+                        currentY += y;
+                    }
+                }
+
+                if (move.type() == MoveCommandType.ABSOLUTE || move.type() == MoveCommandType.RELATIVE) {
+                    subpathStartX = currentX;
+                    subpathStartY = currentY;
+                }
+
+                minX = Math.min(minX, currentX);
+                minY = Math.min(minY, currentY);
+                maxX = Math.max(maxX, currentX);
+                maxY = Math.max(maxY, currentY);
+
+            } else if (command instanceof CubicBezierCommand cubic) {
+                double x1, y1, x2, y2, x, y;
+
+                if (cubic.type() == CubicBezierCommandType.RELATIVE
+                        || cubic.type() == CubicBezierCommandType.SMOOTH_RELATIVE) {
+                    x1 = cubic.x1() != null ? currentX + cubic.x1() : currentX;
+                    y1 = cubic.y1() != null ? currentY + cubic.y1() : currentY;
+                    x2 = currentX + cubic.x2();
+                    y2 = currentY + cubic.y2();
+                    x = currentX + cubic.x();
+                    y = currentY + cubic.y();
+                } else {
+                    x1 = cubic.x1() != null ? cubic.x1() : currentX;
+                    y1 = cubic.y1() != null ? cubic.y1() : currentY;
+                    x2 = cubic.x2();
+                    y2 = cubic.y2();
+                    x = cubic.x();
+                    y = cubic.y();
+                }
+
+                minX = Math.min(minX, Math.min(Math.min(x1, x2), x));
+                minY = Math.min(minY, Math.min(Math.min(y1, y2), y));
+                maxX = Math.max(maxX, Math.max(Math.max(x1, x2), x));
+                maxY = Math.max(maxY, Math.max(Math.max(y1, y2), y));
+
+                currentX = x;
+                currentY = y;
+
+            } else if (command instanceof QuadBezierCommand quad) {
+                double x1, y1, x, y;
+
+                if (quad.type() == QuadBezierCommandType.RELATIVE
+                        || quad.type() == QuadBezierCommandType.SMOOTH_RELATIVE) {
+                    x1 = quad.x1() != null ? currentX + quad.x1() : currentX;
+                    y1 = quad.y1() != null ? currentY + quad.y1() : currentY;
+                    x = currentX + quad.x();
+                    y = currentY + quad.y();
+                } else {
+                    x1 = quad.x1() != null ? quad.x1() : currentX;
+                    y1 = quad.y1() != null ? quad.y1() : currentY;
+                    x = quad.x();
+                    y = quad.y();
+                }
+
+                minX = Math.min(minX, Math.min(x1, x));
+                minY = Math.min(minY, Math.min(y1, y));
+                maxX = Math.max(maxX, Math.max(x1, x));
+                maxY = Math.max(maxY, Math.max(y1, y));
+
+                currentX = x;
+                currentY = y;
+
+            } else if (command instanceof ArcCommand arc) {
+                double x, y;
+
+                if (arc.type() == ArcCommandType.RELATIVE) {
+                    x = currentX + arc.x();
+                    y = currentY + arc.y();
+                } else {
+                    x = arc.x();
+                    y = arc.y();
+                }
+
+                minX = Math.min(minX, Math.min(currentX, x));
+                minY = Math.min(minY, Math.min(currentY, y));
+                maxX = Math.max(maxX, Math.max(currentX, x));
+                maxY = Math.max(maxY, Math.max(currentY, y));
+
+                currentX = x;
+                currentY = y;
+
+            } else if (command instanceof CloseCommand) {
+                currentX = subpathStartX;
+                currentY = subpathStartY;
+            }
+        }
+
+        this.cachedBox = new BoundingBox(minX, minY, maxX, maxY);
         this.isDirty = false;
     }
 
@@ -96,11 +241,16 @@ public class SVGPath implements ISVGAttribute {
 
     @Override
     public boolean hasContent() {
-        return this.path.length() > 0;
+        return !this.commands.isEmpty();
     }
 
     @Override
     public String getContent() {
-        return this.path.toString().trim();
+        StringBuilder sb = new StringBuilder();
+        for (IPathCommand command : this.commands) {
+            sb.append(command.getValue());
+            sb.append(" ");
+        }
+        return sb.toString().trim();
     }
 }

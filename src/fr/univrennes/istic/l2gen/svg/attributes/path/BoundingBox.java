@@ -1,4 +1,4 @@
-package fr.univrennes.istic.l2gen.svg.attributes.util;
+package fr.univrennes.istic.l2gen.svg.attributes.path;
 
 public record BoundingBox(double minX, double minY, double maxX, double maxY) {
 

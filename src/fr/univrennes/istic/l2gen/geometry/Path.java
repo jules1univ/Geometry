@@ -11,6 +11,9 @@ public class Path implements IShape {
     @SVGField("d")
     private SVGPath path;
 
+    @SVGField({ "x", "y" })
+    private Point position = new Point(0, 0);
+
     @SVGField
     private SVGTransform transform = new SVGTransform();
 
@@ -25,7 +28,7 @@ public class Path implements IShape {
         this.path = path;
     }
 
-    public SVGPath getPath() {
+    public SVGPath draw() {
         return path;
     }
 
@@ -56,7 +59,7 @@ public class Path implements IShape {
 
     @Override
     public void move(double dx, double dy) {
-        this.path.move(dx, dy);
+        this.position.add(dx, dy);
     }
 
     @Override
