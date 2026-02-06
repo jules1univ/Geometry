@@ -1,11 +1,14 @@
 package fr.univrennes.istic.l2gen.svg.io;
 
+import java.io.BufferedReader;
 import java.io.FileReader;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import fr.univrennes.istic.l2gen.svg.interfaces.ISVGShape;
@@ -19,24 +22,33 @@ import fr.univrennes.istic.l2gen.svg.xml.parser.XMLParser;
 
 public final class SVGImport {
     private static final List<Class<? extends ISVGShape>> shapes = new ArrayList<>();
+
     private static Class<? extends ISVGShape> point = null;
+    private static Field pointFieldX = null;
+    private static Field pointFieldY = null;
+
+    private static final Map<Class<?>, Constructor<?>> constructorCache = new HashMap<>();
+    private static final Map<Class<?>, List<Field>> fieldCache = new HashMap<>();
 
     public static <T extends ISVGShape> void register(Class<T> shape) {
-        boolean hasDefaultConstructor = false;
+        Constructor<?> defaultConstructor = null;
         for (Constructor<?> constructor : shape.getConstructors()) {
             if (constructor.getParameterCount() == 0) {
-                hasDefaultConstructor = true;
+                defaultConstructor = constructor;
                 break;
             }
         }
 
-        if (!hasDefaultConstructor) {
+        if (defaultConstructor == null) {
             throw new IllegalArgumentException(
-                    "Shape class \"" + shape.getSimpleName() + "\"must have a default constructor");
+                    "Shape class \"" + shape.getSimpleName() + "\" must have a default constructor");
         }
+
+        constructorCache.put(shape, defaultConstructor);
 
         if (shape.getAnnotation(SVGPoint.class) != null) {
             point = shape;
+            cachePointFields(shape);
             return;
         }
 
@@ -44,7 +56,32 @@ public final class SVGImport {
             throw new IllegalArgumentException(
                     "Shape class \"" + shape.getSimpleName() + "\" must be annotated with @SVGTag");
         }
+
+        cacheAnnotatedFields(shape);
         shapes.add(shape);
+    }
+
+    private static void cachePointFields(Class<? extends ISVGShape> pointClass) {
+        for (Field field : pointClass.getDeclaredFields()) {
+            if (field.getAnnotation(SVGPointX.class) != null) {
+                field.setAccessible(true);
+                pointFieldX = field;
+            } else if (field.getAnnotation(SVGPointY.class) != null) {
+                field.setAccessible(true);
+                pointFieldY = field;
+            }
+        }
+    }
+
+    private static void cacheAnnotatedFields(Class<?> shapeClass) {
+        List<Field> annotatedFields = new ArrayList<>();
+        for (Field field : shapeClass.getDeclaredFields()) {
+            if (field.getAnnotation(SVGField.class) != null) {
+                field.setAccessible(true);
+                annotatedFields.add(field);
+            }
+        }
+        fieldCache.put(shapeClass, annotatedFields);
     }
 
     private static ISVGShape createPoint(SVGField pointField, XMLTag tag) {
@@ -57,44 +94,18 @@ public final class SVGImport {
     }
 
     private static ISVGShape createPoint(String rawPoint) {
-        if (point == null) {
+        if (point == null || pointFieldX == null || pointFieldY == null) {
             return null;
         }
 
         try {
-            ISVGShape pointShape = point.getDeclaredConstructor().newInstance();
-            String[] coords = rawPoint.split(",");
+            ISVGShape pointShape = (ISVGShape) constructorCache.get(point).newInstance();
+            String[] coords = rawPoint.split(",", 2);
 
-            boolean foundX = false;
-            boolean foundY = false;
-            for (Field pointField : pointShape.getClass().getDeclaredFields()) {
-                if (foundX && foundY) {
-                    break;
-                }
+            pointFieldX.set(pointShape, Double.parseDouble(coords[0]));
+            pointFieldY.set(pointShape, Double.parseDouble(coords[1]));
 
-                SVGPointX fieldX = pointField.getAnnotation(SVGPointX.class);
-                if (fieldX != null) {
-                    pointField.setAccessible(true);
-                    pointField.set(pointShape, Double.parseDouble(coords[0]));
-                    foundX = true;
-                    continue;
-                }
-
-                SVGPointY fieldY = pointField.getAnnotation(SVGPointY.class);
-                if (fieldY != null) {
-                    pointField.setAccessible(true);
-                    pointField.set(pointShape, Double.parseDouble(coords[1]));
-                    foundY = true;
-                    continue;
-                }
-
-            }
-
-            if (foundX && foundY) {
-                return pointShape;
-            }
-
-            return null;
+            return pointShape;
         } catch (Exception e) {
             return null;
         }
@@ -104,6 +115,9 @@ public final class SVGImport {
         List<ISVGShape> points = new ArrayList<>();
         String[] rawPointsArray = rawPoints.split(" ");
         for (String rawPoint : rawPointsArray) {
+            if (rawPoint.isEmpty()) {
+                continue;
+            }
             ISVGShape pointShape = createPoint(rawPoint);
             if (pointShape != null) {
                 points.add(pointShape);
@@ -125,12 +139,22 @@ public final class SVGImport {
             }
 
             try {
-                ISVGShape shape = shapeClass.getDeclaredConstructor().newInstance();
-                for (Field shapeField : shape.getClass().getDeclaredFields()) {
-                    SVGField attr = shapeField.getAnnotation(SVGField.class);
-                    if (attr == null) {
-                        continue;
+                ISVGShape shape = (ISVGShape) constructorCache.get(shapeClass).newInstance();
+
+                List<Field> fields = fieldCache.get(shapeClass);
+                if (fields == null) {
+                    fields = new ArrayList<>();
+                    for (Field f : shapeClass.getDeclaredFields()) {
+                        if (f.getAnnotation(SVGField.class) != null) {
+                            f.setAccessible(true);
+                            fields.add(f);
+                        }
                     }
+                    fieldCache.put(shapeClass, fields);
+                }
+
+                for (Field shapeField : fields) {
+                    SVGField attr = shapeField.getAnnotation(SVGField.class);
 
                     String attrName = attr.value().length > 0 ? attr.value()[0] : shapeField.getName();
                     if (tag.hasAttribute(attrName)) {
@@ -139,41 +163,36 @@ public final class SVGImport {
                             continue;
                         }
 
-                        shapeField.setAccessible(true);
-                        if (shapeField.getType().isAssignableFrom(String.class)) {
+                        Class<?> fieldType = shapeField.getType();
+
+                        if (fieldType == String.class) {
                             shapeField.set(shape, attrValue);
-                        } else if (shapeField.getType().isAssignableFrom(Integer.class)
-                                || shapeField.getType().isAssignableFrom(int.class)) {
+                        } else if (fieldType == Integer.class || fieldType == int.class) {
                             shapeField.set(shape, Integer.parseInt(attrValue));
-                        } else if (shapeField.getType().isAssignableFrom(Double.class)
-                                || shapeField.getType().isAssignableFrom(double.class)) {
+                        } else if (fieldType == Double.class || fieldType == double.class) {
                             shapeField.set(shape, Double.parseDouble(attrValue));
-                        } else if (shapeField.getType().isAssignableFrom(Boolean.class)
-                                || shapeField.getType().isAssignableFrom(boolean.class)) {
+                        } else if (fieldType == Boolean.class || fieldType == boolean.class) {
                             shapeField.set(shape, Boolean.parseBoolean(attrValue));
-                        } else if (shapeField.getType().isAssignableFrom(Optional.class)) {
+                        } else if (fieldType == Optional.class) {
                             Class<?> optionalValueType = (Class<?>) ((ParameterizedType) shapeField.getGenericType())
                                     .getActualTypeArguments()[0];
-                            if (optionalValueType.isAssignableFrom(String.class)) {
+                            if (optionalValueType == String.class) {
                                 shapeField.set(shape, Optional.of(attrValue));
-                            } else if (optionalValueType.isAssignableFrom(Integer.class)
-                                    || optionalValueType.isAssignableFrom(int.class)) {
+                            } else if (optionalValueType == Integer.class || optionalValueType == int.class) {
                                 shapeField.set(shape, Optional.of(Integer.parseInt(attrValue)));
-                            } else if (optionalValueType.isAssignableFrom(Double.class)
-                                    || optionalValueType.isAssignableFrom(double.class)) {
+                            } else if (optionalValueType == Double.class || optionalValueType == double.class) {
                                 shapeField.set(shape, Optional.of(Double.parseDouble(attrValue)));
-                            } else if (optionalValueType.isAssignableFrom(Boolean.class)
-                                    || optionalValueType.isAssignableFrom(boolean.class)) {
+                            } else if (optionalValueType == Boolean.class || optionalValueType == boolean.class) {
                                 shapeField.set(shape, Optional.of(Boolean.parseBoolean(attrValue)));
                             }
                         } else if (point != null) {
-                            if (shapeField.getType().isAssignableFrom(point)) {
+                            if (fieldType == point) {
                                 shapeField.set(shape, createPoint(attr, tag));
-                            } else if (shapeField.getType().isAssignableFrom(List.class)) {
+                            } else if (fieldType == List.class) {
                                 shapeField.set(shape, createPointList(attrValue));
                             }
                         }
-                    } else if (shapeField.getType().isAssignableFrom(List.class)) {
+                    } else if (shapeField.getType() == List.class) {
                         List<ISVGShape> childrenShapes = new ArrayList<>();
                         for (XMLTag childTag : tag.getChildren()) {
                             ISVGShape childShape = convert(childTag);
@@ -181,27 +200,24 @@ public final class SVGImport {
                                 childrenShapes.add(childShape);
                             }
                         }
-                        shapeField.setAccessible(true);
                         shapeField.set(shape, childrenShapes);
-
                     }
                 }
                 return shape;
             } catch (Exception e) {
                 return null;
             }
-
         }
 
         return null;
     }
 
     public static ISVGShape load(String filename) {
-        try (FileReader fr = new FileReader(filename)) {
+        try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
             StringBuilder sb = new StringBuilder();
-            int c;
-            while ((c = fr.read()) != -1) {
-                sb.append((char) c);
+            String line;
+            while ((line = br.readLine()) != null) {
+                sb.append(line).append('\n');
             }
             String source = sb.toString();
 

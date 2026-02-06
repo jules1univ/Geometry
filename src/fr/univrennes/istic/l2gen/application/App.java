@@ -36,12 +36,26 @@ public class App {
         // il faut séparer les fonctionnalité dans d'autre fichier de l'app puis les
         // charger ici
 
+        long startTime = System.currentTimeMillis();
         IShape fractal = new Fractal().draw(new Rectangle(500 - 400 / 2, 500 - 200 / 2, 400, 200), 5);
-        SVGExport.export(fractal, "output.svg");
+        long endTime = System.currentTimeMillis();
+        System.out.println("Fractal: " + (endTime - startTime) + " ms");
 
+        startTime = System.currentTimeMillis();
+        SVGExport.export(fractal, "output.svg");
+        endTime = System.currentTimeMillis();
+        System.out.println("Export: " + (endTime - startTime) + " ms");
+
+        startTime = System.currentTimeMillis();
         ISVGShape svgShape = SVGImport.load("output.svg");
+        endTime = System.currentTimeMillis();
+        System.out.println("Import: " + (endTime - startTime) + " ms");
+
         if (svgShape instanceof IShape shape) {
-            System.out.println(shape.getDescription(0));
+            boolean importSuccess = shape.getDescription(0).equals(fractal.getDescription(0));
+            if (importSuccess) {
+                System.out.println("IMPORT SUCCESS");
+            }
         }
     }
 }

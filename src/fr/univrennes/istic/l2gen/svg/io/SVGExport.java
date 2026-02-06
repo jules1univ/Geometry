@@ -1,8 +1,12 @@
 package fr.univrennes.istic.l2gen.svg.io;
 
+import java.io.BufferedWriter;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.lang.reflect.Field;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import fr.univrennes.istic.l2gen.svg.interfaces.ISVGAttribute;
@@ -18,10 +22,13 @@ import fr.univrennes.istic.l2gen.svg.xml.model.XMLTag;
 public final class SVGExport {
     public static final String DEFAULT_DATA_TYPE_ATTR = "jclass-data";
 
-    private static String getObjectPointValue(Object point) {
+    private static final Map<Class<?>, List<Field>> fieldCache = new HashMap<>();
+    private static final Map<Class<?>, Field[]> pointFieldsCache = new HashMap<>();
 
-        if (point == null)
+    private static String getObjectPointValue(Object point) {
+        if (point == null) {
             return null;
+        }
 
         Class<?> pointClass = point.getClass();
 
@@ -29,39 +36,54 @@ public final class SVGExport {
             return null;
         }
 
-        String xValue = null;
-        String yValue = null;
+        Field[] pointFields = pointFieldsCache.get(pointClass);
+        if (pointFields == null) {
+            Field xField = null;
+            Field yField = null;
 
-        for (Field field : pointClass.getDeclaredFields()) {
-            field.setAccessible(true);
-
-            try {
+            for (Field field : pointClass.getDeclaredFields()) {
                 if (field.isAnnotationPresent(SVGPointX.class)) {
-                    xValue = field.get(point).toString();
+                    field.setAccessible(true);
+                    xField = field;
+                } else if (field.isAnnotationPresent(SVGPointY.class)) {
+                    field.setAccessible(true);
+                    yField = field;
                 }
-                if (field.isAnnotationPresent(SVGPointY.class)) {
-                    yValue = field.get(point).toString();
-                }
-            } catch (Exception e) {
+            }
+
+            if (xField != null && yField != null) {
+                pointFields = new Field[] { xField, yField };
+                pointFieldsCache.put(pointClass, pointFields);
+            } else {
+                return null;
             }
         }
 
-        if (xValue != null && yValue != null) {
+        try {
+            String xValue = pointFields[0].get(point).toString();
+            String yValue = pointFields[1].get(point).toString();
             return xValue + "," + yValue;
+        } catch (Exception e) {
+            return null;
         }
-
-        return null;
     }
 
     private static String getObjectPoints(List<?> pointsList) {
+        if (pointsList.isEmpty()) {
+            return "";
+        }
+
         StringBuilder sb = new StringBuilder();
         for (Object point : pointsList) {
             String value = getObjectPointValue(point);
             if (value != null) {
-                sb.append(value).append(" ");
+                if (sb.length() > 0) {
+                    sb.append(" ");
+                }
+                sb.append(value);
             }
         }
-        return sb.toString().trim();
+        return sb.toString();
     }
 
     public static XMLTag convert(ISVGShape shape) {
@@ -75,14 +97,22 @@ public final class SVGExport {
         XMLTag tag = new XMLTag(tagName.value());
         tag.addAttribute(new XMLAttribute(DEFAULT_DATA_TYPE_ATTR, shapeClass.getName()));
 
-        for (Field shapeField : shapeClass.getDeclaredFields()) {
-            shapeField.setAccessible(true);
-            SVGField field = shapeField.getAnnotation(SVGField.class);
-            if (field == null) {
-                continue;
+        List<Field> fields = fieldCache.get(shapeClass);
+        if (fields == null) {
+            fields = new java.util.ArrayList<>();
+            for (Field field : shapeClass.getDeclaredFields()) {
+                if (field.getAnnotation(SVGField.class) != null) {
+                    field.setAccessible(true);
+                    fields.add(field);
+                }
             }
+            fieldCache.put(shapeClass, fields);
+        }
 
-            Object value = null;
+        for (Field shapeField : fields) {
+            SVGField field = shapeField.getAnnotation(SVGField.class);
+
+            Object value;
             try {
                 value = shapeField.get(shape);
                 if (value == null) {
@@ -93,13 +123,18 @@ public final class SVGExport {
             }
 
             String attrName = field.value().length > 0 ? field.value()[0] : shapeField.getName();
-            if (value instanceof List listObj) {
+
+            if (value instanceof List<?> listObj) {
                 if (listObj.isEmpty()) {
                     continue;
                 }
 
-                if (listObj.get(0).getClass().getAnnotation(SVGPoint.class) != null) {
-                    tag.addAttribute(new XMLAttribute(attrName, getObjectPoints(listObj)));
+                Object firstElement = listObj.get(0);
+                if (firstElement.getClass().getAnnotation(SVGPoint.class) != null) {
+                    String pointsValue = getObjectPoints(listObj);
+                    if (!pointsValue.isEmpty()) {
+                        tag.addAttribute(new XMLAttribute(attrName, pointsValue));
+                    }
                 } else {
                     for (Object childShape : listObj) {
                         if (childShape instanceof ISVGShape svgShape) {
@@ -110,14 +145,13 @@ public final class SVGExport {
             } else if (value.getClass().getAnnotation(SVGPoint.class) != null && field.value().length == 2) {
                 String pointValue = getObjectPointValue(value);
                 if (pointValue != null) {
-                    String[] parts = pointValue.split(",");
-                    if (parts.length == 2) {
-                        tag.addAttribute(new XMLAttribute(field.value()[0], parts[0]));
-                        tag.addAttribute(new XMLAttribute(field.value()[1], parts[1]));
+                    int commaIndex = pointValue.indexOf(',');
+                    if (commaIndex != -1) {
+                        tag.addAttribute(new XMLAttribute(field.value()[0], pointValue.substring(0, commaIndex)));
+                        tag.addAttribute(new XMLAttribute(field.value()[1], pointValue.substring(commaIndex + 1)));
                     }
                 }
-            } else if (ISVGAttribute.class.isAssignableFrom(value.getClass())) {
-                ISVGAttribute svgAttr = (ISVGAttribute) value;
+            } else if (value instanceof ISVGAttribute svgAttr) {
                 if (svgAttr.hasContent()) {
                     tag.setAttribute(attrName, svgAttr.getContent());
                 }
@@ -148,9 +182,10 @@ public final class SVGExport {
 
         svg.addChild(convert(root));
 
-        try (FileWriter fw = new FileWriter(filename)) {
-            fw.write(svg.toString());
-        } catch (Exception e) {
+        // Utiliser BufferedWriter pour une écriture plus rapide
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(filename))) {
+            bw.write(svg.toString());
+        } catch (IOException e) {
             return false;
         }
 
