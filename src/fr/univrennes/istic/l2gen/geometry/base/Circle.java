@@ -2,6 +2,8 @@ package fr.univrennes.istic.l2gen.geometry.base;
 
 import fr.univrennes.istic.l2gen.geometry.IShape;
 import fr.univrennes.istic.l2gen.geometry.Point;
+import fr.univrennes.istic.l2gen.svg.attributes.SVGStyle;
+import fr.univrennes.istic.l2gen.svg.attributes.SVGTransform;
 import fr.univrennes.istic.l2gen.svg.interfaces.SVGField;
 import fr.univrennes.istic.l2gen.svg.interfaces.SVGTag;
 
@@ -13,6 +15,12 @@ public final class Circle implements IShape {
 
     @SVGField({ "cx", "cy" })
     private Point center;
+
+    @SVGField
+    private SVGStyle style = new SVGStyle();
+
+    @SVGField
+    private SVGTransform transform = new SVGTransform();
 
     public Circle() {
         this.radius = 0;
@@ -30,8 +38,28 @@ public final class Circle implements IShape {
     }
 
     @Override
+    public double getHeight() {
+        return 2 * this.radius;
+    }
+
+    @Override
+    public double getWidth() {
+        return 2 * this.radius;
+    }
+
+    @Override
     public Point getCenter() {
         return this.center;
+    }
+
+    @Override
+    public SVGStyle getStyle() {
+        return this.style;
+    }
+
+    @Override
+    public SVGTransform getTransform() {
+        return this.transform;
     }
 
     @Override
@@ -44,16 +72,6 @@ public final class Circle implements IShape {
         sb.append(" R=");
         sb.append(this.radius);
         return sb.toString();
-    }
-
-    @Override
-    public double getHeight() {
-        return 2 * this.radius;
-    }
-
-    @Override
-    public double getWidth() {
-        return 2 * this.radius;
     }
 
     @Override

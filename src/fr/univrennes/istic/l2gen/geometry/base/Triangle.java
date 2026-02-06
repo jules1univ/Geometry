@@ -5,6 +5,8 @@ import java.util.List;
 
 import fr.univrennes.istic.l2gen.geometry.IShape;
 import fr.univrennes.istic.l2gen.geometry.Point;
+import fr.univrennes.istic.l2gen.svg.attributes.SVGStyle;
+import fr.univrennes.istic.l2gen.svg.attributes.SVGTransform;
 import fr.univrennes.istic.l2gen.svg.interfaces.SVGField;
 import fr.univrennes.istic.l2gen.svg.interfaces.SVGTag;
 
@@ -13,6 +15,12 @@ public final class Triangle implements IShape {
 
     @SVGField("points")
     private final List<Point> vertices;
+
+    @SVGField
+    private SVGStyle style = new SVGStyle();
+
+    @SVGField
+    private SVGTransform transform = new SVGTransform();
 
     public Triangle() {
         this.vertices = new ArrayList<>(3);
@@ -39,17 +47,6 @@ public final class Triangle implements IShape {
     }
 
     @Override
-    public Point getCenter() {
-        double sumX = 0.0;
-        double sumY = 0.0;
-        for (Point p : vertices) {
-            sumX += p.getX();
-            sumY += p.getY();
-        }
-        return new Point(sumX / 3.0, sumY / 3.0);
-    }
-
-    @Override
     public double getWidth() {
         double minX = Double.POSITIVE_INFINITY;
         double maxX = Double.NEGATIVE_INFINITY;
@@ -69,6 +66,27 @@ public final class Triangle implements IShape {
             maxY = Math.max(maxY, p.getY());
         }
         return maxY - minY;
+    }
+
+    @Override
+    public Point getCenter() {
+        double sumX = 0.0;
+        double sumY = 0.0;
+        for (Point p : vertices) {
+            sumX += p.getX();
+            sumY += p.getY();
+        }
+        return new Point(sumX / 3.0, sumY / 3.0);
+    }
+
+    @Override
+    public SVGStyle getStyle() {
+        return this.style;
+    }
+
+    @Override
+    public SVGTransform getTransform() {
+        return this.transform;
     }
 
     @Override

@@ -5,6 +5,8 @@ import java.util.List;
 
 import fr.univrennes.istic.l2gen.geometry.IShape;
 import fr.univrennes.istic.l2gen.geometry.Point;
+import fr.univrennes.istic.l2gen.svg.attributes.SVGStyle;
+import fr.univrennes.istic.l2gen.svg.attributes.SVGTransform;
 import fr.univrennes.istic.l2gen.svg.interfaces.SVGField;
 import fr.univrennes.istic.l2gen.svg.interfaces.SVGTag;
 
@@ -13,6 +15,12 @@ public final class PolyLine implements IShape {
 
     @SVGField("points")
     private final List<Point> vertices;
+
+    @SVGField
+    private SVGStyle style = new SVGStyle();
+
+    @SVGField
+    private SVGTransform transform = new SVGTransform();
 
     public PolyLine() {
         this.vertices = new ArrayList<>();
@@ -68,23 +76,6 @@ public final class PolyLine implements IShape {
     }
 
     /**
-     * calcule et retourne le centre de la Line en calculant la moyenne des
-     * coordonnées x et y de tous les Points dans la liste vertices.
-     * 
-     * @return un Point représentant le centre de la Line
-     */
-    @Override
-    public Point getCenter() {
-        double sumX = 0, sumY = 0;
-        for (Point p : vertices) {
-            sumX += p.getX();
-            sumY += p.getY();
-        }
-        int n = vertices.size();
-        return n > 0 ? new Point(sumX / n, sumY / n) : new Point(0, 0);
-    }
-
-    /**
      * calcule et retourne la largeur de la Line en trouvant les coordonnées x
      * minimales et maximales parmi tous les Points dans la liste vertices.
      * 
@@ -120,6 +111,43 @@ public final class PolyLine implements IShape {
             maxY = Math.max(maxY, p.getY());
         }
         return maxY - minY;
+    }
+
+    /**
+     * calcule et retourne le centre de la Line en calculant la moyenne des
+     * coordonnées x et y de tous les Points dans la liste vertices.
+     * 
+     * @return un Point représentant le centre de la Line
+     */
+    @Override
+    public Point getCenter() {
+        double sumX = 0, sumY = 0;
+        for (Point p : vertices) {
+            sumX += p.getX();
+            sumY += p.getY();
+        }
+        int n = vertices.size();
+        return n > 0 ? new Point(sumX / n, sumY / n) : new Point(0, 0);
+    }
+
+    /**
+     * Retourne le style SVG de la polyligne.
+     * 
+     * @return le style SVG associé
+     */
+    @Override
+    public SVGStyle getStyle() {
+        return this.style;
+    }
+
+    /**
+     * Retourne la transformation SVG appliquée à cette polyligne.
+     *
+     * @return la transformation SVG
+     */
+    @Override
+    public SVGTransform getTransform() {
+        return this.transform;
     }
 
     /**

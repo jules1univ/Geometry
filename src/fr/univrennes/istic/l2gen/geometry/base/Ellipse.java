@@ -2,6 +2,7 @@ package fr.univrennes.istic.l2gen.geometry.base;
 
 import fr.univrennes.istic.l2gen.geometry.IShape;
 import fr.univrennes.istic.l2gen.geometry.Point;
+import fr.univrennes.istic.l2gen.svg.attributes.SVGStyle;
 import fr.univrennes.istic.l2gen.svg.attributes.SVGTransform;
 import fr.univrennes.istic.l2gen.svg.interfaces.SVGField;
 import fr.univrennes.istic.l2gen.svg.interfaces.SVGTag;
@@ -14,6 +15,9 @@ public final class Ellipse implements IShape {
 
     @SVGField({ "rx", "ry" })
     private Point radius;
+
+    @SVGField
+    private SVGStyle style = new SVGStyle();
 
     @SVGField
     private SVGTransform transform = new SVGTransform();
@@ -45,6 +49,16 @@ public final class Ellipse implements IShape {
     @Override
     public Point getCenter() {
         return this.center;
+    }
+
+    @Override
+    public SVGStyle getStyle() {
+        return this.style;
+    }
+
+    @Override
+    public SVGTransform getTransform() {
+        return this.transform;
     }
 
     @Override

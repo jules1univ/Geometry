@@ -3,6 +3,8 @@ package fr.univrennes.istic.l2gen.geometry;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.univrennes.istic.l2gen.svg.attributes.SVGStyle;
+import fr.univrennes.istic.l2gen.svg.attributes.SVGTransform;
 import fr.univrennes.istic.l2gen.svg.interfaces.SVGField;
 import fr.univrennes.istic.l2gen.svg.interfaces.SVGTag;
 
@@ -11,6 +13,12 @@ public final class Group<T extends IShape> implements IShape {
 
     @SVGField
     private List<T> shapes = new ArrayList<>();
+
+    @SVGField
+    private SVGStyle style = new SVGStyle();
+
+    @SVGField
+    private SVGTransform transform = new SVGTransform();
 
     public Group() {
     }
@@ -68,6 +76,16 @@ public final class Group<T extends IShape> implements IShape {
             }
         }
         return maxX - minX;
+    }
+
+    @Override
+    public SVGStyle getStyle() {
+        return this.style;
+    }
+
+    @Override
+    public SVGTransform getTransform() {
+        return this.transform;
     }
 
     @Override

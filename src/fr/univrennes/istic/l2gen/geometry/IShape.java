@@ -1,5 +1,7 @@
 package fr.univrennes.istic.l2gen.geometry;
 
+import fr.univrennes.istic.l2gen.svg.attributes.SVGStyle;
+import fr.univrennes.istic.l2gen.svg.attributes.SVGTransform;
 import fr.univrennes.istic.l2gen.svg.interfaces.ISVGShape;
 
 public interface IShape extends ISVGShape {
@@ -9,6 +11,10 @@ public interface IShape extends ISVGShape {
     double getHeight();
 
     Point getCenter();
+
+    SVGTransform getTransform();
+
+    SVGStyle getStyle();
 
     String getDescription(int indent);
 

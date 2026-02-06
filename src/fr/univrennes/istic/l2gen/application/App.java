@@ -37,7 +37,10 @@ public class App {
         // charger ici
 
         long startTime = System.currentTimeMillis();
-        IShape fractal = new Fractal().draw(new Rectangle(500 - 400 / 2, 500 - 200 / 2, 400, 200), 5);
+        IShape fractal = new Fractal().draw(new Triangle(new Point(500, 100), new Point(100, 900), new Point(900, 900)),
+                5);
+        // IShape fractal = new Fractal().draw(new Rectangle(500 - 400 / 2, 500 - 200 /
+        // 2, 400, 200), 5);
         long endTime = System.currentTimeMillis();
         System.out.println("Fractal: " + (endTime - startTime) + " ms");
 

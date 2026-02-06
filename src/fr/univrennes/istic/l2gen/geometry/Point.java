@@ -1,5 +1,7 @@
 package fr.univrennes.istic.l2gen.geometry;
 
+import fr.univrennes.istic.l2gen.svg.attributes.SVGStyle;
+import fr.univrennes.istic.l2gen.svg.attributes.SVGTransform;
 import fr.univrennes.istic.l2gen.svg.interfaces.point.SVGPoint;
 import fr.univrennes.istic.l2gen.svg.interfaces.point.SVGPointX;
 import fr.univrennes.istic.l2gen.svg.interfaces.point.SVGPointY;
@@ -84,6 +86,16 @@ public final class Point implements IShape {
     @Override
     public Point getCenter() {
         return this;
+    }
+
+    @Override
+    public SVGStyle getStyle() {
+        throw new UnsupportedOperationException("A Point does not support styles");
+    }
+
+    @Override
+    public SVGTransform getTransform() {
+        throw new UnsupportedOperationException("A Point does not support transformations");
     }
 
     @Override

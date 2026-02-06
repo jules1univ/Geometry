@@ -1,6 +1,7 @@
 package fr.univrennes.istic.l2gen.geometry;
 
 import fr.univrennes.istic.l2gen.svg.attributes.SVGPath;
+import fr.univrennes.istic.l2gen.svg.attributes.SVGStyle;
 import fr.univrennes.istic.l2gen.svg.attributes.SVGTransform;
 import fr.univrennes.istic.l2gen.svg.interfaces.SVGField;
 import fr.univrennes.istic.l2gen.svg.interfaces.SVGTag;
@@ -16,6 +17,9 @@ public class Path implements IShape {
 
     @SVGField
     private SVGTransform transform = new SVGTransform();
+
+    @SVGField
+    private SVGStyle style = new SVGStyle();
 
     public Path() {
         this.path = new SVGPath();
@@ -45,6 +49,16 @@ public class Path implements IShape {
     @Override
     public Point getCenter() {
         return new Point(this.path.getBoundingBox().getCenterX(), this.path.getBoundingBox().getCenterY());
+    }
+
+    @Override
+    public SVGStyle getStyle() {
+        return style;
+    }
+
+    @Override
+    public SVGTransform getTransform() {
+        return transform;
     }
 
     @Override

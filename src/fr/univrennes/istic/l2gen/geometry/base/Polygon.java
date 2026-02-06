@@ -5,6 +5,8 @@ import java.util.List;
 
 import fr.univrennes.istic.l2gen.geometry.IShape;
 import fr.univrennes.istic.l2gen.geometry.Point;
+import fr.univrennes.istic.l2gen.svg.attributes.SVGStyle;
+import fr.univrennes.istic.l2gen.svg.attributes.SVGTransform;
 import fr.univrennes.istic.l2gen.svg.interfaces.SVGField;
 import fr.univrennes.istic.l2gen.svg.interfaces.SVGTag;
 
@@ -13,6 +15,12 @@ public final class Polygon implements IShape {
 
     @SVGField("points")
     private final List<Point> vertices;
+
+    @SVGField
+    private SVGStyle style = new SVGStyle();
+
+    @SVGField
+    private SVGTransform transform = new SVGTransform();
 
     public Polygon() {
         this.vertices = new ArrayList<>();
@@ -28,32 +36,12 @@ public final class Polygon implements IShape {
         }
     }
 
-    @Override
-    public Point getCenter() {
-        if (vertices.isEmpty()) {
-            return new Point(0, 0);
-        }
-
-        double totalX = 0;
-        double totalY = 0;
-
-        for (Point p : vertices) {
-            totalX += p.getX();
-            totalY += p.getY();
-        }
-
-        return new Point(totalX / vertices.size(), totalY / vertices.size());
+    public void addVertex(Point p) {
+        vertices.add(new Point(p.getX(), p.getY()));
     }
 
-    @Override
-    public String getDescription(int indent) {
-        StringBuilder sb = new StringBuilder(" ".repeat(Math.max(0, indent)));
-        sb.append("Polygon ");
-        sb.append("POINTS=");
-        for (Point p : vertices) {
-            sb.append(p.getX()).append(",").append(p.getY()).append(" ");
-        }
-        return sb.toString();
+    public void addVertex(double x, double y) {
+        vertices.add(new Point(x, y));
     }
 
     @Override
@@ -86,12 +74,42 @@ public final class Polygon implements IShape {
         return maxY - minY;
     }
 
-    public void addVertex(Point p) {
-        vertices.add(new Point(p.getX(), p.getY()));
+    @Override
+    public SVGStyle getStyle() {
+        return this.style;
     }
 
-    public void addVertex(double x, double y) {
-        vertices.add(new Point(x, y));
+    @Override
+    public SVGTransform getTransform() {
+        return this.transform;
+    }
+
+    @Override
+    public Point getCenter() {
+        if (vertices.isEmpty()) {
+            return new Point(0, 0);
+        }
+
+        double totalX = 0;
+        double totalY = 0;
+
+        for (Point p : vertices) {
+            totalX += p.getX();
+            totalY += p.getY();
+        }
+
+        return new Point(totalX / vertices.size(), totalY / vertices.size());
+    }
+
+    @Override
+    public String getDescription(int indent) {
+        StringBuilder sb = new StringBuilder(" ".repeat(Math.max(0, indent)));
+        sb.append("Polygon ");
+        sb.append("POINTS=");
+        for (Point p : vertices) {
+            sb.append(p.getX()).append(",").append(p.getY()).append(" ");
+        }
+        return sb.toString();
     }
 
     @Override
