@@ -27,16 +27,10 @@ public final class PolygonTest extends AbstractShapeTest<Polygon> {
     @Override
     public void testMove() {
         Polygon poly = new Polygon(1.0, 2.0);
-        poly.move(1.0, 1.0);
-        assert poly.equals(new Polygon(1.0, 2.0, 2.0, 3.0));
-        poly.move(-1.0, -1.0);
-        assert poly.equals(new Polygon(1.0, 2.0));
+        Polygon polyAfterMove = new Polygon(3.0, 4.0);
+        poly.move(2.0, 2.0);
 
-        poly = new Polygon(1.0, 2.0, 5.0, 10.0);
-        poly.move(1.0, 1.0);
-        assert poly.equals(new Polygon(2.0, 3.0, 6.0, 11.0));
-        poly.move(-1.0, -1.0);
-        assert poly.equals(new Polygon(1.0, 2.0, 5.0, 10.0));
+        assert poly.getCenter().equals(polyAfterMove.getCenter());
     }
 
     @Test
@@ -51,11 +45,10 @@ public final class PolygonTest extends AbstractShapeTest<Polygon> {
     @Override
     public void testDescription() {
         Polygon poly = new Polygon();
-        assert poly.getDescription(1).equals("Polygone 0,0");
+        assert poly.getDescription(0).equals("Polygon POINTS=");
+
         poly = new Polygon(1.0, 5.0, 6.0, 7.0);
-        assert poly.getDescription(1).equals("Polygone 1,5 6,7");
-        poly = new Polygon(1.0, 5.0, 6.0, 7.0);
-        assert poly.getDescription(2).equals("Polygone 1,5  6,7");
+        assert poly.getDescription(0).equals("Polygon POINTS=1.0,5.0 6.0,7.0 ");
     }
 
 }

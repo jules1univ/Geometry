@@ -33,10 +33,9 @@ public class TextTest extends AbstractShapeTest<Text> {
     public void testResize() {
         Text text = create();
         text.resize(200, 50);
+
         assert text.getWidth() != 200;
         assert text.getHeight() != 50;
-        // Ne rien faire car le texte n'est pas redimensionnable
-
     }
 
     @Test

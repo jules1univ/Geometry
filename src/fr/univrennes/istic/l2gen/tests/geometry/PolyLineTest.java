@@ -48,7 +48,7 @@ public class PolyLineTest extends AbstractShapeTest<PolyLine> {
     @Override
     public void testDescription() {
         PolyLine line = create();
-        String expectedDescription = "Ligne 0.0,0.0 4.0,0.0 3.0,4.0 0.0,4.0 ";
+        String expectedDescription = "PolyLine POINTS=0.0,0.0 4.0,0.0 3.0,4.0 0.0,4.0 ";
         assertEquals(expectedDescription, line.getDescription(0));
     }
 

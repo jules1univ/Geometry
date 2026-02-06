@@ -16,6 +16,7 @@ import fr.univrennes.istic.l2gen.svg.xml.model.XMLAttribute;
 import fr.univrennes.istic.l2gen.svg.xml.model.XMLTag;
 
 public final class SVGExport {
+    public static final String DEFAULT_DATA_TYPE_ATTR = "jclass-data";
 
     private static String getObjectPointValue(Object point) {
 
@@ -72,6 +73,7 @@ public final class SVGExport {
         }
 
         XMLTag tag = new XMLTag(tagName.value());
+        tag.addAttribute(new XMLAttribute(DEFAULT_DATA_TYPE_ATTR, shapeClass.getName()));
 
         for (Field shapeField : shapeClass.getDeclaredFields()) {
             shapeField.setAccessible(true);

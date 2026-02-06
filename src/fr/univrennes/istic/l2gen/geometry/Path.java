@@ -69,7 +69,7 @@ public class Path implements IShape {
 
     @Override
     public void rotate(double degrees) {
-        this.transform.rotate(degrees);
+        this.transform.rotate(degrees, this.getCenter().getX(), this.getCenter().getY());
     }
 
     @Override

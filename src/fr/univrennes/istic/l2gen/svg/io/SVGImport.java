@@ -118,6 +118,11 @@ public final class SVGImport {
             if (!tagName.equals(tag.getTagName())) {
                 continue;
             }
+            String className = shapeClass.getName();
+            if (!tag.hasAttribute(SVGExport.DEFAULT_DATA_TYPE_ATTR)
+                    || !tag.getAttribute(SVGExport.DEFAULT_DATA_TYPE_ATTR).getValue().equals(className)) {
+                continue;
+            }
 
             try {
                 ISVGShape shape = shapeClass.getDeclaredConstructor().newInstance();
@@ -135,24 +140,30 @@ public final class SVGImport {
                         }
 
                         shapeField.setAccessible(true);
-                        if (shapeField.getType().equals(String.class)) {
+                        if (shapeField.getType().isAssignableFrom(String.class)) {
                             shapeField.set(shape, attrValue);
-                        } else if (shapeField.getType().equals(Integer.class)) {
+                        } else if (shapeField.getType().isAssignableFrom(Integer.class)
+                                || shapeField.getType().isAssignableFrom(int.class)) {
                             shapeField.set(shape, Integer.parseInt(attrValue));
-                        } else if (shapeField.getType().equals(Double.class)) {
+                        } else if (shapeField.getType().isAssignableFrom(Double.class)
+                                || shapeField.getType().isAssignableFrom(double.class)) {
                             shapeField.set(shape, Double.parseDouble(attrValue));
-                        } else if (shapeField.getType().equals(Boolean.class)) {
+                        } else if (shapeField.getType().isAssignableFrom(Boolean.class)
+                                || shapeField.getType().isAssignableFrom(boolean.class)) {
                             shapeField.set(shape, Boolean.parseBoolean(attrValue));
-                        } else if (shapeField.getType().equals(Optional.class)) {
+                        } else if (shapeField.getType().isAssignableFrom(Optional.class)) {
                             Class<?> optionalValueType = (Class<?>) ((ParameterizedType) shapeField.getGenericType())
                                     .getActualTypeArguments()[0];
-                            if (optionalValueType.equals(String.class)) {
+                            if (optionalValueType.isAssignableFrom(String.class)) {
                                 shapeField.set(shape, Optional.of(attrValue));
-                            } else if (optionalValueType.equals(Integer.class)) {
+                            } else if (optionalValueType.isAssignableFrom(Integer.class)
+                                    || optionalValueType.isAssignableFrom(int.class)) {
                                 shapeField.set(shape, Optional.of(Integer.parseInt(attrValue)));
-                            } else if (optionalValueType.equals(Double.class)) {
+                            } else if (optionalValueType.isAssignableFrom(Double.class)
+                                    || optionalValueType.isAssignableFrom(double.class)) {
                                 shapeField.set(shape, Optional.of(Double.parseDouble(attrValue)));
-                            } else if (optionalValueType.equals(Boolean.class)) {
+                            } else if (optionalValueType.isAssignableFrom(Boolean.class)
+                                    || optionalValueType.isAssignableFrom(boolean.class)) {
                                 shapeField.set(shape, Optional.of(Boolean.parseBoolean(attrValue)));
                             }
                         } else if (point != null) {

@@ -32,7 +32,8 @@ public final class Text implements IShape {
     public String getDescription(int indentation) {
         StringBuilder sb = new StringBuilder();
         sb.append(" ".repeat(Math.max(0, indentation)));
-        sb.append("TEXT=");
+        sb.append("Text ");
+        sb.append("VALUE=");
         sb.append(text);
         sb.append(" X=");
         sb.append(this.center.getX());
@@ -73,6 +74,6 @@ public final class Text implements IShape {
 
     @Override
     public void rotate(double deg) {
-        this.transform.rotate(deg);
+        this.transform.rotate(deg, this.getCenter().getX(), this.getCenter().getY());
     }
 }

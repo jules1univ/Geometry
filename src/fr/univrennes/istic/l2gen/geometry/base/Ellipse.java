@@ -75,7 +75,7 @@ public final class Ellipse implements IShape {
 
     @Override
     public void rotate(double deg) {
-        this.transform.rotate(deg);
+        this.transform.rotate(deg, this.getCenter().getX(), this.getCenter().getY());
     }
 
     @Override

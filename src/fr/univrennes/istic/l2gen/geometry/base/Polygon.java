@@ -95,13 +95,6 @@ public final class Polygon implements IShape {
     }
 
     @Override
-    public IShape copy() {
-        Polygon copy = new Polygon();
-        copy.vertices.addAll(this.vertices);
-        return copy;
-    }
-
-    @Override
     public void resize(double dx, double dy) {
         Point center = getCenter();
 
@@ -136,4 +129,12 @@ public final class Polygon implements IShape {
             p.set(rotatedX + center.getX(), rotatedY + center.getY());
         }
     }
+
+    @Override
+    public IShape copy() {
+        Polygon copy = new Polygon();
+        copy.vertices.addAll(this.vertices);
+        return copy;
+    }
+
 }

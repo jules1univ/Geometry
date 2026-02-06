@@ -132,7 +132,7 @@ public final class PolyLine implements IShape {
     @Override
     public String getDescription(int indent) {
         StringBuilder sb = new StringBuilder(" ".repeat(Math.max(0, indent)));
-        sb.append("Ligne ");
+        sb.append("PolyLine ");
         sb.append("POINTS=");
         for (Point p : vertices) {
             sb.append(p.getX()).append(",").append(p.getY()).append(" ");

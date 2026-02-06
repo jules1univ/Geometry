@@ -1,5 +1,6 @@
 package fr.univrennes.istic.l2gen.tests.geometry;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import fr.univrennes.istic.l2gen.geometry.IShape;
@@ -9,9 +10,8 @@ import fr.univrennes.istic.l2gen.svg.io.SVGExport;
 import fr.univrennes.istic.l2gen.svg.io.SVGImport;
 import fr.univrennes.istic.l2gen.svg.xml.model.XMLTag;
 
+@Ignore("Abstract Shape Test")
 public abstract class AbstractShapeTest<T extends IShape> {
-
-    // TODO: pour les autres formes
 
     /**
      * Créé un objet qui hérite de IShape pour l'utliser a travers les test

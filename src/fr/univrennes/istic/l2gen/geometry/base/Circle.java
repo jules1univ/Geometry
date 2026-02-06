@@ -61,11 +61,6 @@ public final class Circle implements IShape {
         this.center = new Point(x, y);
     }
 
-    @Override
-    public IShape copy() {
-        return new Circle(this.center, this.radius);
-    }
-
     /**
      * on ignore le deuxième argument, la valeur n'a pas d'impact, cependant il est
      * nécessaire d'en avoir une pour appeler la méthode
@@ -84,4 +79,10 @@ public final class Circle implements IShape {
     public void rotate(double deg) {
         // Ne rien faire car le cercle est invariant par rotation
     }
+
+    @Override
+    public IShape copy() {
+        return new Circle(this.center, this.radius);
+    }
+
 }
