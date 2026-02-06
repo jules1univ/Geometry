@@ -4,7 +4,7 @@ import org.junit.Test;
 
 import fr.univrennes.istic.l2gen.geometry.base.Text;
 
-public class TextTest implements IShapeTest<Text> {
+public class TextTest extends AbstractShapeTest<Text> {
 
     @Override
     public Text create() {

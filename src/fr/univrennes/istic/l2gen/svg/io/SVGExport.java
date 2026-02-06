@@ -16,7 +16,6 @@ import fr.univrennes.istic.l2gen.svg.xml.model.XMLAttribute;
 import fr.univrennes.istic.l2gen.svg.xml.model.XMLTag;
 
 public final class SVGExport {
-    // TODO: passer un object Style/SVGStyle pour customizer le rendu du SVG
 
     private static String getObjectPointValue(Object point) {
 
@@ -64,7 +63,7 @@ public final class SVGExport {
         return sb.toString().trim();
     }
 
-    private static XMLTag convertShapeToXML(ISVGShape shape) {
+    public static XMLTag convert(ISVGShape shape) {
         Class<?> shapeClass = shape.getClass();
         SVGTag tagName = shapeClass.getAnnotation(SVGTag.class);
         if (tagName == null) {
@@ -102,7 +101,7 @@ public final class SVGExport {
                 } else {
                     for (Object childShape : listObj) {
                         if (childShape instanceof ISVGShape svgShape) {
-                            tag.addChild(convertShapeToXML(svgShape));
+                            tag.addChild(convert(svgShape));
                         }
                     }
                 }
@@ -145,7 +144,7 @@ public final class SVGExport {
         background.addAttribute(new XMLAttribute("fill", "white"));
         svg.addChild(background);
 
-        svg.addChild(convertShapeToXML(root));
+        svg.addChild(convert(root));
 
         try (FileWriter fw = new FileWriter(filename)) {
             fw.write(svg.toString());

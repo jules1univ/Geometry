@@ -2,7 +2,7 @@ package fr.univrennes.istic.l2gen.tests.geometry;
 
 import fr.univrennes.istic.l2gen.geometry.base.Rectangle;
 
-public final class RectangleTest implements IShapeTest<Rectangle> {
+public final class RectangleTest extends AbstractShapeTest<Rectangle> {
 
     @Override
     public Rectangle create() {

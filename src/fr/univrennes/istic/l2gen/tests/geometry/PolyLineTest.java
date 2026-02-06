@@ -7,7 +7,7 @@ import fr.univrennes.istic.l2gen.geometry.base.PolyLine;
 
 import static org.junit.Assert.assertEquals;
 
-public class PolyLineTest implements IShapeTest<PolyLine> {
+public class PolyLineTest extends AbstractShapeTest<PolyLine> {
 
     @Override
     public PolyLine create() {

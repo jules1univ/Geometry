@@ -9,7 +9,7 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.List;
 
-public class TriangleTest implements IShapeTest<Triangle> {
+public class TriangleTest extends AbstractShapeTest<Triangle> {
 
     @Override
     public Triangle create() {

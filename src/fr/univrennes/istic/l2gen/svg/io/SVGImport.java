@@ -112,7 +112,7 @@ public final class SVGImport {
         return points;
     }
 
-    private static ISVGShape convertXMLToShape(XMLTag tag) {
+    public static ISVGShape convert(XMLTag tag) {
         for (Class<? extends ISVGShape> shapeClass : shapes) {
             String tagName = shapeClass.getAnnotation(SVGTag.class).value();
             if (!tagName.equals(tag.getTagName())) {
@@ -165,7 +165,7 @@ public final class SVGImport {
                     } else if (shapeField.getType().isAssignableFrom(List.class)) {
                         List<ISVGShape> childrenShapes = new ArrayList<>();
                         for (XMLTag childTag : tag.getChildren()) {
-                            ISVGShape childShape = convertXMLToShape(childTag);
+                            ISVGShape childShape = convert(childTag);
                             if (childShape != null) {
                                 childrenShapes.add(childShape);
                             }
@@ -205,7 +205,7 @@ public final class SVGImport {
             if (mainShape == null) {
                 return null;
             }
-            return convertXMLToShape(mainShape);
+            return convert(mainShape);
         } catch (Exception e) {
             return null;
         }

@@ -5,7 +5,7 @@ import org.junit.Test;
 import fr.univrennes.istic.l2gen.geometry.Point;
 import fr.univrennes.istic.l2gen.geometry.base.Polygon;
 
-public final class PolygonTest implements IShapeTest<Polygon> {
+public final class PolygonTest extends AbstractShapeTest<Polygon> {
 
     @Override
     public Polygon create() {

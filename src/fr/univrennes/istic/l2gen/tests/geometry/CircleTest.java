@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import fr.univrennes.istic.l2gen.geometry.base.Circle;
 
-public class CircleTest implements IShapeTest<Circle> {
+public class CircleTest extends AbstractShapeTest<Circle> {
 
     /**
      * @return Circle
@@ -18,6 +18,7 @@ public class CircleTest implements IShapeTest<Circle> {
     }
 
     @Test
+    @Override
     public void testCenter() {
         Circle c2 = new Circle(1, 1, 1);
         assertTrue(c2.getCenter().getX() == 1);
@@ -25,6 +26,7 @@ public class CircleTest implements IShapeTest<Circle> {
     }
 
     @Test
+    @Override
     public void testMove() {
         Circle c3 = new Circle(5, 5, 1);
         c3.move(1, 1);
@@ -33,6 +35,7 @@ public class CircleTest implements IShapeTest<Circle> {
     }
 
     @Test
+    @Override
     public void testResize() {
         Circle c4 = new Circle(2, 2, 5);
         c4.resize(2, 0);
@@ -40,10 +43,9 @@ public class CircleTest implements IShapeTest<Circle> {
     }
 
     @Test
+    @Override
     public void testDescription() {
         Circle c5 = new Circle(1, 2, 3);
-
-        assertTrue("      Circle Centre=1,2 r=3.0".compareTo(c5.getDescription(3)) == 0);
+        assertTrue("Circle C=1,2 R=3.0".compareTo(c5.getDescription(0)) == 0);
     }
-
 }
