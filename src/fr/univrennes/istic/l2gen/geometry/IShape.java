@@ -12,9 +12,9 @@ public interface IShape extends ISVGShape {
 
     Point getCenter();
 
-    SVGTransform getTransform();
-
     SVGStyle getStyle();
+
+    SVGTransform getTransform();
 
     String getDescription(int indent);
 

@@ -12,6 +12,7 @@ import fr.univrennes.istic.l2gen.svg.xml.model.XMLTag;
 
 @Ignore("Abstract Shape Test")
 public abstract class AbstractShapeTest<T extends IShape> {
+    // TODO: faire test pour Point, Group et Path
 
     /**
      * Créé un objet qui hérite de IShape pour l'utliser a travers les test

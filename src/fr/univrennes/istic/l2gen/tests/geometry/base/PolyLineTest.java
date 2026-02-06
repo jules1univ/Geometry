@@ -35,7 +35,6 @@ public class PolyLineTest extends AbstractShapeTest<PolyLine> {
 
     }
 
-    // TODO: à vérifier
     @Test
     @Override
     public void testResize() {
