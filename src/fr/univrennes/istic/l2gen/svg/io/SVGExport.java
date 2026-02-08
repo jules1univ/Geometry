@@ -4,6 +4,9 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Field;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -99,12 +102,16 @@ public final class SVGExport {
 
         List<Field> fields = fieldCache.get(shapeClass);
         if (fields == null) {
-            fields = new java.util.ArrayList<>();
-            for (Field field : shapeClass.getDeclaredFields()) {
-                if (field.getAnnotation(SVGField.class) != null) {
-                    field.setAccessible(true);
-                    fields.add(field);
+            fields = new ArrayList<>();
+            Class<?> currentClass = shapeClass;
+            while (currentClass != null) {
+                for (Field field : currentClass.getDeclaredFields()) {
+                    if (field.getAnnotation(SVGField.class) != null) {
+                        field.setAccessible(true);
+                        fields.add(field);
+                    }
                 }
+                currentClass = currentClass.getSuperclass();
             }
             fieldCache.put(shapeClass, fields);
         }
@@ -123,25 +130,31 @@ public final class SVGExport {
             }
 
             String attrName = field.value().length > 0 ? field.value()[0] : shapeField.getName();
-
             if (value instanceof List<?> listObj) {
                 if (listObj.isEmpty()) {
                     continue;
                 }
 
-                Object firstElement = listObj.get(0);
-                if (firstElement.getClass().getAnnotation(SVGPoint.class) != null) {
+                Type[] genericTypes = ((ParameterizedType) shapeField.getGenericType()).getActualTypeArguments();
+                if (genericTypes.length == 0) {
+                    continue;
+                }
+                Class<?> listValueType = (Class<?>) ((ParameterizedType) shapeField.getGenericType())
+                        .getActualTypeArguments()[0];
+
+                if (listValueType.getAnnotation(SVGPoint.class) != null) {
                     String pointsValue = getObjectPoints(listObj);
                     if (!pointsValue.isEmpty()) {
                         tag.addAttribute(new XMLAttribute(attrName, pointsValue));
                     }
-                } else {
+                } else if (ISVGShape.class.isAssignableFrom(listValueType)) {
                     for (Object childShape : listObj) {
                         if (childShape instanceof ISVGShape svgShape) {
-                            tag.addChild(convert(svgShape));
+                            tag.appendChild(convert(svgShape));
                         }
                     }
                 }
+
             } else if (value.getClass().getAnnotation(SVGPoint.class) != null && field.value().length == 2) {
                 String pointValue = getObjectPointValue(value);
                 if (pointValue != null) {
@@ -159,6 +172,8 @@ public final class SVGExport {
                 if (optValue.isPresent()) {
                     tag.setAttribute(attrName, optValue.get().toString());
                 }
+            } else if (value instanceof ISVGShape svgShape) {
+                tag.appendChild(convert(svgShape));
             } else {
                 tag.addAttribute(new XMLAttribute(attrName, value.toString()));
             }
@@ -178,11 +193,10 @@ public final class SVGExport {
         background.addAttribute(new XMLAttribute("width", "100%"));
         background.addAttribute(new XMLAttribute("height", "100%"));
         background.addAttribute(new XMLAttribute("fill", "white"));
-        svg.addChild(background);
+        svg.appendChild(background);
 
-        svg.addChild(convert(root));
+        svg.appendChild(convert(root));
 
-        // Utiliser BufferedWriter pour une écriture plus rapide
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(filename))) {
             bw.write(svg.toString());
         } catch (IOException e) {

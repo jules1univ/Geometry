@@ -3,21 +3,36 @@ package fr.univrennes.istic.l2gen.svg.xml.parser;
 import fr.univrennes.istic.l2gen.svg.xml.model.XMLAttribute;
 import fr.univrennes.istic.l2gen.svg.xml.model.XMLTag;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.Reader;
+import java.io.StringReader;
+
 public class XMLParser {
-    private String source;
+    private BufferedReader br;
+    private int current;
     private int index;
 
-    public XMLParser(String xml) {
-        this.source = xml;
+    public XMLParser(BufferedReader reader) throws IOException {
+        this.br = reader;
         this.index = 0;
+        this.current = reader.read();
     }
 
-    public XMLTag parse() throws XMLParseException {
+    public XMLParser(String xml) throws IOException {
+        this(new BufferedReader(new StringReader(xml)));
+    }
+
+    public XMLParser(Reader reader) throws IOException {
+        this(new BufferedReader(reader));
+    }
+
+    public XMLTag parse() throws XMLParseException, IOException {
         this.skipWhitespace();
         return this.parseTag();
     }
 
-    private XMLTag parseTag() throws XMLParseException {
+    private XMLTag parseTag() throws XMLParseException, IOException {
         if (!this.expect('<')) {
             throw new XMLParseException("Expected '<' at position " + index);
         }
@@ -47,7 +62,7 @@ public class XMLParser {
         this.skipWhitespace();
 
         if (this.peek('/')) {
-            index++;
+            advance();
             if (!this.expect('>')) {
                 throw new XMLParseException("Expected '>' at position " + index);
             }
@@ -59,7 +74,7 @@ public class XMLParser {
         }
 
         StringBuilder content = new StringBuilder();
-        while (index < source.length()) {
+        while (current != -1) {
             this.skipWhitespace();
 
             if (this.peek('<')) {
@@ -73,7 +88,7 @@ public class XMLParser {
                 }
 
                 XMLTag child = this.parseTag();
-                tag.addChild(child);
+                tag.appendChild(child);
             } else {
                 content.append(this.parseTextContent());
             }
@@ -104,15 +119,15 @@ public class XMLParser {
         return tag;
     }
 
-    private String parseTagName() throws XMLParseException {
+    private String parseTagName() throws XMLParseException, IOException {
         StringBuilder name = new StringBuilder();
-        while (index < source.length()) {
-            char c = source.charAt(index);
+        while (current != -1) {
+            char c = (char) current;
             if (Character.isWhitespace(c) || c == '>' || c == '/') {
                 break;
             }
             name.append(c);
-            index++;
+            advance();
         }
         if (name.length() == 0) {
             throw new XMLParseException("Expected tag name at position " + index);
@@ -120,7 +135,7 @@ public class XMLParser {
         return name.toString();
     }
 
-    private XMLAttribute parseAttribute() throws XMLParseException {
+    private XMLAttribute parseAttribute() throws XMLParseException, IOException {
         String attrName = parseAttributeName();
         this.skipWhitespace();
 
@@ -134,15 +149,15 @@ public class XMLParser {
         return new XMLAttribute(attrName, attrValue);
     }
 
-    private String parseAttributeName() throws XMLParseException {
+    private String parseAttributeName() throws XMLParseException, IOException {
         StringBuilder name = new StringBuilder();
-        while (index < source.length()) {
-            char c = source.charAt(index);
+        while (current != -1) {
+            char c = (char) current;
             if (Character.isWhitespace(c) || c == '=') {
                 break;
             }
             name.append(c);
-            index++;
+            advance();
         }
         if (name.length() == 0) {
             throw new XMLParseException("Expected attribute name at position " + index);
@@ -150,34 +165,37 @@ public class XMLParser {
         return name.toString();
     }
 
-    private String parseAttributeValue() throws XMLParseException {
-        char quote = source.charAt(index);
+    private String parseAttributeValue() throws XMLParseException, IOException {
+        if (current == -1) {
+            throw new XMLParseException("Expected quote at position " + index);
+        }
+        char quote = (char) current;
         if (quote != '"' && quote != '\'') {
             throw new XMLParseException("Expected quote at position " + index);
         }
-        index++;
+        advance();
         StringBuilder value = new StringBuilder();
-        while (index < source.length()) {
-            char c = source.charAt(index);
+        while (current != -1) {
+            char c = (char) current;
             if (c == quote) {
-                index++;
+                advance();
                 return this.unescapeXML(value.toString());
             }
             value.append(c);
-            index++;
+            advance();
         }
         throw new XMLParseException("Unclosed attribute value at position " + index);
     }
 
-    private String parseTextContent() {
+    private String parseTextContent() throws IOException {
         StringBuilder content = new StringBuilder();
-        while (index < source.length()) {
-            char c = source.charAt(index);
+        while (current != -1) {
+            char c = (char) current;
             if (c == '<') {
                 break;
             }
             content.append(c);
-            index++;
+            advance();
         }
         return this.unescapeXML(content.toString());
     }
@@ -190,65 +208,90 @@ public class XMLParser {
                 .replace("&apos;", "'");
     }
 
-    private void skipWhitespace() {
-        while (index < source.length() && Character.isWhitespace(source.charAt(index))) {
-            index++;
+    private void skipWhitespace() throws IOException {
+        while (current != -1 && Character.isWhitespace((char) current)) {
+            advance();
         }
     }
 
-    private void skipComment() throws XMLParseException {
+    private void skipComment() throws XMLParseException, IOException {
         if (!this.expect("<!--")) {
             throw new XMLParseException("Expected '<!--' at position " + index);
         }
-        while (index < source.length() - 2) {
-            if (source.charAt(index) == '-' &&
-                    source.charAt(index + 1) == '-' &&
-                    source.charAt(index + 2) == '>') {
-                index += 3;
+        int dashCount = 0;
+        while (current != -1) {
+            char c = (char) current;
+            if (dashCount == 2 && c == '>') {
+                advance();
                 this.skipWhitespace();
                 return;
             }
-            index++;
+            if (c == '-') {
+                dashCount++;
+            } else {
+                dashCount = 0;
+            }
+            advance();
         }
         throw new XMLParseException("Unclosed comment");
     }
 
-    private void skipDeclaration() throws XMLParseException {
-        while (index < source.length()) {
-            if (source.charAt(index) == '>') {
-                index++;
+    private void skipDeclaration() throws XMLParseException, IOException {
+        while (current != -1) {
+            if ((char) current == '>') {
+                advance();
                 this.skipWhitespace();
                 return;
             }
-            index++;
+            advance();
         }
         throw new XMLParseException("Unclosed declaration");
     }
 
     private boolean peek(char expected) {
-        return index < source.length() && source.charAt(index) == expected;
+        return current != -1 && (char) current == expected;
     }
 
-    private boolean peek(String expected) {
-        if (index + expected.length() > source.length()) {
+    private boolean peek(String expected) throws IOException {
+        if (current == -1) {
             return false;
         }
-        return source.substring(index, index + expected.length()).equals(expected);
+
+        br.mark(expected.length());
+        boolean matches = true;
+
+        for (int i = 0; i < expected.length(); i++) {
+            int ch = (i == 0) ? current : br.read();
+            if (ch == -1 || (char) ch != expected.charAt(i)) {
+                matches = false;
+                break;
+            }
+        }
+
+        br.reset();
+        return matches;
     }
 
-    private boolean expect(char expected) {
+    private boolean expect(char expected) throws IOException {
         if (this.peek(expected)) {
-            index++;
+            advance();
             return true;
         }
         return false;
     }
 
-    private boolean expect(String expected) {
+    private boolean expect(String expected) throws IOException {
         if (this.peek(expected)) {
-            index += expected.length();
+            for (int i = 0; i < expected.length(); i++) {
+                advance();
+            }
             return true;
         }
         return false;
+    }
+
+    private void advance() throws IOException {
+        current = br.read();
+        index++;
     }
 }

@@ -55,12 +55,28 @@ public class XMLTag {
     attributes.remove(name);
   }
 
-  public void addChild(XMLTag child) {
+  public void appendChild(XMLTag child) {
     children.add(child);
+  }
+
+  public void removeChild(XMLTag child) {
+    children.remove(child);
+  }
+
+  public int getChildrenCount() {
+    return children.size();
   }
 
   public Iterable<XMLTag> getChildren() {
     return children;
+  }
+
+  public XMLTag getChildren(int index) {
+    if (index < 0 || index >= children.size()) {
+      return null;
+    }
+
+    return children.get(index);
   }
 
   public XMLTag getFirstChildByName(String tagName) {

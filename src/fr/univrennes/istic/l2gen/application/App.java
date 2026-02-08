@@ -11,7 +11,10 @@ import fr.univrennes.istic.l2gen.geometry.base.Polygon;
 import fr.univrennes.istic.l2gen.geometry.base.Rectangle;
 import fr.univrennes.istic.l2gen.geometry.base.Text;
 import fr.univrennes.istic.l2gen.geometry.base.Triangle;
+import fr.univrennes.istic.l2gen.svg.animations.SVGAnimate;
 import fr.univrennes.istic.l2gen.svg.interfaces.ISVGShape;
+import fr.univrennes.istic.l2gen.svg.interfaces.SVGField;
+import fr.univrennes.istic.l2gen.svg.interfaces.SVGTag;
 import fr.univrennes.istic.l2gen.svg.io.SVGExport;
 import fr.univrennes.istic.l2gen.svg.io.SVGImport;
 

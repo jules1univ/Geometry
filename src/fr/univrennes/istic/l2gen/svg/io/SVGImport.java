@@ -5,6 +5,7 @@ import java.io.FileReader;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -132,6 +133,7 @@ public final class SVGImport {
             if (!tagName.equals(tag.getTagName())) {
                 continue;
             }
+
             String className = shapeClass.getName();
             if (!tag.hasAttribute(SVGExport.DEFAULT_DATA_TYPE_ATTR)
                     || !tag.getAttribute(SVGExport.DEFAULT_DATA_TYPE_ATTR).getValue().equals(className)) {
@@ -144,11 +146,15 @@ public final class SVGImport {
                 List<Field> fields = fieldCache.get(shapeClass);
                 if (fields == null) {
                     fields = new ArrayList<>();
-                    for (Field f : shapeClass.getDeclaredFields()) {
-                        if (f.getAnnotation(SVGField.class) != null) {
-                            f.setAccessible(true);
-                            fields.add(f);
+                    Class<?> currentClass = shapeClass;
+                    while (currentClass != null) {
+                        for (Field field : currentClass.getDeclaredFields()) {
+                            if (field.getAnnotation(SVGField.class) != null) {
+                                field.setAccessible(true);
+                                fields.add(field);
+                            }
                         }
+                        currentClass = currentClass.getSuperclass();
                     }
                     fieldCache.put(shapeClass, fields);
                 }
@@ -157,13 +163,13 @@ public final class SVGImport {
                     SVGField attr = shapeField.getAnnotation(SVGField.class);
 
                     String attrName = attr.value().length > 0 ? attr.value()[0] : shapeField.getName();
+
+                    Class<?> fieldType = shapeField.getType();
                     if (tag.hasAttribute(attrName)) {
                         String attrValue = tag.getAttribute(attrName).getValue();
                         if (attrValue == null) {
                             continue;
                         }
-
-                        Class<?> fieldType = shapeField.getType();
 
                         if (fieldType == String.class) {
                             shapeField.set(shape, attrValue);
@@ -174,8 +180,13 @@ public final class SVGImport {
                         } else if (fieldType == Boolean.class || fieldType == boolean.class) {
                             shapeField.set(shape, Boolean.parseBoolean(attrValue));
                         } else if (fieldType == Optional.class) {
-                            Class<?> optionalValueType = (Class<?>) ((ParameterizedType) shapeField.getGenericType())
-                                    .getActualTypeArguments()[0];
+                            Type[] genericTypes = ((ParameterizedType) shapeField.getGenericType())
+                                    .getActualTypeArguments();
+                            if (genericTypes.length == 0) {
+                                continue;
+                            }
+
+                            Class<?> optionalValueType = (Class<?>) genericTypes[0];
                             if (optionalValueType == String.class) {
                                 shapeField.set(shape, Optional.of(attrValue));
                             } else if (optionalValueType == Integer.class || optionalValueType == int.class) {
@@ -185,14 +196,24 @@ public final class SVGImport {
                             } else if (optionalValueType == Boolean.class || optionalValueType == boolean.class) {
                                 shapeField.set(shape, Optional.of(Boolean.parseBoolean(attrValue)));
                             }
-                        } else if (point != null) {
-                            if (fieldType == point) {
-                                shapeField.set(shape, createPoint(attr, tag));
-                            } else if (fieldType == List.class) {
-                                shapeField.set(shape, createPointList(attrValue));
-                            }
+                        } else if (point != null && fieldType == point) {
+                            shapeField.set(shape, createPoint(attr, tag));
+                        } else if (point != null && fieldType == List.class) {
+                            shapeField.set(shape, createPointList(attrValue));
                         }
-                    } else if (shapeField.getType() == List.class) {
+                    } else if (fieldType == List.class) {
+                        Type[] genericTypes = ((ParameterizedType) shapeField.getGenericType())
+                                .getActualTypeArguments();
+                        if (genericTypes.length == 0) {
+                            continue;
+                        }
+
+                        Class<?> listValueType = (Class<?>) ((ParameterizedType) shapeField.getGenericType())
+                                .getActualTypeArguments()[0];
+                        if (listValueType.getAnnotation(SVGTag.class) == null) {
+                            continue;
+                        }
+
                         List<ISVGShape> childrenShapes = new ArrayList<>();
                         for (XMLTag childTag : tag.getChildren()) {
                             ISVGShape childShape = convert(childTag);
@@ -201,6 +222,11 @@ public final class SVGImport {
                             }
                         }
                         shapeField.set(shape, childrenShapes);
+                    } else if (fieldType.getAnnotation(SVGTag.class) != null) {
+                        ISVGShape childShape = convert(tag);
+                        if (childShape != null) {
+                            shapeField.set(shape, childShape);
+                        }
                     }
                 }
                 return shape;
@@ -214,14 +240,7 @@ public final class SVGImport {
 
     public static ISVGShape load(String filename) {
         try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
-            StringBuilder sb = new StringBuilder();
-            String line;
-            while ((line = br.readLine()) != null) {
-                sb.append(line).append('\n');
-            }
-            String source = sb.toString();
-
-            XMLParser parser = new XMLParser(source);
+            XMLParser parser = new XMLParser(br);
 
             XMLTag root = parser.parse();
             if (root == null || !root.getTagName().equals("svg")) {
