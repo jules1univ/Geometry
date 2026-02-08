@@ -59,9 +59,17 @@ public class SVGAnimate implements ISVGShape {
         return this;
     }
 
+    public AnimationTransformType type() {
+        return type.orElse(null);
+    }
+
     public SVGAnimate from(String from) {
         this.from = Optional.of(from);
         return this;
+    }
+
+    public String from() {
+        return from.orElse(null);
     }
 
     public SVGAnimate to(String to) {
@@ -69,9 +77,17 @@ public class SVGAnimate implements ISVGShape {
         return this;
     }
 
+    public String to() {
+        return to.orElse(null);
+    }
+
     public SVGAnimate by(String by) {
         this.by = Optional.of(by);
         return this;
+    }
+
+    public String by() {
+        return by.orElse(null);
     }
 
     public SVGAnimate begin(String begin) {
@@ -79,9 +95,17 @@ public class SVGAnimate implements ISVGShape {
         return this;
     }
 
+    public String begin() {
+        return begin.orElse(null);
+    }
+
     public SVGAnimate end(String end) {
         this.end = Optional.of(end);
         return this;
+    }
+
+    public String end() {
+        return end.orElse(null);
     }
 
     public SVGAnimate dur(AnimationDuration dur) {
@@ -89,9 +113,17 @@ public class SVGAnimate implements ISVGShape {
         return this;
     }
 
+    public AnimationDuration dur() {
+        return dur.orElse(null);
+    }
+
     public SVGAnimate min(AnimationDuration min) {
         this.min = Optional.of(min);
         return this;
+    }
+
+    public AnimationDuration min() {
+        return min.orElse(null);
     }
 
     public SVGAnimate max(AnimationDuration max) {
@@ -99,9 +131,17 @@ public class SVGAnimate implements ISVGShape {
         return this;
     }
 
+    public AnimationDuration max() {
+        return max.orElse(null);
+    }
+
     public SVGAnimate restart(AnimationRestart restart) {
         this.restart = Optional.of(restart);
         return this;
+    }
+
+    public AnimationRestart restart() {
+        return restart.orElse(null);
     }
 
     public SVGAnimate repeatCount(AnimationCount repeatCount) {
@@ -109,14 +149,26 @@ public class SVGAnimate implements ISVGShape {
         return this;
     }
 
+    public AnimationCount repeatCount() {
+        return repeatCount.orElse(null);
+    }
+
     public SVGAnimate repeatDur(AnimationDuration repeatDur) {
         this.repeatDur = Optional.of(repeatDur);
         return this;
     }
 
+    public AnimationDuration repeatDur() {
+        return repeatDur.orElse(null);
+    }
+
     public SVGAnimate fill(AnimationFill fill) {
         this.fill = Optional.of(fill);
         return this;
+    }
+
+    public AnimationFill fill() {
+        return fill.orElse(null);
     }
 
     public void reset() {

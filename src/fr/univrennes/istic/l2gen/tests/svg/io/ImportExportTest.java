@@ -18,18 +18,23 @@ import fr.univrennes.istic.l2gen.svg.interfaces.point.SVGPoint;
 import fr.univrennes.istic.l2gen.svg.interfaces.point.SVGPointX;
 import fr.univrennes.istic.l2gen.svg.interfaces.point.SVGPointY;
 import fr.univrennes.istic.l2gen.svg.io.SVGExport;
+import fr.univrennes.istic.l2gen.svg.io.SVGImport;
 import fr.univrennes.istic.l2gen.svg.xml.model.XMLTag;
 
-public class SVGExportTest {
+public class ImportExportTest {
 
     @SVGPoint
-    private static class TestPoint {
+    private static class TestPoint implements ISVGShape {
 
         @SVGPointX
         private double x;
 
         @SVGPointY
         private double y;
+
+        @SuppressWarnings("unused")
+        public TestPoint() {
+        }
 
         public TestPoint(double x, double y) {
             this.x = x;
@@ -41,7 +46,10 @@ public class SVGExportTest {
     private static class TestSuperRect implements ISVGShape {
 
         @SVGField
-        private String superField = "superValue";
+        protected String superField = "superValue";
+
+        public TestSuperRect() {
+        }
 
     }
 
@@ -63,6 +71,9 @@ public class SVGExportTest {
         @SVGField
         private List<TestPoint> randomValues = new ArrayList<>();
 
+        @SVGField
+        private List<TestSuperRect> miniRects = new ArrayList<>();
+
         public TestRect() {
             this.childAnimation = new SVGAnimate();
             this.childAnimation
@@ -81,27 +92,65 @@ public class SVGExportTest {
                     .dur(AnimationDuration.s(1))
                     .repeatCount(AnimationCount.INDEFINITE)
                     .repeatDur(AnimationDuration.s(1));
+
+            this.miniRects.add(new TestSuperRect());
+            this.miniRects.add(new TestSuperRect());
+            this.miniRects.add(new TestSuperRect());
+            this.miniRects.add(new TestSuperRect());
         }
 
     }
 
     @Test
-    public void testSVGConvert() {
+    public void testExportFile() {
+        TestRect rect = new TestRect();
+        String filepath = "test_output.svg";
+        assert SVGExport.export(rect, filepath);
+
+        File file = new File(filepath);
+        assert file.exists();
+
+        file.delete();
+    }
+
+    @Test
+    public void testImportFile() {
+        SVGImport.register(TestRect.class);
+        SVGImport.register(TestPoint.class);
+
+        TestRect rect = new TestRect();
+        String filepath = "test_output.svg";
+        assert SVGExport.export(rect, filepath);
+
+        List<ISVGShape> importShapes = SVGImport.load(filepath);
+        assert importShapes.size() != 0;
+
+        ISVGShape importShape = importShapes.get(0);
+        assert importShape instanceof TestRect;
+
+        File file = new File(filepath);
+        assert file.exists();
+
+        file.delete();
+    }
+
+    @Test
+    public void testExportConvert() {
         TestRect rect = new TestRect();
         XMLTag svgRect = SVGExport.convert(rect);
 
         assert svgRect.getTagName().equals("rect");
 
         assert svgRect.hasAttribute("x");
-        assert svgRect.getAttribute("x").value().equals("0.0");
+        assert svgRect.getAttribute("x").getValue().equals("0.0");
 
         assert svgRect.hasAttribute("randomValues");
-        assert svgRect.getAttribute("randomValues").value().equals("10.0,10.0 20.0,20.0");
+        assert svgRect.getAttribute("randomValues").getValue().equals("10.0,10.0 20.0,20.0");
 
         assert svgRect.hasAttribute("superField");
-        assert svgRect.getAttribute("superField").value().equals("superValue");
+        assert svgRect.getAttribute("superField").getValue().equals("superValue");
 
-        assert svgRect.getChildrenCount() == 2;
+        assert svgRect.getChildrenCount() == 6;
 
         XMLTag svgAnimate = svgRect.getFirstChild();
         assert svgAnimate != null;
@@ -109,21 +158,52 @@ public class SVGExportTest {
         assert svgAnimate.getTagName().equals("animate");
 
         assert svgAnimate.hasAttribute("type");
-        assert svgAnimate.getAttribute("type").value().equals("rotate");
+        assert svgAnimate.getAttribute("type").getValue().equals("rotate");
 
         assert svgAnimate.hasAttribute("begin");
-        assert svgAnimate.getAttribute("begin").value().equals("0");
+        assert svgAnimate.getAttribute("begin").getValue().equals("0");
 
         XMLTag svgAnimateTransform = svgRect.getChildren(1);
         assert svgAnimateTransform != null;
 
         assert svgAnimateTransform.getTagName().equals("animateTransform");
         assert svgAnimateTransform.hasAttribute("type");
-        assert svgAnimateTransform.getAttribute("type").value().equals("translate");
+        assert svgAnimateTransform.getAttribute("type").getValue().equals("translate");
     }
 
     @Test
-    public void testSVGConvertWithNullValues() {
+    public void testImportConvert() {
+        SVGImport.register(TestRect.class);
+        SVGImport.register(TestPoint.class);
+
+        TestRect rect = new TestRect();
+        XMLTag svgRect = SVGExport.convert(rect);
+
+        ISVGShape importShape = SVGImport.convert(svgRect);
+
+        assert importShape != null;
+        assert importShape instanceof TestRect;
+
+        TestRect importedRect = (TestRect) importShape;
+        assert importedRect.position != null;
+        assert importedRect.position.x == 0.0;
+        assert importedRect.position.y == 0.0;
+
+        assert importedRect.randomValues != null;
+        assert importedRect.randomValues.size() == 2;
+        assert importedRect.randomValues.get(0).x == 10.0;
+        assert importedRect.randomValues.get(0).y == 10.0;
+
+        assert importedRect.childAnimation != null;
+        assert importedRect.childAnimation.type() == AnimationTransformType.ROTATE;
+        assert importedRect.childAnimation.begin().equals("0");
+        assert importedRect.childAnimation.to() == null;
+
+        assert importedRect.superField.equals("superValue");
+    }
+
+    @Test
+    public void testExportConvertWithNull() {
         TestRect rect = new TestRect();
         rect.position = null;
         XMLTag svgRect = SVGExport.convert(rect);
@@ -135,7 +215,7 @@ public class SVGExportTest {
     }
 
     @Test
-    public void testSVGConvertWithEmptyList() {
+    public void testExportConvertWithEmptyList() {
         TestRect rect = new TestRect();
         rect.randomValues.clear();
         XMLTag svgRect = SVGExport.convert(rect);
@@ -146,15 +226,13 @@ public class SVGExportTest {
     }
 
     @Test
-    public void testSVGExport() {
+    public void testImportMissingRegister() {
         TestRect rect = new TestRect();
-        String filepath = "test_output.svg";
-        assert SVGExport.export(rect, filepath);
+        XMLTag svgRect = SVGExport.convert(rect);
 
-        File file = new File(filepath);
-        assert file.exists();
+        ISVGShape importShape = SVGImport.convert(svgRect);
 
-        file.delete();
+        assert importShape == null;
     }
 
 }

@@ -45,6 +45,7 @@ public final class SVGImport {
                     "Shape class \"" + shape.getSimpleName() + "\" must have a default constructor");
         }
 
+        defaultConstructor.setAccessible(true);
         constructorCache.put(shape, defaultConstructor);
 
         if (shape.getAnnotation(SVGPoint.class) != null) {
@@ -135,8 +136,8 @@ public final class SVGImport {
             }
 
             String className = shapeClass.getName();
-            if (!tag.hasAttribute(SVGExport.DEFAULT_DATA_TYPE_ATTR)
-                    || !tag.getAttribute(SVGExport.DEFAULT_DATA_TYPE_ATTR).getValue().equals(className)) {
+            if (!tag.hasAttribute(SVGExport.DEFAULT_CLASS_TYPE_ATTR)
+                    || !tag.getAttribute(SVGExport.DEFAULT_CLASS_TYPE_ATTR).getValue().equals(className)) {
                 continue;
             }
 
@@ -202,20 +203,16 @@ public final class SVGImport {
                             shapeField.set(shape, createPointList(attrValue));
                         }
                     } else if (fieldType == List.class) {
-                        Type[] genericTypes = ((ParameterizedType) shapeField.getGenericType())
-                                .getActualTypeArguments();
-                        if (genericTypes.length == 0) {
-                            continue;
-                        }
-
-                        Class<?> listValueType = (Class<?>) ((ParameterizedType) shapeField.getGenericType())
-                                .getActualTypeArguments()[0];
-                        if (listValueType.getAnnotation(SVGTag.class) == null) {
-                            continue;
-                        }
-
                         List<ISVGShape> childrenShapes = new ArrayList<>();
                         for (XMLTag childTag : tag.getChildren()) {
+                            if (!childTag.hasAttribute(SVGExport.DEFAULT_LIST_TYPE_ATTR)) {
+                                continue;
+                            }
+                            if (!childTag.getAttribute(SVGExport.DEFAULT_LIST_TYPE_ATTR).getValue()
+                                    .equals(fieldType.getName())) {
+                                continue;
+                            }
+
                             ISVGShape childShape = convert(childTag);
                             if (childShape != null) {
                                 childrenShapes.add(childShape);
@@ -223,9 +220,19 @@ public final class SVGImport {
                         }
                         shapeField.set(shape, childrenShapes);
                     } else if (fieldType.getAnnotation(SVGTag.class) != null) {
-                        ISVGShape childShape = convert(tag);
-                        if (childShape != null) {
-                            shapeField.set(shape, childShape);
+                        for (XMLTag childTag : tag.getChildren()) {
+                            if (!childTag.hasAttribute(SVGExport.DEFAULT_CLASS_TYPE_ATTR)) {
+                                continue;
+                            }
+
+                            if (childTag.getAttribute(SVGExport.DEFAULT_CLASS_TYPE_ATTR).getValue()
+                                    .equals(fieldType.getName())) {
+                                ISVGShape childShape = convert(childTag);
+                                if (childShape != null) {
+                                    shapeField.set(shape, childShape);
+                                }
+                                break;
+                            }
                         }
                     }
                 }
@@ -238,7 +245,7 @@ public final class SVGImport {
         return null;
     }
 
-    public static ISVGShape load(String filename) {
+    public static List<ISVGShape> load(String filename) {
         try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
             XMLParser parser = new XMLParser(br);
 
@@ -247,13 +254,16 @@ public final class SVGImport {
                 return null;
             }
 
-            XMLTag mainShape = root.getFirstChildByName("g");
-            if (mainShape == null) {
-                return null;
+            List<ISVGShape> shapes = new ArrayList<>();
+            for (XMLTag child : root.getChildren()) {
+                ISVGShape shape = convert(child);
+                if (shape != null) {
+                    shapes.add(shape);
+                }
             }
-            return convert(mainShape);
+            return shapes;
         } catch (Exception e) {
-            return null;
+            return new ArrayList<>();
         }
     }
 }

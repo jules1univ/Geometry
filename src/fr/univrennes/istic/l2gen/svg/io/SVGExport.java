@@ -4,8 +4,6 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Field;
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -23,7 +21,8 @@ import fr.univrennes.istic.l2gen.svg.xml.model.XMLAttribute;
 import fr.univrennes.istic.l2gen.svg.xml.model.XMLTag;
 
 public final class SVGExport {
-    public static final String DEFAULT_DATA_TYPE_ATTR = "jclass-data";
+    public static final String DEFAULT_CLASS_TYPE_ATTR = "jclass-data";
+    public static final String DEFAULT_LIST_TYPE_ATTR = "jlist-data";
 
     private static final Map<Class<?>, List<Field>> fieldCache = new HashMap<>();
     private static final Map<Class<?>, Field[]> pointFieldsCache = new HashMap<>();
@@ -98,7 +97,7 @@ public final class SVGExport {
         }
 
         XMLTag tag = new XMLTag(tagName.value());
-        tag.addAttribute(new XMLAttribute(DEFAULT_DATA_TYPE_ATTR, shapeClass.getName()));
+        tag.addAttribute(new XMLAttribute(DEFAULT_CLASS_TYPE_ATTR, shapeClass.getName()));
 
         List<Field> fields = fieldCache.get(shapeClass);
         if (fields == null) {
@@ -135,13 +134,7 @@ public final class SVGExport {
                     continue;
                 }
 
-                Type[] genericTypes = ((ParameterizedType) shapeField.getGenericType()).getActualTypeArguments();
-                if (genericTypes.length == 0) {
-                    continue;
-                }
-                Class<?> listValueType = (Class<?>) ((ParameterizedType) shapeField.getGenericType())
-                        .getActualTypeArguments()[0];
-
+                Class<?> listValueType = listObj.get(0).getClass();
                 if (listValueType.getAnnotation(SVGPoint.class) != null) {
                     String pointsValue = getObjectPoints(listObj);
                     if (!pointsValue.isEmpty()) {
@@ -150,7 +143,9 @@ public final class SVGExport {
                 } else if (ISVGShape.class.isAssignableFrom(listValueType)) {
                     for (Object childShape : listObj) {
                         if (childShape instanceof ISVGShape svgShape) {
-                            tag.appendChild(convert(svgShape));
+                            XMLTag childTag = convert(svgShape);
+                            childTag.addAttribute(new XMLAttribute(DEFAULT_LIST_TYPE_ATTR, listValueType.getName()));
+                            tag.appendChild(childTag);
                         }
                     }
                 }
@@ -182,20 +177,20 @@ public final class SVGExport {
         return tag;
     }
 
-    public static boolean export(ISVGShape root, String filename) {
+    public static boolean export(ISVGShape shape, String filename) {
+        return export(List.of(shape), filename);
+    }
+
+    public static boolean export(List<ISVGShape> shapes, String filename) {
         XMLTag svg = new XMLTag("svg");
         svg.addAttribute(new XMLAttribute("xmlns", "http://www.w3.org/2000/svg"));
         svg.addAttribute(new XMLAttribute("version", "1.1"));
         svg.addAttribute(new XMLAttribute("width", "1000"));
         svg.addAttribute(new XMLAttribute("height", "1000"));
 
-        XMLTag background = new XMLTag("rect");
-        background.addAttribute(new XMLAttribute("width", "100%"));
-        background.addAttribute(new XMLAttribute("height", "100%"));
-        background.addAttribute(new XMLAttribute("fill", "white"));
-        svg.appendChild(background);
-
-        svg.appendChild(convert(root));
+        for (ISVGShape shape : shapes) {
+            svg.appendChild(convert(shape));
+        }
 
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(filename))) {
             bw.write(svg.toString());

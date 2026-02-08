@@ -44,9 +44,17 @@ public final class SVGAnimateMotion implements ISVGShape {
         return this;
     }
 
+    public String begin() {
+        return begin.orElse(null);
+    }
+
     public SVGAnimateMotion end(String end) {
         this.end = Optional.of(end);
         return this;
+    }
+
+    public String end() {
+        return end.orElse(null);
     }
 
     public SVGAnimateMotion dur(AnimationDuration dur) {
@@ -54,9 +62,17 @@ public final class SVGAnimateMotion implements ISVGShape {
         return this;
     }
 
+    public AnimationDuration dur() {
+        return dur.orElse(null);
+    }
+
     public SVGAnimateMotion min(AnimationDuration min) {
         this.min = Optional.of(min);
         return this;
+    }
+
+    public AnimationDuration min() {
+        return min.orElse(null);
     }
 
     public SVGAnimateMotion max(AnimationDuration max) {
@@ -64,9 +80,17 @@ public final class SVGAnimateMotion implements ISVGShape {
         return this;
     }
 
+    public AnimationDuration max() {
+        return max.orElse(null);
+    }
+
     public SVGAnimateMotion restart(AnimationRestart restart) {
         this.restart = Optional.of(restart);
         return this;
+    }
+
+    public AnimationRestart restart() {
+        return restart.orElse(null);
     }
 
     public SVGAnimateMotion repeatCount(AnimationCount repeatCount) {
@@ -74,14 +98,26 @@ public final class SVGAnimateMotion implements ISVGShape {
         return this;
     }
 
+    public AnimationCount repeatCount() {
+        return repeatCount.orElse(null);
+    }
+
     public SVGAnimateMotion repeatDur(AnimationDuration repeatDur) {
         this.repeatDur = Optional.of(repeatDur);
         return this;
     }
 
+    public AnimationDuration repeatDur() {
+        return repeatDur.orElse(null);
+    }
+
     public SVGAnimateMotion fill(AnimationFill fill) {
         this.fill = Optional.of(fill);
         return this;
+    }
+
+    public AnimationFill fill() {
+        return fill.orElse(null);
     }
 
     public void reset() {
