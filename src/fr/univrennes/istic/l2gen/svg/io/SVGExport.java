@@ -144,7 +144,7 @@ public final class SVGExport {
                     for (Object childShape : listObj) {
                         if (childShape instanceof ISVGShape svgShape) {
                             XMLTag childTag = convert(svgShape);
-                            childTag.addAttribute(new XMLAttribute(DEFAULT_LIST_TYPE_ATTR, listValueType.getName()));
+                            childTag.addAttribute(new XMLAttribute(DEFAULT_LIST_TYPE_ATTR, shapeField.getName()));
                             tag.appendChild(childTag);
                         }
                     }
@@ -192,12 +192,15 @@ public final class SVGExport {
             svg.appendChild(convert(shape));
         }
 
+        return export(svg, filename);
+    }
+
+    public static boolean export(XMLTag root, String filename) {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(filename))) {
-            bw.write(svg.toString());
+            bw.write(root.toString());
         } catch (IOException e) {
             return false;
         }
-
         return true;
     }
 }

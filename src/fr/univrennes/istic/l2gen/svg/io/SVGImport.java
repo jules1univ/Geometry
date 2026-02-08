@@ -209,7 +209,7 @@ public final class SVGImport {
                                 continue;
                             }
                             if (!childTag.getAttribute(SVGExport.DEFAULT_LIST_TYPE_ATTR).getValue()
-                                    .equals(fieldType.getName())) {
+                                    .equals(shapeField.getName())) {
                                 continue;
                             }
 
