@@ -49,7 +49,7 @@ public class App {
         System.out.println("Fractal: " + (endTime - startTime) + " ms");
 
         startTime = System.currentTimeMillis();
-        SVGExport.export(List.of(background, fractal), "output.svg");
+        SVGExport.export(List.of(background, fractal), "output.svg", 1000, 1000);
         endTime = System.currentTimeMillis();
         System.out.println("Export: " + (endTime - startTime) + " ms");
 

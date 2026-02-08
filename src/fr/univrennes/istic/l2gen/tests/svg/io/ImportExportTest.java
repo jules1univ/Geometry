@@ -105,7 +105,7 @@ public class ImportExportTest {
     public void testExportFile() {
         TestRect rect = new TestRect();
         String filepath = "test_output.svg";
-        assert SVGExport.export(rect, filepath);
+        assert SVGExport.export(rect, filepath, 0, 0);
 
         File file = new File(filepath);
         assert file.exists();
@@ -120,7 +120,7 @@ public class ImportExportTest {
 
         TestRect rect = new TestRect();
         String filepath = "test_output.svg";
-        assert SVGExport.export(rect, filepath);
+        assert SVGExport.export(rect, filepath, 0, 0);
 
         List<ISVGShape> importShapes = SVGImport.load(filepath);
         assert importShapes.size() != 0;
