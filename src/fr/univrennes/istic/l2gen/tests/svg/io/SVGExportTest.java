@@ -37,8 +37,16 @@ public class SVGExportTest {
         }
     }
 
+    @SVGTag("super-rect")
+    private static class TestSuperRect implements ISVGShape {
+
+        @SVGField
+        private String superField = "superValue";
+
+    }
+
     @SVGTag("rect")
-    private static class TestRect implements ISVGShape {
+    private static class TestRect extends TestSuperRect {
 
         @SVGField
         private SVGAnimate childAnimation;
@@ -89,6 +97,9 @@ public class SVGExportTest {
 
         assert svgRect.hasAttribute("randomValues");
         assert svgRect.getAttribute("randomValues").value().equals("10.0,10.0 20.0,20.0");
+
+        assert svgRect.hasAttribute("superField");
+        assert svgRect.getAttribute("superField").value().equals("superValue");
 
         assert svgRect.getChildrenCount() == 2;
 
