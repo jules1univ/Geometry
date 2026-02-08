@@ -235,4 +235,25 @@ public class ImportExportTest {
         assert importShape == null;
     }
 
+    @Test
+    public void testImportMissingAttribute() {
+        SVGImport.register(TestRect.class);
+        SVGImport.register(TestPoint.class);
+
+        TestRect rect = new TestRect();
+        XMLTag svgRect = SVGExport.convert(rect);
+
+        svgRect.removeAttribute("x");
+
+        ISVGShape importShape = SVGImport.convert(svgRect);
+
+        assert importShape != null;
+        assert importShape instanceof TestRect;
+
+        TestRect importedRect = (TestRect) importShape;
+        assert importedRect.position != null;
+        assert importedRect.position.x == 0.0;
+        assert importedRect.position.y == 0.0;
+    }
+
 }
