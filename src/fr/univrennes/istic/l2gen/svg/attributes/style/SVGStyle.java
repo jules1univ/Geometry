@@ -12,6 +12,8 @@ public final class SVGStyle implements ISVGAttribute {
 
     private Optional<Double> fontSize = Optional.empty();
     private Optional<String> fontFamily = Optional.empty();
+    private Optional<String> textAnchor = Optional.empty();
+    private Optional<String> alignmentBaseline = Optional.empty();
 
     public SVGStyle() {
 
@@ -45,6 +47,12 @@ public final class SVGStyle implements ISVGAttribute {
             } else if (declaration.startsWith("font-family:")) {
                 String family = declaration.substring("font-family:".length());
                 this.fontFamily = Optional.of(family);
+            } else if (declaration.startsWith("text-anchor:")) {
+                String anchor = declaration.substring("text-anchor:".length());
+                this.textAnchor = Optional.of(anchor);
+            } else if (declaration.startsWith("alignment-baseline:")) {
+                String baseline = declaration.substring("alignment-baseline:".length());
+                this.alignmentBaseline = Optional.of(baseline);
             }
         }
     }
@@ -94,10 +102,33 @@ public final class SVGStyle implements ISVGAttribute {
         return fontFamily;
     }
 
+    public SVGStyle textAnchor(String anchor) {
+        this.textAnchor = Optional.of(anchor);
+        return this;
+    }
+
+    public Optional<String> textAnchor() {
+        return textAnchor;
+    }
+
+    public SVGStyle alignmentBaseline(String baseline) {
+        this.alignmentBaseline = Optional.of(baseline);
+        return this;
+    }
+
+    public Optional<String> alignmentBaseline() {
+        return alignmentBaseline;
+    }
+
     @Override
     public boolean hasContent() {
-        return strokeWidth.isPresent() || strokeColor.isPresent() || fillColor.isPresent() || fontSize.isPresent()
-                || fontFamily.isPresent();
+        return strokeWidth.isPresent()
+                || strokeColor.isPresent()
+                || fillColor.isPresent()
+                || fontSize.isPresent()
+                || fontFamily.isPresent()
+                || textAnchor.isPresent()
+                || alignmentBaseline.isPresent();
     }
 
     @Override
@@ -108,6 +139,8 @@ public final class SVGStyle implements ISVGAttribute {
         fillColor.ifPresent(c -> sb.append("fill:").append(c).append(";"));
         fontSize.ifPresent(s -> sb.append("font-size:").append(s).append(";"));
         fontFamily.ifPresent(f -> sb.append("font-family:").append(f).append(";"));
+        textAnchor.ifPresent(a -> sb.append("text-anchor:").append(a).append(";"));
+        alignmentBaseline.ifPresent(a -> sb.append("alignment-baseline:").append(a).append(";"));
         return sb.toString();
     }
 }

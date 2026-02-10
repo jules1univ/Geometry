@@ -1,4 +1,4 @@
-package fr.univrennes.istic.l2gen.visustats;
+package fr.univrennes.istic.l2gen.visustats.view;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,11 +12,12 @@ import fr.univrennes.istic.l2gen.svg.attributes.transform.SVGTransform;
 import fr.univrennes.istic.l2gen.svg.color.Color;
 import fr.univrennes.istic.l2gen.svg.interfaces.SVGField;
 import fr.univrennes.istic.l2gen.svg.interfaces.SVGTag;
+import fr.univrennes.istic.l2gen.visustats.data.DataSet;
+import fr.univrennes.istic.l2gen.visustats.data.Label;
+import fr.univrennes.istic.l2gen.visustats.data.Value;
 
 @SVGTag("g")
 public class PieDataView implements IDataView {
-    // TODO: finir implementation de PieView
-
     @SVGField
     private List<IShape> elements;
 
@@ -28,20 +29,17 @@ public class PieDataView implements IDataView {
 
     private Point center;
     private double radius;
-    private double[] data;
+    private DataSet data;
 
     public PieDataView() {
         this.elements = new ArrayList<>();
         this.center = new Point(0, 0);
     }
 
-    public PieDataView(Point center, double radius, double[] data) {
+    public PieDataView(Point center, double radius) {
         this.elements = new ArrayList<>();
         this.center = center;
         this.radius = radius;
-
-        this.data = data;
-        this.update();
     }
 
     @Override
@@ -94,55 +92,65 @@ public class PieDataView implements IDataView {
 
     @Override
     public IShape copy() {
-        return new PieDataView(new Point(this.center.getX(), this.center.getY()), this.radius, this.data);
+        return new PieDataView(new Point(this.center.getX(), this.center.getY()), this.radius);
     }
 
     @Override
-    public void setTitle(String title) {
-        // TODO: implémenter setTitle pour PieView
-    }
+    public void setData(List<DataSet> datasets) {
+        if (datasets.isEmpty()) {
+            return;
+        }
 
-    @Override
-    public void setData(double[] data) {
-        this.data = data;
+        this.data = datasets.get(0);
         this.update();
     }
 
     private void update() {
-        double total = 0;
-        for (double value : data)
-            total += value;
+        double total = this.data.values().stream().mapToDouble(Value::value).sum();
 
-        for (int i = 0; i < data.length; i++) {
+        for (int i = 0; i < this.data.size(); i++) {
             double startAngle = 0;
             for (int j = 0; j < i; j++) {
-                startAngle += data[j] / total * 360;
+                startAngle += data.getValue(j) / total * 360;
             }
-            double endAngle = startAngle + data[i] / total * 360;
-            double midAngle = (startAngle + endAngle) / 2;
+            double endAngle = startAngle + data.getValue(i) / total * 360;
 
             Path slice = createSlice(startAngle, endAngle);
-            slice.getStyle().fillColor(Color.random()).strokeColor(Color.BLACK).strokeWidth(2);
+            slice.getStyle()
+                    .fillColor(data.get(i).color().orElse(data.mainColor()))
+                    .strokeColor(Color.BLACK)
+                    .strokeWidth(2);
+
             this.elements.add(slice);
 
-            double arrowStartX = center.getX() + radius * Math.cos(Math.toRadians(midAngle));
-            double arrowStartY = center.getY() + radius * Math.sin(Math.toRadians(midAngle));
-            double arrowEndX = center.getX() + radius * 1.3 * Math.cos(Math.toRadians(midAngle));
-            double arrowEndY = center.getY() + radius * 1.3 * Math.sin(Math.toRadians(midAngle));
+            double midAngle = Math.toRadians((startAngle + endAngle) / 2);
+            double length = radius * 1.2;
+
+            double arrowStartX = center.getX() + radius * Math.cos(midAngle);
+            double arrowStartY = center.getY() + radius * Math.sin(midAngle);
+            double arrowEndX = center.getX() + length * Math.cos(midAngle);
+            double arrowEndY = center.getY() + length * Math.sin(midAngle);
 
             Path arrow = new Path();
             arrow.draw()
                     .move(arrowStartX, arrowStartY, false)
                     .line(arrowEndX, arrowEndY, false);
-            arrow.getStyle().strokeColor(Color.BLACK).strokeWidth(1);
+
+            arrow.getStyle()
+                    .strokeColor(Color.BLACK)
+                    .strokeWidth(2);
             this.elements.add(arrow);
 
-            Text label = new Text(arrowEndX + 5, arrowEndY, String.valueOf(data[i]));
-            label.getStyle()
-                    .fillColor(Color.BLACK)
+            Label defaultLabel = new Label(String.format("%.2f%%", data.getValue(i) / total * 100));
+            Label label = this.data.get(i).label().orElse(defaultLabel);
+
+            Text text = new Text(arrowEndX + 5, arrowEndY + 20, label.name());
+            text.getStyle()
+                    .fillColor(label.color())
+                    .textAnchor("middle")
                     .fontSize(24)
                     .fontFamily("Arial");
-            this.elements.add(label);
+            this.elements.add(text);
         }
     }
 
