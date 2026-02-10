@@ -1,4 +1,15 @@
-# Project Geometry
+# 📊 Geometry
+
+> Generate SVG charts from any data sources
+
+![C](https://img.shields.io/github/languages/top/jules1univ/Geometry?label=Java%20🔥)
+![Platform](https://img.shields.io/badge/Platform%20🌍-Windows%20|%20Linux%20|%20MacOS-purple)
+![Charts](https://img.shields.io/badge/Charts%20📊-Geometry-green)
+[![Build](https://github.com/jules1univ/Geometry/actions/workflows/build-jar.yml/badge.svg)](https://github.com/jules1univ/Geometry/actions/workflows/build-jar.yml)
+[![Test](https://github.com/jules1univ/Geometry/actions/workflows/test-junit.yml/badge.svg)](https://github.com/jules1univ/Geometry/actions/workflows/test-junit.yml)
+
+<!-- > Preview 🎥 -->
+<!-- TODO: ajouter des images du projet ici -->
 
 ## Setup
 
