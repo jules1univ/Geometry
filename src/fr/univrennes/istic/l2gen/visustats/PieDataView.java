@@ -121,12 +121,10 @@ public class PieDataView implements IDataView {
             double endAngle = startAngle + data[i] / total * 360;
             double midAngle = (startAngle + endAngle) / 2;
 
-            // Slice
             Path slice = createSlice(startAngle, endAngle);
             slice.getStyle().fillColor(Color.random()).strokeColor(Color.BLACK).strokeWidth(2);
             this.elements.add(slice);
 
-            // Arrow
             double arrowStartX = center.getX() + radius * Math.cos(Math.toRadians(midAngle));
             double arrowStartY = center.getY() + radius * Math.sin(Math.toRadians(midAngle));
             double arrowEndX = center.getX() + radius * 1.3 * Math.cos(Math.toRadians(midAngle));
@@ -142,7 +140,7 @@ public class PieDataView implements IDataView {
             Text label = new Text(arrowEndX + 5, arrowEndY, String.valueOf(data[i]));
             label.getStyle()
                     .fillColor(Color.BLACK)
-                    .fontSize(76)
+                    .fontSize(24)
                     .fontFamily("Arial");
             this.elements.add(label);
         }
