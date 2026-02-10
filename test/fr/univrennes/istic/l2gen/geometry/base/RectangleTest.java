@@ -1,8 +1,7 @@
-package fr.univrennes.istic.l2gen.tests.geometry.base;
+package fr.univrennes.istic.l2gen.geometry.base;
 
 import fr.univrennes.istic.l2gen.geometry.Point;
-import fr.univrennes.istic.l2gen.geometry.base.Rectangle;
-import fr.univrennes.istic.l2gen.tests.geometry.AbstractShapeTest;
+import fr.univrennes.istic.l2gen.geometry.AbstractShapeTest;
 
 public final class RectangleTest extends AbstractShapeTest<Rectangle> {
 

@@ -34,9 +34,13 @@ public class PieView implements IDataView {
         this.center = new Point(0, 0);
     }
 
-    public PieView(Point center, double[] data) {
+    public PieView(Point center, double radius, double[] data) {
         this.slices = new ArrayList<>();
         this.center = center;
+        this.radius = radius;
+
+        this.data = data;
+        this.updateSlices();
     }
 
     @Override
@@ -93,7 +97,7 @@ public class PieView implements IDataView {
 
     @Override
     public IShape copy() {
-        return new PieView(new Point(this.center.getX(), this.center.getY()), this.data);
+        return new PieView(new Point(this.center.getX(), this.center.getY()), this.radius, this.data);
     }
 
     @Override
@@ -104,8 +108,8 @@ public class PieView implements IDataView {
 
     @Override
     public void setData(double[] data) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setData'");
+        this.data = data;
+        updateSlices();
     }
 
     private void updateSlices() {

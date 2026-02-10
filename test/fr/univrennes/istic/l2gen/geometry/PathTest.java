@@ -1,11 +1,9 @@
-package fr.univrennes.istic.l2gen.tests.geometry;
+package fr.univrennes.istic.l2gen.geometry;
 
-import fr.univrennes.istic.l2gen.geometry.Point;
-
-public class PointTest extends AbstractShapeTest<Point> {
+public class PathTest extends AbstractShapeTest<Path> {
 
     @Override
-    public Point create() {
+    public Path create() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'create'");
     }

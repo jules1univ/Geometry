@@ -1,4 +1,4 @@
-package fr.univrennes.istic.l2gen.tests.svg.io;
+package fr.univrennes.istic.l2gen.svg.io;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -17,8 +17,6 @@ import fr.univrennes.istic.l2gen.svg.interfaces.SVGTag;
 import fr.univrennes.istic.l2gen.svg.interfaces.point.SVGPoint;
 import fr.univrennes.istic.l2gen.svg.interfaces.point.SVGPointX;
 import fr.univrennes.istic.l2gen.svg.interfaces.point.SVGPointY;
-import fr.univrennes.istic.l2gen.svg.io.SVGExport;
-import fr.univrennes.istic.l2gen.svg.io.SVGImport;
 import fr.univrennes.istic.l2gen.svg.xml.model.XMLTag;
 
 public class ImportExportTest {

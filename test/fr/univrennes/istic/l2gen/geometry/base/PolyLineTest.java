@@ -1,10 +1,9 @@
-package fr.univrennes.istic.l2gen.tests.geometry.base;
+package fr.univrennes.istic.l2gen.geometry.base;
 
 import org.junit.Test;
 
 import fr.univrennes.istic.l2gen.geometry.Point;
-import fr.univrennes.istic.l2gen.geometry.base.PolyLine;
-import fr.univrennes.istic.l2gen.tests.geometry.AbstractShapeTest;
+import fr.univrennes.istic.l2gen.geometry.AbstractShapeTest;
 
 import static org.junit.Assert.assertEquals;
 

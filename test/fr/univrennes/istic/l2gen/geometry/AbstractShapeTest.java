@@ -1,10 +1,8 @@
-package fr.univrennes.istic.l2gen.tests.geometry;
+package fr.univrennes.istic.l2gen.geometry;
 
 import org.junit.Ignore;
 import org.junit.Test;
 
-import fr.univrennes.istic.l2gen.geometry.IShape;
-import fr.univrennes.istic.l2gen.geometry.Point;
 import fr.univrennes.istic.l2gen.svg.interfaces.ISVGShape;
 import fr.univrennes.istic.l2gen.svg.io.SVGExport;
 import fr.univrennes.istic.l2gen.svg.io.SVGImport;

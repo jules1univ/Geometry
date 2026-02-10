@@ -1,9 +1,8 @@
-package fr.univrennes.istic.l2gen.tests.geometry.base;
+package fr.univrennes.istic.l2gen.geometry.base;
 
 import org.junit.Test;
 
-import fr.univrennes.istic.l2gen.geometry.base.Text;
-import fr.univrennes.istic.l2gen.tests.geometry.AbstractShapeTest;
+import fr.univrennes.istic.l2gen.geometry.AbstractShapeTest;
 
 public class TextTest extends AbstractShapeTest<Text> {
 

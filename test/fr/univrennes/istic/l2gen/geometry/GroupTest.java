@@ -1,6 +1,5 @@
-package fr.univrennes.istic.l2gen.tests.geometry;
+package fr.univrennes.istic.l2gen.geometry;
 
-import fr.univrennes.istic.l2gen.geometry.Group;
 import fr.univrennes.istic.l2gen.geometry.base.Rectangle;
 
 public class GroupTest extends AbstractShapeTest<Group<Rectangle>> {
