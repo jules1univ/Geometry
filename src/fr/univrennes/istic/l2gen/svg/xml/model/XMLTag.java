@@ -47,7 +47,7 @@ public class XMLTag {
     attributes.put(attr.name(), attr);
   }
 
-  public final <T> void setAttribute(String name, T value) {
+  public final <T> void addAttribute(String name, T value) {
     attributes.put(name, new XMLAttribute(name, value.toString()));
   }
 

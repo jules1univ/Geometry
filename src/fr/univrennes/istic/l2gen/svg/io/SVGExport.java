@@ -12,6 +12,7 @@ import java.util.Optional;
 
 import fr.univrennes.istic.l2gen.svg.interfaces.ISVGAttribute;
 import fr.univrennes.istic.l2gen.svg.interfaces.ISVGShape;
+import fr.univrennes.istic.l2gen.svg.interfaces.SVGContent;
 import fr.univrennes.istic.l2gen.svg.interfaces.SVGField;
 import fr.univrennes.istic.l2gen.svg.interfaces.SVGTag;
 import fr.univrennes.istic.l2gen.svg.interfaces.point.SVGPoint;
@@ -105,7 +106,7 @@ public final class SVGExport {
             Class<?> currentClass = shapeClass;
             while (currentClass != null) {
                 for (Field field : currentClass.getDeclaredFields()) {
-                    if (field.getAnnotation(SVGField.class) != null) {
+                    if (field.getAnnotation(SVGField.class) != null || field.getAnnotation(SVGContent.class) != null) {
                         field.setAccessible(true);
                         fields.add(field);
                     }
@@ -116,8 +117,21 @@ public final class SVGExport {
         }
 
         for (Field shapeField : fields) {
-            SVGField field = shapeField.getAnnotation(SVGField.class);
 
+            SVGContent content = shapeField.getAnnotation(SVGContent.class);
+            if (content != null) {
+                Object value;
+                try {
+                    value = shapeField.get(shape);
+                    if (value != null) {
+                        tag.setTextContent(value.toString());
+                    }
+                } catch (Exception e) {
+                }
+                continue;
+            }
+
+            SVGField attr = shapeField.getAnnotation(SVGField.class);
             Object value;
             try {
                 value = shapeField.get(shape);
@@ -128,7 +142,7 @@ public final class SVGExport {
                 continue;
             }
 
-            String attrName = field.value().length > 0 ? field.value()[0] : shapeField.getName();
+            String attrName = attr.value().length > 0 ? attr.value()[0] : shapeField.getName();
             if (value instanceof List<?> listObj) {
                 if (listObj.isEmpty()) {
                     continue;
@@ -150,22 +164,22 @@ public final class SVGExport {
                     }
                 }
 
-            } else if (value.getClass().getAnnotation(SVGPoint.class) != null && field.value().length == 2) {
+            } else if (value.getClass().getAnnotation(SVGPoint.class) != null && attr.value().length == 2) {
                 String pointValue = getObjectPointValue(value);
                 if (pointValue != null) {
                     int commaIndex = pointValue.indexOf(',');
                     if (commaIndex != -1) {
-                        tag.addAttribute(new XMLAttribute(field.value()[0], pointValue.substring(0, commaIndex)));
-                        tag.addAttribute(new XMLAttribute(field.value()[1], pointValue.substring(commaIndex + 1)));
+                        tag.addAttribute(new XMLAttribute(attr.value()[0], pointValue.substring(0, commaIndex)));
+                        tag.addAttribute(new XMLAttribute(attr.value()[1], pointValue.substring(commaIndex + 1)));
                     }
                 }
             } else if (value instanceof ISVGAttribute svgAttr) {
                 if (svgAttr.hasContent()) {
-                    tag.setAttribute(attrName, svgAttr.getContent());
+                    tag.addAttribute(attrName, svgAttr.getContent());
                 }
             } else if (value instanceof Optional<?> optValue) {
                 if (optValue.isPresent()) {
-                    tag.setAttribute(attrName, optValue.get().toString());
+                    tag.addAttribute(attrName, optValue.get().toString());
                 }
             } else if (value instanceof ISVGShape svgShape) {
                 tag.appendChild(convert(svgShape));

@@ -5,12 +5,13 @@ import fr.univrennes.istic.l2gen.geometry.Point;
 import fr.univrennes.istic.l2gen.svg.attributes.style.SVGStyle;
 import fr.univrennes.istic.l2gen.svg.attributes.transform.SVGTransform;
 import fr.univrennes.istic.l2gen.svg.interfaces.SVGField;
+import fr.univrennes.istic.l2gen.svg.interfaces.SVGContent;
 import fr.univrennes.istic.l2gen.svg.interfaces.SVGTag;
 
 @SVGTag("text")
 public final class Text implements IShape {
 
-    @SVGField
+    @SVGContent
     private final String text;
 
     @SVGField({ "x", "y" })

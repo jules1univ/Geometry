@@ -14,6 +14,7 @@ import java.util.Optional;
 
 import fr.univrennes.istic.l2gen.svg.interfaces.ISVGAttribute;
 import fr.univrennes.istic.l2gen.svg.interfaces.ISVGShape;
+import fr.univrennes.istic.l2gen.svg.interfaces.SVGContent;
 import fr.univrennes.istic.l2gen.svg.interfaces.SVGField;
 import fr.univrennes.istic.l2gen.svg.interfaces.SVGTag;
 import fr.univrennes.istic.l2gen.svg.interfaces.point.SVGPoint;
@@ -60,7 +61,20 @@ public final class SVGImport {
                     "Shape class \"" + shape.getSimpleName() + "\" must be annotated with @SVGTag");
         }
 
-        cacheAnnotatedFields(shape);
+        List<Field> fields = new ArrayList<>();
+        Class<?> currentClass = shape;
+        while (currentClass != null) {
+            for (Field field : currentClass.getDeclaredFields()) {
+                if (field.getAnnotation(SVGField.class) != null
+                        || field.getAnnotation(SVGContent.class) != null) {
+                    field.setAccessible(true);
+                    fields.add(field);
+                }
+            }
+            currentClass = currentClass.getSuperclass();
+        }
+
+        fieldCache.put(shape, fields);
         shapes.add(shape);
     }
 
@@ -74,17 +88,6 @@ public final class SVGImport {
                 pointFieldY = field;
             }
         }
-    }
-
-    private static void cacheAnnotatedFields(Class<?> shapeClass) {
-        List<Field> annotatedFields = new ArrayList<>();
-        for (Field field : shapeClass.getDeclaredFields()) {
-            if (field.getAnnotation(SVGField.class) != null) {
-                field.setAccessible(true);
-                annotatedFields.add(field);
-            }
-        }
-        fieldCache.put(shapeClass, annotatedFields);
     }
 
     private static ISVGShape createPoint(SVGField pointField, XMLTag tag) {
@@ -151,7 +154,8 @@ public final class SVGImport {
                     Class<?> currentClass = shapeClass;
                     while (currentClass != null) {
                         for (Field field : currentClass.getDeclaredFields()) {
-                            if (field.getAnnotation(SVGField.class) != null) {
+                            if (field.getAnnotation(SVGField.class) != null
+                                    || field.getAnnotation(SVGContent.class) != null) {
                                 field.setAccessible(true);
                                 fields.add(field);
                             }
@@ -162,6 +166,12 @@ public final class SVGImport {
                 }
 
                 for (Field shapeField : fields) {
+                    SVGContent content = shapeField.getAnnotation(SVGContent.class);
+                    if (content != null) {
+                        shapeField.set(shape, tag.getTextContent().orElse(""));
+                        continue;
+                    }
+
                     SVGField attr = shapeField.getAnnotation(SVGField.class);
 
                     String attrName = attr.value().length > 0 ? attr.value()[0] : shapeField.getName();

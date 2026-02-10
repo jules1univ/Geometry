@@ -10,6 +10,9 @@ public final class SVGStyle implements ISVGAttribute {
     private Optional<Color> strokeColor = Optional.empty();
     private Optional<Color> fillColor = Optional.empty();
 
+    private Optional<Double> fontSize = Optional.empty();
+    private Optional<String> fontFamily = Optional.empty();
+
     public SVGStyle() {
 
     }
@@ -33,6 +36,15 @@ public final class SVGStyle implements ISVGAttribute {
                 if (color != null) {
                     this.fillColor = Optional.of(color);
                 }
+            } else if (declaration.startsWith("font-size:")) {
+                try {
+                    double size = Double.parseDouble(declaration.substring("font-size:".length()));
+                    this.fontSize = Optional.of(size);
+                } catch (NumberFormatException e) {
+                }
+            } else if (declaration.startsWith("font-family:")) {
+                String family = declaration.substring("font-family:".length());
+                this.fontFamily = Optional.of(family);
             }
         }
     }
@@ -64,9 +76,28 @@ public final class SVGStyle implements ISVGAttribute {
         return fillColor;
     }
 
+    public SVGStyle fontSize(double size) {
+        this.fontSize = Optional.of(size);
+        return this;
+    }
+
+    public Optional<Double> fontSize() {
+        return fontSize;
+    }
+
+    public SVGStyle fontFamily(String family) {
+        this.fontFamily = Optional.of(family);
+        return this;
+    }
+
+    public Optional<String> fontFamily() {
+        return fontFamily;
+    }
+
     @Override
     public boolean hasContent() {
-        return strokeWidth.isPresent() || strokeColor.isPresent() || fillColor.isPresent();
+        return strokeWidth.isPresent() || strokeColor.isPresent() || fillColor.isPresent() || fontSize.isPresent()
+                || fontFamily.isPresent();
     }
 
     @Override
@@ -75,6 +106,8 @@ public final class SVGStyle implements ISVGAttribute {
         strokeWidth.ifPresent(w -> sb.append("stroke-width:").append(w).append(";"));
         strokeColor.ifPresent(c -> sb.append("stroke:").append(c).append(";"));
         fillColor.ifPresent(c -> sb.append("fill:").append(c).append(";"));
+        fontSize.ifPresent(s -> sb.append("font-size:").append(s).append(";"));
+        fontFamily.ifPresent(f -> sb.append("font-family:").append(f).append(";"));
         return sb.toString();
     }
 }
