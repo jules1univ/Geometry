@@ -1,5 +1,4 @@
-name: JUnit Tests
-
+name: JUnit
 on:
   push:
     branches: [main]
