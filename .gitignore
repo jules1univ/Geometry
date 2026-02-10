@@ -2,7 +2,8 @@
 /bin
 
 # Resultat de l'app
-/output.svg
+/*.svg
+/output/*.svg
 
 # Java docs 
 /doc

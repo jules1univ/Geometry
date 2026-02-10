@@ -1,8 +1,8 @@
 package fr.univrennes.istic.l2gen.geometry;
 
-import fr.univrennes.istic.l2gen.svg.attributes.SVGPath;
-import fr.univrennes.istic.l2gen.svg.attributes.SVGStyle;
-import fr.univrennes.istic.l2gen.svg.attributes.SVGTransform;
+import fr.univrennes.istic.l2gen.svg.attributes.path.SVGPath;
+import fr.univrennes.istic.l2gen.svg.attributes.style.SVGStyle;
+import fr.univrennes.istic.l2gen.svg.attributes.transform.SVGTransform;
 import fr.univrennes.istic.l2gen.svg.interfaces.SVGField;
 import fr.univrennes.istic.l2gen.svg.interfaces.SVGTag;
 

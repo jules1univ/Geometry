@@ -5,8 +5,8 @@ import java.util.List;
 
 import fr.univrennes.istic.l2gen.geometry.IShape;
 import fr.univrennes.istic.l2gen.geometry.Point;
-import fr.univrennes.istic.l2gen.svg.attributes.SVGStyle;
-import fr.univrennes.istic.l2gen.svg.attributes.SVGTransform;
+import fr.univrennes.istic.l2gen.svg.attributes.style.SVGStyle;
+import fr.univrennes.istic.l2gen.svg.attributes.transform.SVGTransform;
 import fr.univrennes.istic.l2gen.svg.interfaces.SVGField;
 import fr.univrennes.istic.l2gen.svg.interfaces.SVGTag;
 

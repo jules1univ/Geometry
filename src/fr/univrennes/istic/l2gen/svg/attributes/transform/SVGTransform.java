@@ -1,6 +1,10 @@
-package fr.univrennes.istic.l2gen.svg.attributes;
+package fr.univrennes.istic.l2gen.svg.attributes.transform;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import fr.univrennes.istic.l2gen.svg.interfaces.ISVGAttribute;
 
@@ -21,6 +25,79 @@ public final class SVGTransform implements ISVGAttribute {
     private Optional<Double[]> matrix = Optional.empty();
 
     public SVGTransform() {
+    }
+
+    public SVGTransform(String raw) {
+        Pattern fnPattern = Pattern.compile(
+                "(matrix|translate|scale|rotate|skewX|skewY)" +
+                        "\\s*\\(([^)]*)\\)",
+                Pattern.CASE_INSENSITIVE);
+
+        Pattern numPattern = Pattern.compile(
+                "[+-]?(?:\\d+\\.?\\d*|\\.\\d+)(?:[eE][+-]?\\d+)?");
+
+        Matcher fnMatcher = fnPattern.matcher(raw);
+        while (fnMatcher.find()) {
+            String name = fnMatcher.group(1).toLowerCase();
+            String args = fnMatcher.group(2);
+
+            List<Double> params = new ArrayList<>();
+            Matcher numMatcher = numPattern.matcher(args);
+            while (numMatcher.find()) {
+                params.add(Double.parseDouble(numMatcher.group()));
+            }
+
+            switch (name) {
+
+                case "matrix" -> {
+                    if (params.size() >= 6) {
+                        this.matrix = Optional.of(new Double[] {
+                                params.get(0), params.get(1), params.get(2),
+                                params.get(3), params.get(4), params.get(5)
+                        });
+                    }
+                }
+
+                case "translate" -> {
+                    if (params.size() >= 1) {
+                        this.translateX = Optional.of(params.get(0));
+                        this.translateY = Optional.of(params.size() >= 2 ? params.get(1) : 0.0);
+                    }
+                }
+
+                case "scale" -> {
+                    if (params.size() >= 1) {
+                        this.scaleX = Optional.of(params.get(0));
+                        this.scaleY = Optional.of(params.size() >= 2 ? params.get(1) : params.get(0));
+                    }
+                }
+
+                case "rotate" -> {
+                    if (params.size() >= 1) {
+                        this.rotate = Optional.of(params.get(0));
+                        if (params.size() >= 3) {
+                            this.rotatePointX = Optional.of(params.get(1));
+                            this.rotatePointY = Optional.of(params.get(2));
+                        } else {
+                            this.rotatePointX = Optional.empty();
+                            this.rotatePointY = Optional.empty();
+                        }
+                    }
+                }
+
+                case "skewx" -> {
+                    if (params.size() >= 1) {
+                        this.skewX = Optional.of(params.get(0));
+                    }
+                }
+
+                case "skewy" -> {
+                    if (params.size() >= 1) {
+                        this.skewY = Optional.of(params.get(0));
+                    }
+                }
+            }
+        }
     }
 
     public SVGTransform rotate(double angle) {

@@ -1,9 +1,8 @@
-package fr.univrennes.istic.l2gen.svg.attributes;
+package fr.univrennes.istic.l2gen.svg.attributes.path;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.univrennes.istic.l2gen.svg.attributes.path.BoundingBox;
 import fr.univrennes.istic.l2gen.svg.attributes.path.commands.ArcCommand;
 import fr.univrennes.istic.l2gen.svg.attributes.path.commands.ArcCommandType;
 import fr.univrennes.istic.l2gen.svg.attributes.path.commands.CloseCommand;
@@ -26,67 +25,82 @@ public class SVGPath implements ISVGAttribute {
     public SVGPath() {
     }
 
+    public SVGPath(String raw) {
+        this.commands = ParseCommands.parse(raw);
+        refreshBox();
+    }
+
     public void close() {
         this.commands.add(new CloseCommand());
         refreshBox();
     }
 
-    public void move(double x, double y, boolean relative) {
+    public SVGPath move(double x, double y, boolean relative) {
         this.commands.add(new MoveCommand(x, y, relative ? MoveCommandType.RELATIVE : MoveCommandType.ABSOLUTE));
         refreshBox();
+        return this;
     }
 
-    public void line(double x, double y, boolean relative) {
+    public SVGPath line(double x, double y, boolean relative) {
         this.commands.add(new MoveCommand(x, y, relative ? MoveCommandType.LINE_RELATIVE : MoveCommandType.LINE));
         refreshBox();
+        return this;
     }
 
-    public void horizontal(double x, double y, boolean relative) {
+    public SVGPath horizontal(double x, double y, boolean relative) {
         this.commands.add(
                 new MoveCommand(x, null, relative ? MoveCommandType.HORIZONTAL_RELATIVE : MoveCommandType.HORIZONTAL));
         refreshBox();
+        return this;
     }
 
-    public void vertical(double y, boolean relative) {
+    public SVGPath vertical(double y, boolean relative) {
         this.commands
                 .add(new MoveCommand(null, y, relative ? MoveCommandType.VERTICAL_RELATIVE : MoveCommandType.VERTICAL));
         refreshBox();
+        return this;
     }
 
-    public void cubicBezier(double x1, double y1, double x2, double y2, double x, double y, boolean relative) {
+    public SVGPath cubicBezier(double x1, double y1, double x2, double y2, double x, double y, boolean relative) {
         this.commands.add(new CubicBezierCommand(x1, y1, x2, y2, x, y,
                 relative ? CubicBezierCommandType.RELATIVE : CubicBezierCommandType.ABSOLUTE));
         refreshBox();
+        return this;
     }
 
-    public void cubicBezierSmooth(double x2, double y2, double x, double y, boolean relative) {
+    public SVGPath cubicBezierSmooth(double x2, double y2, double x, double y, boolean relative) {
         this.commands.add(new CubicBezierCommand(null, null, x2, y2, x, y,
                 relative ? CubicBezierCommandType.SMOOTH_RELATIVE : CubicBezierCommandType.SMOOTH));
         refreshBox();
+        return this;
     }
 
-    public void quadBezier(double x1, double y1, double x, double y, boolean relative) {
+    public SVGPath quadBezier(double x1, double y1, double x, double y, boolean relative) {
         this.commands.add(new QuadBezierCommand(x1, y1, x, y,
                 relative ? QuadBezierCommandType.RELATIVE : QuadBezierCommandType.ABSOLUTE));
         refreshBox();
+        return this;
     }
 
-    public void quadBezierSmooth(double x, double y, boolean relative) {
+    public SVGPath quadBezierSmooth(double x, double y, boolean relative) {
         this.commands.add(new QuadBezierCommand(null, null, x, y,
                 relative ? QuadBezierCommandType.SMOOTH_RELATIVE : QuadBezierCommandType.SMOOTH));
         refreshBox();
+        return this;
     }
 
-    public void arc(double rx, double ry, double xAxisRotation, boolean largeArcFlag, boolean sweepFlag, double x,
+    public SVGPath arc(double rx, double ry, double xAxisRotation, boolean largeArcFlag, boolean sweepFlag, double x,
             double y, boolean relative) {
         this.commands.add(new ArcCommand(rx, ry, xAxisRotation, largeArcFlag, sweepFlag, x, y,
                 relative ? ArcCommandType.RELATIVE : ArcCommandType.ABSOLUTE));
         refreshBox();
+        return this;
     }
 
-    public void reset() {
+    public SVGPath reset() {
         this.commands.clear();
         refreshBox();
+        return this;
     }
 
     private void refreshBox() {

@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import fr.univrennes.istic.l2gen.svg.interfaces.ISVGAttribute;
 import fr.univrennes.istic.l2gen.svg.interfaces.ISVGShape;
 import fr.univrennes.istic.l2gen.svg.interfaces.SVGField;
 import fr.univrennes.istic.l2gen.svg.interfaces.SVGTag;
@@ -201,6 +202,19 @@ public final class SVGImport {
                             shapeField.set(shape, createPoint(attr, tag));
                         } else if (point != null && fieldType == List.class) {
                             shapeField.set(shape, createPointList(attrValue));
+                        } else if (ISVGAttribute.class.isAssignableFrom(fieldType)) {
+                            Constructor<?> stringConstructor = null;
+                            for (Constructor<?> constructor : fieldType.getConstructors()) {
+                                if (constructor.getParameterCount() == 1
+                                        && constructor.getParameterTypes()[0] == String.class) {
+                                    stringConstructor = constructor;
+                                    break;
+                                }
+                            }
+
+                            if (stringConstructor != null) {
+                                shapeField.set(shape, stringConstructor.newInstance(attrValue));
+                            }
                         }
                     } else if (fieldType == List.class) {
                         List<ISVGShape> childrenShapes = new ArrayList<>();

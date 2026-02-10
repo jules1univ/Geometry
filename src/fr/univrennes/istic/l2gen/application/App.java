@@ -1,5 +1,6 @@
 package fr.univrennes.istic.l2gen.application;
 
+import java.io.File;
 import java.util.List;
 
 import fr.univrennes.istic.l2gen.geometry.Group;
@@ -13,6 +14,7 @@ import fr.univrennes.istic.l2gen.geometry.base.Polygon;
 import fr.univrennes.istic.l2gen.geometry.base.Rectangle;
 import fr.univrennes.istic.l2gen.geometry.base.Text;
 import fr.univrennes.istic.l2gen.geometry.base.Triangle;
+import fr.univrennes.istic.l2gen.svg.color.Color;
 import fr.univrennes.istic.l2gen.svg.interfaces.ISVGShape;
 import fr.univrennes.istic.l2gen.svg.io.SVGExport;
 import fr.univrennes.istic.l2gen.svg.io.SVGImport;
@@ -43,18 +45,20 @@ public class App {
                 5);
 
         IShape background = new Rectangle(0, 0, 1000, 1000);
-        background.getStyle().fillColor("white");
+        background.getStyle().fillColor(Color.WHITE);
 
         long endTime = System.currentTimeMillis();
         System.out.println("Fractal: " + (endTime - startTime) + " ms");
 
         startTime = System.currentTimeMillis();
-        SVGExport.export(List.of(background, fractal), "output.svg", 1000, 1000);
+        File outputPath = new File("output/fractal.svg");
+        outputPath.getParentFile().mkdirs();
+        SVGExport.export(List.of(background, fractal), outputPath.getAbsolutePath(), 1000, 1000);
         endTime = System.currentTimeMillis();
         System.out.println("Export: " + (endTime - startTime) + " ms");
 
         startTime = System.currentTimeMillis();
-        List<ISVGShape> importShapes = SVGImport.load("output.svg");
+        List<ISVGShape> importShapes = SVGImport.load(outputPath.getAbsolutePath());
         endTime = System.currentTimeMillis();
 
         System.out.println("Import: " + (endTime - startTime) + " ms");
@@ -62,6 +66,13 @@ public class App {
         if (importShapes.size() < 2) {
             System.out.println("IMPORT FAILED: expected 2 shapes, got " + importShapes.size());
             return;
+        }
+
+        ISVGShape backgroundSvgShape = importShapes.get(0);
+        if (backgroundSvgShape instanceof IShape backgroundShape) {
+            backgroundShape.getStyle().strokeColor()
+                    .ifPresent(c -> System.out.println("Background stroke color: " + c));
+            ;
         }
 
         ISVGShape fractalSvgShape = importShapes.get(1);
