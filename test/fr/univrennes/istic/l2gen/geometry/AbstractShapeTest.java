@@ -30,7 +30,7 @@ public abstract class AbstractShapeTest<T extends IShape> {
     public abstract void testDescription();
 
     @Test
-    public final void testSVG() {
+    public void testSVG() {
         T shape = create();
         assert shape != null;
 
