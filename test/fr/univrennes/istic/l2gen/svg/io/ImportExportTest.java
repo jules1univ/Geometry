@@ -12,6 +12,7 @@ import fr.univrennes.istic.l2gen.svg.animations.AnimationCount;
 import fr.univrennes.istic.l2gen.svg.animations.AnimationDuration;
 import fr.univrennes.istic.l2gen.svg.animations.AnimationTransformType;
 import fr.univrennes.istic.l2gen.svg.animations.SVGAnimate;
+import fr.univrennes.istic.l2gen.svg.animations.AbstractAnimate;
 import fr.univrennes.istic.l2gen.svg.animations.SVGAnimateTransform;
 import fr.univrennes.istic.l2gen.svg.interfaces.ISVGShape;
 import fr.univrennes.istic.l2gen.svg.interfaces.field.SVGField;
@@ -57,7 +58,7 @@ public class ImportExportTest {
     private static class TestRect extends TestSuperRect {
 
         @SVGField
-        private SVGAnimate childAnimation;
+        private AbstractAnimate childAnimation;
 
         @SVGField
         private SVGAnimateTransform childAnimationTransform;
@@ -77,7 +78,6 @@ public class ImportExportTest {
         public TestRect() {
             this.childAnimation = new SVGAnimate();
             this.childAnimation
-                    .type(AnimationTransformType.ROTATE)
                     .begin("0")
                     .dur(AnimationDuration.s(1))
                     .repeatCount(AnimationCount.INDEFINITE)
@@ -157,9 +157,6 @@ public class ImportExportTest {
 
         assert svgAnimate.getTagName().equals("animate");
 
-        assert svgAnimate.hasAttribute("type");
-        assert svgAnimate.getAttribute("type").getValue().equals("rotate");
-
         assert svgAnimate.hasAttribute("begin");
         assert svgAnimate.getAttribute("begin").getValue().equals("0");
 
@@ -195,9 +192,11 @@ public class ImportExportTest {
         assert importedRect.randomValues.get(0).y == 10.0;
 
         assert importedRect.childAnimation != null;
-        assert importedRect.childAnimation.type() == AnimationTransformType.ROTATE;
         assert importedRect.childAnimation.begin().equals("0");
-        assert importedRect.childAnimation.to() == null;
+
+        assert importedRect.childAnimationTransform != null;
+        assert importedRect.childAnimationTransform.type().equals(AnimationTransformType.TRANSLATE);
+        assert importedRect.childAnimationTransform.begin().equals("0");
 
         assert importedRect.superField.equals("superValue");
     }

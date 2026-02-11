@@ -12,7 +12,7 @@ import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CSVParser {
+public final class CSVParser {
 
     private char delimiter;
     private char quoteChar;
@@ -65,7 +65,8 @@ public class CSVParser {
     }
 
     public CSVTable parse(Reader reader) throws CSVParseException {
-        CSVTable table = new CSVTable();
+        CSVRow header = null;
+        List<CSVRow> rows = new ArrayList<>();
 
         try (BufferedReader br = new BufferedReader(reader)) {
             String line;
@@ -83,10 +84,10 @@ public class CSVParser {
                     CSVRow row = parseLine(line);
 
                     if (firstLine && hasHeaders) {
-                        table.setHeaders(row);
+                        header = row;
                         firstLine = false;
                     } else {
-                        table.addRow(row);
+                        rows.add(row);
                         firstLine = false;
                     }
                 } catch (CSVParseException e) {
@@ -98,7 +99,7 @@ public class CSVParser {
             throw new CSVParseException("Error reading CSV data", e);
         }
 
-        return table;
+        return new CSVTable(header, rows);
     }
 
     private CSVRow parseLine(String line) throws CSVParseException {

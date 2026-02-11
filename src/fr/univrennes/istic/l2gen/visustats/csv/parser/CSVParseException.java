@@ -1,6 +1,6 @@
 package fr.univrennes.istic.l2gen.visustats.csv.parser;
 
-public class CSVParseException extends Exception {
+public final class CSVParseException extends Exception {
 
     public CSVParseException(String message) {
         super(message);

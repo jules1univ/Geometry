@@ -117,6 +117,15 @@ public class XMLTag {
   }
 
   /**
+   * Retourne le nombre d'attributs de cette balise.
+   * 
+   * @return le nombre d'attributs
+   */
+  public final int getAttributeCount() {
+    return attributes.size();
+  }
+
+  /**
    * Ajoute une balise enfant.
    * 
    * @param child la balise enfant à ajouter

@@ -13,7 +13,7 @@ import java.io.StringReader;
  * structure d'arbres {@link XMLTag}.
  * Supporte les commentaires XML, déclarations et éléments XM valides.
  */
-public class XMLParser {
+public final class XMLParser {
     private BufferedReader br;
     private int current;
     private int index;
@@ -307,7 +307,7 @@ public class XMLParser {
      * @throws IOException       si une erreur d'entrée/sortie se produit
      */
     private void skipComment() throws XMLParseException, IOException {
-        if (!this.expect("<!--")) {
+        if (!this.expect("!--")) {
             throw new XMLParseException("Expected '<!--' at position " + index);
         }
         int dashCount = 0;
