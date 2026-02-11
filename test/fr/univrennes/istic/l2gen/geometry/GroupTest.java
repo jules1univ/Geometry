@@ -1,14 +1,10 @@
 package fr.univrennes.istic.l2gen.geometry;
 
-import javax.management.relation.RoleList;
-
 import fr.univrennes.istic.l2gen.geometry.base.*;
 import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-
 import java.util.ArrayList;
 
 public class GroupTest extends AbstractShapeTest<Group> {
