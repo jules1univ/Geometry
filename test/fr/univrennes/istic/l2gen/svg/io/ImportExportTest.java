@@ -1,9 +1,12 @@
 package fr.univrennes.istic.l2gen.svg.io;
 
+import static org.junit.Assert.assertFalse;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import fr.univrennes.istic.l2gen.svg.animations.AnimationCount;
@@ -121,9 +124,9 @@ public class ImportExportTest {
         assert SVGExport.export(rect, filepath, 0, 0);
 
         List<ISVGShape> importShapes = SVGImport.load(filepath);
-        assert importShapes.isEmpty() == false;
+        assertFalse(importShapes.isEmpty());
 
-        ISVGShape importShape = importShapes.getFirst();
+        ISVGShape importShape = importShapes.get(0);
         assert importShape instanceof TestRect;
 
         File file = new File(filepath);
@@ -225,6 +228,7 @@ public class ImportExportTest {
 
     @Test
     public void testImportMissingRegister() {
+
         TestRect rect = new TestRect();
         XMLTag svgRect = SVGExport.convert(rect);
 

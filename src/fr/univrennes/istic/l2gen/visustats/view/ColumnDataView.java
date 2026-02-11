@@ -27,7 +27,6 @@ public class ColumnDataView implements IDataView {
     @SVGField
     private SVGTransform transform = new SVGTransform();
 
-    private Point origin;
     private Point center;
     private double barWidth = 40;
     private double spacing = 10;
@@ -36,13 +35,11 @@ public class ColumnDataView implements IDataView {
 
     public ColumnDataView() {
         this.elements = new ArrayList<>();
-        this.origin = new Point(0, 0);
         this.center = new Point(0, 0);
     }
 
     public ColumnDataView(Point center, double barWidth, double spacing, double maxHeight) {
         this.elements = new ArrayList<>();
-        this.origin = center;
         this.center = center;
         this.barWidth = barWidth;
         this.spacing = spacing;
@@ -65,9 +62,9 @@ public class ColumnDataView implements IDataView {
         }
         // Cherche la hauteur max des barres
         double maxValue = this.data.values().stream().mapToDouble(Value::value).max().orElse(1.0);
-        // origine X,Y du graphique
-        double baseX = origin.getX() - ((data.size() * barWidth + (data.size() - 1) * spacing) / 2.0);
-        double baseY = origin.getY();
+        // origine X,Y du graphique pour que les barres soient bien centrées
+        double baseX = center.getX() - ((data.size() * barWidth + (data.size() - 1) * spacing) / 2.0);
+        double baseY = center.getY() + maxHeight / 2;
 
         for (int i = 0; i < this.data.size(); i++) {
             double val = this.data.getValue(i);
@@ -112,14 +109,14 @@ public class ColumnDataView implements IDataView {
 
     @Override
     public IShape copy() {
-        return new ColumnDataView(new Point(this.origin.getX(), this.origin.getY()), this.barWidth, this.spacing,
+        return new ColumnDataView(new Point(this.center.getX(), this.center.getY()), this.barWidth, this.spacing,
                 this.maxHeight);
     }
 
     @Override
     public Point getCenter() {
         // pas vraiment le centre mais l'origine du graphique
-        return this.origin;
+        return this.center;
     }
 
     @Override
