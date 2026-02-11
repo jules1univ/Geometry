@@ -8,6 +8,12 @@ import java.util.regex.Pattern;
 
 import fr.univrennes.istic.l2gen.svg.interfaces.ISVGAttribute;
 
+/**
+ * Représente une transformation SVG implémentant ISVGAttribute.
+ * Gére diverses transformations géométriques : rotation, translation, mise à
+ * l'échelle,
+ * inclinaison et matrices de transformation.
+ */
 public final class SVGTransform implements ISVGAttribute {
     private Optional<Double> rotate = Optional.empty();
     private Optional<Double> rotatePointX = Optional.empty();
@@ -24,9 +30,20 @@ public final class SVGTransform implements ISVGAttribute {
 
     private Optional<Double[]> matrix = Optional.empty();
 
+    /**
+     * Constructeur par défaut. Crée une transformation vide sans transformations
+     * définies.
+     */
     public SVGTransform() {
     }
 
+    /**
+     * Constructeur avec chaîne de transformation SVG.
+     * Analyse une chaîne contenant des fonctions de transformation SVG.
+     * 
+     * @param raw la chaîne de transformation (ex: "rotate(45) translate(10, 20)
+     *            scale(2)")
+     */
     public SVGTransform(String raw) {
         Pattern fnPattern = Pattern.compile(
                 "(matrix|translate|scale|rotate|skewX|skewY)" +
@@ -100,11 +117,25 @@ public final class SVGTransform implements ISVGAttribute {
         }
     }
 
+    /**
+     * Applique une rotation sans point de pivot.
+     * 
+     * @param angle l'angle de rotation en degrés
+     * @return cette instance pour enchainage de méthodes
+     */
     public SVGTransform rotate(double angle) {
         this.rotate = Optional.of(angle);
         return this;
     }
 
+    /**
+     * Applique une rotation autour d'un point de pivot spécifique.
+     * 
+     * @param angle l'angle de rotation en degrés
+     * @param x     la coordonnée x du point de pivot
+     * @param y     la coordonnée y du point de pivot
+     * @return cette instance pour enchainage de méthodes
+     */
     public SVGTransform rotate(double angle, double x, double y) {
         this.rotate = Optional.of(angle);
         this.rotatePointX = Optional.of(x);
@@ -112,29 +143,66 @@ public final class SVGTransform implements ISVGAttribute {
         return this;
     }
 
+    /**
+     * Applique une translation.
+     * 
+     * @param x le déplacement selon l'axe x
+     * @param y le déplacement selon l'axe y
+     * @return cette instance pour enchainage de méthodes
+     */
     public SVGTransform translate(double x, double y) {
         this.translateX = Optional.of(x);
         this.translateY = Optional.of(y);
         return this;
     }
 
+    /**
+     * Applique une mise à l'échelle.
+     * 
+     * @param x le facteur d'échelle selon l'axe x
+     * @param y le facteur d'échelle selon l'axe y
+     * @return cette instance pour enchainage de méthodes
+     */
     public SVGTransform scale(double x, double y) {
         this.scaleX = Optional.of(x);
         this.scaleY = Optional.of(y);
         return this;
     }
 
+    /**
+     * Applique une inclinaison.
+     * 
+     * @param x l'inclinaison selon l'axe x
+     * @param y l'inclinaison selon l'axe y
+     * @return cette instance pour enchainage de méthodes
+     */
     public SVGTransform skew(double x, double y) {
         this.skewX = Optional.of(x);
         this.skewY = Optional.of(y);
         return this;
     }
 
+    /**
+     * Applique une transformation matricielle.
+     * 
+     * @param a composante a1 de la matrice
+     * @param b composante a2 de la matrice
+     * @param c composante b1 de la matrice
+     * @param d composante b2 de la matrice
+     * @param e composante c1 de la matrice
+     * @param f composante c2 de la matrice
+     * @return cette instance pour enchainage de méthodes
+     */
     public SVGTransform matrix(double a, double b, double c, double d, double e, double f) {
         this.matrix = Optional.of(new Double[] { a, b, c, d, e, f });
         return this;
     }
 
+    /**
+     * Réinitialise toutes les transformations.
+     * 
+     * @return cette instance pour enchainage de méthodes
+     */
     public SVGTransform reset() {
         this.rotate = Optional.empty();
         this.rotatePointX = Optional.empty();
@@ -154,12 +222,22 @@ public final class SVGTransform implements ISVGAttribute {
         return this;
     }
 
+    /**
+     * Vérifie si une transformation est définie.
+     * 
+     * @return true si au moins une transformation est présente, false sinon
+     */
     @Override
     public boolean hasContent() {
         return rotate.isPresent() || translateX.isPresent() || scaleX.isPresent() || skewX.isPresent()
                 || matrix.isPresent();
     }
 
+    /**
+     * Retourne la représentation en chaîne SVG de la transformation.
+     * 
+     * @return la chaîne au format transformation SVG
+     */
     @Override
     public String getContent() {
 

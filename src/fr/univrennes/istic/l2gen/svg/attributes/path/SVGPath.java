@@ -15,6 +15,12 @@ import fr.univrennes.istic.l2gen.svg.attributes.path.commands.QuadBezierCommand;
 import fr.univrennes.istic.l2gen.svg.attributes.path.commands.QuadBezierCommandType;
 import fr.univrennes.istic.l2gen.svg.interfaces.ISVGAttribute;
 
+/**
+ * Représente un chemin SVG implémentant ISVGAttribute.
+ * Un chemin est composé d'une série de commandes de tracé (move, line, curve,
+ * arc, etc.).
+ * Maintient en cache la boîte englobante pour les performances.
+ */
 public class SVGPath implements ISVGAttribute {
 
     private List<IPathCommand> commands = new ArrayList<>();
@@ -22,31 +28,68 @@ public class SVGPath implements ISVGAttribute {
     private boolean isDirty = true;
     private BoundingBox cachedBox = null;
 
+    /**
+     * Constructeur par défaut. Crée un chemin vide.
+     */
     public SVGPath() {
     }
 
+    /**
+     * Constructeur avec chaîne de commandes SVG path.
+     * 
+     * @param raw la chaîne de commandes (ex: "M 10 10 L 20 20 Z")
+     */
     public SVGPath(String raw) {
         this.commands = ParseCommands.parse(raw);
         refreshBox();
     }
 
+    /**
+     * Ferme le chemin avec une commande de fermeture.
+     * 
+     * @return cette instance pour enchainage de méthodes
+     */
     public void close() {
         this.commands.add(new CloseCommand());
         refreshBox();
     }
 
+    /**
+     * Ajoute une commande de déplacement (move).
+     * 
+     * @param x        la coordonnée x de destination
+     * @param y        la coordonnée y de destination
+     * @param relative true si le déplacement est relatif, false si absolu
+     * @return cette instance pour enchainage de méthodes
+     */
     public SVGPath move(double x, double y, boolean relative) {
         this.commands.add(new MoveCommand(x, y, relative ? MoveCommandType.RELATIVE : MoveCommandType.ABSOLUTE));
         refreshBox();
         return this;
     }
 
+    /**
+     * Ajoute une commande de ligne.
+     * 
+     * @param x        la coordonnée x
+     * @param y        la coordonnée y
+     * @param relative true si relatif, false si absolu
+     * @return cette instance pour enchainage de méthodes
+     */
     public SVGPath line(double x, double y, boolean relative) {
         this.commands.add(new MoveCommand(x, y, relative ? MoveCommandType.LINE_RELATIVE : MoveCommandType.LINE));
         refreshBox();
         return this;
     }
 
+    /**
+     * Ajoute une commande de ligne horizontale.
+     * 
+     * @param x        la coordonnée x
+     * @param y        la coordonnée y
+     * @param relative true si relatif, false si absolu
+     * @return cette instance pour enchainage de méthodes
+     */
     public SVGPath horizontal(double x, double y, boolean relative) {
         this.commands.add(
                 new MoveCommand(x, null, relative ? MoveCommandType.HORIZONTAL_RELATIVE : MoveCommandType.HORIZONTAL));
@@ -54,6 +97,13 @@ public class SVGPath implements ISVGAttribute {
         return this;
     }
 
+    /**
+     * Ajoute une commande de ligne verticale.
+     * 
+     * @param y        la coordonnée y
+     * @param relative true si relatif, false si absolu
+     * @return cette instance pour enchainage de méthodes
+     */
     public SVGPath vertical(double y, boolean relative) {
         this.commands
                 .add(new MoveCommand(null, y, relative ? MoveCommandType.VERTICAL_RELATIVE : MoveCommandType.VERTICAL));
@@ -61,6 +111,18 @@ public class SVGPath implements ISVGAttribute {
         return this;
     }
 
+    /**
+     * Ajoute une courbe de Bézier cubique.
+     * 
+     * @param x1       coordonnée x du premier point de contrôle
+     * @param y1       coordonnée y du premier point de contrôle
+     * @param x2       coordonnée x du deuxième point de contrôle
+     * @param y2       coordonnée y du deuxième point de contrôle
+     * @param x        coordonnée x du point final
+     * @param y        coordonnée y du point final
+     * @param relative true si relatif, false si absolu
+     * @return cette instance pour enchainage de méthodes
+     */
     public SVGPath cubicBezier(double x1, double y1, double x2, double y2, double x, double y, boolean relative) {
         this.commands.add(new CubicBezierCommand(x1, y1, x2, y2, x, y,
                 relative ? CubicBezierCommandType.RELATIVE : CubicBezierCommandType.ABSOLUTE));
@@ -68,6 +130,17 @@ public class SVGPath implements ISVGAttribute {
         return this;
     }
 
+    /**
+     * Ajoute une courbe de Bézier cubique lisse (premier point de contrôle
+     * implicite).
+     * 
+     * @param x2       coordonnée x du deuxième point de contrôle
+     * @param y2       coordonnée y du deuxième point de contrôle
+     * @param x        coordonnée x du point final
+     * @param y        coordonnée y du point final
+     * @param relative true si relatif, false si absolu
+     * @return cette instance pour enchainage de méthodes
+     */
     public SVGPath cubicBezierSmooth(double x2, double y2, double x, double y, boolean relative) {
         this.commands.add(new CubicBezierCommand(null, null, x2, y2, x, y,
                 relative ? CubicBezierCommandType.SMOOTH_RELATIVE : CubicBezierCommandType.SMOOTH));
@@ -75,6 +148,16 @@ public class SVGPath implements ISVGAttribute {
         return this;
     }
 
+    /**
+     * Ajoute une courbe de Bézier quadratique.
+     * 
+     * @param x1       coordonnée x du point de contrôle
+     * @param y1       coordonnée y du point de contrôle
+     * @param x        coordonnée x du point final
+     * @param y        coordonnée y du point final
+     * @param relative true si relatif, false si absolu
+     * @return cette instance pour enchainage de méthodes
+     */
     public SVGPath quadBezier(double x1, double y1, double x, double y, boolean relative) {
         this.commands.add(new QuadBezierCommand(x1, y1, x, y,
                 relative ? QuadBezierCommandType.RELATIVE : QuadBezierCommandType.ABSOLUTE));
@@ -82,6 +165,14 @@ public class SVGPath implements ISVGAttribute {
         return this;
     }
 
+    /**
+     * Ajoute une courbe de Bézier quadratique lisse (point de contrôle implicite).
+     * 
+     * @param x        coordonnée x du point final
+     * @param y        coordonnée y du point final
+     * @param relative true si relatif, false si absolu
+     * @return cette instance pour enchainage de méthodes
+     */
     public SVGPath quadBezierSmooth(double x, double y, boolean relative) {
         this.commands.add(new QuadBezierCommand(null, null, x, y,
                 relative ? QuadBezierCommandType.SMOOTH_RELATIVE : QuadBezierCommandType.SMOOTH));
@@ -89,6 +180,19 @@ public class SVGPath implements ISVGAttribute {
         return this;
     }
 
+    /**
+     * Ajoute une commande d'arc elliptique.
+     * 
+     * @param rx            rayon majeur en x
+     * @param ry            rayon majeur en y
+     * @param xAxisRotation rotation de l'axe x en degrés
+     * @param largeArcFlag  true pour l'arc majeur
+     * @param sweepFlag     true pour le balayage positif
+     * @param x             coordonnée x du point final
+     * @param y             coordonnée y du point final
+     * @param relative      true si relatif, false si absolu
+     * @return cette instance pour enchainage de méthodes
+     */
     public SVGPath arc(double rx, double ry, double xAxisRotation, boolean largeArcFlag, boolean sweepFlag, double x,
             double y, boolean relative) {
         this.commands.add(new ArcCommand(rx, ry, xAxisRotation, largeArcFlag, sweepFlag, x, y,
@@ -97,16 +201,27 @@ public class SVGPath implements ISVGAttribute {
         return this;
     }
 
+    /**
+     * Réinitialise le chemin en supprimant toutes les commandes.
+     * 
+     * @return cette instance pour enchainage de méthodes
+     */
     public SVGPath reset() {
         this.commands.clear();
         refreshBox();
         return this;
     }
 
+    /**
+     * Marque le cache de la boîte englobante comme obsolète.
+     */
     private void refreshBox() {
         this.isDirty = true;
     }
 
+    /**
+     * Recalcule et met à jour la boîte englobante du chemin.
+     */
     private void updateBox() {
         if (!this.isDirty) {
             return;
@@ -248,16 +363,32 @@ public class SVGPath implements ISVGAttribute {
         this.isDirty = false;
     }
 
+    /**
+     * Retourne la boîte englobante du chemin.
+     * Met à jour la boîte si nécessaire.
+     * 
+     * @return la boîte englobante
+     */
     public BoundingBox getBoundingBox() {
         updateBox();
         return this.cachedBox;
     }
 
+    /**
+     * Vérifie si le chemin contient au moins une commande.
+     * 
+     * @return true si le chemin n'est pas vide, false sinon
+     */
     @Override
     public boolean hasContent() {
         return !this.commands.isEmpty();
     }
 
+    /**
+     * Retourne la représentation en chaîne SVG path du chemin.
+     * 
+     * @return la chaîne au format SVG path (ex: "M 10 10 L 20 20 Z")
+     */
     @Override
     public String getContent() {
         StringBuilder sb = new StringBuilder();

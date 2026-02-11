@@ -5,6 +5,12 @@ import java.util.Optional;
 import fr.univrennes.istic.l2gen.svg.color.Color;
 import fr.univrennes.istic.l2gen.svg.interfaces.ISVGAttribute;
 
+/**
+ * Représente un style SVG implémentant ISVGAttribute.
+ * Gére l'apparence visuelle des formes SVG : couleurs, traits, polices, etc.
+ * Les propriétés sont stockées en tant que Optional pour indiquer leur
+ * présence.
+ */
 public final class SVGStyle implements ISVGAttribute {
     private Optional<Double> strokeWidth = Optional.empty();
     private Optional<Color> strokeColor = Optional.empty();
@@ -15,10 +21,19 @@ public final class SVGStyle implements ISVGAttribute {
     private Optional<String> textAnchor = Optional.empty();
     private Optional<String> alignmentBaseline = Optional.empty();
 
+    /**
+     * Constructeur par défaut. Crée un style vide sans propriétés définies.
+     */
     public SVGStyle() {
 
     }
 
+    /**
+     * Constructeur avec chaîne de style PARSant au format SVG CSS.
+     * 
+     * @param raw la chaîne de style au format CSS SVG (ex:
+     *            "stroke-width:2;fill:#ff0000;")
+     */
     public SVGStyle(String raw) {
         String[] declarations = raw.split(";");
         for (String declaration : declarations) {
@@ -57,69 +72,151 @@ public final class SVGStyle implements ISVGAttribute {
         }
     }
 
+    /**
+     * Définit la largeur du trait (stroke-width).
+     * 
+     * @param width la largeur du trait
+     * @return cette instance pour enchainage de méthodes
+     */
     public SVGStyle strokeWidth(double width) {
         this.strokeWidth = Optional.of(width);
         return this;
     }
 
+    /**
+     * Retourne la largeur du trait.
+     * 
+     * @return un Optional contenant la largeur ou vide si non défini
+     */
     public Optional<Double> strokeWidth() {
         return strokeWidth;
     }
 
+    /**
+     * Définit la couleur du trait (stroke).
+     * 
+     * @param color la couleur du trait
+     * @return cette instance pour enchainage de méthodes
+     */
     public SVGStyle strokeColor(Color color) {
         this.strokeColor = Optional.of(color);
         return this;
     }
 
+    /**
+     * Retourne la couleur du trait.
+     * 
+     * @return un Optional contenant la couleur ou vide si non défini
+     */
     public Optional<Color> strokeColor() {
         return strokeColor;
     }
 
+    /**
+     * Définit la couleur de remplissage (fill).
+     * 
+     * @param color la couleur de remplissage
+     * @return cette instance pour enchainage de méthodes
+     */
     public SVGStyle fillColor(Color color) {
         this.fillColor = Optional.of(color);
         return this;
     }
 
+    /**
+     * Retourne la couleur de remplissage.
+     * 
+     * @return un Optional contenant la couleur ou vide si non défini
+     */
     public Optional<Color> fillColor() {
         return fillColor;
     }
 
+    /**
+     * Définit la taille de la police (font-size).
+     * 
+     * @param size la taille de la police
+     * @return cette instance pour enchainage de méthodes
+     */
     public SVGStyle fontSize(double size) {
         this.fontSize = Optional.of(size);
         return this;
     }
 
+    /**
+     * Retourne la taille de la police.
+     * 
+     * @return un Optional contenant la taille ou vide si non défini
+     */
     public Optional<Double> fontSize() {
         return fontSize;
     }
 
+    /**
+     * Définit la famille de police (font-family).
+     * 
+     * @param family la famille de police
+     * @return cette instance pour enchainage de méthodes
+     */
     public SVGStyle fontFamily(String family) {
         this.fontFamily = Optional.of(family);
         return this;
     }
 
+    /**
+     * Retourne la famille de police.
+     * 
+     * @return un Optional contenant la famille ou vide si non défini
+     */
     public Optional<String> fontFamily() {
         return fontFamily;
     }
 
+    /**
+     * Définit l'ancrage du texte (text-anchor).
+     * 
+     * @param anchor la valeur d'ancrage du texte
+     * @return cette instance pour enchainage de méthodes
+     */
     public SVGStyle textAnchor(String anchor) {
         this.textAnchor = Optional.of(anchor);
         return this;
     }
 
+    /**
+     * Retourne l'ancrage du texte.
+     * 
+     * @return un Optional contenant la valeur ou vide si non défini
+     */
     public Optional<String> textAnchor() {
         return textAnchor;
     }
 
+    /**
+     * Définit l'alignement de la baseline (alignment-baseline).
+     * 
+     * @param baseline la valeur d'alignement
+     * @return cette instance pour enchainage de méthodes
+     */
     public SVGStyle alignmentBaseline(String baseline) {
         this.alignmentBaseline = Optional.of(baseline);
         return this;
     }
 
+    /**
+     * Retourne l'alignement de la baseline.
+     * 
+     * @return un Optional contenant la valeur ou vide si non défini
+     */
     public Optional<String> alignmentBaseline() {
         return alignmentBaseline;
     }
 
+    /**
+     * Vérifie si le style contient au moins une propriété définie.
+     * 
+     * @return true si au moins une propriété est présente, false sinon
+     */
     @Override
     public boolean hasContent() {
         return strokeWidth.isPresent()
@@ -131,6 +228,11 @@ public final class SVGStyle implements ISVGAttribute {
                 || alignmentBaseline.isPresent();
     }
 
+    /**
+     * Retourne la représentation en chaîne CSS du style.
+     * 
+     * @return la chaîne au format CSS SVG
+     */
     @Override
     public String getContent() {
         StringBuilder sb = new StringBuilder();

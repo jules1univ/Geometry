@@ -1,8 +1,26 @@
 package fr.univrennes.istic.l2gen.svg.attributes.path.commands;
 
+/**
+ * Représente une courbe de Bézier quadratique dans un chemin SVG.
+ * Peut contenir un point de contrôle nullable pour les courbes lisses.
+ * Implémente IPathCommand.
+ * 
+ * @param x1   la coordonnée x du point de contrôle (peut être null pour les
+ *             courbes lisses)
+ * @param y1   la coordonnée y du point de contrôle (peut être null pour les
+ *             courbes lisses)
+ * @param x    la coordonnée x du point final
+ * @param y    la coordonnée y du point final
+ * @param type le type de courbe (Q, q, T, t)
+ */
 public record QuadBezierCommand(Double x1, Double y1, Double x, Double y, QuadBezierCommandType type)
         implements IPathCommand {
 
+    /**
+     * Retourne la représentation SVG de cette courbe de Bézier quadratique.
+     * 
+     * @return la commande au format SVG (ex: "Q 10,20 30,40" ou "T 30,40")
+     */
     @Override
     public String getValue() {
         StringBuilder sb = new StringBuilder();

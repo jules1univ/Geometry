@@ -1,7 +1,21 @@
 package fr.univrennes.istic.l2gen.svg.attributes.path.commands;
 
+/**
+ * Représente une commande de déplacement ou de ligne dans un chemin SVG.
+ * Implémente IPathCommand et accepte les coordonnées nullables pour les
+ * commandes horizontales/verticales.
+ * 
+ * @param x    la coordonnée x (peut être null pour les commandes verticales)
+ * @param y    la coordonnée y (peut être null pour les commandes horizontales)
+ * @param type le type de commande (move, line, horizontal, vertical, etc.)
+ */
 public record MoveCommand(Double x, Double y, MoveCommandType type) implements IPathCommand {
 
+    /**
+     * Retourne la représentation SVG de cette commande de déplacement.
+     * 
+     * @return la commande au format SVG (ex: "M 10,20", "L 30,40", "H 50", "V 60")
+     */
     @Override
     public String getValue() {
         StringBuilder sb = new StringBuilder();

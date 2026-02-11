@@ -1,5 +1,11 @@
 package fr.univrennes.istic.l2gen.svg.color;
 
+/**
+ * Représente une couleur au format hexadécimal.
+ * Fournit des constantes de couleurs prédéfinies et des méthodes pour créer des
+ * couleurs
+ * à partir de différents formats (hex, RGB, RGBA).
+ */
 public final class Color {
     public static final Color TRANSPARENT = new Color("#00000000");
 
@@ -12,18 +18,46 @@ public final class Color {
 
     private final String hex;
 
+    /**
+     * Crée une couleur à partir d'une chaîne hexadécimale.
+     * 
+     * @param hex la valeur hexadécimale (ex: "#ff0000" pour rouge)
+     * @return une couleur basée sur la valeur hex
+     */
     public static Color hex(String hex) {
         return new Color(hex);
     }
 
+    /**
+     * Crée une couleur à partir de composantes RGB.
+     * 
+     * @param r la composante rouge (0-255)
+     * @param g la composante verte (0-255)
+     * @param b la composante bleue (0-255)
+     * @return une couleur opaque basée sur les valeurs RGB
+     */
     public static Color rgb(int r, int g, int b) {
         return new Color(r, g, b, 255);
     }
 
+    /**
+     * Crée une couleur à partir de composantes RGBA.
+     * 
+     * @param r la composante rouge (0-255)
+     * @param g la composante verte (0-255)
+     * @param b la composante bleue (0-255)
+     * @param a la composante alpha (0-255)
+     * @return une couleur basée sur les valeurs RGBA
+     */
     public static Color rgba(int r, int g, int b, int a) {
         return new Color(r, g, b, a);
     }
 
+    /**
+     * Crée une couleur aléatoire.
+     * 
+     * @return une couleur générée aléatoirement
+     */
     public static Color random() {
         int r = (int) (Math.random() * 256);
         int g = (int) (Math.random() * 256);
@@ -31,6 +65,14 @@ public final class Color {
         return new Color(r, g, b, 255);
     }
 
+    /**
+     * Crée une couleur à partir d'une chaîne au format rgb() ou rgba() ou
+     * hexadécimal.
+     * 
+     * @param raw la chaîne de format SVG (ex: "rgb(255,0,0)", "rgba(255,0,0,128)",
+     *            "#ff0000")
+     * @return une couleur parsée ou null si le format est invalide
+     */
     public static Color raw(String raw) {
         if (raw.startsWith("rgb(") && raw.endsWith(")")) {
             String[] parts = raw.substring(4, raw.length() - 1).split(",");
@@ -63,6 +105,11 @@ public final class Color {
         this.hex = hex;
     }
 
+    /**
+     * Retourne la représentation hexadécimale de la couleur.
+     * 
+     * @return la chaîne hexadécimale de la couleur
+     */
     @Override
     public String toString() {
         return hex;
