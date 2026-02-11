@@ -28,6 +28,7 @@ public class ColumnDataView implements IDataView {
     private SVGTransform transform = new SVGTransform();
 
     private Point origin;
+    private Point center;
     private double barWidth = 40;
     private double spacing = 10;
     private double maxHeight = 200;
@@ -36,11 +37,13 @@ public class ColumnDataView implements IDataView {
     public ColumnDataView() {
         this.elements = new ArrayList<>();
         this.origin = new Point(0, 0);
+        this.center = new Point(0, 0);
     }
 
-    public ColumnDataView(Point origin, double barWidth, double spacing, double maxHeight) {
+    public ColumnDataView(Point center, double barWidth, double spacing, double maxHeight) {
         this.elements = new ArrayList<>();
-        this.origin = origin;
+        this.origin = center;
+        this.center = center;
         this.barWidth = barWidth;
         this.spacing = spacing;
         this.maxHeight = maxHeight;
@@ -63,7 +66,7 @@ public class ColumnDataView implements IDataView {
         // Cherche la hauteur max des barres
         double maxValue = this.data.values().stream().mapToDouble(Value::value).max().orElse(1.0);
         // origine X,Y du graphique
-        double baseX = origin.getX();
+        double baseX = origin.getX() - ((data.size() * barWidth + (data.size() - 1) * spacing) / 2.0);
         double baseY = origin.getY();
 
         for (int i = 0; i < this.data.size(); i++) {
