@@ -6,6 +6,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import fr.univrennes.istic.l2gen.svg.animations.AnimationCount;
@@ -101,6 +102,12 @@ public class ImportExportTest {
 
     }
 
+    @Before
+    public void setup() {
+        SVGImport.register(TestRect.class);
+        SVGImport.register(TestPoint.class);
+    }
+
     @Test
     public void testExportFile() {
         TestRect rect = new TestRect();
@@ -115,9 +122,6 @@ public class ImportExportTest {
 
     @Test
     public void testImportFile() {
-        SVGImport.register(TestRect.class);
-        SVGImport.register(TestPoint.class);
-
         TestRect rect = new TestRect();
         String filepath = "test_output.svg";
         assert SVGExport.export(rect, filepath, 0, 0);
@@ -173,8 +177,6 @@ public class ImportExportTest {
 
     @Test
     public void testImportConvert() {
-        SVGImport.register(TestRect.class);
-        SVGImport.register(TestPoint.class);
 
         TestRect rect = new TestRect();
         XMLTag svgRect = SVGExport.convert(rect);
@@ -237,8 +239,6 @@ public class ImportExportTest {
 
     @Test
     public void testImportMissingAttribute() {
-        SVGImport.register(TestRect.class);
-        SVGImport.register(TestPoint.class);
 
         TestRect rect = new TestRect();
         XMLTag svgRect = SVGExport.convert(rect);
