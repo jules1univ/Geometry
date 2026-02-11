@@ -4,17 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.univrennes.istic.l2gen.geometry.IShape;
-import fr.univrennes.istic.l2gen.geometry.Path;
 import fr.univrennes.istic.l2gen.geometry.Point;
-import fr.univrennes.istic.l2gen.geometry.base.Text;
 import fr.univrennes.istic.l2gen.svg.attributes.style.SVGStyle;
 import fr.univrennes.istic.l2gen.svg.attributes.transform.SVGTransform;
-import fr.univrennes.istic.l2gen.svg.color.Color;
 import fr.univrennes.istic.l2gen.svg.interfaces.field.SVGField;
 import fr.univrennes.istic.l2gen.svg.interfaces.tag.SVGTag;
 import fr.univrennes.istic.l2gen.visustats.data.DataSet;
-import fr.univrennes.istic.l2gen.visustats.data.Label;
-import fr.univrennes.istic.l2gen.visustats.data.Value;
 
 @SVGTag("g")
 public class LineDataView implements IDataView {

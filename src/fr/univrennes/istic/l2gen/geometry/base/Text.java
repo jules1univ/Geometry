@@ -49,6 +49,17 @@ public final class Text implements IShape {
     }
 
     /**
+     * Constructeur avec position et contenu texte.
+     * 
+     * @param center la position du text
+     * @param text   la chaîne de caractères du texte
+     */
+    public Text(Point center, String text) {
+        this.center = center;
+        this.text = text;
+    }
+
+    /**
      * Retourne la largeur du texte (nombre de caractères).
      * 
      * @return la largeur

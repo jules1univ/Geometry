@@ -2,11 +2,11 @@ package fr.univrennes.istic.l2gen.visustats.view;
 
 import fr.univrennes.istic.l2gen.geometry.Point;
 
-public class BarsDataViewTest extends AbstractDataViewTest<BarsDataView> {
+public class BarsDataViewTest extends AbstractDataViewTest<BarDataView> {
 
     @Override
-    public BarsDataView create() {
-        return new BarsDataView(new Point(500, 500), 100, 50, 200);
+    public BarDataView create() {
+        return new BarDataView(new Point(500, 500), 100, 50, 200);
     }
 
 }

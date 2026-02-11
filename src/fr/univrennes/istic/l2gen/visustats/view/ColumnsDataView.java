@@ -6,7 +6,6 @@ import java.util.List;
 import fr.univrennes.istic.l2gen.geometry.IShape;
 import fr.univrennes.istic.l2gen.geometry.Path;
 import fr.univrennes.istic.l2gen.geometry.Point;
-import fr.univrennes.istic.l2gen.geometry.base.Text;
 import fr.univrennes.istic.l2gen.svg.attributes.style.SVGStyle;
 import fr.univrennes.istic.l2gen.svg.attributes.transform.SVGTransform;
 import fr.univrennes.istic.l2gen.svg.color.Color;
@@ -17,7 +16,7 @@ import fr.univrennes.istic.l2gen.visustats.data.Label;
 import fr.univrennes.istic.l2gen.visustats.data.Value;
 
 @SVGTag("g")
-public class ColumnDataView implements IDataView {
+public class ColumnsDataView implements IDataView {
     @SVGField
     private List<IShape> elements;
 
@@ -33,12 +32,12 @@ public class ColumnDataView implements IDataView {
     private double maxHeight = 200;
     private DataSet data;
 
-    public ColumnDataView() {
+    public ColumnsDataView() {
         this.elements = new ArrayList<>();
         this.center = new Point(0, 0);
     }
 
-    public ColumnDataView(Point center, double barWidth, double spacing, double maxHeight) {
+    public ColumnsDataView(Point center, double barWidth, double spacing, double maxHeight) {
         this.elements = new ArrayList<>();
         this.center = center;
         this.barWidth = barWidth;
@@ -96,20 +95,14 @@ public class ColumnDataView implements IDataView {
             Label defaultLabel = new Label(String.format("%.2f", val));
             Label label = this.data.get(i).label().orElse(defaultLabel);
 
-            Text text = new Text(left + barWidth / 2.0, top - 5, label.name());
-            text.getStyle()
-                    .fillColor(label.color())
-                    .textAnchor("middle")
-                    .fontSize(12)
-                    .fontFamily("Arial");
-
-            this.elements.add(text);
+            this.elements.add(label.createText(new Point(
+                    left + barWidth / 2.0, top - 5)));
         }
     }
 
     @Override
     public IShape copy() {
-        return new ColumnDataView(new Point(this.center.getX(), this.center.getY()), this.barWidth, this.spacing,
+        return new ColumnsDataView(new Point(this.center.getX(), this.center.getY()), this.barWidth, this.spacing,
                 this.maxHeight);
     }
 

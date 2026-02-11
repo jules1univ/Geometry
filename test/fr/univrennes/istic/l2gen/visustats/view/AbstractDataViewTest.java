@@ -7,6 +7,7 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 import fr.univrennes.istic.l2gen.geometry.IShape;
+import fr.univrennes.istic.l2gen.geometry.base.Line;
 import fr.univrennes.istic.l2gen.geometry.base.Rectangle;
 import fr.univrennes.istic.l2gen.svg.color.Color;
 import fr.univrennes.istic.l2gen.svg.io.SVGExport;
@@ -44,6 +45,17 @@ public abstract class AbstractDataViewTest<DataView extends IDataView> {
         IShape background = new Rectangle(0, 0, 1000, 1000);
         background.getStyle().fillColor(Color.WHITE);
 
-        assert SVGExport.export(List.of(background, dataView), output.getAbsolutePath(), 1000, 1000);
+        IShape crossLine1 = new Line(500, 0, 500, 1000);
+        crossLine1.getStyle()
+                .strokeWidth(2)
+                .strokeColor(Color.BLACK);
+
+        IShape crossLine2 = new Line(0, 500, 1000, 500);
+        crossLine2.getStyle()
+                .strokeWidth(2)
+                .strokeColor(Color.BLACK);
+
+        assert SVGExport.export(List.of(background, dataView, crossLine1, crossLine2), output.getAbsolutePath(), 1000,
+                1000);
     }
 }

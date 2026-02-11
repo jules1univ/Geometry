@@ -6,7 +6,6 @@ import java.util.List;
 import fr.univrennes.istic.l2gen.geometry.IShape;
 import fr.univrennes.istic.l2gen.geometry.Path;
 import fr.univrennes.istic.l2gen.geometry.Point;
-import fr.univrennes.istic.l2gen.geometry.base.Text;
 import fr.univrennes.istic.l2gen.svg.attributes.style.SVGStyle;
 import fr.univrennes.istic.l2gen.svg.attributes.transform.SVGTransform;
 import fr.univrennes.istic.l2gen.svg.color.Color;
@@ -17,7 +16,7 @@ import fr.univrennes.istic.l2gen.visustats.data.Label;
 import fr.univrennes.istic.l2gen.visustats.data.Value;
 
 @SVGTag("g")
-public class BarsDataView implements IDataView {
+public class BarDataView implements IDataView {
     @SVGField
     private List<IShape> elements;
 
@@ -33,12 +32,12 @@ public class BarsDataView implements IDataView {
     private double maxHeight = 200;
     private DataSet data;
 
-    public BarsDataView() {
+    public BarDataView() {
         this.elements = new ArrayList<>();
         this.origin = new Point(0, 0);
     }
 
-    public BarsDataView(Point origin, double barWidth, double spacing, double maxHeight) {
+    public BarDataView(Point origin, double barWidth, double spacing, double maxHeight) {
         this.elements = new ArrayList<>();
         this.origin = origin;
         this.barWidth = barWidth;
@@ -57,10 +56,10 @@ public class BarsDataView implements IDataView {
 
     private void update() {
         this.elements.clear();
-        if (this.data == null || this.data.size() == 0) {
+        if (this.data.size() == 0) {
             return;
         }
-        // Cherche la hauteur max des barres
+
         double maxValue = this.data.values().stream().mapToDouble(Value::value).sum(); // somme pour une seule barre
         double baseX = origin.getX();
         double baseY = origin.getY();
@@ -95,14 +94,7 @@ public class BarsDataView implements IDataView {
             Label defaultLabel = new Label(String.format("%.2f", val));
             Label label = this.data.get(i).label().orElse(defaultLabel);
 
-            Text text = new Text(left + barWidth / 2.0, top - 5, label.name());
-            text.getStyle()
-                    .fillColor(label.color())
-                    .textAnchor("middle")
-                    .fontSize(12)
-                    .fontFamily("Arial");
-
-            this.elements.add(text);
+            this.elements.add(label.createText(new Point(left + barWidth / 2.0, top - 5)));
 
             accHeight += height;
         }
@@ -110,7 +102,7 @@ public class BarsDataView implements IDataView {
 
     @Override
     public IShape copy() {
-        return new BarsDataView(new Point(this.origin.getX(), this.origin.getY()), this.barWidth, this.spacing,
+        return new BarDataView(new Point(this.origin.getX(), this.origin.getY()), this.barWidth, this.spacing,
                 this.maxHeight);
     }
 
