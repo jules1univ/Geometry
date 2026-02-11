@@ -3,7 +3,7 @@
 setlocal enabledelayedexpansion
 
 set "UML_FILE=uml\src.puml"
-set "PLANTUML_JAR=lib\plantuml.jar"
+set "PLANTUML_JAR=script\plantuml.jar"
 
 if not exist "%PLANTUML_JAR%" (
     echo plantuml.jar not found
