@@ -1,5 +1,7 @@
 package fr.univrennes.istic.l2gen.svg.io;
 
+import static org.junit.Assert.assertFalse;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -121,9 +123,9 @@ public class ImportExportTest {
         assert SVGExport.export(rect, filepath, 0, 0);
 
         List<ISVGShape> importShapes = SVGImport.load(filepath);
-        assert importShapes.isEmpty() == false;
+        assertFalse(importShapes.isEmpty());
 
-        ISVGShape importShape = importShapes.getFirst();
+        ISVGShape importShape = importShapes.get(0);
         assert importShape instanceof TestRect;
 
         File file = new File(filepath);
