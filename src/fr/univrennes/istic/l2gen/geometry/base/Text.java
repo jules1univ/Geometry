@@ -8,6 +8,11 @@ import fr.univrennes.istic.l2gen.svg.interfaces.SVGField;
 import fr.univrennes.istic.l2gen.svg.interfaces.SVGContent;
 import fr.univrennes.istic.l2gen.svg.interfaces.SVGTag;
 
+/**
+ * Représente un texte implémentant l'interface IShape.
+ * Un texte est une forme caractérisée par une chaîne de caractères et une
+ * position.
+ */
 @SVGTag("text")
 public final class Text implements IShape {
 
@@ -23,40 +28,81 @@ public final class Text implements IShape {
     @SVGField
     private SVGTransform transform = new SVGTransform();
 
+    /**
+     * Constructeur par défaut. Crée un texte vide à l'origine.
+     */
     public Text() {
         this.center = new Point(0, 0);
         this.text = "";
     }
 
+    /**
+     * Constructeur avec position et contenu texte.
+     * 
+     * @param x    la coordonnée x du texte
+     * @param y    la coordonnée y du texte
+     * @param text la chaîne de caractères du texte
+     */
     public Text(double x, double y, String text) {
         this.center = new Point(x, y);
         this.text = text;
     }
 
+    /**
+     * Retourne la largeur du texte (nombre de caractères).
+     * 
+     * @return la largeur
+     */
     @Override
     public double getWidth() {
         return this.text.length();
     }
 
+    /**
+     * Retourne la hauteur du texte (convention : 1).
+     * 
+     * @return la hauteur
+     */
     @Override
     public double getHeight() {
         return 1;
     }
 
+    /**
+     * Retourne la position du texte.
+     * 
+     * @return le point centre
+     */
     @Override
     public Point getCenter() {
         return this.center;
     }
 
+    /**
+     * Retourne le style SVG du texte.
+     * 
+     * @return le style SVG
+     */
     @Override
     public SVGStyle getStyle() {
         return this.style;
     }
 
+    /**
+     * Retourne la transformation SVG du texte.
+     * 
+     * @return la transformation SVG
+     */
     public SVGTransform getTransform() {
         return this.transform;
     }
 
+    /**
+     * Retourne une description textuelle du texte avec sa position.
+     * 
+     * @param indentation le nombre d'espaces pour l'indentation
+     * @return une string décrivant le texte
+     */
     @Override
     public String getDescription(int indentation) {
         StringBuilder sb = new StringBuilder();
@@ -71,21 +117,45 @@ public final class Text implements IShape {
         return sb.toString();
     }
 
+    /**
+     * Déplace le texte d'une certaine distance.
+     * 
+     * @param dx le déplacement selon l'axe x
+     * @param dy le déplacement selon l'axe y
+     */
     @Override
     public void move(double dx, double dy) {
         this.center.add(dx, dy);
     }
 
+    /**
+     * Redimensionne le texte en appliquant des facteurs d'échelle de mise à
+     * l'échelle.
+     * 
+     * @param px le facteur d'échelle selon l'axe x
+     * @param py le facteur d'échelle selon l'axe y
+     */
     @Override
     public void resize(double px, double py) {
         this.transform.scale(px, py);
     }
 
+    /**
+     * Effectue une rotation du texte autour de sa position.
+     * 
+     * @param deg l'angle de rotation en degrés
+     */
     @Override
     public void rotate(double deg) {
         this.transform.rotate(deg, this.getCenter().getX(), this.getCenter().getY());
     }
 
+    /**
+     * Crée une copie du texte.
+     * 
+     * @return une nouvelle instance de Text avec le même contenu et la même
+     *         position
+     */
     @Override
     public IShape copy() {
         return new Text(this.center.getX(), this.center.getY(), this.text);
