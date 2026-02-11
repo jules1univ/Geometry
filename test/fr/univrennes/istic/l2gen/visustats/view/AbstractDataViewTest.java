@@ -1,4 +1,4 @@
-package fr.univrennes.istic.l2gen.visustats;
+package fr.univrennes.istic.l2gen.visustats.view;
 
 import java.io.File;
 import java.util.List;
@@ -13,7 +13,6 @@ import fr.univrennes.istic.l2gen.svg.io.SVGExport;
 import fr.univrennes.istic.l2gen.visustats.data.DataSet;
 import fr.univrennes.istic.l2gen.visustats.data.Label;
 import fr.univrennes.istic.l2gen.visustats.data.Value;
-import fr.univrennes.istic.l2gen.visustats.view.IDataView;
 
 @Ignore("Abstract Data View Test")
 public abstract class AbstractDataViewTest<DataView extends IDataView> {

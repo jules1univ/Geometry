@@ -1,6 +1,5 @@
 package fr.univrennes.istic.l2gen.geometry;
 
-import org.junit.Before;
 import org.junit.Test;
 
 public class PointTest extends AbstractShapeTest<Point> {
@@ -46,4 +45,9 @@ public class PointTest extends AbstractShapeTest<Point> {
         assert description.contains("5,10");
     }
 
+    @Test
+    @Override
+    public void testSVG() {
+        // Ne rien faire car point n'est pas un element SVG
+    }
 }
