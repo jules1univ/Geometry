@@ -123,7 +123,7 @@ public class ImportExportTest {
         List<ISVGShape> importShapes = SVGImport.load(filepath);
         assert importShapes.isEmpty() == false;
 
-        ISVGShape importShape = importShapes.get(0);
+        ISVGShape importShape = importShapes.getFirst();
         assert importShape instanceof TestRect;
 
         File file = new File(filepath);
