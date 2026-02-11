@@ -60,16 +60,19 @@ public class ColumnDataView implements IDataView {
         if (this.data == null || this.data.size() == 0) {
             return;
         }
-
+        // Cherche la hauteur max des barres
         double maxValue = this.data.values().stream().mapToDouble(Value::value).max().orElse(1.0);
-        double x = origin.getX();
+        // origine X,Y du graphique
+        double baseX = origin.getX();
         double baseY = origin.getY();
 
         for (int i = 0; i < this.data.size(); i++) {
             double val = this.data.getValue(i);
+            // valeur normalisée pour eviter avoir graphique trop grand
             double height = (val / maxValue) * maxHeight;
 
-            double left = x + i * (barWidth + spacing);
+            // coté gauche et droite de la barre
+            double left = baseX + i * (barWidth + spacing);
             double right = left + barWidth;
             double top = baseY - height;
 
@@ -79,6 +82,7 @@ public class ColumnDataView implements IDataView {
                     .line(right, baseY, false)
                     .line(right, top, false)
                     .line(left, top, false)
+                    .line(left, baseY, false)
                     .close();
 
             Color fill = this.data.get(i).color().orElse(this.data.mainColor());
