@@ -6,7 +6,7 @@ on:
     branches: [main]
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
 
     steps:
@@ -18,13 +18,28 @@ jobs:
         with:
           distribution: temurin
           java-version: '17'
-          cache: 'maven'
 
-      - name: Build with Maven
-        run: mvn -B clean compile
+      - name: Compile sources
+        run: |
+          mkdir -p out
+          javac \
+            -d out \
+            $(find src -name "*.java")
 
-      - name: Run tests
-        run: mvn -B test
+      - name: Compile tests
+        run: |
+          javac \
+            -cp "out:lib/junit-4.13.2.jar:lib/hamcrest-core-1.3.jar" \
+            -d out \
+            $(find test -name "*.java")
 
-      - name: Package
-        run: mvn -B package -DskipTests
+      - name: Run JUnit tests
+        run: |
+          TEST_CLASSES=$(find out -name "*Test.class" \
+            | sed 's|out/||' \
+            | sed 's|/|.|g' \
+            | sed 's|.class$||')
+
+          java \
+            -cp "out:lib/junit-4.13.2.jar:lib/hamcrest-core-1.3.jar" \
+            org.junit.runner.JUnitCore $TEST_CLASSES
