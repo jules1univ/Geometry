@@ -4,7 +4,7 @@ import java.util.List;
 
 import fr.univrennes.istic.l2gen.svg.color.Color;
 
-public record DataSet(List<Value> values, Label xLabel, Label yLabel, Color mainColor) {
+public record DataSet(List<Value> values, Label axisX, Color mainColor) {
 
     public double getValue(int index) {
         return this.values.get(index).value();
