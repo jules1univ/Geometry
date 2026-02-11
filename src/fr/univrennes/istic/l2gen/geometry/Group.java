@@ -9,10 +9,10 @@ import fr.univrennes.istic.l2gen.svg.interfaces.SVGField;
 import fr.univrennes.istic.l2gen.svg.interfaces.SVGTag;
 
 @SVGTag("g")
-public final class Group<T extends IShape> implements IShape {
+public final class Group implements IShape {
 
     @SVGField
-    private List<T> shapes = new ArrayList<>();
+    private List<IShape> shapes = new ArrayList<>();
 
     @SVGField
     private SVGStyle style = new SVGStyle();
@@ -23,11 +23,11 @@ public final class Group<T extends IShape> implements IShape {
     public Group() {
     }
 
-    public Group(List<T> shapes) {
+    public Group(List<IShape> shapes) {
         this.shapes = shapes;
     }
 
-    public void add(T child) {
+    public void add(IShape child) {
         this.shapes.add(child);
     }
 
@@ -35,7 +35,7 @@ public final class Group<T extends IShape> implements IShape {
     public Point getCenter() {
         double sumX = 0;
         double sumY = 0;
-        for (T shape : shapes) {
+        for (IShape shape : shapes) {
             sumX += shape.getCenter().getX();
             sumY += shape.getCenter().getY();
         }
@@ -47,7 +47,7 @@ public final class Group<T extends IShape> implements IShape {
         double maxY = Double.NEGATIVE_INFINITY;
         double minY = Double.POSITIVE_INFINITY;
 
-        for (T shape : shapes) {
+        for (IShape shape : shapes) {
             double topY = shape.getCenter().getY() - shape.getHeight() / 2;
             double bottomY = shape.getCenter().getY() + shape.getHeight() / 2;
             if (topY < minY) {
@@ -65,7 +65,7 @@ public final class Group<T extends IShape> implements IShape {
         double maxX = Double.NEGATIVE_INFINITY;
         double minX = Double.POSITIVE_INFINITY;
 
-        for (T shape : shapes) {
+        for (IShape shape : shapes) {
             double leftX = shape.getCenter().getX() - shape.getWidth() / 2;
             double rightX = shape.getCenter().getX() + shape.getWidth() / 2;
             if (leftX < minX) {
@@ -93,7 +93,7 @@ public final class Group<T extends IShape> implements IShape {
         StringBuilder sb = new StringBuilder();
         sb.append(" ".repeat(indentation));
         sb.append("Group\n");
-        for (T shape : shapes) {
+        for (IShape shape : shapes) {
             sb.append(shape.getDescription(indentation + 1));
             sb.append("\n");
         }
@@ -103,27 +103,27 @@ public final class Group<T extends IShape> implements IShape {
 
     @Override
     public void move(double dx, double dy) {
-        for (T shape : shapes) {
+        for (IShape shape : shapes) {
             shape.move(dx, dy);
         }
     }
 
     @Override
     public void resize(double px, double py) {
-        for (T shape : shapes) {
+        for (IShape shape : shapes) {
             shape.resize(px, py);
         }
     }
 
     @Override
     public void rotate(double deg) {
-        for (T shape : shapes) {
+        for (IShape shape : shapes) {
             shape.rotate(deg);
         }
     }
 
     @Override
-    public Group<T> copy() {
-        return new Group<>(new ArrayList<>(this.shapes));
+    public Group copy() {
+        return new Group(new ArrayList<>(this.shapes));
     }
 }

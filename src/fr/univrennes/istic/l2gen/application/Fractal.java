@@ -14,11 +14,11 @@ public final class Fractal {
 
     public IShape draw(IShape base, int niveau) {
         if (niveau <= 0) {
-            return new Group<>(List.of(base));
+            return new Group(List.of(base));
         }
-        Group<IShape> g = new Group<>();
+        Group g = new Group();
 
-        Group<IShape> subG = new Group<>();
+        Group subG = new Group();
         subG.add(base);
 
         IShape topRight = base.copy();
