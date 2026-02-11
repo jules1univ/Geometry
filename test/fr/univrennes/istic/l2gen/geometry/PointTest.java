@@ -1,35 +1,49 @@
 package fr.univrennes.istic.l2gen.geometry;
 
+import org.junit.Before;
+import org.junit.Test;
+
 public class PointTest extends AbstractShapeTest<Point> {
 
     @Override
     public Point create() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'create'");
+        Point point = new Point(5, 10);
+        return point;
     }
 
+    @Test
     @Override
     public void testCenter() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'testCenter'");
+        Point point = create();
+        assert point.getX() == 5;
+        assert point.getY() == 10;
     }
 
+    @Test
     @Override
     public void testMove() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'testMove'");
+        Point point = create();
+        point.move(2, 3);
+        assert point.getX() == 7;
+        assert point.getY() == 13;
     }
 
+    @Test
     @Override
     public void testResize() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'testResize'");
+        Point point = create();
+        point.resize(2, 3);
+        assert point.getX() == 10;
+        assert point.getY() == 30;
     }
 
+    @Test
     @Override
     public void testDescription() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'testDescription'");
+        Point point = create();
+        String description = point.getDescription(0);
+        assert description.contains("Point");
+        assert description.contains("5,10");
     }
 
 }

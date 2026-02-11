@@ -1,7 +1,7 @@
 package fr.univrennes.istic.l2gen.geometry;
 
 public class PathTest extends AbstractShapeTest<Path> {
-
+    // Test en cours
     @Override
     public Path create() {
         // TODO Auto-generated method stub
