@@ -4,7 +4,7 @@
 # Ne pas oublier de faire: chmod +x generate_uml.bash
 
 UML_FILE="uml/src.puml"
-PLANTUML_JAR="lib/plantuml.jar"
+PLANTUML_JAR="script/plantuml.jar"
 
 if [ ! -f "$PLANTUML_JAR" ]; then
     echo "plantuml.jar introuvable"
