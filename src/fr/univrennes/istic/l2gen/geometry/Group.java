@@ -33,6 +33,9 @@ public final class Group implements IShape {
 
     @Override
     public Point getCenter() {
+        if (shapes.isEmpty()) {
+            return new Point(0, 0);
+        }
         double sumX = 0;
         double sumY = 0;
         for (IShape shape : shapes) {

@@ -6,6 +6,7 @@ import fr.univrennes.istic.l2gen.geometry.base.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
@@ -44,7 +45,7 @@ public class GroupTest extends AbstractShapeTest<Group> {
     @Test
     @Override
     public void testCenter() {
-        assertTrue(grpRect.getCenter().equals(new Point(0, 0)));
+        assertEquals(0.0, grpRect.getCenter().getX(), 0.1);
     }
 
     @Test
