@@ -61,37 +61,36 @@ public class BarDataView implements IDataView {
             return;
         }
         // Cherche la hauteur max des barres
-        double maxValue = this.data.values().stream().mapToDouble(Value::value).max().orElse(1.0);
-        // origine X,Y du graphique
+        double maxValue = this.data.values().stream().mapToDouble(Value::value).sum(); // somme pour une seule barre
         double baseX = origin.getX();
         double baseY = origin.getY();
+        double accHeight = 0;
+
+        double left = baseX - (barWidth / 2);
+        double right = baseX + (barWidth / 2);
 
         for (int i = 0; i < this.data.size(); i++) {
             double val = this.data.getValue(i);
-            // valeur normalisée pour eviter avoir graphique trop grand
             double height = (val / maxValue) * maxHeight;
+            double bottom = baseY + accHeight;
+            double top = bottom + height;
 
-            // coté gauche et droite de la barre
-            double left = baseX + i * (barWidth + spacing);
-            double right = left + barWidth;
-            double top = baseY - height;
-
-            Path bar = new Path();
-            bar.draw()
-                    .move(left, baseY, false)
-                    .line(right, baseY, false)
+            Path barSegment = new Path();
+            barSegment.draw()
+                    .move(left, bottom, false)
+                    .line(right, bottom, false)
                     .line(right, top, false)
                     .line(left, top, false)
-                    .line(left, baseY, false)
+                    .line(left, bottom, false)
                     .close();
 
             Color fill = this.data.get(i).color().orElse(this.data.mainColor());
-            bar.getStyle()
+            barSegment.getStyle()
                     .fillColor(fill)
                     .strokeColor(Color.BLACK)
                     .strokeWidth(1);
 
-            this.elements.add(bar);
+            this.elements.add(barSegment);
 
             Label defaultLabel = new Label(String.format("%.2f", val));
             Label label = this.data.get(i).label().orElse(defaultLabel);
@@ -102,8 +101,11 @@ public class BarDataView implements IDataView {
                     .textAnchor("middle")
                     .fontSize(12)
                     .fontFamily("Arial");
+            text.getTransform().rotate(-90, left + barWidth / 2.0, top - 5);
 
             this.elements.add(text);
+
+            accHeight += height;
         }
     }
 
