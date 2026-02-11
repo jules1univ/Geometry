@@ -1,5 +1,6 @@
 # Dossier de compilation java
 /bin
+/target
 
 # Resultat de l'app
 /*.svg
