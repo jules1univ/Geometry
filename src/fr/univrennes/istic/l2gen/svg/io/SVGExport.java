@@ -21,6 +21,12 @@ import fr.univrennes.istic.l2gen.svg.interfaces.point.SVGPointY;
 import fr.univrennes.istic.l2gen.svg.xml.model.XMLAttribute;
 import fr.univrennes.istic.l2gen.svg.xml.model.XMLTag;
 
+/**
+ * Classe utilitaire pour exporter des formes SVG (ISVGShape) en structures XML.
+ * Utilise la réflexion et les annotations pour convertir les objets Java en
+ * balises XML.
+ * Maintient des caches pour optimiser les performances.
+ */
 public final class SVGExport {
     public static final String DEFAULT_CLASS_TYPE_ATTR = "jclass-data";
     public static final String DEFAULT_LIST_TYPE_ATTR = "jlist-data";
@@ -28,6 +34,14 @@ public final class SVGExport {
     private static final Map<Class<?>, List<Field>> fieldCache = new HashMap<>();
     private static final Map<Class<?>, Field[]> pointFieldsCache = new HashMap<>();
 
+    /**
+     * Extrait les coordonnées X et Y d'un point SVG sous forme de chaîne "x,y".
+     * Le point doit être annoté avec @SVGPoint et ses champs avec @SVGPointX et
+     * @SVGPointY.
+     * 
+     * @param point l'objet point à convertir
+     * @return les coordonnées formatées "x,y", ou null si le point est invalide
+     */
     private static String getObjectPointValue(Object point) {
         if (point == null) {
             return null;
@@ -71,6 +85,14 @@ public final class SVGExport {
         }
     }
 
+    /**
+     * Convertit une liste de points SVG en une chaîne de coordonnées espacées.
+     * Chaque point est converti en "x,y" et séparé par un espace.
+     * 
+     * @param pointsList la liste des points À convertir
+     * @return la chaîne de coordonnées formatée, ou une chaîne vide si la liste
+     *         est vide
+     */
     private static String getObjectPoints(List<?> pointsList) {
         if (pointsList.isEmpty()) {
             return "";
@@ -89,6 +111,16 @@ public final class SVGExport {
         return sb.toString();
     }
 
+    /**
+     * Convertit une forme SVG (implémentant ISVGShape) en une balise XML.
+     * Utilise les annotations @SVGTag, @SVGField et @SVGContent pour guider la
+     * conversion.
+     * 
+     * @param shape la forme SVG à exporter
+     * @return une balise XML représentant la forme
+     * @throws IllegalArgumentException si la classe ne porte pas
+     *                                  l'annotation @SVGTag
+     */
     public static XMLTag convert(ISVGShape shape) {
         Class<?> shapeClass = shape.getClass();
         SVGTag tagName = shapeClass.getAnnotation(SVGTag.class);
@@ -191,10 +223,29 @@ public final class SVGExport {
         return tag;
     }
 
+    /**
+     * Exporte une seule forme SVG dans un fichier SVG.
+     * 
+     * @param shape    la forme à exporter
+     * @param filename le chemin du fichier destination
+     * @param width    la largeur du document SVG
+     * @param height   la hauteur du document SVG
+     * @return true si l'export réussit, false sinon
+     */
     public static boolean export(ISVGShape shape, String filename, double width, double height) {
         return export(List.of(shape), filename, width, height);
     }
 
+    /**
+     * Exporte une liste de formes SVG dans un fichier SVG.
+     * Crée un élément SVG racine avec les dimensions spécifiées.
+     * 
+     * @param shapes   la liste des formes à exporter
+     * @param filename le chemin du fichier destination
+     * @param width    la largeur du document SVG
+     * @param height   la hauteur du document SVG
+     * @return true si l'export réussit, false sinon
+     */
     public static boolean export(List<ISVGShape> shapes, String filename, double width, double height) {
         XMLTag svg = new XMLTag("svg");
         svg.addAttribute(new XMLAttribute("xmlns", "http://www.w3.org/2000/svg"));
@@ -209,6 +260,13 @@ public final class SVGExport {
         return export(svg, filename);
     }
 
+    /**
+     * Exporte une structure XML dans un fichier.
+     * 
+     * @param root     la balise racine de la structure XML
+     * @param filename le chemin du fichier destination
+     * @return true si l'export réussit, false sinon
+     */
     public static boolean export(XMLTag root, String filename) {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(filename))) {
             bw.write(root.toString());

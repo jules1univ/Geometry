@@ -23,6 +23,12 @@ import fr.univrennes.istic.l2gen.svg.interfaces.point.SVGPointY;
 import fr.univrennes.istic.l2gen.svg.xml.model.XMLTag;
 import fr.univrennes.istic.l2gen.svg.xml.parser.XMLParser;
 
+/**
+ * Classe utilitaire pour importer des formes SVG depuis des structures XML.
+ * Utilise la réflexion et un cache de constructeurs pour créer les objets Java.
+ * Les formes doivent être enregistrées avant l'import via
+ * {@link #register(Class)}.
+ */
 public final class SVGImport {
     private static final List<Class<? extends ISVGShape>> shapes = new ArrayList<>();
 
@@ -33,6 +39,16 @@ public final class SVGImport {
     private static final Map<Class<?>, Constructor<?>> constructorCache = new HashMap<>();
     private static final Map<Class<?>, List<Field>> fieldCache = new HashMap<>();
 
+    /**
+     * Enregistre une classe de forme SVG pour l'importation.
+     * La classe doit avoir un constructeur sans paramètres et quelques méthodes ne
+     * sont supportées que si c'est un point SVG annoté avec @SVGPoint.
+     * 
+     * @param <T>   le type de la forme SVG
+     * @param shape la classe à enregistrer
+     * @throws IllegalArgumentException si la classe n'a pas de constructeur sans
+     *                                  paramètres ou pas d'annotation @SVGTag
+     */
     public static <T extends ISVGShape> void register(Class<T> shape) {
         Constructor<?> defaultConstructor = null;
         for (Constructor<?> constructor : shape.getConstructors()) {
@@ -78,6 +94,12 @@ public final class SVGImport {
         shapes.add(shape);
     }
 
+    /**
+     * Cache les champs X et Y d'une classe de point SVG pour optimiser les
+     * performances.
+     * 
+     * @param pointClass la classe du point annoté avec @SVGPoint
+     */
     private static void cachePointFields(Class<? extends ISVGShape> pointClass) {
         for (Field field : pointClass.getDeclaredFields()) {
             if (field.getAnnotation(SVGPointX.class) != null) {
@@ -90,6 +112,15 @@ public final class SVGImport {
         }
     }
 
+    /**
+     * Crée un point SVG à partir d'attributs XML mappés par un champ annoté.
+     * Utilise deux attributs XML (coordonnée X et Y) pour construire le point.
+     * 
+     * @param pointField le champ annoté @SVGField contenant les noms des
+     *                   attributs X et Y
+     * @param tag        la balise XML contenant les attributs
+     * @return le point créé, ou null si la création échoue
+     */
     private static ISVGShape createPoint(SVGField pointField, XMLTag tag) {
         if (pointField.value().length < 2) {
             return null;
@@ -99,6 +130,13 @@ public final class SVGImport {
         return createPoint(rawPoint);
     }
 
+    /**
+     * Crée un point SVG à partir d'une chaîne de coordonnées "x,y".
+     * 
+     * @param rawPoint la chaîne contenant les coordonnées séparées par une virgule
+     * @return le point créé, ou null si le point n'est pas enregistré ou si la
+     *         création échoue
+     */
     private static ISVGShape createPoint(String rawPoint) {
         if (point == null || pointFieldX == null || pointFieldY == null) {
             return null;
@@ -117,6 +155,13 @@ public final class SVGImport {
         }
     }
 
+    /**
+     * Crée une liste de points SVG à partir d'une chaîne de coordonnées espacées.
+     * Chaque paire "x,y" est séparée par un espace.
+     * 
+     * @param rawPoints la chaîne contenant les coordonnées espacées
+     * @return la liste des points créés (peut être vide mais jamais null)
+     */
     private static List<ISVGShape> createPointList(String rawPoints) {
         List<ISVGShape> points = new ArrayList<>();
         String[] rawPointsArray = rawPoints.split(" ");
@@ -132,6 +177,43 @@ public final class SVGImport {
         return points;
     }
 
+    /**
+     * Charge une liste de formes SVG à partir d'un fichier SVG.
+     * Analyse le fichier XML et reconstruit les formes enregistrées.
+     * 
+     * @param filename le chemin du fichier SVG à charger
+     * @return la liste des formes chargées, ou une liste vide en cas d'erreur
+     */
+    public static List<ISVGShape> load(String filename) {
+        try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
+            XMLParser parser = new XMLParser(br);
+
+            XMLTag root = parser.parse();
+            if (root == null || !root.getTagName().equals("svg")) {
+                return new ArrayList<>();
+            }
+
+            List<ISVGShape> shapes = new ArrayList<>();
+            for (XMLTag child : root.getChildren()) {
+                ISVGShape shape = convert(child);
+                if (shape != null) {
+                    shapes.add(shape);
+                }
+            }
+            return shapes;
+        } catch (Exception e) {
+            return new ArrayList<>();
+        }
+    }
+
+    /**
+     * Convertit une balise XML en une forme SVG.
+     * La forme doit avoir été enregistrée au préalable avec
+     * {@link #register(Class)}.
+     * 
+     * @param tag la balise XML contenant les données de la forme
+     * @return la forme SVG recréée, ou null si la conversion a échoué
+     */
     public static ISVGShape convert(XMLTag tag) {
         for (Class<? extends ISVGShape> shapeClass : shapes) {
             String tagName = shapeClass.getAnnotation(SVGTag.class).value();
@@ -267,27 +349,5 @@ public final class SVGImport {
         }
 
         return null;
-    }
-
-    public static List<ISVGShape> load(String filename) {
-        try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
-            XMLParser parser = new XMLParser(br);
-
-            XMLTag root = parser.parse();
-            if (root == null || !root.getTagName().equals("svg")) {
-                return null;
-            }
-
-            List<ISVGShape> shapes = new ArrayList<>();
-            for (XMLTag child : root.getChildren()) {
-                ISVGShape shape = convert(child);
-                if (shape != null) {
-                    shapes.add(shape);
-                }
-            }
-            return shapes;
-        } catch (Exception e) {
-            return new ArrayList<>();
-        }
     }
 }
