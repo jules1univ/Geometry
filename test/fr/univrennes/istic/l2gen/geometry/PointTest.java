@@ -1,6 +1,7 @@
 package fr.univrennes.istic.l2gen.geometry;
 
 public class PointTest extends AbstractShapeTest<Point> {
+    // briac fait le test de point
 
     @Override
     public Point create() {
