@@ -18,7 +18,6 @@ import fr.univrennes.istic.l2gen.visustats.data.Value;
 
 @SVGTag("g")
 public class BarDataView implements IDataView {
-
     @SVGField
     private List<IShape> elements;
 
@@ -28,32 +27,109 @@ public class BarDataView implements IDataView {
     @SVGField
     private SVGTransform transform = new SVGTransform();
 
+    private Point origin;
+    private double barWidth = 40;
+    private double spacing = 10;
+    private double maxHeight = 200;
     private DataSet data;
 
     public BarDataView() {
         this.elements = new ArrayList<>();
+        this.origin = new Point(0, 0);
     }
 
-    public BarDataView(List<IShape> elements) {
-        this.elements = elements;
+    public BarDataView(Point origin, double barWidth, double spacing, double maxHeight) {
+        this.elements = new ArrayList<>();
+        this.origin = origin;
+        this.barWidth = barWidth;
+        this.spacing = spacing;
+        this.maxHeight = maxHeight;
     }
 
     @Override
-    public double getWidth() {
-        return 0.0;
-        // TODO
+    public void setData(List<DataSet> datasets) {
+        if (datasets == null || datasets.isEmpty()) {
+            return;
+        }
+        this.data = datasets.get(0);
+        update();
+    }
+
+    private void update() {
+        this.elements.clear();
+        if (this.data == null || this.data.size() == 0) {
+            return;
+        }
+        // Cherche la hauteur max des barres
+        double maxValue = this.data.values().stream().mapToDouble(Value::value).max().orElse(1.0);
+        // origine X,Y du graphique
+        double baseX = origin.getX();
+        double baseY = origin.getY();
+
+        for (int i = 0; i < this.data.size(); i++) {
+            double val = this.data.getValue(i);
+            // valeur normalisée pour eviter avoir graphique trop grand
+            double height = (val / maxValue) * maxHeight;
+
+            // coté gauche et droite de la barre
+            double left = baseX + i * (barWidth + spacing);
+            double right = left + barWidth;
+            double top = baseY - height;
+
+            Path bar = new Path();
+            bar.draw()
+                    .move(left, baseY, false)
+                    .line(right, baseY, false)
+                    .line(right, top, false)
+                    .line(left, top, false)
+                    .line(left, baseY, false)
+                    .close();
+
+            Color fill = this.data.get(i).color().orElse(this.data.mainColor());
+            bar.getStyle()
+                    .fillColor(fill)
+                    .strokeColor(Color.BLACK)
+                    .strokeWidth(1);
+
+            this.elements.add(bar);
+
+            Label defaultLabel = new Label(String.format("%.2f", val));
+            Label label = this.data.get(i).label().orElse(defaultLabel);
+
+            Text text = new Text(left + barWidth / 2.0, top - 5, label.name());
+            text.getStyle()
+                    .fillColor(label.color())
+                    .textAnchor("middle")
+                    .fontSize(12)
+                    .fontFamily("Arial");
+
+            this.elements.add(text);
+        }
     }
 
     @Override
-    public double getHeight() {
-        return 0.0;
-        // TODO
+    public IShape copy() {
+        return new BarDataView(new Point(this.origin.getX(), this.origin.getY()), this.barWidth, this.spacing,
+                this.maxHeight);
     }
 
     @Override
     public Point getCenter() {
-        return null;
-        // TODO
+        // pas vraiment le centre mais l'origine du graphique
+        return this.origin;
+    }
+
+    @Override
+    public String getDescription(int indent) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(" ".repeat(Math.max(0, indent)));
+        sb.append("BarDataView");
+        return sb.toString();
+    }
+
+    @Override
+    public double getHeight() {
+        return this.maxHeight;
     }
 
     @Override
@@ -67,9 +143,11 @@ public class BarDataView implements IDataView {
     }
 
     @Override
-    public String getDescription(int indent) {
-        return null;
-        // TODO
+    public double getWidth() {
+        if (this.data == null) {
+            return 0;
+        }
+        return this.data.size() * barWidth + Math.max(0, this.data.size() - 1) * spacing;
     }
 
     @Override
@@ -86,20 +164,4 @@ public class BarDataView implements IDataView {
     public void rotate(double deg) {
         this.transform.rotate(deg, this.getCenter().getX(), this.getCenter().getY());
     }
-
-    @Override
-    public IShape copy() {
-        return null; // TODO
-    }
-
-    @Override
-    public void setData(List<DataSet> datasets) { // TODO
-    }
-
-    private void update() {
-        for (int i = 0; i < this.data.size(); i++) {
-            // TODO
-        }
-    }
-
 }
