@@ -121,9 +121,9 @@ public class ImportExportTest {
         assert SVGExport.export(rect, filepath, 0, 0);
 
         List<ISVGShape> importShapes = SVGImport.load(filepath);
-        assert importShapes.size() != 0;
+        assert importShapes.isEmpty() == false;
 
-        ISVGShape importShape = importShapes.get(0);
+        ISVGShape importShape = importShapes.getFirst();
         assert importShape instanceof TestRect;
 
         File file = new File(filepath);

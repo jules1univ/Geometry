@@ -25,7 +25,6 @@ public abstract class AbstractDataViewTest<DataView extends IDataView> {
                 new Value(20, new Label("Category B"), Color.GREEN),
                 new Value(50, new Label("Category C"), Color.BLUE)),
                 new Label("X-Axis"),
-                new Label("Y-Axis"),
                 Color.BLUE);
     }
 
