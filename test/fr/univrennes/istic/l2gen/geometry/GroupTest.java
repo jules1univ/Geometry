@@ -1,13 +1,18 @@
 package fr.univrennes.istic.l2gen.geometry;
 
+import javax.management.relation.RoleList;
+
 import fr.univrennes.istic.l2gen.geometry.base.Rectangle;
+
+import java.util.ArrayList;
 
 public class GroupTest extends AbstractShapeTest<Group<Rectangle>> {
 
     @Override
     public Group<Rectangle> create() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'create'");
+
+        Group<Rectangle> grpRect = new Group<>(new ArrayList<Rectangle>());
+        return grpRect;
     }
 
     @Override
