@@ -27,34 +27,105 @@ public class ColumnDataView implements IDataView {
     @SVGField
     private SVGTransform transform = new SVGTransform();
 
-    private Point center;
-    private double radius;
+    private Point origin;
+    private double barWidth = 40;
+    private double spacing = 10;
+    private double maxHeight = 200;
     private DataSet data;
 
     public ColumnDataView() {
         this.elements = new ArrayList<>();
-        this.center = new Point(0, 0);
+        this.origin = new Point(0, 0);
     }
 
-    public ColumnDataView(Point center, double radius) {
+    public ColumnDataView(Point origin, double barWidth, double spacing, double maxHeight) {
         this.elements = new ArrayList<>();
-        this.center = center;
-        this.radius = radius;
+        this.origin = origin;
+        this.barWidth = barWidth;
+        this.spacing = spacing;
+        this.maxHeight = maxHeight;
     }
 
     @Override
-    public double getWidth() {
-        return this.radius * 2;
+    public void setData(List<DataSet> datasets) {
+        if (datasets == null || datasets.isEmpty()) {
+            return;
+        }
+        this.data = datasets.get(0);
+        update();
+    }
+
+    private void update() {
+        this.elements.clear();
+        if (this.data == null || this.data.size() == 0) {
+            return;
+        }
+
+        double maxValue = this.data.values().stream().mapToDouble(Value::value).max().orElse(1.0);
+        double x = origin.getX();
+        double baseY = origin.getY();
+
+        for (int i = 0; i < this.data.size(); i++) {
+            double val = this.data.getValue(i);
+            double height = (val / maxValue) * maxHeight;
+
+            double left = x + i * (barWidth + spacing);
+            double right = left + barWidth;
+            double top = baseY - height;
+
+            Path bar = new Path();
+            bar.draw()
+                    .move(left, baseY, false)
+                    .line(right, baseY, false)
+                    .line(right, top, false)
+                    .line(left, top, false)
+                    .close();
+
+            Color fill = this.data.get(i).color().orElse(this.data.mainColor());
+            bar.getStyle()
+                    .fillColor(fill)
+                    .strokeColor(Color.BLACK)
+                    .strokeWidth(1);
+
+            this.elements.add(bar);
+
+            Label defaultLabel = new Label(String.format("%.2f", val));
+            Label label = this.data.get(i).label().orElse(defaultLabel);
+
+            Text text = new Text(left + barWidth / 2.0, top - 5, label.name());
+            text.getStyle()
+                    .fillColor(label.color())
+                    .textAnchor("middle")
+                    .fontSize(12)
+                    .fontFamily("Arial");
+
+            this.elements.add(text);
+        }
     }
 
     @Override
-    public double getHeight() {
-        return this.radius * 2;
+    public IShape copy() {
+        return new ColumnDataView(new Point(this.origin.getX(), this.origin.getY()), this.barWidth, this.spacing,
+                this.maxHeight);
     }
 
     @Override
     public Point getCenter() {
-        return this.center;
+        // pas vraiment le centre mais l'origine du graphique
+        return this.origin;
+    }
+
+    @Override
+    public String getDescription(int indent) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(" ".repeat(Math.max(0, indent)));
+        sb.append("ColumnView");
+        return sb.toString();
+    }
+
+    @Override
+    public double getHeight() {
+        return this.maxHeight;
     }
 
     @Override
@@ -68,11 +139,11 @@ public class ColumnDataView implements IDataView {
     }
 
     @Override
-    public String getDescription(int indent) {
-        StringBuilder sb = new StringBuilder();
-        sb.append(" ".repeat(indent));
-        sb.append("PieView");
-        return sb.toString();
+    public double getWidth() {
+        if (this.data == null) {
+            return 0;
+        }
+        return this.data.size() * barWidth + Math.max(0, this.data.size() - 1) * spacing;
     }
 
     @Override
@@ -88,84 +159,5 @@ public class ColumnDataView implements IDataView {
     @Override
     public void rotate(double deg) {
         this.transform.rotate(deg, this.getCenter().getX(), this.getCenter().getY());
-    }
-
-    @Override
-    public IShape copy() {
-        return new PieDataView(new Point(this.center.getX(), this.center.getY()), this.radius);
-    }
-
-    @Override
-    public void setData(List<DataSet> datasets) {
-        if (datasets.isEmpty()) {
-            return;
-        }
-
-        this.data = datasets.get(0);
-        this.update();
-    }
-
-    private void update() {
-        double total = this.data.values().stream().mapToDouble(Value::value).sum();
-
-        for (int i = 0; i < this.data.size(); i++) {
-            double startAngle = 0;
-            for (int j = 0; j < i; j++) {
-                startAngle += data.getValue(j) / total * 360;
-            }
-            double endAngle = startAngle + data.getValue(i) / total * 360;
-
-            Path slice = createSlice(startAngle, endAngle);
-            slice.getStyle()
-                    .fillColor(data.get(i).color().orElse(data.mainColor()))
-                    .strokeColor(Color.BLACK)
-                    .strokeWidth(2);
-
-            this.elements.add(slice);
-
-            double midAngle = Math.toRadians((startAngle + endAngle) / 2);
-            double length = radius * 1.2;
-
-            double arrowStartX = center.getX() + radius * Math.cos(midAngle);
-            double arrowStartY = center.getY() + radius * Math.sin(midAngle);
-            double arrowEndX = center.getX() + length * Math.cos(midAngle);
-            double arrowEndY = center.getY() + length * Math.sin(midAngle);
-
-            Path arrow = new Path();
-            arrow.draw()
-                    .move(arrowStartX, arrowStartY, false)
-                    .line(arrowEndX, arrowEndY, false);
-
-            arrow.getStyle()
-                    .strokeColor(Color.BLACK)
-                    .strokeWidth(2);
-            this.elements.add(arrow);
-
-            Label defaultLabel = new Label(String.format("%.2f%%", data.getValue(i) / total * 100));
-            Label label = this.data.get(i).label().orElse(defaultLabel);
-
-            Text text = new Text(arrowEndX + 5, arrowEndY + 20, label.name());
-            text.getStyle()
-                    .fillColor(label.color())
-                    .textAnchor("middle")
-                    .fontSize(24)
-                    .fontFamily("Arial");
-            this.elements.add(text);
-        }
-    }
-
-    public Path createSlice(double startAngle, double endAngle) {
-        Path slice = new Path();
-        slice
-                .draw()
-                .move(center.getX(), center.getY(), false)
-                .line(center.getX() + radius * Math.cos(Math.toRadians(startAngle)),
-                        center.getY() + radius * Math.sin(Math.toRadians(startAngle)),
-                        false)
-                .arc(radius, radius, 0, endAngle - startAngle > 180, true,
-                        center.getX() + radius * Math.cos(Math.toRadians(endAngle)),
-                        center.getY() + radius * Math.sin(Math.toRadians(endAngle)), false)
-                .close();
-        return slice;
     }
 }
