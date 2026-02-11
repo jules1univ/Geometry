@@ -141,8 +141,8 @@ public final class Circle implements IShape {
      * on ignore le deuxième argument, la valeur n'a pas d'impact, cependant il est
      * nécessaire d'en avoir une pour appeler la méthode
      * 
-     * @utilité
-     *          multiplie le rayon du cercle par la valeur en entrée
+     * 
+     * multiplie le rayon du cercle par la valeur en entrée
      * 
      * @param py mettez 0 ou -1 par exemple
      */

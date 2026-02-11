@@ -47,7 +47,7 @@ public class SVGPath implements ISVGAttribute {
     /**
      * Ferme le chemin avec une commande de fermeture.
      * 
-     * @return cette instance pour enchainage de méthodes
+     * cette instance pour enchainage de méthodes
      */
     public void close() {
         this.commands.add(new CloseCommand());
