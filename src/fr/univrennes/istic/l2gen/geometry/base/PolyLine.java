@@ -10,6 +10,11 @@ import fr.univrennes.istic.l2gen.svg.attributes.transform.SVGTransform;
 import fr.univrennes.istic.l2gen.svg.interfaces.SVGField;
 import fr.univrennes.istic.l2gen.svg.interfaces.SVGTag;
 
+/**
+ * Représente une polyligne implémentant l'interface IShape.
+ * Une polyligne est définie par une séquence de segments de ligne reliant une
+ * suite de points.
+ */
 @SVGTag("polyline")
 public final class PolyLine implements IShape {
 
@@ -22,6 +27,9 @@ public final class PolyLine implements IShape {
     @SVGField
     private SVGTransform transform = new SVGTransform();
 
+    /**
+     * Constructeur par défaut. Crée une polyligne vide.
+     */
     public PolyLine() {
         this.vertices = new ArrayList<>();
     }

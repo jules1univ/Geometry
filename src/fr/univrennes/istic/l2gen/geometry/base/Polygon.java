@@ -10,6 +10,10 @@ import fr.univrennes.istic.l2gen.svg.attributes.transform.SVGTransform;
 import fr.univrennes.istic.l2gen.svg.interfaces.SVGField;
 import fr.univrennes.istic.l2gen.svg.interfaces.SVGTag;
 
+/**
+ * Représente un polygone implémentant l'interface IShape.
+ * Un polygone est défini par une liste de sommets.
+ */
 @SVGTag("polygon")
 public final class Polygon implements IShape {
 
@@ -22,10 +26,21 @@ public final class Polygon implements IShape {
     @SVGField
     private SVGTransform transform = new SVGTransform();
 
+    /**
+     * Constructeur par défaut. Crée un polygone vide.
+     */
     public Polygon() {
         this.vertices = new ArrayList<>();
     }
 
+    /**
+     * Constructeur avec liste de coordonnées.
+     * Les coordonnées doivent être en nombre pair (x1, y1, x2, y2, ...) pour former
+     * des points.
+     * 
+     * @param coords les coordonnées des sommets
+     * @throws IllegalArgumentException si le nombre de coordonnées est impair
+     */
     public Polygon(double... coords) {
         this.vertices = new ArrayList<>();
         if (coords.length % 2 != 0) {
@@ -36,14 +51,30 @@ public final class Polygon implements IShape {
         }
     }
 
+    /**
+     * Ajoute un sommet au polygone.
+     * 
+     * @param p le point à ajouter
+     */
     public void addVertex(Point p) {
         vertices.add(new Point(p.getX(), p.getY()));
     }
 
+    /**
+     * Ajoute un sommet au polygone avec ses coordonnées.
+     * 
+     * @param x la coordonnée x
+     * @param y la coordonnée y
+     */
     public void addVertex(double x, double y) {
         vertices.add(new Point(x, y));
     }
 
+    /**
+     * Retourne la largeur du polygone (différence entre x max et x min).
+     * 
+     * @return la largeur, ou -1 si le polygone est vide
+     */
     @Override
     public double getWidth() {
         if (vertices.isEmpty())
@@ -59,6 +90,11 @@ public final class Polygon implements IShape {
         return maxX - minX;
     }
 
+    /**
+     * Retourne la hauteur du polygone (différence entre y max et y min).
+     * 
+     * @return la hauteur, ou -1 si le polygone est vide
+     */
     @Override
     public double getHeight() {
         if (vertices.isEmpty())
@@ -74,16 +110,31 @@ public final class Polygon implements IShape {
         return maxY - minY;
     }
 
+    /**
+     * Retourne le style SVG du polygone.
+     * 
+     * @return le style SVG
+     */
     @Override
     public SVGStyle getStyle() {
         return this.style;
     }
 
+    /**
+     * Retourne la transformation SVG du polygone.
+     * 
+     * @return la transformation SVG
+     */
     @Override
     public SVGTransform getTransform() {
         return this.transform;
     }
 
+    /**
+     * Retourne le centre du polygone (moyenne des coordonnées de tous les sommets).
+     * 
+     * @return le point centre
+     */
     @Override
     public Point getCenter() {
         if (vertices.isEmpty()) {
@@ -101,6 +152,12 @@ public final class Polygon implements IShape {
         return new Point(totalX / vertices.size(), totalY / vertices.size());
     }
 
+    /**
+     * Retourne une description textuelle du polygone.
+     * 
+     * @param indent le nombre d'espaces pour l'indentation
+     * @return une string décrivant le polygone
+     */
     @Override
     public String getDescription(int indent) {
         StringBuilder sb = new StringBuilder(" ".repeat(Math.max(0, indent)));
@@ -112,6 +169,13 @@ public final class Polygon implements IShape {
         return sb.toString();
     }
 
+    /**
+     * Redimensionne le polygone en appliquant des facteurs d'échelle à partir du
+     * centre.
+     * 
+     * @param dx le facteur d'échelle selon l'axe x
+     * @param dy le facteur d'échelle selon l'axe y
+     */
     @Override
     public void resize(double dx, double dy) {
         Point center = getCenter();
@@ -123,6 +187,12 @@ public final class Polygon implements IShape {
         }
     }
 
+    /**
+     * Déplace le polygone d'une certaine distance.
+     * 
+     * @param dx le déplacement selon l'axe x
+     * @param dy le déplacement selon l'axe y
+     */
     @Override
     public void move(double dx, double dy) {
         for (Point p : vertices) {
@@ -130,6 +200,11 @@ public final class Polygon implements IShape {
         }
     }
 
+    /**
+     * Effectue une rotation du polygone autour de son centre.
+     * 
+     * @param deg l'angle de rotation en degrés
+     */
     @Override
     public void rotate(double deg) {
         Point center = getCenter();
@@ -148,6 +223,11 @@ public final class Polygon implements IShape {
         }
     }
 
+    /**
+     * Crée une copie du polygone.
+     * 
+     * @return une nouvelle instance de Polygon avec les mêmes sommets
+     */
     @Override
     public IShape copy() {
         Polygon copy = new Polygon();

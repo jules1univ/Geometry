@@ -7,6 +7,10 @@ import fr.univrennes.istic.l2gen.svg.attributes.transform.SVGTransform;
 import fr.univrennes.istic.l2gen.svg.interfaces.SVGField;
 import fr.univrennes.istic.l2gen.svg.interfaces.SVGTag;
 
+/**
+ * Représente un rectangle implémentant l'interface IShape.
+ * Un rectangle est défini par une position, une largeur et une hauteur.
+ */
 @SVGTag("rect")
 public final class Rectangle implements IShape {
 
@@ -25,44 +29,94 @@ public final class Rectangle implements IShape {
     @SVGField
     private SVGTransform transform = new SVGTransform();
 
+    /**
+     * Constructeur par défaut. Crée un rectangle à l'origine avec des dimensions
+     * nulles.
+     */
     public Rectangle() {
         this.position = new Point(0, 0);
         this.size = new Point(0, 0);
     }
 
+    /**
+     * Constructeur avec position et dimensions.
+     * 
+     * @param position le point à partir duquel le rectangle est positionné
+     * @param width    la largeur du rectangle
+     * @param height   la hauteur du rectangle
+     */
     public Rectangle(Point position, double width, double height) {
         this(position.getX(), position.getY(), width, height);
     }
 
+    /**
+     * Constructeur avec coordonnées et dimensions.
+     * 
+     * @param x      la coordonnée x du coin supérieur gauche
+     * @param y      la coordonnée y du coin supérieur gauche
+     * @param width  la largeur du rectangle
+     * @param height la hauteur du rectangle
+     */
     public Rectangle(double x, double y, double width, double height) {
         this.position = new Point(x, y);
         this.size = new Point(width, height);
     }
 
+    /**
+     * Retourne la hauteur du rectangle.
+     * 
+     * @return la hauteur
+     */
     public double getHeight() {
         return this.size.getY();
     }
 
+    /**
+     * Retourne la largeur du rectangle.
+     * 
+     * @return la largeur
+     */
     public double getWidth() {
         return this.size.getX();
     }
 
+    /**
+     * Retourne le centre du rectangle.
+     * 
+     * @return le point centre
+     */
     @Override
     public Point getCenter() {
         return new Point(this.position.getX() + this.size.getX() / 2,
                 this.position.getY() + this.size.getY() / 2);
     }
 
+    /**
+     * Retourne le style SVG du rectangle.
+     * 
+     * @return le style SVG
+     */
     @Override
     public SVGStyle getStyle() {
         return this.style;
     }
 
+    /**
+     * Retourne la transformation SVG du rectangle.
+     * 
+     * @return la transformation SVG
+     */
     @Override
     public SVGTransform getTransform() {
         return this.transform;
     }
 
+    /**
+     * Retourne une description textuelle du rectangle.
+     * 
+     * @param indentation le nombre d'espaces pour l'indentation
+     * @return une string décrivant le rectangle
+     */
     @Override
     public String getDescription(int indentation) {
         StringBuilder sb = new StringBuilder();
@@ -79,11 +133,24 @@ public final class Rectangle implements IShape {
         return sb.toString();
     }
 
+    /**
+     * Déplace le rectangle d'une certaine distance.
+     * 
+     * @param dx le déplacement selon l'axe x
+     * @param dy le déplacement selon l'axe y
+     */
     @Override
     public void move(double dx, double dy) {
         this.position.add(dx, dy);
     }
 
+    /**
+     * Redimensionne le rectangle en appliquant des facteurs d'échelle à partir du
+     * centre.
+     * 
+     * @param px le facteur d'échelle selon l'axe x
+     * @param py le facteur d'échelle selon l'axe y
+     */
     @Override
     public void resize(double px, double py) {
         double newWidth = this.size.getX() * px;
@@ -98,11 +165,24 @@ public final class Rectangle implements IShape {
         this.size.setY(newHeight);
     }
 
+    /**
+     * Effectue une rotation du rectangle autour de son centre.
+     * 
+     * @param deg l'angle de rotation en degrés
+     */
     @Override
     public void rotate(double deg) {
         this.transform.rotate(deg, this.getCenter().getX(), this.getCenter().getY());
     }
 
+    /**
+     * Définit le rayon des coins du rectangle (bordure arrondie).
+     * 
+     * @param rx le rayon according l'axe x
+     * @param ry le rayon selon l'axe y
+     * @throws IllegalArgumentException si les rayons sont négatifs ou supérieurs à
+     *                                  la moitié des dimensions
+     */
     public void radius(double rx, double ry) {
         if (rx < 0 || ry < 0 || rx > this.size.getX() / 2 || ry > this.size.getY() / 2) {
             throw new IllegalArgumentException(
@@ -111,6 +191,11 @@ public final class Rectangle implements IShape {
         this.radius = new Point(rx, ry);
     }
 
+    /**
+     * Crée une copie du rectangle.
+     * 
+     * @return une nouvelle instance de Rectangle avec les mêmes propriétés
+     */
     @Override
     public IShape copy() {
         return new Rectangle((Point) this.position.copy(), this.size.getX(), this.size.getY());
