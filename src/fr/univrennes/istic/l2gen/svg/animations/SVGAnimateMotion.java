@@ -3,8 +3,8 @@ package fr.univrennes.istic.l2gen.svg.animations;
 import java.util.Optional;
 
 import fr.univrennes.istic.l2gen.svg.interfaces.ISVGShape;
-import fr.univrennes.istic.l2gen.svg.interfaces.SVGField;
-import fr.univrennes.istic.l2gen.svg.interfaces.SVGTag;
+import fr.univrennes.istic.l2gen.svg.interfaces.field.SVGField;
+import fr.univrennes.istic.l2gen.svg.interfaces.tag.SVGTag;
 
 /**
  * Élément d'animation SVG pour animer le mouvement d'un élément le long d'un

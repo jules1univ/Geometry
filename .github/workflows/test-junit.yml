@@ -6,7 +6,7 @@ on:
     branches: [main]
 
 jobs:
-  test:
+  build:
     runs-on: ubuntu-latest
 
     steps:
@@ -18,41 +18,13 @@ jobs:
         with:
           distribution: temurin
           java-version: '17'
+          cache: 'maven'
 
-      - name: Compile annotation processor first
-        run: |
-          mkdir -p out
-          javac -proc:none -d out \
-            src/fr/univrennes/istic/l2gen/svg/interfaces/content/SVGContent.java \
-            src/fr/univrennes/istic/l2gen/svg/interfaces/content/SVGContentProcessor.java
-          
-          mkdir -p out/META-INF/services
-          cp META-INF/services/javax.annotation.processing.Processor out/META-INF/services/
+      - name: Build with Maven
+        run: mvn -B clean compile
 
-      - name: Compile sources with processor
-        run: |
-          javac \
-            -cp out \
-            -processorpath out \
-            -d out \
-            $(find src -name "*.java" \
-              ! -name "SVGContent.java" \
-              ! -name "SVGContentProcessor.java")
+      - name: Run tests
+        run: mvn -B test
 
-      - name: Compile tests
-        run: |
-          javac \
-            -cp "out:lib/junit-4.13.2.jar:lib/hamcrest-core-1.3.jar" \
-            -d out \
-            $(find test -name "*.java")
-
-      - name: Run JUnit tests
-        run: |
-          TEST_CLASSES=$(find out -name "*Test.class" \
-            | sed 's|out/||' \
-            | sed 's|/|.|g' \
-            | sed 's|.class$||')
-
-          java \
-            -cp "out:lib/junit-4.13.2.jar:lib/hamcrest-core-1.3.jar" \
-            org.junit.runner.JUnitCore $TEST_CLASSES
+      - name: Package
+        run: mvn -B package -DskipTests

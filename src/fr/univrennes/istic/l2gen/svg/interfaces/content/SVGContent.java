@@ -9,9 +9,9 @@ import java.lang.annotation.ElementType;
  * Annotation pour marquer un champ String comme contenu textuel d'une balise
  * SVG.
  * Utilisée lors de la sérialisation et désérialisation SVG.
- * Cette annotation a une rétention SOURCE et est traitée par le compilateur.
+ * Cette annotation a une rétention RUNTIME et est traitée par le compilateur.
  */
-@Retention(RetentionPolicy.SOURCE)
+@Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
 public @interface SVGContent {
 

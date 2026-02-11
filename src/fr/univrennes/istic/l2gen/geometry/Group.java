@@ -5,16 +5,16 @@ import java.util.List;
 
 import fr.univrennes.istic.l2gen.svg.attributes.style.SVGStyle;
 import fr.univrennes.istic.l2gen.svg.attributes.transform.SVGTransform;
-import fr.univrennes.istic.l2gen.svg.interfaces.SVGField;
-import fr.univrennes.istic.l2gen.svg.interfaces.SVGTag;
+import fr.univrennes.istic.l2gen.svg.interfaces.field.SVGField;
+import fr.univrennes.istic.l2gen.svg.interfaces.tag.SVGTag;
 
 /**
  * Représente un groupe de formes géométriques.
  * Permet de gérer collectivement un ensemble de formes avec des transformations
  * et des styles applicables à tous les éléments.
  * 
- * @param <T> le type des formes contenues dans le groupe (doit implémenter
- *            IShape)
+ * le type des formes contenues dans le groupe (doit implémenter
+ * IShape)
  */
 @SVGTag("g")
 public final class Group implements IShape {
