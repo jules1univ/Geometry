@@ -12,9 +12,9 @@ import java.util.Optional;
 
 import fr.univrennes.istic.l2gen.svg.interfaces.ISVGAttribute;
 import fr.univrennes.istic.l2gen.svg.interfaces.ISVGShape;
-import fr.univrennes.istic.l2gen.svg.interfaces.SVGContent;
 import fr.univrennes.istic.l2gen.svg.interfaces.SVGField;
 import fr.univrennes.istic.l2gen.svg.interfaces.SVGTag;
+import fr.univrennes.istic.l2gen.svg.interfaces.content.SVGContent;
 import fr.univrennes.istic.l2gen.svg.interfaces.point.SVGPoint;
 import fr.univrennes.istic.l2gen.svg.interfaces.point.SVGPointX;
 import fr.univrennes.istic.l2gen.svg.interfaces.point.SVGPointY;

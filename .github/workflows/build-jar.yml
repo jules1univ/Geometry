@@ -13,14 +13,26 @@ jobs:
           distribution: 'temurin'
           java-version: 21
 
-      - name: Compile Java sources
+      - name: Compile annotation processor first
         run: |
           mkdir -p out
-          javac -cp "lib/*" -d out $(find src -name "*.java")
+          javac -proc:none -d out \
+            src/fr/univrennes/istic/l2gen/svg/interfaces/content/SVGContent.java \
+            src/fr/univrennes/istic/l2gen/svg/interfaces/content/SVGContentProcessor.java
+          
+          mkdir -p out/META-INF/services
+          cp META-INF/services/javax.annotation.processing.Processor out/META-INF/services/
+
+      - name: Compile Java sources with processor
+        run: |
+          javac -cp "lib/*:out" -processorpath out -d out \
+            $(find src -name "*.java" \
+              ! -name "SVGContent.java" \
+              ! -name "SVGContentProcessor.java")
 
       - name: Create JAR
         run: |
-          echo "Main-Class: fr.univrennes.istic.l2gen.geometry.app.App" > manifest.txt
+          echo "Main-Class: fr.univrennes.istic.l2gen.application.App" > manifest.txt
           jar cfm Geometry.jar manifest.txt -C out .
 
       - name: Upload Artifact
