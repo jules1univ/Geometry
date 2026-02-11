@@ -48,7 +48,9 @@ public class Path implements IShape {
 
     @Override
     public Point getCenter() {
-        return new Point(this.path.getBoundingBox().getCenterX(), this.path.getBoundingBox().getCenterY());
+        // return new Point(this.path.getBoundingBox().getCenterX(),
+        // this.path.getBoundingBox().getCenterY());
+        return this.position;
     }
 
     @Override

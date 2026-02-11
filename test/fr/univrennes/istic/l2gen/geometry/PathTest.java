@@ -26,15 +26,19 @@ public class PathTest extends AbstractShapeTest<Path> {
     @Override
     public void testMove() {
         Path p = create();
-        // le center reste a 0 0 car il n'a pas de bouding box
-        p.move(5, 5);
+        p.draw().move(0, 0, false).line(3, 0, false).line(0, 4, false);
+
         assertEquals(new Point(0, 0), p.getCenter());
+        p.move(5, 5);
+        assertEquals(new Point(5, 5), p.getCenter());
     }
 
     @Test
     @Override
     public void testResize() {
         Path p = create();
+        p.draw().move(0, 0, false).line(3, 0, false).line(0, 4, false);
+
         p.resize(2, 3);
         String content = p.getTransform().getContent();
         assertEquals(true, content.contains("scale("));
