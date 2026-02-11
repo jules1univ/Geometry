@@ -6,6 +6,11 @@ import fr.univrennes.istic.l2gen.svg.attributes.transform.SVGTransform;
 import fr.univrennes.istic.l2gen.svg.interfaces.SVGField;
 import fr.univrennes.istic.l2gen.svg.interfaces.SVGTag;
 
+/**
+ * Représente une forme basée sur un chemin SVG.
+ * Permet de définir des formes complexes à l'aide de commandes de tracer de
+ * chemins SVG.
+ */
 @SVGTag("path")
 public class Path implements IShape {
 
@@ -21,10 +26,19 @@ public class Path implements IShape {
     @SVGField
     private SVGStyle style = new SVGStyle();
 
+    /**
+     * Constructeur par défaut. Crée un chemin vide.
+     */
     public Path() {
         this.path = new SVGPath();
     }
 
+    /**
+     * Constructeur avec un chemin SVG spécifié.
+     * 
+     * @param path le chemin SVG (ne doit pas être null)
+     * @throws IllegalArgumentException si le chemin est null
+     */
     public Path(SVGPath path) {
         if (path == null) {
             throw new IllegalArgumentException("SVGPath cannot be null");
@@ -32,20 +46,40 @@ public class Path implements IShape {
         this.path = path;
     }
 
+    /**
+     * Retourne le chemin SVG de cette forme.
+     * 
+     * @return le chemin SVG
+     */
     public SVGPath draw() {
         return path;
     }
 
+    /**
+     * Retourne la largeur de la boîte englobante du chemin.
+     * 
+     * @return la largeur
+     */
     @Override
     public double getWidth() {
         return this.path.getBoundingBox().getWidth();
     }
 
+    /**
+     * Retourne la hauteur de la boîte englobante du chemin.
+     * 
+     * @return la hauteur
+     */
     @Override
     public double getHeight() {
         return this.path.getBoundingBox().getHeight();
     }
 
+    /**
+     * Retourne le centre de la forme (position du chemin).
+     * 
+     * @return le point centre
+     */
     @Override
     public Point getCenter() {
         // return new Point(this.path.getBoundingBox().getCenterX(),
@@ -53,16 +87,32 @@ public class Path implements IShape {
         return this.position;
     }
 
+    /**
+     * Retourne le style SVG de la forme.
+     * 
+     * @return le style SVG
+     */
     @Override
     public SVGStyle getStyle() {
         return style;
     }
 
+    /**
+     * Retourne la transformation SVG de la forme.
+     * 
+     * @return la transformation SVG
+     */
     @Override
     public SVGTransform getTransform() {
         return transform;
     }
 
+    /**
+     * Retourne une description textuelle du chemin.
+     * 
+     * @param indent le niveau d'indentation pour le formatage
+     * @return une description text
+     */
     @Override
     public String getDescription(int indent) {
         StringBuilder sb = new StringBuilder();
@@ -73,21 +123,43 @@ public class Path implements IShape {
         return sb.toString();
     }
 
+    /**
+     * Déplace le chemin d'une certaine distance.
+     * 
+     * @param dx le déplacement selon l'axe x
+     * @param dy le déplacement selon l'axe y
+     */
     @Override
     public void move(double dx, double dy) {
         this.position.add(dx, dy);
     }
 
+    /**
+     * Redimensionne la forme en appliquant la transformation d'échelle.
+     * 
+     * @param scaleX le facteur d'échelle selon l'axe x
+     * @param scaleY le facteur d'échelle selon l'axe y
+     */
     @Override
     public void resize(double scaleX, double scaleY) {
         this.transform.scale(scaleX, scaleY);
     }
 
+    /**
+     * Effectue une rotation de la forme autour de son centre.
+     * 
+     * @param degrees l'angle de rotation en degrés
+     */
     @Override
     public void rotate(double degrees) {
         this.transform.rotate(degrees, this.getCenter().getX(), this.getCenter().getY());
     }
 
+    /**
+     * Crée une copie du chemin.
+     * 
+     * @return une nouvelle instance de Path avec le même chemin SVG
+     */
     @Override
     public IShape copy() {
         return new Path(this.path);

@@ -8,6 +8,14 @@ import fr.univrennes.istic.l2gen.svg.attributes.transform.SVGTransform;
 import fr.univrennes.istic.l2gen.svg.interfaces.SVGField;
 import fr.univrennes.istic.l2gen.svg.interfaces.SVGTag;
 
+/**
+ * Représente un groupe de formes géométriques.
+ * Permet de gérer collectivement un ensemble de formes avec des transformations
+ * et des styles applicables à tous les éléments.
+ * 
+ * @param <T> le type des formes contenues dans le groupe (doit implémenter
+ *            IShape)
+ */
 @SVGTag("g")
 public final class Group<T extends IShape> implements IShape {
 
@@ -20,17 +28,35 @@ public final class Group<T extends IShape> implements IShape {
     @SVGField
     private SVGTransform transform = new SVGTransform();
 
+    /**
+     * Constructeur par défaut. Crée un groupe vide.
+     */
     public Group() {
     }
 
+    /**
+     * Constructeur avec une liste initiale de formes.
+     * 
+     * @param shapes la liste des formes à ajouter au groupe
+     */
     public Group(List<T> shapes) {
         this.shapes = shapes;
     }
 
+    /**
+     * Ajoute une forme au groupe.
+     * 
+     * @param child la forme à ajouter
+     */
     public void add(T child) {
         this.shapes.add(child);
     }
 
+    /**
+     * Retourne le centre du groupe (moyenne des centres de toutes les formes).
+     * 
+     * @return le point centre du groupe
+     */
     @Override
     public Point getCenter() {
         double sumX = 0;
@@ -42,6 +68,12 @@ public final class Group<T extends IShape> implements IShape {
         return new Point(sumX / shapes.size(), sumY / shapes.size());
     }
 
+    /**
+     * Retourne la hauteur totale du groupe (différence entre le point le plus bas
+     * et le plus haut).
+     * 
+     * @return la hauteur du groupe
+     */
     @Override
     public double getHeight() {
         double maxY = Double.NEGATIVE_INFINITY;
@@ -60,6 +92,12 @@ public final class Group<T extends IShape> implements IShape {
         return maxY - minY;
     }
 
+    /**
+     * Retourne la largeur totale du groupe (différence entre le point le plus
+     * droite et le plus gauche).
+     * 
+     * @return la largeur du groupe
+     */
     @Override
     public double getWidth() {
         double maxX = Double.NEGATIVE_INFINITY;
@@ -78,16 +116,32 @@ public final class Group<T extends IShape> implements IShape {
         return maxX - minX;
     }
 
+    /**
+     * Retourne le style SVG du groupe.
+     * 
+     * @return le style SVG du groupe
+     */
     @Override
     public SVGStyle getStyle() {
         return this.style;
     }
 
+    /**
+     * Retourne la transformation SVG du groupe.
+     * 
+     * @return la transformation SVG du groupe
+     */
     @Override
     public SVGTransform getTransform() {
         return this.transform;
     }
 
+    /**
+     * Retourne une description hiérarchique du groupe et de ses formes.
+     * 
+     * @param indentation le nombre d'espaces pour l'indentation
+     * @return une description textuelle du groupe
+     */
     @Override
     public String getDescription(int indentation) {
         StringBuilder sb = new StringBuilder();
@@ -101,6 +155,12 @@ public final class Group<T extends IShape> implements IShape {
         return sb.toString();
     }
 
+    /**
+     * Déplace toutes les formes du groupe d'une certaine distance.
+     * 
+     * @param dx le déplacement selon l'axe x
+     * @param dy le déplacement selon l'axe y
+     */
     @Override
     public void move(double dx, double dy) {
         for (T shape : shapes) {
@@ -108,6 +168,13 @@ public final class Group<T extends IShape> implements IShape {
         }
     }
 
+    /**
+     * Redimensionne toutes les formes du groupe en appliquant des facteurs
+     * d'échelle.
+     * 
+     * @param px le facteur d'échelle selon l'axe x
+     * @param py le facteur d'échelle selon l'axe y
+     */
     @Override
     public void resize(double px, double py) {
         for (T shape : shapes) {
@@ -115,6 +182,11 @@ public final class Group<T extends IShape> implements IShape {
         }
     }
 
+    /**
+     * Effectue une rotation de toutes les formes du groupe.
+     * 
+     * @param deg l'angle de rotation en degrés
+     */
     @Override
     public void rotate(double deg) {
         for (T shape : shapes) {
@@ -122,6 +194,11 @@ public final class Group<T extends IShape> implements IShape {
         }
     }
 
+    /**
+     * Crée une copie du groupe avec une nouvelle liste des formes.
+     * 
+     * @return une nouvelle instance de Group avec une copie de la liste des formes
+     */
     @Override
     public Group<T> copy() {
         return new Group<>(new ArrayList<>(this.shapes));

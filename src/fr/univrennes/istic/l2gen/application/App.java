@@ -19,6 +19,11 @@ import fr.univrennes.istic.l2gen.svg.interfaces.ISVGShape;
 import fr.univrennes.istic.l2gen.svg.io.SVGExport;
 import fr.univrennes.istic.l2gen.svg.io.SVGImport;
 
+/**
+ * Classe principale de l'application de géométrie.
+ * Gère la génération de fractales, leur export en SVG et leur réimport.
+ * Enregistre toutes les formes géométriques pour l'export/import SVG.
+ */
 public class App {
 
     static {
@@ -35,6 +40,14 @@ public class App {
         SVGImport.register(Triangle.class);
     }
 
+    /**
+     * Méthode principale de l'application.
+     * Génère une fractale, l'exporte en SVG, puis le réimporte pour validation.
+     * Affiche les temps d'exécution de chaque étape.
+     * 
+     * @param args les arguments de la ligne de commande (non utilisés)
+     * @throws Exception si une erreur se produit lors de l'export/import
+     */
     public static void main(String[] args) throws Exception {
         // IMPORTANT: ne pas mettre a jour le code present ici
         // il faut séparer les fonctionnalité dans d'autre fichier de l'app puis les
