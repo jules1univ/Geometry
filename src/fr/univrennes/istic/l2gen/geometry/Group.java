@@ -13,8 +13,8 @@ import fr.univrennes.istic.l2gen.svg.interfaces.SVGTag;
  * Permet de gérer collectivement un ensemble de formes avec des transformations
  * et des styles applicables à tous les éléments.
  * 
- * @param <T> le type des formes contenues dans le groupe (doit implémenter
- *            IShape)
+ * le type des formes contenues dans le groupe (doit implémenter
+ * IShape)
  */
 @SVGTag("g")
 public final class Group implements IShape {
