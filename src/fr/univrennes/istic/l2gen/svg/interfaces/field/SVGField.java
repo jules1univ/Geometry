@@ -1,4 +1,4 @@
-package fr.univrennes.istic.l2gen.svg.interfaces;
+package fr.univrennes.istic.l2gen.svg.interfaces.field;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

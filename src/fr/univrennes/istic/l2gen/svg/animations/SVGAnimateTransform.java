@@ -2,7 +2,7 @@ package fr.univrennes.istic.l2gen.svg.animations;
 
 import java.util.Optional;
 
-import fr.univrennes.istic.l2gen.svg.interfaces.SVGTag;
+import fr.univrennes.istic.l2gen.svg.interfaces.tag.SVGTag;
 
 /**
  * Élément d'animation SVG pour animer les transformations (rotation, échelle,
