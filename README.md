@@ -15,9 +15,9 @@
 
 ### Logiciels nécessaires
 
-- **VS Code** (éditeur recommandé)
+- **VS Code**
 - **Git**
-- **Java JDK 11** ou supérieur
+- **Java JDK 21**
 
 ## Installation
 
@@ -39,6 +39,8 @@ cd Geometry
 
 ## Contribution
 
-**Membres**: [list des mebres](docs/MEMBERS.md)
+**Membres**: [liste des mebres](docs/MEMBERS.md)
+
+**TODOs**: [liste des tâches en cours](docs/TODOS.md)
 
 **Lisez impérativement**: [le guide de contribution](CONTRIBUTING.md) avant de commencer à travailler sur le projet.

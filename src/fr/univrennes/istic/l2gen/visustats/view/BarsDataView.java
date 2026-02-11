@@ -17,7 +17,7 @@ import fr.univrennes.istic.l2gen.visustats.data.Label;
 import fr.univrennes.istic.l2gen.visustats.data.Value;
 
 @SVGTag("g")
-public class BarDataView implements IDataView {
+public class BarsDataView implements IDataView {
     @SVGField
     private List<IShape> elements;
 
@@ -33,12 +33,12 @@ public class BarDataView implements IDataView {
     private double maxHeight = 200;
     private DataSet data;
 
-    public BarDataView() {
+    public BarsDataView() {
         this.elements = new ArrayList<>();
         this.origin = new Point(0, 0);
     }
 
-    public BarDataView(Point origin, double barWidth, double spacing, double maxHeight) {
+    public BarsDataView(Point origin, double barWidth, double spacing, double maxHeight) {
         this.elements = new ArrayList<>();
         this.origin = origin;
         this.barWidth = barWidth;
@@ -111,7 +111,7 @@ public class BarDataView implements IDataView {
 
     @Override
     public IShape copy() {
-        return new BarDataView(new Point(this.origin.getX(), this.origin.getY()), this.barWidth, this.spacing,
+        return new BarsDataView(new Point(this.origin.getX(), this.origin.getY()), this.barWidth, this.spacing,
                 this.maxHeight);
     }
 
