@@ -101,7 +101,6 @@ public class BarsDataView implements IDataView {
                     .textAnchor("middle")
                     .fontSize(12)
                     .fontFamily("Arial");
-            text.getTransform().rotate(-90, left + barWidth / 2.0, top - 5);
 
             this.elements.add(text);
 
