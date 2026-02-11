@@ -12,11 +12,11 @@ import fr.univrennes.istic.l2gen.svg.animations.AnimationTransformType;
 import fr.univrennes.istic.l2gen.svg.animations.SVGAnimate;
 import fr.univrennes.istic.l2gen.svg.animations.SVGAnimateTransform;
 import fr.univrennes.istic.l2gen.svg.interfaces.ISVGShape;
-import fr.univrennes.istic.l2gen.svg.interfaces.SVGField;
-import fr.univrennes.istic.l2gen.svg.interfaces.SVGTag;
+import fr.univrennes.istic.l2gen.svg.interfaces.field.SVGField;
 import fr.univrennes.istic.l2gen.svg.interfaces.point.SVGPoint;
 import fr.univrennes.istic.l2gen.svg.interfaces.point.SVGPointX;
 import fr.univrennes.istic.l2gen.svg.interfaces.point.SVGPointY;
+import fr.univrennes.istic.l2gen.svg.interfaces.tag.SVGTag;
 import fr.univrennes.istic.l2gen.svg.xml.model.XMLTag;
 
 public class ImportExportTest {
