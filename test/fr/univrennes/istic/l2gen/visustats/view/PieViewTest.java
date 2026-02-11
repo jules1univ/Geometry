@@ -1,4 +1,4 @@
-package fr.univrennes.istic.l2gen.visustats;
+package fr.univrennes.istic.l2gen.visustats.view;
 
 import fr.univrennes.istic.l2gen.geometry.Point;
 import fr.univrennes.istic.l2gen.visustats.view.PieDataView;

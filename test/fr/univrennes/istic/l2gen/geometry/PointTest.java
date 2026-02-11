@@ -1,6 +1,5 @@
 package fr.univrennes.istic.l2gen.geometry;
 
-import org.junit.Before;
 import org.junit.Test;
 
 public class PointTest extends AbstractShapeTest<Point> {

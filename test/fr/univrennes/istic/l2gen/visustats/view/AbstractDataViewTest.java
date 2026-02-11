@@ -1,4 +1,4 @@
-package fr.univrennes.istic.l2gen.visustats;
+package fr.univrennes.istic.l2gen.visustats.view;
 
 import java.io.File;
 import java.util.List;
