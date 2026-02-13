@@ -1,11 +1,13 @@
 # TODOs
 
-> To Do
+> 🔴 To Do
 
-- Ajouter un groupe de graphe en utilisant DataGroup
+- Implementer les vues grouper pour chacun des graphs
 
-> In progress
+> 🟠 In progress
 
-- Line Graph
+> 🟢 Done
 
-> Done
+- Bar Graph
+- Column Graph
+- Pie Chart

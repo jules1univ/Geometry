@@ -41,12 +41,6 @@ public abstract class AbstractAnimate implements ISVGShape {
     private Optional<AnimationFill> fill = Optional.empty();
 
     /**
-     * Constructeur par défaut. Crée une animation avec tous les paramètres vides.
-     */
-    protected AbstractAnimate() {
-    }
-
-    /**
      * Définit quand l'animation doit commencer.
      *
      * @param begin le moment de début (ex: "0s", "click", "id.end")

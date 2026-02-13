@@ -3,10 +3,9 @@ package fr.univrennes.istic.l2gen.geometry.base;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.univrennes.istic.l2gen.geometry.AbstractShape;
 import fr.univrennes.istic.l2gen.geometry.IShape;
 import fr.univrennes.istic.l2gen.geometry.Point;
-import fr.univrennes.istic.l2gen.svg.attributes.style.SVGStyle;
-import fr.univrennes.istic.l2gen.svg.attributes.transform.SVGTransform;
 import fr.univrennes.istic.l2gen.svg.interfaces.field.SVGField;
 import fr.univrennes.istic.l2gen.svg.interfaces.tag.SVGTag;
 
@@ -15,16 +14,10 @@ import fr.univrennes.istic.l2gen.svg.interfaces.tag.SVGTag;
  * Un triangle est défini par trois sommets (points).
  */
 @SVGTag("polygon")
-public final class Triangle implements IShape {
+public final class Triangle extends AbstractShape {
 
     @SVGField("points")
     private final List<Point> vertices;
-
-    @SVGField
-    private SVGStyle style = new SVGStyle();
-
-    @SVGField
-    private SVGTransform transform = new SVGTransform();
 
     /**
      * Constructeur par défaut. Crée un triangle équilatéral avec tous les sommets à
@@ -125,26 +118,6 @@ public final class Triangle implements IShape {
     }
 
     /**
-     * Retourne le style SVG du triangle.
-     * 
-     * @return le style SVG
-     */
-    @Override
-    public SVGStyle getStyle() {
-        return this.style;
-    }
-
-    /**
-     * Retourne la transformation SVG du triangle.
-     * 
-     * @return la transformation SVG
-     */
-    @Override
-    public SVGTransform getTransform() {
-        return this.transform;
-    }
-
-    /**
      * Retourne une description textuelle du triangle avec la liste de ses sommets.
      * 
      * @param indent le nombre d'espaces pour l'indentation
@@ -196,6 +169,8 @@ public final class Triangle implements IShape {
      */
     @Override
     public void rotate(double deg) {
+        // Rotation manuelle sans utiliser transform
+
         Point center = getCenter();
         double rad = Math.toRadians(deg);
         for (int i = 0; i < vertices.size(); i++) {

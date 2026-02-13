@@ -273,6 +273,14 @@ public final class SVGImport {
                             shapeField.set(shape, Double.parseDouble(attrValue));
                         } else if (fieldType == Boolean.class || fieldType == boolean.class) {
                             shapeField.set(shape, Boolean.parseBoolean(attrValue));
+                        } else if (fieldType.isEnum()) {
+                            Object[] enumConstants = fieldType.getEnumConstants();
+                            for (Object enumConstant : enumConstants) {
+                                if (enumConstant.toString().equals(attrValue)) {
+                                    shapeField.set(shape, enumConstant);
+                                    break;
+                                }
+                            }
                         } else if (fieldType == Optional.class) {
                             Type[] genericTypes = ((ParameterizedType) shapeField.getGenericType())
                                     .getActualTypeArguments();
@@ -289,6 +297,14 @@ public final class SVGImport {
                                 shapeField.set(shape, Optional.of(Double.parseDouble(attrValue)));
                             } else if (optionalValueType == Boolean.class || optionalValueType == boolean.class) {
                                 shapeField.set(shape, Optional.of(Boolean.parseBoolean(attrValue)));
+                            } else if (optionalValueType.isEnum()) {
+                                Object[] enumConstants = optionalValueType.getEnumConstants();
+                                for (Object enumConstant : enumConstants) {
+                                    if (enumConstant.toString().equals(attrValue)) {
+                                        shapeField.set(shape, Optional.of(enumConstant));
+                                        break;
+                                    }
+                                }
                             }
                         } else if (point != null && fieldType == point) {
                             shapeField.set(shape, createPoint(attr, tag));
@@ -325,21 +341,32 @@ public final class SVGImport {
                             }
                         }
                         shapeField.set(shape, childrenShapes);
-                    } else if (fieldType.getAnnotation(SVGTag.class) != null) {
-                        for (XMLTag childTag : tag.getChildren()) {
-                            if (!childTag.hasAttribute(SVGExport.DEFAULT_CLASS_TYPE_ATTR)) {
-                                continue;
-                            }
-
-                            if (childTag.getAttribute(SVGExport.DEFAULT_CLASS_TYPE_ATTR).getValue()
-                                    .equals(fieldType.getName())) {
-                                ISVGShape childShape = convert(childTag);
-                                if (childShape != null) {
-                                    shapeField.set(shape, childShape);
-                                }
+                    } else {
+                        Constructor<?> emptyConstructor = null;
+                        for (Constructor<?> constructor : fieldType.getConstructors()) {
+                            if (constructor.getParameterCount() == 0) {
+                                emptyConstructor = constructor;
                                 break;
                             }
                         }
+                        if (emptyConstructor != null) {
+                            emptyConstructor.setAccessible(true);
+                            for (XMLTag childTag : tag.getChildren()) {
+                                if (!childTag.hasAttribute(SVGExport.DEFAULT_CLASS_TYPE_ATTR)) {
+                                    continue;
+                                }
+
+                                if (childTag.getAttribute(SVGExport.DEFAULT_CLASS_TYPE_ATTR).getValue()
+                                        .equals(fieldType.getName())) {
+                                    ISVGShape convertedChildShape = convert(childTag);
+                                    if (convertedChildShape != null) {
+                                        shapeField.set(shape, convertedChildShape);
+                                    }
+                                    break;
+                                }
+                            }
+                        }
+
                     }
                 }
                 return shape;

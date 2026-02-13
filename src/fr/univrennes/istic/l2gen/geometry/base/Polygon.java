@@ -3,10 +3,9 @@ package fr.univrennes.istic.l2gen.geometry.base;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.univrennes.istic.l2gen.geometry.AbstractShape;
 import fr.univrennes.istic.l2gen.geometry.IShape;
 import fr.univrennes.istic.l2gen.geometry.Point;
-import fr.univrennes.istic.l2gen.svg.attributes.style.SVGStyle;
-import fr.univrennes.istic.l2gen.svg.attributes.transform.SVGTransform;
 import fr.univrennes.istic.l2gen.svg.interfaces.field.SVGField;
 import fr.univrennes.istic.l2gen.svg.interfaces.tag.SVGTag;
 
@@ -15,16 +14,10 @@ import fr.univrennes.istic.l2gen.svg.interfaces.tag.SVGTag;
  * Un polygone est défini par une liste de sommets.
  */
 @SVGTag("polygon")
-public final class Polygon implements IShape {
+public final class Polygon extends AbstractShape {
 
     @SVGField("points")
     private final List<Point> vertices;
-
-    @SVGField
-    private SVGStyle style = new SVGStyle();
-
-    @SVGField
-    private SVGTransform transform = new SVGTransform();
 
     /**
      * Constructeur par défaut. Crée un polygone vide.
@@ -111,26 +104,6 @@ public final class Polygon implements IShape {
     }
 
     /**
-     * Retourne le style SVG du polygone.
-     * 
-     * @return le style SVG
-     */
-    @Override
-    public SVGStyle getStyle() {
-        return this.style;
-    }
-
-    /**
-     * Retourne la transformation SVG du polygone.
-     * 
-     * @return la transformation SVG
-     */
-    @Override
-    public SVGTransform getTransform() {
-        return this.transform;
-    }
-
-    /**
      * Retourne le centre du polygone (moyenne des coordonnées de tous les sommets).
      * 
      * @return le point centre
@@ -207,6 +180,8 @@ public final class Polygon implements IShape {
      */
     @Override
     public void rotate(double deg) {
+        // Rotation manuelle sans utiliser transform
+
         Point center = getCenter();
         double radians = Math.toRadians(deg);
         double cos = Math.cos(radians);

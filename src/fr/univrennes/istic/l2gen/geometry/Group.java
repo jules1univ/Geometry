@@ -3,8 +3,6 @@ package fr.univrennes.istic.l2gen.geometry;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.univrennes.istic.l2gen.svg.attributes.style.SVGStyle;
-import fr.univrennes.istic.l2gen.svg.attributes.transform.SVGTransform;
 import fr.univrennes.istic.l2gen.svg.interfaces.field.SVGField;
 import fr.univrennes.istic.l2gen.svg.interfaces.tag.SVGTag;
 
@@ -17,16 +15,10 @@ import fr.univrennes.istic.l2gen.svg.interfaces.tag.SVGTag;
  * IShape)
  */
 @SVGTag("g")
-public final class Group implements IShape {
+public class Group extends AbstractShape {
 
     @SVGField
-    private List<IShape> shapes = new ArrayList<>();
-
-    @SVGField
-    private SVGStyle style = new SVGStyle();
-
-    @SVGField
-    private SVGTransform transform = new SVGTransform();
+    protected List<IShape> elements = new ArrayList<>();
 
     /**
      * Constructeur par défaut. Crée un groupe vide.
@@ -35,11 +27,11 @@ public final class Group implements IShape {
     }
 
     public Group(List<IShape> shapes) {
-        this.shapes = shapes;
+        this.elements = shapes;
     }
 
     public void add(IShape child) {
-        this.shapes.add(child);
+        this.elements.add(child);
     }
 
     /**
@@ -49,16 +41,16 @@ public final class Group implements IShape {
      */
     @Override
     public Point getCenter() {
-        if (shapes.isEmpty()) {
+        if (elements.isEmpty()) {
             return new Point(0, 0);
         }
         double sumX = 0;
         double sumY = 0;
-        for (IShape shape : shapes) {
+        for (IShape shape : elements) {
             sumX += shape.getCenter().getX();
             sumY += shape.getCenter().getY();
         }
-        return new Point(sumX / shapes.size(), sumY / shapes.size());
+        return new Point(sumX / elements.size(), sumY / elements.size());
     }
 
     /**
@@ -72,7 +64,7 @@ public final class Group implements IShape {
         double maxY = Double.NEGATIVE_INFINITY;
         double minY = Double.POSITIVE_INFINITY;
 
-        for (IShape shape : shapes) {
+        for (IShape shape : elements) {
             double topY = shape.getCenter().getY() - shape.getHeight() / 2;
             double bottomY = shape.getCenter().getY() + shape.getHeight() / 2;
             if (topY < minY) {
@@ -96,7 +88,7 @@ public final class Group implements IShape {
         double maxX = Double.NEGATIVE_INFINITY;
         double minX = Double.POSITIVE_INFINITY;
 
-        for (IShape shape : shapes) {
+        for (IShape shape : elements) {
             double leftX = shape.getCenter().getX() - shape.getWidth() / 2;
             double rightX = shape.getCenter().getX() + shape.getWidth() / 2;
             if (leftX < minX) {
@@ -110,26 +102,6 @@ public final class Group implements IShape {
     }
 
     /**
-     * Retourne le style SVG du groupe.
-     * 
-     * @return le style SVG du groupe
-     */
-    @Override
-    public SVGStyle getStyle() {
-        return this.style;
-    }
-
-    /**
-     * Retourne la transformation SVG du groupe.
-     * 
-     * @return la transformation SVG du groupe
-     */
-    @Override
-    public SVGTransform getTransform() {
-        return this.transform;
-    }
-
-    /**
      * Retourne une description hiérarchique du groupe et de ses formes.
      * 
      * @param indentation le nombre d'espaces pour l'indentation
@@ -140,7 +112,7 @@ public final class Group implements IShape {
         StringBuilder sb = new StringBuilder();
         sb.append(" ".repeat(indentation));
         sb.append("Group\n");
-        for (IShape shape : shapes) {
+        for (IShape shape : elements) {
             sb.append(shape.getDescription(indentation + 1));
             sb.append("\n");
         }
@@ -156,7 +128,7 @@ public final class Group implements IShape {
      */
     @Override
     public void move(double dx, double dy) {
-        for (IShape shape : shapes) {
+        for (IShape shape : elements) {
             shape.move(dx, dy);
         }
     }
@@ -170,7 +142,7 @@ public final class Group implements IShape {
      */
     @Override
     public void resize(double px, double py) {
-        for (IShape shape : shapes) {
+        for (IShape shape : elements) {
             shape.resize(px, py);
         }
     }
@@ -182,7 +154,7 @@ public final class Group implements IShape {
      */
     @Override
     public void rotate(double deg) {
-        for (IShape shape : shapes) {
+        for (IShape shape : elements) {
             shape.rotate(deg);
         }
     }
@@ -193,7 +165,7 @@ public final class Group implements IShape {
      * @return une nouvelle instance de Group avec une copie de la liste des formes
      */
     @Override
-    public Group copy() {
-        return new Group(new ArrayList<>(this.shapes));
+    public IShape copy() {
+        return new Group(new ArrayList<>(this.elements));
     }
 }

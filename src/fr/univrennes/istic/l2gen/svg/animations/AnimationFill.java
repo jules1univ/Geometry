@@ -8,21 +8,16 @@ public enum AnimationFill {
     /**
      * Enlève l'effet de l'animation (reviens à l'état initial).
      */
-    REMOVE,
+    remove,
     /**
      * Conserve l'effet de l'animation à la fin.
      */
-    FREEZE,
+    freeze,
     /**
      * Mode automatique (par défaut).
      */
-    AUTO;
+    auto;
 
-    /**
-     * Retourne la représentation en chaîne en minuscules pour SVG.
-     * 
-     * @return le nom en minuscules
-     */
     @Override
     public String toString() {
         return name().toLowerCase();

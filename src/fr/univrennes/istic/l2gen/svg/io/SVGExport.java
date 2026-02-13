@@ -211,7 +211,14 @@ public final class SVGExport {
                 }
             } else if (value instanceof Optional<?> optValue) {
                 if (optValue.isPresent()) {
-                    tag.addAttribute(attrName, optValue.get().toString());
+                    Object optVal = optValue.get();
+                    if (optVal instanceof ISVGAttribute svgOptAttr) {
+                        if (svgOptAttr.hasContent()) {
+                            tag.addAttribute(attrName, svgOptAttr.getContent());
+                        }
+                    } else {
+                        tag.addAttribute(attrName, optValue.get().toString());
+                    }
                 }
             } else if (value instanceof ISVGShape svgShape) {
                 tag.appendChild(convert(svgShape));

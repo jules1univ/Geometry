@@ -1,14 +1,20 @@
 package fr.univrennes.istic.l2gen.svg.animations;
 
+import fr.univrennes.istic.l2gen.svg.interfaces.ISVGAttribute;
+
 /**
  * Record représentant la durée d'une animation SVG en millisecondes.
  * Utilise -1 pour indiquer une durée infinie.
  */
-public record AnimationDuration(long miliseconds) {
+public record AnimationDuration(long miliseconds) implements ISVGAttribute {
     /**
      * Constante représentant une durée infinie.
      */
     public static final AnimationDuration INDEFINITE = new AnimationDuration(-1);
+
+    public AnimationDuration(String raw) {
+        this(raw.equals("indefinite") ? -1 : Long.parseLong(raw.replace("ms", "")));
+    }
 
     /**
      * Crée une durée d'animation à partir de secondes.
@@ -49,17 +55,17 @@ public record AnimationDuration(long miliseconds) {
         return INDEFINITE;
     }
 
-    /**
-     * Retourne la représentation en chaîne de caractères.
-     * 
-     * @return "indefinite" si miliseconds == -1, sinon la valeur avec "ms"
-     */
     @Override
-    public String toString() {
+    public boolean hasContent() {
+        return true;
+    }
+
+    public String getContent() {
         if (miliseconds == -1) {
             return "indefinite";
         }
         return miliseconds + "ms";
+
     }
 
 }

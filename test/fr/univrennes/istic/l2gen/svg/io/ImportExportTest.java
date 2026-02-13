@@ -12,7 +12,6 @@ import fr.univrennes.istic.l2gen.svg.animations.AnimationCount;
 import fr.univrennes.istic.l2gen.svg.animations.AnimationDuration;
 import fr.univrennes.istic.l2gen.svg.animations.AnimationTransformType;
 import fr.univrennes.istic.l2gen.svg.animations.SVGAnimate;
-import fr.univrennes.istic.l2gen.svg.animations.AbstractAnimate;
 import fr.univrennes.istic.l2gen.svg.animations.SVGAnimateTransform;
 import fr.univrennes.istic.l2gen.svg.interfaces.ISVGShape;
 import fr.univrennes.istic.l2gen.svg.interfaces.field.SVGField;
@@ -58,7 +57,7 @@ public class ImportExportTest {
     private static class TestRect extends TestSuperRect {
 
         @SVGField
-        private AbstractAnimate childAnimation;
+        private SVGAnimate childAnimation;
 
         @SVGField
         private SVGAnimateTransform childAnimationTransform;
@@ -76,6 +75,9 @@ public class ImportExportTest {
         private List<TestSuperRect> miniRects = new ArrayList<>();
 
         public TestRect() {
+        }
+
+        public void build() {
             this.childAnimation = new SVGAnimate();
             this.childAnimation
                     .begin("0")
@@ -87,7 +89,7 @@ public class ImportExportTest {
 
             this.childAnimationTransform = new SVGAnimateTransform();
             this.childAnimationTransform
-                    .type(AnimationTransformType.TRANSLATE)
+                    .type(AnimationTransformType.translate)
                     .begin("0")
                     .dur(AnimationDuration.s(1))
                     .repeatCount(AnimationCount.INDEFINITE)
@@ -104,6 +106,8 @@ public class ImportExportTest {
     @Test
     public void testExportFile() {
         TestRect rect = new TestRect();
+        rect.build();
+
         String filepath = "test_output.svg";
         assert SVGExport.export(rect, filepath, 0, 0);
 
@@ -119,6 +123,8 @@ public class ImportExportTest {
         SVGImport.register(TestPoint.class);
 
         TestRect rect = new TestRect();
+        rect.build();
+
         String filepath = "test_output.svg";
         assert SVGExport.export(rect, filepath, 0, 0);
 
@@ -137,6 +143,8 @@ public class ImportExportTest {
     @Test
     public void testExportConvert() {
         TestRect rect = new TestRect();
+        rect.build();
+
         XMLTag svgRect = SVGExport.convert(rect);
 
         assert svgRect.getTagName().equals("rect");
@@ -172,8 +180,12 @@ public class ImportExportTest {
     public void testImportConvert() {
         SVGImport.register(TestRect.class);
         SVGImport.register(TestPoint.class);
+        SVGImport.register(SVGAnimate.class);
+        SVGImport.register(SVGAnimateTransform.class);
 
         TestRect rect = new TestRect();
+        rect.build();
+
         XMLTag svgRect = SVGExport.convert(rect);
 
         ISVGShape importShape = SVGImport.convert(svgRect);
@@ -195,7 +207,7 @@ public class ImportExportTest {
         assert importedRect.childAnimation.begin().equals("0");
 
         assert importedRect.childAnimationTransform != null;
-        assert importedRect.childAnimationTransform.type().equals(AnimationTransformType.TRANSLATE);
+        assert importedRect.childAnimationTransform.type().equals(AnimationTransformType.translate);
         assert importedRect.childAnimationTransform.begin().equals("0");
 
         assert importedRect.superField.equals("superValue");
@@ -204,6 +216,8 @@ public class ImportExportTest {
     @Test
     public void testExportConvertWithNull() {
         TestRect rect = new TestRect();
+        rect.build();
+
         rect.position = null;
         XMLTag svgRect = SVGExport.convert(rect);
 
@@ -216,6 +230,8 @@ public class ImportExportTest {
     @Test
     public void testExportConvertWithEmptyList() {
         TestRect rect = new TestRect();
+        rect.build();
+
         rect.randomValues.clear();
         XMLTag svgRect = SVGExport.convert(rect);
 
@@ -228,6 +244,8 @@ public class ImportExportTest {
     public void testImportMissingRegister() {
 
         TestRect rect = new TestRect();
+        rect.build();
+
         XMLTag svgRect = SVGExport.convert(rect);
 
         ISVGShape importShape = SVGImport.convert(svgRect);
@@ -241,6 +259,8 @@ public class ImportExportTest {
         SVGImport.register(TestPoint.class);
 
         TestRect rect = new TestRect();
+        rect.build();
+
         XMLTag svgRect = SVGExport.convert(rect);
 
         svgRect.removeAttribute("x");

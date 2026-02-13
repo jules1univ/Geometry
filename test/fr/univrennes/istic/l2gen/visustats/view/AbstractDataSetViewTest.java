@@ -12,29 +12,30 @@ import fr.univrennes.istic.l2gen.geometry.base.Rectangle;
 import fr.univrennes.istic.l2gen.svg.color.Color;
 import fr.univrennes.istic.l2gen.svg.io.SVGExport;
 import fr.univrennes.istic.l2gen.visustats.data.DataSet;
-import fr.univrennes.istic.l2gen.visustats.data.Label;
 import fr.univrennes.istic.l2gen.visustats.data.Value;
+import fr.univrennes.istic.l2gen.visustats.view.set.IDataSetView;
 
-@Ignore("Abstract Data View Test")
-public abstract class AbstractDataViewTest<DataView extends IDataView> {
+@Ignore("Abstract DataSet View Test")
+public abstract class AbstractDataSetViewTest<DataSetView extends IDataSetView> {
 
-    public abstract DataView create();
+    public abstract DataSetView create();
 
-    private final DataSet generateData() {
-        return new DataSet(List.of(
-                new Value(30, new Label("Category A"), Color.RED),
-                new Value(20, new Label("Category B"), Color.GREEN),
-                new Value(50, new Label("Category C"), Color.BLUE)),
-                new Label("X-Axis"),
-                Color.BLUE);
+    private final DataSet createDataSet(int size, double minValue, double maxValue) {
+
+        DataSet dataset = new DataSet();
+        for (int i = 0; i < size; i++) {
+            double value = Math.random() * (maxValue - minValue) + minValue;
+            dataset.values().add(new Value(value, Color.random()));
+        }
+        return dataset;
     }
 
     @Test
     public final void testSVG() {
-        DataView dataView = create();
+        DataSetView dataView = create();
         assert dataView != null;
 
-        dataView.setData(List.of(generateData()));
+        dataView.setData(createDataSet(5, 10, 100));
 
         File output = new File(String.format("output/test_%s.svg", dataView.getClass().getSimpleName().toLowerCase()));
         if (output.exists()) {
@@ -55,7 +56,19 @@ public abstract class AbstractDataViewTest<DataView extends IDataView> {
                 .strokeWidth(2)
                 .strokeColor(Color.BLACK);
 
-        assert SVGExport.export(List.of(background, dataView, crossLine1, crossLine2), output.getAbsolutePath(), 1000,
+        IShape box = new Rectangle(
+                dataView.getCenter().getX() - dataView.getWidth() / 2,
+                dataView.getCenter().getY() - dataView.getHeight() / 2,
+                dataView.getWidth(),
+                dataView.getHeight());
+        box.getStyle()
+                .fillColor(Color.TRANSPARENT)
+                .strokeWidth(2)
+                .strokeColor(Color.RED)
+                .strokeDashArray(5, 5, 5, 5);
+
+        assert SVGExport.export(List.of(background, dataView, crossLine1, crossLine2, box), output.getAbsolutePath(),
+                1000,
                 1000);
     }
 }

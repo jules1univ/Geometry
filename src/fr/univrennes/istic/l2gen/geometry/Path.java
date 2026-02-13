@@ -1,8 +1,6 @@
 package fr.univrennes.istic.l2gen.geometry;
 
 import fr.univrennes.istic.l2gen.svg.attributes.path.SVGPath;
-import fr.univrennes.istic.l2gen.svg.attributes.style.SVGStyle;
-import fr.univrennes.istic.l2gen.svg.attributes.transform.SVGTransform;
 import fr.univrennes.istic.l2gen.svg.interfaces.field.SVGField;
 import fr.univrennes.istic.l2gen.svg.interfaces.tag.SVGTag;
 
@@ -12,19 +10,13 @@ import fr.univrennes.istic.l2gen.svg.interfaces.tag.SVGTag;
  * chemins SVG.
  */
 @SVGTag("path")
-public class Path implements IShape {
+public final class Path extends AbstractShape {
 
     @SVGField("d")
     private SVGPath path;
 
     @SVGField({ "x", "y" })
     private Point position = new Point(0, 0);
-
-    @SVGField
-    private SVGTransform transform = new SVGTransform();
-
-    @SVGField
-    private SVGStyle style = new SVGStyle();
 
     /**
      * Constructeur par défaut. Crée un chemin vide.
@@ -85,26 +77,6 @@ public class Path implements IShape {
         // return new Point(this.path.getBoundingBox().getCenterX(),
         // this.path.getBoundingBox().getCenterY());
         return this.position;
-    }
-
-    /**
-     * Retourne le style SVG de la forme.
-     * 
-     * @return le style SVG
-     */
-    @Override
-    public SVGStyle getStyle() {
-        return style;
-    }
-
-    /**
-     * Retourne la transformation SVG de la forme.
-     * 
-     * @return la transformation SVG
-     */
-    @Override
-    public SVGTransform getTransform() {
-        return transform;
     }
 
     /**

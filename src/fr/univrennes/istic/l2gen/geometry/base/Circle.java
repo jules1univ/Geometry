@@ -1,9 +1,8 @@
 package fr.univrennes.istic.l2gen.geometry.base;
 
+import fr.univrennes.istic.l2gen.geometry.AbstractShape;
 import fr.univrennes.istic.l2gen.geometry.IShape;
 import fr.univrennes.istic.l2gen.geometry.Point;
-import fr.univrennes.istic.l2gen.svg.attributes.style.SVGStyle;
-import fr.univrennes.istic.l2gen.svg.attributes.transform.SVGTransform;
 import fr.univrennes.istic.l2gen.svg.interfaces.field.SVGField;
 import fr.univrennes.istic.l2gen.svg.interfaces.tag.SVGTag;
 
@@ -12,19 +11,13 @@ import fr.univrennes.istic.l2gen.svg.interfaces.tag.SVGTag;
  * Un cercle est défini par un centre et un rayon.
  */
 @SVGTag("circle")
-public final class Circle implements IShape {
+public final class Circle extends AbstractShape {
 
     @SVGField("r")
     private double radius;
 
     @SVGField({ "cx", "cy" })
     private Point center;
-
-    @SVGField
-    private SVGStyle style = new SVGStyle();
-
-    @SVGField
-    private SVGTransform transform = new SVGTransform();
 
     /**
      * Constructeur par défaut. Crée un cercle avec un centre à l'origine et un
@@ -86,26 +79,6 @@ public final class Circle implements IShape {
     @Override
     public Point getCenter() {
         return this.center;
-    }
-
-    /**
-     * Retourne le style SVG du cercle.
-     * 
-     * @return le style SVG
-     */
-    @Override
-    public SVGStyle getStyle() {
-        return this.style;
-    }
-
-    /**
-     * Retourne la transformation SVG du cercle.
-     * 
-     * @return la transformation SVG
-     */
-    @Override
-    public SVGTransform getTransform() {
-        return this.transform;
     }
 
     /**

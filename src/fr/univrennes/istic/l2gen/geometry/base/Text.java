@@ -1,9 +1,8 @@
 package fr.univrennes.istic.l2gen.geometry.base;
 
+import fr.univrennes.istic.l2gen.geometry.AbstractShape;
 import fr.univrennes.istic.l2gen.geometry.IShape;
 import fr.univrennes.istic.l2gen.geometry.Point;
-import fr.univrennes.istic.l2gen.svg.attributes.style.SVGStyle;
-import fr.univrennes.istic.l2gen.svg.attributes.transform.SVGTransform;
 import fr.univrennes.istic.l2gen.svg.interfaces.content.SVGContent;
 import fr.univrennes.istic.l2gen.svg.interfaces.field.SVGField;
 import fr.univrennes.istic.l2gen.svg.interfaces.tag.SVGTag;
@@ -14,19 +13,13 @@ import fr.univrennes.istic.l2gen.svg.interfaces.tag.SVGTag;
  * position.
  */
 @SVGTag("text")
-public final class Text implements IShape {
+public final class Text extends AbstractShape {
 
     @SVGContent
     private final String text;
 
     @SVGField({ "x", "y" })
     private Point center;
-
-    @SVGField
-    private SVGStyle style = new SVGStyle();
-
-    @SVGField
-    private SVGTransform transform = new SVGTransform();
 
     /**
      * Constructeur par défaut. Crée un texte vide à l'origine.
@@ -90,25 +83,6 @@ public final class Text implements IShape {
     }
 
     /**
-     * Retourne le style SVG du texte.
-     * 
-     * @return le style SVG
-     */
-    @Override
-    public SVGStyle getStyle() {
-        return this.style;
-    }
-
-    /**
-     * Retourne la transformation SVG du texte.
-     * 
-     * @return la transformation SVG
-     */
-    public SVGTransform getTransform() {
-        return this.transform;
-    }
-
-    /**
      * Retourne une description textuelle du texte avec sa position.
      * 
      * @param indentation le nombre d'espaces pour l'indentation
@@ -149,16 +123,6 @@ public final class Text implements IShape {
     @Override
     public void resize(double px, double py) {
         this.transform.scale(px, py);
-    }
-
-    /**
-     * Effectue une rotation du texte autour de sa position.
-     * 
-     * @param deg l'angle de rotation en degrés
-     */
-    @Override
-    public void rotate(double deg) {
-        this.transform.rotate(deg, this.getCenter().getX(), this.getCenter().getY());
     }
 
     /**

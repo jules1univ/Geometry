@@ -8,29 +8,24 @@ public enum AnimationTransformType {
     /**
      * Animation de translation (déplacement).
      */
-    TRANSLATE,
+    translate,
     /**
      * Animation d'échelle (redimensionnement).
      */
-    SCALE,
+    scale,
     /**
      * Animation de rotation.
      */
-    ROTATE,
+    rotate,
     /**
      * Animation d'inclinaison selon l'axe X.
      */
-    SKEWX,
+    skewx,
     /**
      * Animation d'inclinaison selon l'axe Y.
      */
-    SKEWY;
+    skewy;
 
-    /**
-     * Retourne la représentation en chaîne en minuscules pour SVG.
-     * 
-     * @return le nom en minuscules
-     */
     @Override
     public String toString() {
         return name().toLowerCase();
