@@ -8,21 +8,16 @@ public enum AnimationRestart {
     /**
      * L'animation peut redémarrer n'importe quand.
      */
-    ALWAYS,
+    always,
     /**
      * L'animation ne peut redémarrer que si elle n'est pas active.
      */
-    WHEN_NOT_ACTIVE,
+    when_not_active,
     /**
      * L'animation ne peut pas redémarrer.
      */
-    NEVER;
+    never;
 
-    /**
-     * Retourne la représentation en chaîne en minuscules pour SVG.
-     * 
-     * @return le nom en minuscules
-     */
     @Override
     public String toString() {
         return name().toLowerCase();

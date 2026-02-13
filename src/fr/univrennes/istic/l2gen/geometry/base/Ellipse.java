@@ -1,9 +1,8 @@
 package fr.univrennes.istic.l2gen.geometry.base;
 
+import fr.univrennes.istic.l2gen.geometry.AbstractShape;
 import fr.univrennes.istic.l2gen.geometry.IShape;
 import fr.univrennes.istic.l2gen.geometry.Point;
-import fr.univrennes.istic.l2gen.svg.attributes.style.SVGStyle;
-import fr.univrennes.istic.l2gen.svg.attributes.transform.SVGTransform;
 import fr.univrennes.istic.l2gen.svg.interfaces.field.SVGField;
 import fr.univrennes.istic.l2gen.svg.interfaces.tag.SVGTag;
 
@@ -12,19 +11,13 @@ import fr.univrennes.istic.l2gen.svg.interfaces.tag.SVGTag;
  * Une ellipse est définie par un centre et deux rayons (rx et ry).
  */
 @SVGTag("ellipse")
-public final class Ellipse implements IShape {
+public final class Ellipse extends AbstractShape {
 
     @SVGField({ "cx", "cy" })
     private Point center;
 
     @SVGField({ "rx", "ry" })
     private Point radius;
-
-    @SVGField
-    private SVGStyle style = new SVGStyle();
-
-    @SVGField
-    private SVGTransform transform = new SVGTransform();
 
     /**
      * Constructeur par défaut. Crée une ellipse avec centre à l'origine et rayons
@@ -89,26 +82,6 @@ public final class Ellipse implements IShape {
     }
 
     /**
-     * Retourne le style SVG de l'ellipse.
-     * 
-     * @return le style SVG
-     */
-    @Override
-    public SVGStyle getStyle() {
-        return this.style;
-    }
-
-    /**
-     * Retourne la transformation SVG de l'ellipse.
-     * 
-     * @return la transformation SVG
-     */
-    @Override
-    public SVGTransform getTransform() {
-        return this.transform;
-    }
-
-    /**
      * Retourne une description textuelle de l'ellipse.
      * 
      * @param indent le nombre d'espaces pour l'indentation
@@ -150,16 +123,6 @@ public final class Ellipse implements IShape {
     @Override
     public void resize(double px, double py) {
         this.radius.mult(px, py);
-    }
-
-    /**
-     * Effectue une rotation de l'ellipse autour de son centre.
-     * 
-     * @param deg l'angle de rotation en degrés
-     */
-    @Override
-    public void rotate(double deg) {
-        this.transform.rotate(deg, this.getCenter().getX(), this.getCenter().getY());
     }
 
     /**

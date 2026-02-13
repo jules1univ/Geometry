@@ -1,9 +1,8 @@
 package fr.univrennes.istic.l2gen.geometry.base;
 
+import fr.univrennes.istic.l2gen.geometry.AbstractShape;
 import fr.univrennes.istic.l2gen.geometry.IShape;
 import fr.univrennes.istic.l2gen.geometry.Point;
-import fr.univrennes.istic.l2gen.svg.attributes.style.SVGStyle;
-import fr.univrennes.istic.l2gen.svg.attributes.transform.SVGTransform;
 import fr.univrennes.istic.l2gen.svg.interfaces.field.SVGField;
 import fr.univrennes.istic.l2gen.svg.interfaces.tag.SVGTag;
 
@@ -13,19 +12,13 @@ import fr.univrennes.istic.l2gen.svg.interfaces.tag.SVGTag;
  * d'arrivée.
  */
 @SVGTag("line")
-public class Line implements IShape {
+public final class Line extends AbstractShape {
 
     @SVGField({ "x1", "y1" })
     private Point start;
 
     @SVGField({ "x2", "y2" })
     private Point end;
-
-    @SVGField
-    private SVGStyle style = new SVGStyle();
-
-    @SVGField
-    private SVGTransform transform = new SVGTransform();
 
     /**
      * Constructeur par défaut. Crée une ligne avec les deux extrémités à l'origine.
@@ -98,26 +91,6 @@ public class Line implements IShape {
     }
 
     /**
-     * Retourne le style SVG de la ligne.
-     * 
-     * @return le style SVG
-     */
-    @Override
-    public SVGStyle getStyle() {
-        return this.style;
-    }
-
-    /**
-     * Retourne la transformation SVG de la ligne.
-     * 
-     * @return la transformation SVG
-     */
-    @Override
-    public SVGTransform getTransform() {
-        return this.transform;
-    }
-
-    /**
      * Retourne une description textuelle de la ligne.
      * 
      * @param indent le nombre d'espaces pour l'indentation
@@ -156,16 +129,6 @@ public class Line implements IShape {
     public void resize(double px, double py) {
         this.start = new Point(this.start.getX() * px, this.start.getY() * py);
         this.end = new Point(this.end.getX() * px, this.end.getY() * py);
-    }
-
-    /**
-     * Effectue une rotation de la ligne autour de son centre.
-     * 
-     * @param deg l'angle de rotation en degrés
-     */
-    @Override
-    public void rotate(double deg) {
-        this.transform.rotate(deg, this.getCenter().getX(), this.getCenter().getY());
     }
 
     /**

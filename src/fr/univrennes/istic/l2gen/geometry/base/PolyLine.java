@@ -3,10 +3,9 @@ package fr.univrennes.istic.l2gen.geometry.base;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.univrennes.istic.l2gen.geometry.AbstractShape;
 import fr.univrennes.istic.l2gen.geometry.IShape;
 import fr.univrennes.istic.l2gen.geometry.Point;
-import fr.univrennes.istic.l2gen.svg.attributes.style.SVGStyle;
-import fr.univrennes.istic.l2gen.svg.attributes.transform.SVGTransform;
 import fr.univrennes.istic.l2gen.svg.interfaces.field.SVGField;
 import fr.univrennes.istic.l2gen.svg.interfaces.tag.SVGTag;
 
@@ -16,16 +15,10 @@ import fr.univrennes.istic.l2gen.svg.interfaces.tag.SVGTag;
  * suite de points.
  */
 @SVGTag("polyline")
-public final class PolyLine implements IShape {
+public final class PolyLine extends AbstractShape {
 
     @SVGField("points")
     private final List<Point> vertices;
-
-    @SVGField
-    private SVGStyle style = new SVGStyle();
-
-    @SVGField
-    private SVGTransform transform = new SVGTransform();
 
     /**
      * Constructeur par défaut. Crée une polyligne vide.
@@ -139,26 +132,6 @@ public final class PolyLine implements IShape {
     }
 
     /**
-     * Retourne le style SVG de la polyligne.
-     * 
-     * @return le style SVG associé
-     */
-    @Override
-    public SVGStyle getStyle() {
-        return this.style;
-    }
-
-    /**
-     * Retourne la transformation SVG appliquée à cette polyligne.
-     *
-     * @return la transformation SVG
-     */
-    @Override
-    public SVGTransform getTransform() {
-        return this.transform;
-    }
-
-    /**
      * génère une description textuelle de la Line avec un certain niveau
      * d'indentation.
      * 
@@ -217,6 +190,7 @@ public final class PolyLine implements IShape {
      */
     @Override
     public void rotate(double deg) {
+        // Rotation manuelle sans utiliser transform
         Point center = getCenter();
         double rad = Math.toRadians(deg);
 

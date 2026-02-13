@@ -47,6 +47,9 @@ public abstract class AbstractShapeTest<T extends IShape> {
         assert shape.getHeight() == outShape.getHeight();
         assert shape.getCenter().equals(outShape.getCenter());
         assert shape.getDescription(0).equals(outShape.getDescription(0));
+
+        SVGExport.export(outShape,
+                String.format("output/test_%s", shape.getClass().getSimpleName().toLowerCase() + ".svg"), 1000, 1000);
     }
 
     @Test

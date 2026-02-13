@@ -1,9 +1,8 @@
 package fr.univrennes.istic.l2gen.geometry.base;
 
+import fr.univrennes.istic.l2gen.geometry.AbstractShape;
 import fr.univrennes.istic.l2gen.geometry.IShape;
 import fr.univrennes.istic.l2gen.geometry.Point;
-import fr.univrennes.istic.l2gen.svg.attributes.style.SVGStyle;
-import fr.univrennes.istic.l2gen.svg.attributes.transform.SVGTransform;
 import fr.univrennes.istic.l2gen.svg.interfaces.field.SVGField;
 import fr.univrennes.istic.l2gen.svg.interfaces.tag.SVGTag;
 
@@ -12,7 +11,7 @@ import fr.univrennes.istic.l2gen.svg.interfaces.tag.SVGTag;
  * Un rectangle est défini par une position, une largeur et une hauteur.
  */
 @SVGTag("rect")
-public final class Rectangle implements IShape {
+public final class Rectangle extends AbstractShape {
 
     @SVGField({ "x", "y" })
     private Point position;
@@ -22,12 +21,6 @@ public final class Rectangle implements IShape {
 
     @SVGField({ "rx", "ry" })
     private Point radius = new Point(0, 0);
-
-    @SVGField
-    private SVGStyle style = new SVGStyle();
-
-    @SVGField
-    private SVGTransform transform = new SVGTransform();
 
     /**
      * Constructeur par défaut. Crée un rectangle à l'origine avec des dimensions
@@ -92,26 +85,6 @@ public final class Rectangle implements IShape {
     }
 
     /**
-     * Retourne le style SVG du rectangle.
-     * 
-     * @return le style SVG
-     */
-    @Override
-    public SVGStyle getStyle() {
-        return this.style;
-    }
-
-    /**
-     * Retourne la transformation SVG du rectangle.
-     * 
-     * @return la transformation SVG
-     */
-    @Override
-    public SVGTransform getTransform() {
-        return this.transform;
-    }
-
-    /**
      * Retourne une description textuelle du rectangle.
      * 
      * @param indentation le nombre d'espaces pour l'indentation
@@ -163,16 +136,6 @@ public final class Rectangle implements IShape {
 
         this.size.setX(newWidth);
         this.size.setY(newHeight);
-    }
-
-    /**
-     * Effectue une rotation du rectangle autour de son centre.
-     * 
-     * @param deg l'angle de rotation en degrés
-     */
-    @Override
-    public void rotate(double deg) {
-        this.transform.rotate(deg, this.getCenter().getX(), this.getCenter().getY());
     }
 
     /**

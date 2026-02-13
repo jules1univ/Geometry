@@ -14,6 +14,7 @@ import fr.univrennes.istic.l2gen.svg.interfaces.ISVGAttribute;
 public final class SVGStyle implements ISVGAttribute {
     private Optional<Double> strokeWidth = Optional.empty();
     private Optional<Color> strokeColor = Optional.empty();
+    private Optional<String> strokeDashArray = Optional.empty();
     private Optional<Color> fillColor = Optional.empty();
 
     private Optional<Double> fontSize = Optional.empty();
@@ -68,6 +69,9 @@ public final class SVGStyle implements ISVGAttribute {
             } else if (declaration.startsWith("alignment-baseline:")) {
                 String baseline = declaration.substring("alignment-baseline:".length());
                 this.alignmentBaseline = Optional.of(baseline);
+            } else if (declaration.startsWith("stroke-dasharray:")) {
+                String dashArray = declaration.substring("stroke-dasharray:".length());
+                this.strokeDashArray = Optional.of(dashArray);
             }
         }
     }
@@ -110,6 +114,22 @@ public final class SVGStyle implements ISVGAttribute {
      */
     public Optional<Color> strokeColor() {
         return strokeColor;
+    }
+
+    public SVGStyle strokeDashArray(int... values) {
+        StringBuilder sb = new StringBuilder();
+        for (int value : values) {
+            if (sb.length() > 0) {
+                sb.append(",");
+            }
+            sb.append(value);
+        }
+        this.strokeDashArray = Optional.of(sb.toString());
+        return this;
+    }
+
+    public Optional<String> strokeDashArray() {
+        return strokeDashArray;
     }
 
     /**
@@ -225,7 +245,8 @@ public final class SVGStyle implements ISVGAttribute {
                 || fontSize.isPresent()
                 || fontFamily.isPresent()
                 || textAnchor.isPresent()
-                || alignmentBaseline.isPresent();
+                || alignmentBaseline.isPresent()
+                || strokeDashArray.isPresent();
     }
 
     /**
@@ -238,6 +259,7 @@ public final class SVGStyle implements ISVGAttribute {
         StringBuilder sb = new StringBuilder();
         strokeWidth.ifPresent(w -> sb.append("stroke-width:").append(w).append(";"));
         strokeColor.ifPresent(c -> sb.append("stroke:").append(c).append(";"));
+        strokeDashArray.ifPresent(d -> sb.append("stroke-dasharray:").append(d).append(";"));
         fillColor.ifPresent(c -> sb.append("fill:").append(c).append(";"));
         fontSize.ifPresent(s -> sb.append("font-size:").append(s).append(";"));
         fontFamily.ifPresent(f -> sb.append("font-family:").append(f).append(";"));
