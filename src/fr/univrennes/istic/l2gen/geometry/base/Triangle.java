@@ -125,8 +125,9 @@ public final class Triangle extends AbstractShape {
      */
     @Override
     public String getDescription(int indent) {
-        StringBuilder sb = new StringBuilder(" ".repeat(Math.max(0, indent)));
-        sb.append("Triangle ");
+        StringBuilder sb = new StringBuilder();
+        sb.append(super.getDescription(indent));
+
         sb.append("POINTS=");
         for (Point p : vertices) {
             sb.append(" ").append(p.getX()).append(",").append(p.getY());

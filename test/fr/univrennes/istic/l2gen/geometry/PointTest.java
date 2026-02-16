@@ -50,4 +50,16 @@ public class PointTest extends AbstractShapeTest<Point> {
     public void testSVG() {
         // Ne rien faire car point n'est pas un element SVG
     }
+
+    @Test
+    @Override
+    public void testWidth() {
+        // Ne rien faire car point n'est pas un element SVG
+    }
+
+    @Test
+    @Override
+    public void testHeight() {
+        // Ne rien faire car point n'est pas un element SVG
+    }
 }

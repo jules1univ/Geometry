@@ -13,6 +13,11 @@ public abstract class AbstractShape implements IShape {
     protected final SVGTransform transform = new SVGTransform();
 
     @Override
+    public String getDescription(int indent) {
+        return " ".repeat(Math.max(0, indent)) + this.getClass().getSimpleName();
+    }
+
+    @Override
     public void rotate(double deg) {
         this.transform.rotate(deg, this.getCenter().getX(), this.getCenter().getY());
     }

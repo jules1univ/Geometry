@@ -51,4 +51,16 @@ public class PolyLineTest extends AbstractShapeTest<PolyLine> {
         assertEquals(expectedDescription, line.getDescription(0));
     }
 
+    @Test
+    @Override
+    public void testWidth() {
+        assert create().getWidth() == 4;
+    }
+
+    @Test
+    @Override
+    public void testHeight() {
+        assert create().getHeight() == 4;
+    }
+
 }

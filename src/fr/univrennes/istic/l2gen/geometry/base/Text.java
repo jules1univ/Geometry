@@ -89,10 +89,10 @@ public final class Text extends AbstractShape {
      * @return une string décrivant le texte
      */
     @Override
-    public String getDescription(int indentation) {
+    public String getDescription(int indent) {
         StringBuilder sb = new StringBuilder();
-        sb.append(" ".repeat(Math.max(0, indentation)));
-        sb.append("Text ");
+        sb.append(super.getDescription(indent));
+
         sb.append("VALUE=");
         sb.append(text);
         sb.append(" X=");

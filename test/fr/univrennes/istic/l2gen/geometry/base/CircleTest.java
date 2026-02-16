@@ -48,4 +48,18 @@ public class CircleTest extends AbstractShapeTest<Circle> {
         Circle c5 = new Circle(1, 2, 3);
         assertTrue("Circle C=1,2 R=3.0".compareTo(c5.getDescription(0)) == 0);
     }
+
+    @Test
+    @Override
+    public void testWidth() {
+        Circle c6 = new Circle(1, 1, 4);
+        assertTrue(c6.getWidth() == 8);
+    }
+
+    @Test
+    @Override
+    public void testHeight() {
+        Circle c7 = new Circle(1, 1, 4);
+        assertTrue(c7.getHeight() == 8);
+    }
 }

@@ -74,9 +74,9 @@ public final class Path extends AbstractShape {
      */
     @Override
     public Point getCenter() {
-        // return new Point(this.path.getBoundingBox().getCenterX(),
-        // this.path.getBoundingBox().getCenterY());
-        return this.position;
+        return new Point(
+                position.getX() + this.path.getBoundingBox().getWidth() / 2,
+                position.getY() + this.path.getBoundingBox().getHeight() / 2);
     }
 
     /**
@@ -88,8 +88,8 @@ public final class Path extends AbstractShape {
     @Override
     public String getDescription(int indent) {
         StringBuilder sb = new StringBuilder();
-        sb.append(" ".repeat(Math.max(0, indent)));
-        sb.append("Path");
+        sb.append(super.getDescription(indent));
+
         sb.append(" D=");
         sb.append(path.getContent());
         return sb.toString();

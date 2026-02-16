@@ -140,9 +140,10 @@ public final class PolyLine extends AbstractShape {
      */
     @Override
     public String getDescription(int indent) {
-        StringBuilder sb = new StringBuilder(" ".repeat(Math.max(0, indent)));
-        sb.append("PolyLine ");
-        sb.append("POINTS=");
+        StringBuilder sb = new StringBuilder();
+        sb.append(super.getDescription(indent));
+
+        sb.append(" POINTS=");
         for (Point p : vertices) {
             sb.append(p.getX()).append(",").append(p.getY()).append(" ");
         }

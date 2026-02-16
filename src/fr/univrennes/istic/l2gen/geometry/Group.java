@@ -34,6 +34,14 @@ public class Group extends AbstractShape {
         this.elements.add(child);
     }
 
+    public IShape get(int index) {
+        return this.elements.get(index);
+    }
+
+    public List<IShape> getElements() {
+        return new ArrayList<>(this.elements);
+    }
+
     /**
      * Retourne le centre du groupe (moyenne des centres de toutes les formes).
      * 
@@ -108,15 +116,17 @@ public class Group extends AbstractShape {
      * @return une description textuelle du groupe
      */
     @Override
-    public String getDescription(int indentation) {
+    public String getDescription(int indent) {
         StringBuilder sb = new StringBuilder();
-        sb.append(" ".repeat(indentation));
-        sb.append("Group\n");
+        sb.append(super.getDescription(indent));
+
         for (IShape shape : elements) {
-            sb.append(shape.getDescription(indentation + 1));
+            sb.append(shape.getDescription(indent + 1));
             sb.append("\n");
         }
-        sb.setLength(sb.length() - 1);
+        if (elements.size() > 0) {
+            sb.setLength(sb.length() - 1);
+        }
         return sb.toString();
     }
 

@@ -5,13 +5,12 @@ import org.junit.Test;
 
 import fr.univrennes.istic.l2gen.svg.interfaces.ISVGShape;
 import fr.univrennes.istic.l2gen.svg.io.SVGExport;
+import fr.univrennes.istic.l2gen.svg.io.SVGExportTestUtil;
 import fr.univrennes.istic.l2gen.svg.io.SVGImport;
 import fr.univrennes.istic.l2gen.svg.xml.model.XMLTag;
 
 @Ignore("Abstract Shape Test")
 public abstract class AbstractShapeTest<T extends IShape> {
-    // TODO: faire test pour Point, Group et Path
-
     /**
      * Créé un objet qui hérite de IShape pour l'utliser a travers les test
      * **Important** cette fonction n'est pas un test il ne faut pas ajouter une
@@ -28,6 +27,10 @@ public abstract class AbstractShapeTest<T extends IShape> {
     public abstract void testResize();
 
     public abstract void testDescription();
+
+    public abstract void testWidth();
+
+    public abstract void testHeight();
 
     @Test
     public void testSVG() {
@@ -48,8 +51,7 @@ public abstract class AbstractShapeTest<T extends IShape> {
         assert shape.getCenter().equals(outShape.getCenter());
         assert shape.getDescription(0).equals(outShape.getDescription(0));
 
-        SVGExport.export(outShape,
-                String.format("output/test_%s", shape.getClass().getSimpleName().toLowerCase() + ".svg"), 1000, 1000);
+        SVGExportTestUtil.export(outShape);
     }
 
     @Test

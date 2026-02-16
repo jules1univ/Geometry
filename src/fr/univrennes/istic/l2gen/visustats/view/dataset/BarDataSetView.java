@@ -1,20 +1,26 @@
-package fr.univrennes.istic.l2gen.visustats.view.set;
+package fr.univrennes.istic.l2gen.visustats.view.dataset;
 
 import fr.univrennes.istic.l2gen.geometry.IShape;
 import fr.univrennes.istic.l2gen.geometry.Path;
 import fr.univrennes.istic.l2gen.geometry.Point;
 import fr.univrennes.istic.l2gen.svg.color.Color;
+import fr.univrennes.istic.l2gen.svg.interfaces.field.SVGField;
 import fr.univrennes.istic.l2gen.svg.interfaces.tag.SVGTag;
 import fr.univrennes.istic.l2gen.visustats.data.DataSet;
 
 @SVGTag("g")
 public class BarDataSetView extends AbstractDataSetView {
 
-    private double barWidth = 40;
-    private double maxHeight = 200;
+    @SVGField("data-bar-width")
+    private double barWidth;
+
+    @SVGField("data-max-height")
+    private double maxHeight;
 
     public BarDataSetView() {
         super(new Point(0, 0));
+        this.barWidth = 40;
+        this.maxHeight = 200;
     }
 
     public BarDataSetView(Point center, double barWidth, double maxHeight) {
@@ -28,7 +34,7 @@ public class BarDataSetView extends AbstractDataSetView {
     public void setData(DataSet data) {
         super.setData(data);
 
-        double total = data.getValuesSum();
+        double total = data.sum();
         double baseX = this.center.getX();
         double baseY = this.center.getY() - (maxHeight / 2);
         double accHeight = 0;

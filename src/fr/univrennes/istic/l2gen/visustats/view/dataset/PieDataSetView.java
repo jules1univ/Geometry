@@ -1,15 +1,17 @@
-package fr.univrennes.istic.l2gen.visustats.view.set;
+package fr.univrennes.istic.l2gen.visustats.view.dataset;
 
 import fr.univrennes.istic.l2gen.geometry.IShape;
 import fr.univrennes.istic.l2gen.geometry.Path;
 import fr.univrennes.istic.l2gen.geometry.Point;
 import fr.univrennes.istic.l2gen.svg.color.Color;
+import fr.univrennes.istic.l2gen.svg.interfaces.field.SVGField;
 import fr.univrennes.istic.l2gen.svg.interfaces.tag.SVGTag;
 import fr.univrennes.istic.l2gen.visustats.data.DataSet;
 
 @SVGTag("g")
 public class PieDataSetView extends AbstractDataSetView {
 
+    @SVGField("data-radius")
     private double radius;
 
     public PieDataSetView() {
@@ -46,7 +48,7 @@ public class PieDataSetView extends AbstractDataSetView {
 
     @Override
     public void setData(DataSet data) {
-        double total = data.getValuesSum();
+        double total = data.sum();
         for (int i = 0; i < data.size(); i++) {
             double startAngle = 0;
             for (int j = 0; j < i; j++) {

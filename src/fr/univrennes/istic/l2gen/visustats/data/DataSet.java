@@ -11,12 +11,16 @@ public record DataSet(List<Value> values) {
         this(new ArrayList<>());
     }
 
-    public double getValuesSum() {
+    public double sum() {
         return this.values.stream().mapToDouble(Value::value).sum();
     }
 
-    public double getValuesMax() {
+    public double max() {
         return this.values.stream().mapToDouble(Value::value).max().orElse(0.0);
+    }
+
+    public double min() {
+        return this.values.stream().mapToDouble(Value::value).min().orElse(0.0);
     }
 
     public double getValue(int index) {

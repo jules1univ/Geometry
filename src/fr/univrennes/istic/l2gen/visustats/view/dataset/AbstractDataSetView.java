@@ -1,14 +1,16 @@
-package fr.univrennes.istic.l2gen.visustats.view.set;
+package fr.univrennes.istic.l2gen.visustats.view.dataset;
 
 import fr.univrennes.istic.l2gen.geometry.Group;
 import fr.univrennes.istic.l2gen.geometry.IShape;
 import fr.univrennes.istic.l2gen.geometry.Point;
+import fr.univrennes.istic.l2gen.svg.interfaces.field.SVGField;
 import fr.univrennes.istic.l2gen.svg.interfaces.tag.SVGTag;
 import fr.univrennes.istic.l2gen.visustats.data.DataSet;
 
 @SVGTag("g")
 public abstract class AbstractDataSetView extends Group implements IDataSetView {
 
+    @SVGField({ "data-x", "data-y" })
     protected Point center;
 
     public AbstractDataSetView(Point center) {

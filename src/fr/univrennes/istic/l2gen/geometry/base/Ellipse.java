@@ -90,8 +90,8 @@ public final class Ellipse extends AbstractShape {
     @Override
     public String getDescription(int indent) {
         StringBuilder sb = new StringBuilder();
-        sb.append(" ".repeat(indent));
-        sb.append("Ellipse");
+        sb.append(super.getDescription(indent));
+
         sb.append(" X=");
         sb.append(this.center.getX());
         sb.append(" Y=");

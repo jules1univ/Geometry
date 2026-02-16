@@ -88,4 +88,18 @@ public class TriangleTest extends AbstractShapeTest<Triangle> {
         assert desc.contains("0.0,0.0 3.0,0.0 0.0,4.0");
     }
 
+    @Test
+    @Override
+    public void testWidth() {
+        Triangle triangle = create();
+        assertEquals(1.0, triangle.getCenter().getWidth(), 0.0001);
+    }
+
+    @Test
+    @Override
+    public void testHeight() {
+        Triangle triangle = create();
+        assertEquals(1.0, triangle.getCenter().getHeight(), 0.0001);
+    }
+
 }

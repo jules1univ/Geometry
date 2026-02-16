@@ -1,7 +1,6 @@
-package fr.univrennes.istic.l2gen.visustats.view;
+package fr.univrennes.istic.l2gen.visustats.view.dataset;
 
 import fr.univrennes.istic.l2gen.geometry.Point;
-import fr.univrennes.istic.l2gen.visustats.view.set.BarDataSetView;
 
 public class BarDataViewTest extends AbstractDataSetViewTest<BarDataSetView> {
 

@@ -51,4 +51,17 @@ public final class PolygonTest extends AbstractShapeTest<Polygon> {
         assert poly.getDescription(0).equals("Polygon POINTS=1.0,5.0 6.0,7.0 ");
     }
 
+    @Test
+    @Override
+    public void testWidth() {
+        Polygon poly = new Polygon(1.0, 5.0, 6.0, 7.0);
+        assert poly.getWidth() == 5.0;
+    }
+
+    @Test
+    @Override
+    public void testHeight() {
+        Polygon poly = new Polygon(1.0, 5.0, 6.0, 7.0);
+        assert poly.getHeight() == 2.0;
+    }
 }

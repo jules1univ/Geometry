@@ -1,6 +1,9 @@
 package fr.univrennes.istic.l2gen.geometry.base;
 
 import fr.univrennes.istic.l2gen.geometry.Point;
+
+import org.junit.Test;
+
 import fr.univrennes.istic.l2gen.geometry.AbstractShapeTest;
 
 public final class RectangleTest extends AbstractShapeTest<Rectangle> {
@@ -39,6 +42,18 @@ public final class RectangleTest extends AbstractShapeTest<Rectangle> {
     public void testDescription() {
         Rectangle r = create();
         assert "Rectangle X=5.0 Y=5.0 W=10.0 H=10.0".compareTo(r.getDescription(0)) == 0;
+    }
+
+    @Test
+    @Override
+    public void testWidth() {
+        assert create().getWidth() == 10;
+    }
+
+    @Test
+    @Override
+    public void testHeight() {
+        assert create().getHeight() == 10;
     }
 
 }

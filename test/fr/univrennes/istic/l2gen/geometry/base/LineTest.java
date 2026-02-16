@@ -42,4 +42,16 @@ public class LineTest extends AbstractShapeTest<Line> {
         assert create().getDescription(0).contains("Y1=0.0");
     }
 
+    @Test
+    @Override
+    public void testWidth() {
+        assert create().getWidth() == 10;
+    }
+
+    @Test
+    @Override
+    public void testHeight() {
+        assert create().getHeight() == 10;
+    }
+
 }

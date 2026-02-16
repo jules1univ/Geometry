@@ -41,4 +41,16 @@ public class EllipseTest extends AbstractShapeTest<Ellipse> {
         assert create().getDescription(0).contains("RX=30.0");
     }
 
+    @Test
+    @Override
+    public void testWidth() {
+        assert create().getWidth() == 60.0;
+    }
+
+    @Test
+    @Override
+    public void testHeight() {
+        assert create().getHeight() == 80.0;
+    }
+
 }

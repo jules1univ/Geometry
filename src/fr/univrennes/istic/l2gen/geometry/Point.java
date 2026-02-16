@@ -200,9 +200,8 @@ public final class Point implements IShape {
     @Override
     public String getDescription(int indent) {
         StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < indent * 2; i++) {
-            sb.append(" ");
-        }
+        sb.append(" ".repeat(Math.max(0, indent)));
+
         sb.append("Point ");
         sb.append(this.toString());
         return sb.toString();

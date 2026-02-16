@@ -91,10 +91,10 @@ public final class Rectangle extends AbstractShape {
      * @return une string décrivant le rectangle
      */
     @Override
-    public String getDescription(int indentation) {
+    public String getDescription(int indent) {
         StringBuilder sb = new StringBuilder();
-        sb.append(" ".repeat(indentation));
-        sb.append("Rectangle");
+        sb.append(super.getDescription(indent));
+
         sb.append(" X=");
         sb.append(this.getCenter().getX());
         sb.append(" Y=");

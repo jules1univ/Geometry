@@ -99,7 +99,8 @@ public final class Line extends AbstractShape {
     @Override
     public String getDescription(int indent) {
         StringBuilder sb = new StringBuilder();
-        sb.append("Line ");
+        sb.append(super.getDescription(indent));
+
         sb.append(" X1=").append(this.start.getX());
         sb.append(" Y1=").append(this.start.getY());
         sb.append(" X2=").append(this.end.getX());
