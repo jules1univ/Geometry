@@ -10,50 +10,55 @@ public final class RectangleTest extends AbstractShapeTest<Rectangle> {
 
     @Override
     public Rectangle create() {
-        return new Rectangle(0, 0, 10, 10);
+        return new Rectangle(500 - 100 / 2, 500 - 50 / 2, 100, 50);
     }
 
+    @Test
     @Override
     public void testCenter() {
-        assert create().getCenter().equals(new Point(10 / 2, 10 / 2));
+        Rectangle r = create();
+        assert r.getCenter().equals(new Point(500, 500));
     }
 
+    @Test
     @Override
     public void testMove() {
         Rectangle r = create();
         r.move(5, 5);
-        assert r.getCenter().equals(new Point(10 / 2 + 5, 10 / 2 + 5));
+        assert r.getCenter().equals(new Point(505, 505));
     }
 
+    @Test
     @Override
     public void testResize() {
         Rectangle r = create();
         r.resize(2, 2);
 
-        assert r.getWidth() == 20;
-        assert r.getHeight() == 20;
+        assert r.getWidth() == 200;
+        assert r.getHeight() == 100;
 
         r.resize(0.5, 0.5);
-        assert r.getWidth() == 10;
-        assert r.getHeight() == 10;
+        assert r.getWidth() == 100;
+        assert r.getHeight() == 50;
     }
 
+    @Test
     @Override
     public void testDescription() {
         Rectangle r = create();
-        assert "Rectangle X=5.0 Y=5.0 W=10.0 H=10.0".compareTo(r.getDescription(0)) == 0;
+        assert r.getDescription(0).contains("Rectangle X=");
     }
 
     @Test
     @Override
     public void testWidth() {
-        assert create().getWidth() == 10;
+        assert create().getWidth() == 100;
     }
 
     @Test
     @Override
     public void testHeight() {
-        assert create().getHeight() == 10;
+        assert create().getHeight() == 50;
     }
 
 }

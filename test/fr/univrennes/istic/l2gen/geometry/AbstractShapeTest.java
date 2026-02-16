@@ -3,6 +3,7 @@ package fr.univrennes.istic.l2gen.geometry;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import fr.univrennes.istic.l2gen.svg.color.Color;
 import fr.univrennes.istic.l2gen.svg.interfaces.ISVGShape;
 import fr.univrennes.istic.l2gen.svg.io.SVGExport;
 import fr.univrennes.istic.l2gen.svg.io.SVGExportTestUtil;
@@ -51,6 +52,9 @@ public abstract class AbstractShapeTest<T extends IShape> {
         assert shape.getCenter().equals(outShape.getCenter());
         assert shape.getDescription(0).equals(outShape.getDescription(0));
 
+        outShape.getStyle().fillColor(Color.random());
+        outShape.getStyle().strokeColor(Color.random());
+        outShape.getStyle().strokeWidth(2);
         SVGExportTestUtil.export(outShape);
     }
 

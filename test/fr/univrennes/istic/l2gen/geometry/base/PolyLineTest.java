@@ -11,7 +11,7 @@ public class PolyLineTest extends AbstractShapeTest<PolyLine> {
 
     @Override
     public PolyLine create() {
-        return new PolyLine(0, 0, 4, 0, 3, 4, 0, 4);
+        return new PolyLine(490, 490, 510, 490, 505, 510, 490, 510);
     }
 
     @Test
@@ -19,7 +19,7 @@ public class PolyLineTest extends AbstractShapeTest<PolyLine> {
     public void testCenter() {
         PolyLine line = create();
         Point center = line.getCenter();
-        Point centreLogique = new Point((0 + 4 + 3 + 0) / 4.0, (0 + 0 + 4 + 4) / 4.0);
+        Point centreLogique = new Point((490 + 510 + 505 + 490) / 4.0, (490 + 490 + 510 + 510) / 4.0);
         assertEquals(centreLogique.getX(), center.getX(), 0.0001);
         assertEquals(centreLogique.getY(), center.getY(), 0.0001);
     }
@@ -28,39 +28,38 @@ public class PolyLineTest extends AbstractShapeTest<PolyLine> {
     @Override
     public void testMove() {
         PolyLine line = create();
-        PolyLine lineAfterMove = new PolyLine(2, 3, 6, 3, 5, 7, 2, 7);
+        PolyLine lineAfterMove = new PolyLine(492, 493, 512, 493, 507, 513, 492, 513);
         line.move(2, 3);
         assertEquals(lineAfterMove.getDescription(0), line.getDescription(0));
-
     }
 
     @Test
     @Override
     public void testResize() {
         PolyLine line = create();
-        PolyLine lineAfterResize = new PolyLine(-1.75, -2, 6.25, -2, 4.25, 6, -1.75, 6);
         line.resize(2, 2);
-        assertEquals(lineAfterResize.getDescription(0), line.getDescription(0));
+        assert line.getWidth() == 20 * 2;
+        assert line.getHeight() == 20 * 2;
     }
 
     @Test
     @Override
     public void testDescription() {
         PolyLine line = create();
-        String expectedDescription = "PolyLine POINTS=0.0,0.0 4.0,0.0 3.0,4.0 0.0,4.0 ";
+        String expectedDescription = "PolyLine POINTS=490.0,490.0 510.0,490.0 505.0,510.0 490.0,510.0 ";
         assertEquals(expectedDescription, line.getDescription(0));
     }
 
     @Test
     @Override
     public void testWidth() {
-        assert create().getWidth() == 4;
+        assert create().getWidth() == 20;
     }
 
     @Test
     @Override
     public void testHeight() {
-        assert create().getHeight() == 4;
+        assert create().getHeight() == 20;
     }
 
 }

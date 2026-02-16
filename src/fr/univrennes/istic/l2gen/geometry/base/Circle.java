@@ -106,8 +106,8 @@ public final class Circle extends AbstractShape {
      * @param y la nouvelle coordonnée y
      */
     @Override
-    public void move(double x, double y) {
-        this.center = new Point(x, y);
+    public void move(double dx, double dy) {
+        this.center.add(dx, dy);
     }
 
     /**
@@ -117,7 +117,8 @@ public final class Circle extends AbstractShape {
      * 
      * multiplie le rayon du cercle par la valeur en entrée
      * 
-     * @param py mettez 0 ou -1 par exemple
+     * @param px le facteur d'échelle pour le rayon
+     * @param py ce paramètre est ignoré pour le cercle
      */
     @Override
     public void resize(double px, double py) {

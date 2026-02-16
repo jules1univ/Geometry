@@ -8,15 +8,18 @@ public class TextTest extends AbstractShapeTest<Text> {
 
     @Override
     public Text create() {
-        return new Text(0, 0, "Hello World");
+        Text text = new Text(500, 500, "Hello World");
+        text.getStyle().alignmentBaseline("middle");
+        text.getStyle().textAnchor("middle");
+        return text;
     }
 
     @Test
     @Override
     public void testCenter() {
         Text text = create();
-        assert text.getCenter().getX() == 0;
-        assert text.getCenter().getY() == 0;
+        assert text.getCenter().getX() == 500;
+        assert text.getCenter().getY() == 500;
     }
 
     @Test
@@ -24,8 +27,8 @@ public class TextTest extends AbstractShapeTest<Text> {
     public void testMove() {
         Text text = create();
         text.move(10, 15);
-        assert text.getCenter().getX() == 10;
-        assert text.getCenter().getY() == 15;
+        assert text.getCenter().getX() == 510;
+        assert text.getCenter().getY() == 515;
     }
 
     @Test

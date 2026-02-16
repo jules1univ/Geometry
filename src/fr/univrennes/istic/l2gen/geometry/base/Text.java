@@ -59,7 +59,7 @@ public final class Text extends AbstractShape {
      */
     @Override
     public double getWidth() {
-        return this.text.length();
+        return this.text.length() * this.getStyle().fontSize().orElse(1.);
     }
 
     /**
@@ -69,7 +69,7 @@ public final class Text extends AbstractShape {
      */
     @Override
     public double getHeight() {
-        return 1;
+        return this.getStyle().fontSize().orElse(1.);
     }
 
     /**

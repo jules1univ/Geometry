@@ -9,13 +9,13 @@ public class EllipseTest extends AbstractShapeTest<Ellipse> {
 
     @Override
     public Ellipse create() {
-        return new Ellipse(10.0, 20.0, 30.0, 40.0);
+        return new Ellipse(500.0, 500.0, 30.0, 40.0);
     }
 
     @Test
     @Override
     public void testCenter() {
-        assert create().getCenter().equals(new Point(10.0, 20.0));
+        assert create().getCenter().equals(new Point(500.0, 500.0));
     }
 
     @Test
@@ -23,7 +23,7 @@ public class EllipseTest extends AbstractShapeTest<Ellipse> {
     public void testMove() {
         Ellipse ellipse = create();
         ellipse.move(10.0, 10.0);
-        assert ellipse.getCenter().equals(new Point(20.0, 30.0));
+        assert ellipse.getCenter().equals(new Point(510.0, 510.0));
     }
 
     @Test

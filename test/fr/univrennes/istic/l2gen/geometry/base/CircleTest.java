@@ -1,5 +1,6 @@
 package fr.univrennes.istic.l2gen.geometry.base;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
@@ -13,53 +14,52 @@ public class CircleTest extends AbstractShapeTest<Circle> {
      */
     @Override
     public Circle create() {
-        Circle c1 = new Circle(0, 0, 1);
-        return c1;
+        return new Circle(500, 500, 100);
     }
 
     @Test
     @Override
     public void testCenter() {
-        Circle c2 = new Circle(1, 1, 1);
-        assertTrue(c2.getCenter().getX() == 1);
-        assertTrue(c2.getCenter().getY() == 1);
+        Circle circle = create();
+        assertTrue(circle.getCenter().getX() == 500);
+        assertTrue(circle.getCenter().getY() == 500);
     }
 
     @Test
     @Override
     public void testMove() {
-        Circle c3 = new Circle(5, 5, 1);
-        c3.move(1, 1);
-        assertTrue(c3.getCenter().getX() == 1);
-        assertTrue(c3.getCenter().getY() == 1);
+        Circle circle = create();
+        circle.move(1, 1);
+        assertEquals(501, circle.getCenter().getX(), 0.0001);
+        assertEquals(501, circle.getCenter().getY(), 0.0001);
     }
 
     @Test
     @Override
     public void testResize() {
-        Circle c4 = new Circle(2, 2, 5);
-        c4.resize(2, 0);
-        assertTrue(c4.getHeight() == 20);
+        Circle circle = create();
+        circle.resize(2, 0);
+        assertEquals(circle.getHeight(), 400, 0.0001);
     }
 
     @Test
     @Override
     public void testDescription() {
-        Circle c5 = new Circle(1, 2, 3);
-        assertTrue("Circle C=1,2 R=3.0".compareTo(c5.getDescription(0)) == 0);
+        Circle circle = create();
+        assertTrue("Circle C=500,500 R=100.0".compareTo(circle.getDescription(0)) == 0);
     }
 
     @Test
     @Override
     public void testWidth() {
-        Circle c6 = new Circle(1, 1, 4);
-        assertTrue(c6.getWidth() == 8);
+        Circle circle = create();
+        assertTrue(circle.getWidth() == 200);
     }
 
     @Test
     @Override
     public void testHeight() {
-        Circle c7 = new Circle(1, 1, 4);
-        assertTrue(c7.getHeight() == 8);
+        Circle circle = create();
+        assertTrue(circle.getWidth() == circle.getHeight());
     }
 }

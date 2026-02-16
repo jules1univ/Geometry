@@ -1,5 +1,7 @@
 package fr.univrennes.istic.l2gen.geometry.base;
 
+import static org.junit.Assert.assertEquals;
+
 import org.junit.Test;
 
 import fr.univrennes.istic.l2gen.geometry.Point;
@@ -9,13 +11,13 @@ public class LineTest extends AbstractShapeTest<Line> {
 
     @Override
     public Line create() {
-        return new Line(0, 0, 10, 10);
+        return new Line(400, 400, 600, 600);
     }
 
     @Test
     @Override
     public void testCenter() {
-        assert create().getCenter().equals(new Point(5, 5));
+        assert create().getCenter().equals(new Point(500, 500));
     }
 
     @Test
@@ -23,8 +25,8 @@ public class LineTest extends AbstractShapeTest<Line> {
     public void testMove() {
         Line line = create();
         line.move(5, 5);
-        assert line.getStart().equals(new Point(5, 5));
-        assert line.getEnd().equals(new Point(15, 15));
+        assert line.getStart().equals(new Point(405, 405));
+        assert line.getEnd().equals(new Point(605, 605));
     }
 
     @Test
@@ -32,26 +34,26 @@ public class LineTest extends AbstractShapeTest<Line> {
     public void testResize() {
         Line line = create();
         line.resize(2, 2);
-        assert line.getStart().equals(new Point(0, 0));
-        assert line.getEnd().equals(new Point(20, 20));
+        assertEquals(line.getWidth(), 400, 0.0001);
+        assertEquals(line.getHeight(), 400, 0.0001);
     }
 
     @Test
     @Override
     public void testDescription() {
-        assert create().getDescription(0).contains("Y1=0.0");
+        assert create().getDescription(0).contains("Y1=400.0");
     }
 
     @Test
     @Override
     public void testWidth() {
-        assert create().getWidth() == 10;
+        assert create().getWidth() == 200;
     }
 
     @Test
     @Override
     public void testHeight() {
-        assert create().getHeight() == 10;
+        assert create().getHeight() == 200;
     }
 
 }

@@ -9,13 +9,12 @@ public final class PolygonTest extends AbstractShapeTest<Polygon> {
 
     @Override
     public Polygon create() {
-        return new Polygon(1.0, 1000.0, 5000.0, 7560.0, 3254.0, 99999.0);
+        return new Polygon(450.0, 450.0, 550.0, 450.0, 550.0, 550.0, 450.0, 550.0);
     }
 
     @Test
     @Override
     public void testCenter() {
-
         Polygon poly = new Polygon(1.0, 5.0, 7.0, 60.0);
         Polygon polyVide = new Polygon();
 
@@ -54,14 +53,14 @@ public final class PolygonTest extends AbstractShapeTest<Polygon> {
     @Test
     @Override
     public void testWidth() {
-        Polygon poly = new Polygon(1.0, 5.0, 6.0, 7.0);
-        assert poly.getWidth() == 5.0;
+        Polygon poly = new Polygon(450.0, 450.0, 550.0, 450.0, 550.0, 550.0, 450.0, 550.0);
+        assert poly.getWidth() == 100.0;
     }
 
     @Test
     @Override
     public void testHeight() {
-        Polygon poly = new Polygon(1.0, 5.0, 6.0, 7.0);
-        assert poly.getHeight() == 2.0;
+        Polygon poly = new Polygon(450.0, 450.0, 550.0, 450.0, 550.0, 550.0, 450.0, 550.0);
+        assert poly.getHeight() == 100.0;
     }
 }

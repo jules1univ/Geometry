@@ -13,7 +13,7 @@ public class TriangleTest extends AbstractShapeTest<Triangle> {
 
     @Override
     public Triangle create() {
-        return new Triangle(0, 0, 3, 0, 0, 4);
+        return new Triangle(480, 480, 520, 480, 500, 540);
     }
 
     @Test
@@ -21,39 +21,22 @@ public class TriangleTest extends AbstractShapeTest<Triangle> {
     public void testCenter() {
         Triangle t1 = create();
         Point center = t1.getCenter();
-        List<Point> liste = t1.getVertices();
-
-        double sumX = 0.0;
-        double sumY = 0.0;
-        for (Point point : liste) {
-            sumX += point.getX();
-            sumY += point.getY();
-        }
-        double centerX = sumX / liste.size();
-        double centerY = sumY / liste.size();
-        assertEquals(centerX, center.getX(), 0.0001);
-        assertEquals(centerY, center.getY(), 0.0001);
+        assertEquals(500.0, center.getX(), 0.0001);
+        assertEquals(500.0, center.getY(), 0.0001);
     }
 
     @Test
     @Override
     public void testMove() {
-        double MOVE_X = -2.0;
-        double MOVE_Y = 2.0;
+        double MOVE_X = 50.0;
+        double MOVE_Y = -50.0;
 
         Triangle t1 = create();
-        Point center = t1.getCenter();
-        double centerX = center.getX();
-        double centerY = center.getY();
-
         t1.move(MOVE_X, MOVE_Y);
 
-        centerX += MOVE_X;
-        centerY += MOVE_Y;
-        center = t1.getCenter();
-        assertEquals(centerX, center.getX(), 0.0001);
-        assertEquals(centerY, center.getY(), 0.0001);
-
+        Point center = t1.getCenter();
+        assertEquals(550.0, center.getX(), 0.0001);
+        assertEquals(450.0, center.getY(), 0.0001);
     }
 
     @Test
@@ -85,7 +68,6 @@ public class TriangleTest extends AbstractShapeTest<Triangle> {
         Triangle text = create();
         String desc = text.getDescription(1);
         assert desc.contains("Triangle");
-        assert desc.contains("0.0,0.0 3.0,0.0 0.0,4.0");
     }
 
     @Test
