@@ -41,6 +41,12 @@ public abstract class AbstractDataGroupView extends Group implements IDataGroupV
     }
 
     @Override
+    public final void addLegend(Label legend) {
+        this.data.add(legend);
+        this.update();
+    }
+
+    @Override
     public final void resize(double px, double py) {
         this.transform.scale(px, py);
     }

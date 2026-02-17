@@ -1,4 +1,4 @@
-package fr.univrennes.istic.l2gen.svg.io;
+package fr.univrennes.istic.l2gen.io.svg;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -12,6 +12,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import fr.univrennes.istic.l2gen.io.xml.model.XMLTag;
+import fr.univrennes.istic.l2gen.io.xml.parser.XMLParser;
 import fr.univrennes.istic.l2gen.svg.interfaces.ISVGAttribute;
 import fr.univrennes.istic.l2gen.svg.interfaces.ISVGShape;
 import fr.univrennes.istic.l2gen.svg.interfaces.content.SVGContent;
@@ -20,8 +22,6 @@ import fr.univrennes.istic.l2gen.svg.interfaces.point.SVGPoint;
 import fr.univrennes.istic.l2gen.svg.interfaces.point.SVGPointX;
 import fr.univrennes.istic.l2gen.svg.interfaces.point.SVGPointY;
 import fr.univrennes.istic.l2gen.svg.interfaces.tag.SVGTag;
-import fr.univrennes.istic.l2gen.svg.xml.model.XMLTag;
-import fr.univrennes.istic.l2gen.svg.xml.parser.XMLParser;
 
 /**
  * Classe utilitaire pour importer des formes SVG depuis des structures XML.
@@ -125,8 +125,14 @@ public final class SVGImport {
         if (pointField.value().length < 2) {
             return null;
         }
-        String rawPoint = tag.getAttribute(pointField.value()[0]).getValue() + "," +
-                tag.getAttribute(pointField.value()[1]).getValue();
+        String pointX = pointField.value()[0];
+        String pointY = pointField.value()[1];
+        if (!tag.hasAttribute(pointX) || !tag.hasAttribute(pointY)) {
+            return null;
+        }
+
+        String rawPoint = tag.getAttribute(pointX).getValue() + ","
+                + tag.getAttribute(pointY).getValue();
         return createPoint(rawPoint);
     }
 

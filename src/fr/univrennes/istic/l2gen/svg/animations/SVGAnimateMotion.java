@@ -2,6 +2,7 @@ package fr.univrennes.istic.l2gen.svg.animations;
 
 import java.util.Optional;
 
+import fr.univrennes.istic.l2gen.svg.attributes.path.SVGPath;
 import fr.univrennes.istic.l2gen.svg.interfaces.field.SVGField;
 import fr.univrennes.istic.l2gen.svg.interfaces.tag.SVGTag;
 
@@ -22,7 +23,7 @@ import fr.univrennes.istic.l2gen.svg.interfaces.tag.SVGTag;
 public class SVGAnimateMotion extends AbstractAnimate {
 
     @SVGField
-    private Optional<String> path = Optional.empty();
+    private Optional<SVGPath> path = Optional.empty();
 
     @SVGField
     private Optional<String> keyPoints = Optional.empty();
@@ -47,7 +48,7 @@ public class SVGAnimateMotion extends AbstractAnimate {
      * @param path le chemin de mouvement (ex: "M 0 0 C 50 -50 100 50 150 0")
      * @return cette animation (pour le chaînage)
      */
-    public SVGAnimateMotion path(String path) {
+    public SVGAnimateMotion path(SVGPath path) {
         this.path = Optional.of(path);
         return this;
     }
@@ -57,7 +58,7 @@ public class SVGAnimateMotion extends AbstractAnimate {
      *
      * @return le chemin, ou null si non défini
      */
-    public String path() {
+    public SVGPath path() {
         return path.orElse(null);
     }
 

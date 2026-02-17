@@ -3,12 +3,12 @@ package fr.univrennes.istic.l2gen.geometry;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import fr.univrennes.istic.l2gen.io.svg.SVGExport;
+import fr.univrennes.istic.l2gen.io.svg.SVGExportTestUtil;
+import fr.univrennes.istic.l2gen.io.svg.SVGImport;
+import fr.univrennes.istic.l2gen.io.xml.model.XMLTag;
 import fr.univrennes.istic.l2gen.svg.color.Color;
 import fr.univrennes.istic.l2gen.svg.interfaces.ISVGShape;
-import fr.univrennes.istic.l2gen.svg.io.SVGExport;
-import fr.univrennes.istic.l2gen.svg.io.SVGExportTestUtil;
-import fr.univrennes.istic.l2gen.svg.io.SVGImport;
-import fr.univrennes.istic.l2gen.svg.xml.model.XMLTag;
 
 @Ignore("Abstract Shape Test")
 public abstract class AbstractShapeTest<T extends IShape> {

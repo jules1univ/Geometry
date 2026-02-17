@@ -2,6 +2,8 @@ package fr.univrennes.istic.l2gen.svg.animations;
 
 import java.util.Optional;
 
+import fr.univrennes.istic.l2gen.svg.attributes.style.SVGStyle;
+import fr.univrennes.istic.l2gen.svg.attributes.transform.SVGTransform;
 import fr.univrennes.istic.l2gen.svg.interfaces.ISVGShape;
 import fr.univrennes.istic.l2gen.svg.interfaces.field.SVGField;
 
@@ -237,4 +239,13 @@ public abstract class AbstractAnimate implements ISVGShape {
         fill = Optional.empty();
     }
 
+    @Override
+    public SVGStyle getStyle() {
+        return null; // Les animations n'ont pas de style propre
+    }
+
+    @Override
+    public SVGTransform getTransform() {
+        return null; // Les animations n'ont pas de transformation propre
+    }
 }

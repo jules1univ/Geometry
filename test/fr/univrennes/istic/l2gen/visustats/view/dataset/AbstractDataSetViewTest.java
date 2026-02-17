@@ -3,8 +3,8 @@ package fr.univrennes.istic.l2gen.visustats.view.dataset;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import fr.univrennes.istic.l2gen.io.svg.SVGExportTestUtil;
 import fr.univrennes.istic.l2gen.svg.color.Color;
-import fr.univrennes.istic.l2gen.svg.io.SVGExportTestUtil;
 import fr.univrennes.istic.l2gen.visustats.data.DataSet;
 import fr.univrennes.istic.l2gen.visustats.data.Value;
 

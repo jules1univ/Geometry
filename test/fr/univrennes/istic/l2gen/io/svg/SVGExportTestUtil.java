@@ -1,4 +1,4 @@
-package fr.univrennes.istic.l2gen.svg.io;
+package fr.univrennes.istic.l2gen.io.svg;
 
 import java.io.File;
 import java.util.List;

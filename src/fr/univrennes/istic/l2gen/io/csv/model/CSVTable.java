@@ -1,4 +1,4 @@
-package fr.univrennes.istic.l2gen.visustats.csv.model;
+package fr.univrennes.istic.l2gen.io.csv.model;
 
 import java.util.ArrayList;
 import java.util.List;

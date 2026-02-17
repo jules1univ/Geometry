@@ -1,4 +1,4 @@
-package fr.univrennes.istic.l2gen.svg.io;
+package fr.univrennes.istic.l2gen.io.svg;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -10,6 +10,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import fr.univrennes.istic.l2gen.io.xml.model.XMLAttribute;
+import fr.univrennes.istic.l2gen.io.xml.model.XMLTag;
 import fr.univrennes.istic.l2gen.svg.interfaces.ISVGAttribute;
 import fr.univrennes.istic.l2gen.svg.interfaces.ISVGShape;
 import fr.univrennes.istic.l2gen.svg.interfaces.content.SVGContent;
@@ -18,8 +20,6 @@ import fr.univrennes.istic.l2gen.svg.interfaces.point.SVGPoint;
 import fr.univrennes.istic.l2gen.svg.interfaces.point.SVGPointX;
 import fr.univrennes.istic.l2gen.svg.interfaces.point.SVGPointY;
 import fr.univrennes.istic.l2gen.svg.interfaces.tag.SVGTag;
-import fr.univrennes.istic.l2gen.svg.xml.model.XMLAttribute;
-import fr.univrennes.istic.l2gen.svg.xml.model.XMLTag;
 
 /**
  * Classe utilitaire pour exporter des formes SVG (ISVGShape) en structures XML.

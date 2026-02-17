@@ -13,6 +13,6 @@ public interface IDataGroupView extends IShape {
 
     public void addData(DataSet dataset);
 
-    public void addLegend(Label colorLabel);
+    public void addLegend(Label legend);
 
 }

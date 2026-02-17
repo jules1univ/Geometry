@@ -1,4 +1,4 @@
-package fr.univrennes.istic.l2gen.svg.xml.parser;
+package fr.univrennes.istic.l2gen.io.xml.parser;
 
 /**
  * Exception levée lors d'une erreur d'analyse XML.

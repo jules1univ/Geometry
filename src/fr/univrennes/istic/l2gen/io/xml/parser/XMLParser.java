@@ -1,12 +1,12 @@
-package fr.univrennes.istic.l2gen.svg.xml.parser;
-
-import fr.univrennes.istic.l2gen.svg.xml.model.XMLAttribute;
-import fr.univrennes.istic.l2gen.svg.xml.model.XMLTag;
+package fr.univrennes.istic.l2gen.io.xml.parser;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.Reader;
 import java.io.StringReader;
+
+import fr.univrennes.istic.l2gen.io.xml.model.XMLAttribute;
+import fr.univrennes.istic.l2gen.io.xml.model.XMLTag;
 
 /**
  * Analyseur XML pour analyser des chaînes ou fichiers XML et générer une

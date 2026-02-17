@@ -1,7 +1,4 @@
-package fr.univrennes.istic.l2gen.visustats.csv.parser;
-
-import fr.univrennes.istic.l2gen.visustats.csv.model.CSVRow;
-import fr.univrennes.istic.l2gen.visustats.csv.model.CSVTable;
+package fr.univrennes.istic.l2gen.io.csv.parser;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -11,6 +8,9 @@ import java.io.Reader;
 import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
+
+import fr.univrennes.istic.l2gen.io.csv.model.CSVRow;
+import fr.univrennes.istic.l2gen.io.csv.model.CSVTable;
 
 public final class CSVParser {
 

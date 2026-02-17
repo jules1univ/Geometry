@@ -1,4 +1,4 @@
-package fr.univrennes.istic.l2gen.svg.io;
+package fr.univrennes.istic.l2gen.io.svg;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -6,18 +6,20 @@ import java.util.List;
 
 import org.junit.Test;
 
+import fr.univrennes.istic.l2gen.io.xml.model.XMLTag;
 import fr.univrennes.istic.l2gen.svg.animations.AnimationCount;
 import fr.univrennes.istic.l2gen.svg.animations.AnimationDuration;
 import fr.univrennes.istic.l2gen.svg.animations.AnimationTransformType;
 import fr.univrennes.istic.l2gen.svg.animations.SVGAnimate;
 import fr.univrennes.istic.l2gen.svg.animations.SVGAnimateTransform;
+import fr.univrennes.istic.l2gen.svg.attributes.style.SVGStyle;
+import fr.univrennes.istic.l2gen.svg.attributes.transform.SVGTransform;
 import fr.univrennes.istic.l2gen.svg.interfaces.ISVGShape;
 import fr.univrennes.istic.l2gen.svg.interfaces.field.SVGField;
 import fr.univrennes.istic.l2gen.svg.interfaces.point.SVGPoint;
 import fr.univrennes.istic.l2gen.svg.interfaces.point.SVGPointX;
 import fr.univrennes.istic.l2gen.svg.interfaces.point.SVGPointY;
 import fr.univrennes.istic.l2gen.svg.interfaces.tag.SVGTag;
-import fr.univrennes.istic.l2gen.svg.xml.model.XMLTag;
 
 public class ImportExportTest {
 
@@ -38,10 +40,26 @@ public class ImportExportTest {
             this.x = x;
             this.y = y;
         }
+
+        @Override
+        public SVGStyle getStyle() {
+            return null;
+        }
+
+        @Override
+        public SVGTransform getTransform() {
+            return null;
+        }
     }
 
     @SVGTag("super-rect")
     private static class TestSuperRect implements ISVGShape {
+
+        @SVGField
+        private SVGTransform transform = new SVGTransform();
+
+        @SVGField
+        private SVGStyle style = new SVGStyle();
 
         @SVGField
         protected String superField = "superValue";
@@ -49,6 +67,15 @@ public class ImportExportTest {
         public TestSuperRect() {
         }
 
+        @Override
+        public SVGStyle getStyle() {
+            return style;
+        }
+
+        @Override
+        public SVGTransform getTransform() {
+            return transform;
+        }
     }
 
     @SVGTag("rect")
@@ -168,7 +195,7 @@ public class ImportExportTest {
 
         assert svgRect.getChildrenCount() == 6;
 
-        XMLTag svgAnimate = svgRect.getFirstChild();
+        XMLTag svgAnimate = svgRect.getFirstChild().get();
         assert svgAnimate != null;
 
         assert svgAnimate.getTagName().equals("animate");
@@ -176,8 +203,8 @@ public class ImportExportTest {
         assert svgAnimate.hasAttribute("begin");
         assert svgAnimate.getAttribute("begin").getValue().equals("0");
 
-        XMLTag svgAnimateTransform = svgRect.getChildren(1);
-        assert svgAnimateTransform != null;
+        assert svgRect.getChildAt(1).isPresent();
+        XMLTag svgAnimateTransform = svgRect.getChildAt(1).get();
 
         assert svgAnimateTransform.getTagName().equals("animateTransform");
         assert svgAnimateTransform.hasAttribute("type");

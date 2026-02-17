@@ -1,4 +1,4 @@
-package fr.univrennes.istic.l2gen.visustats.csv.parser;
+package fr.univrennes.istic.l2gen.io.csv.parser;
 
 public final class CSVParseException extends Exception {
 

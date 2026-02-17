@@ -14,10 +14,10 @@ import fr.univrennes.istic.l2gen.geometry.base.Polygon;
 import fr.univrennes.istic.l2gen.geometry.base.Rectangle;
 import fr.univrennes.istic.l2gen.geometry.base.Text;
 import fr.univrennes.istic.l2gen.geometry.base.Triangle;
+import fr.univrennes.istic.l2gen.io.svg.SVGExport;
+import fr.univrennes.istic.l2gen.io.svg.SVGImport;
 import fr.univrennes.istic.l2gen.svg.color.Color;
 import fr.univrennes.istic.l2gen.svg.interfaces.ISVGShape;
-import fr.univrennes.istic.l2gen.svg.io.SVGExport;
-import fr.univrennes.istic.l2gen.svg.io.SVGImport;
 
 /**
  * Classe principale de l'application de géométrie.

@@ -1,6 +1,4 @@
-package fr.univrennes.istic.l2gen.svg.xml.parser;
-
-import fr.univrennes.istic.l2gen.svg.xml.model.XMLTag;
+package fr.univrennes.istic.l2gen.io.xml.parser;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
@@ -11,6 +9,8 @@ import java.io.IOException;
 import java.io.StringReader;
 
 import org.junit.Test;
+
+import fr.univrennes.istic.l2gen.io.xml.model.XMLTag;
 
 public class TestXMLParser {
 
@@ -54,16 +54,16 @@ public class TestXMLParser {
         assertEquals("svg", tag.getTagName());
         assertTrue(tag.getChildrenCount() == 2);
 
-        assertEquals("rect", tag.getChildren(0).getTagName());
-        assertEquals("circle", tag.getChildren(1).getTagName());
+        assertEquals("rect", tag.getChildAt(0).get().getTagName());
+        assertEquals("circle", tag.getChildAt(1).get().getTagName());
     }
 
     @Test
     public void testDeeplyNestedTags() throws XMLParseException, IOException {
         XMLTag tag = parse("<a><b><c><d/></c></b></a>");
-        XMLTag b = tag.getChildren(0);
-        XMLTag c = b.getChildren(0);
-        XMLTag d = c.getChildren(0);
+        XMLTag b = tag.getChildAt(0).get();
+        XMLTag c = b.getChildAt(0).get();
+        XMLTag d = c.getChildAt(0).get();
         assertEquals("b", b.getTagName());
         assertEquals("c", c.getTagName());
         assertEquals("d", d.getTagName());
@@ -166,7 +166,7 @@ public class TestXMLParser {
     public void testCommentBetweenChildrenSkipped() throws XMLParseException, IOException {
         XMLTag tag = parse("<svg><!-- comment --><rect/></svg>");
         assertEquals(1, tag.getChildrenCount());
-        assertEquals("rect", tag.getChildren(0).getTagName());
+        assertEquals("rect", tag.getChildAt(0).get().getTagName());
     }
 
     @Test
@@ -210,8 +210,8 @@ public class TestXMLParser {
         XMLTag tag = parse("<text>Hello<tspan>world</tspan></text>");
         assertEquals("Hello", tag.getTextContent().get());
         assertEquals(1, tag.getChildrenCount());
-        assertEquals("tspan", tag.getChildren(0).getTagName());
-        assertEquals("world", tag.getChildren(0).getTextContent().get());
+        assertEquals("tspan", tag.getChildAt(0).get().getTagName());
+        assertEquals("world", tag.getChildAt(0).get().getTextContent().get());
     }
 
     @Test
@@ -231,9 +231,9 @@ public class TestXMLParser {
         assertEquals("svg", root.getTagName());
         assertEquals(3, root.getChildrenCount());
 
-        XMLTag rect = root.getChildren(0);
-        XMLTag circle = root.getChildren(1);
-        XMLTag text = root.getChildren(2);
+        XMLTag rect = root.getChildAt(0).get();
+        XMLTag circle = root.getChildAt(1).get();
+        XMLTag text = root.getChildAt(2).get();
 
         assertEquals("rect", rect.getTagName());
         assertEquals("200", rect.getAttribute("width").value());

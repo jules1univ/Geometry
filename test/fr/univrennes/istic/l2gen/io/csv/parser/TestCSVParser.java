@@ -1,12 +1,11 @@
-package fr.univrennes.istic.l2gen.visustats.csv.parser;
-
-import fr.univrennes.istic.l2gen.visustats.csv.model.CSVRow;
-import fr.univrennes.istic.l2gen.visustats.csv.model.CSVTable;
+package fr.univrennes.istic.l2gen.io.csv.parser;
 
 import java.io.StringReader;
 import org.junit.Before;
 import org.junit.Test;
 
+import fr.univrennes.istic.l2gen.io.csv.model.CSVRow;
+import fr.univrennes.istic.l2gen.io.csv.model.CSVTable;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;

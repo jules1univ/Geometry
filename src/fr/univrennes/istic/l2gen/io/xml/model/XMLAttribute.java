@@ -1,4 +1,4 @@
-package fr.univrennes.istic.l2gen.svg.xml.model;
+package fr.univrennes.istic.l2gen.io.xml.model;
 
 import java.util.Optional;
 
