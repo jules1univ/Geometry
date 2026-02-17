@@ -1,6 +1,6 @@
 # 📊 Geometry
 
-> Generate SVG charts from any data sources
+> Generate SVG charts from CSV files.
 
 ![C](https://img.shields.io/github/languages/top/jules1univ/Geometry?label=Java%20🔥)
 ![Platform](https://img.shields.io/badge/Platform%20🌍-Windows%20|%20Linux%20|%20MacOS-purple)
@@ -10,6 +10,8 @@
 
 <!-- > Preview 🎥 -->
 <!-- TODO: ajouter des images du projet ici -->
+<!-- Vu CLI -->
+<!-- Vu Desktop -->
 
 ## Setup
 
@@ -39,8 +41,7 @@ cd Geometry
 
 ## Contribution
 
-**Membres**: [liste des mebres](docs/MEMBERS.md)
-
-**TODOs**: [liste des tâches en cours](docs/TODOS.md)
-
-**Lisez impérativement**: [le guide de contribution](CONTRIBUTING.md) avant de commencer à travailler sur le projet.
+**Membres**: [Liste des mebres](docs/MEMBERS.md)
+**Contribution**: [Guide de contribution](CONTRIBUTING.md)
+**Documentation**: [Documentation complète](docs/DOCUMENTATION.md)
+**TODOs**: [Liste des tâches en cours](docs/TODOS.md)
