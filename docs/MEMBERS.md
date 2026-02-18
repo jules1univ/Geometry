@@ -9,3 +9,7 @@
 | BARBIER    | Elouan | Marsu2      | elouan.barbier.1@etudiant.univ-rennes1.fr | Developer     |
 | GALLON     | Paul   | MarcoPaulot | paul.gallon@etudiant.univ-rennes.fr       | Developer     |
 | GUEMENE    | Basile | Astala-Boom | basile.guemene@etudiant.univ-rennes1.fr   | Developer     |
+
+# Communication
+
+La communication du projet s'effectue principalement via [le chat du repo](https://talktogithub.com/jules1univ/Geometry).
