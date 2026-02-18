@@ -1,6 +1,7 @@
 # Dossier de compilation java
 /bin
 /target
+/.metals
 
 # Resultat de l'app
 /*.svg
