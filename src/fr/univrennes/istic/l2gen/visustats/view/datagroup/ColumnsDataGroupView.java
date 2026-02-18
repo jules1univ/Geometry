@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import fr.univrennes.istic.l2gen.geometry.IShape;
 import fr.univrennes.istic.l2gen.geometry.Point;
 import fr.univrennes.istic.l2gen.svg.interfaces.field.SVGField;
 import fr.univrennes.istic.l2gen.svg.interfaces.tag.SVGTag;
@@ -19,9 +20,6 @@ public class ColumnsDataGroupView extends AbstractDataGroupView {
     private Point center;
     private double barWidth;
 
-    @SVGField
-    private List<IDataSetView> elements = new ArrayList<>();
-
     public ColumnsDataGroupView(DataGroup data, Point center, double spacing, double barWidth, double maxHeight) {
         super(data, spacing);
         this.maxHeight = maxHeight;
@@ -33,32 +31,29 @@ public class ColumnsDataGroupView extends AbstractDataGroupView {
 
     @Override
     protected void update() {
-        Label title = data.title();
-        List<Label> legends = data.legends();
         List<DataSet> dataSets = data.datasets();
 
-        int n = dataSets.size();
-
-        // largeur totale occupée par les colonnes (n * width + (n-1) * spacing)
-
-        double startX = center.getX();
-        double baseY = center.getY(); // ligne de base (les colonnes "montent" vers le haut)
-        double width = 0;
         this.elements.clear();
-        for (int i = 0; i < n; i++) {
 
-            // position X du centre de la colonne i
-            double left = startX + i * (width + spacing);
-            double originX = left + width / 2.0;
-            Point origin = new Point(originX, baseY);
+        double barSpacing = spacing * 0.8;
+        double elWidth = (barWidth + barSpacing) * data.maxSize();
+        int n = data.size();
+        double totalWidth = elWidth * n + spacing * Math.max(0, n - 1);
 
-            // crée la vue de colonne, initialise avec position/tailles
-            ColumnsDataSetView colView = new ColumnsDataSetView(origin, barWidth, spacing, maxHeight);
-            colView.setData(this.data.get(i));
-            width = colView.getWidth();
+        double offsetX = -totalWidth / 2.0;
+
+        for (int i = 0; i < dataSets.size(); i++) {
+            DataSet ds = dataSets.get(i);
+
+            double x = center.getX() + offsetX + elWidth / 2.0;
+            ColumnsDataSetView colView = new ColumnsDataSetView(new Point(
+                    x,
+                    center.getY()), barWidth, barSpacing, maxHeight);
+            colView.setData(ds);
             this.elements.add(colView);
-        }
 
+            offsetX += elWidth + spacing;
+        }
     }
 
 }
