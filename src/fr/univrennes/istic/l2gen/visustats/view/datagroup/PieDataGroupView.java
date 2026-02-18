@@ -23,16 +23,20 @@ public class PieDataGroupView extends AbstractDataGroupView {
     @SVGField("data-pie-radius")
     protected double pieRadius;
 
+    protected Point centre;
+
     /**
      * Constructeur.
      * 
      * @param data      le DataGroup contenant les datasets à visualiser
      * @param spacing   espacement horizontal entre les camemberts (en pixels)
      * @param pieRadius le rayon de chaque camembert (en pixels)
+     * @param centre    le point centre autour duquel positionner les camemberts
      */
-    public PieDataGroupView(DataGroup data, double spacing, double pieRadius) {
+    public PieDataGroupView(DataGroup data, double spacing, double pieRadius, Point centre) {
         super(data, spacing);
         this.pieRadius = pieRadius;
+        this.centre = centre;
         this.update();
     }
 
@@ -43,7 +47,7 @@ public class PieDataGroupView extends AbstractDataGroupView {
      * (setData, addData, addLegend, setTitle).
      * 
      * Parcourt tous les DataSet du DataGroup et crée un camembert pour chacun,
-     * en les positionnant côte à côte horizontalement.
+     * en les positionnant côte à côte horizontalement autour du centre.
      */
     @Override
     protected void update() {
@@ -59,13 +63,13 @@ public class PieDataGroupView extends AbstractDataGroupView {
         // Étape 3 : Calculer les positions horizontales des camemberts
         double pieWidth = 2.0 * this.pieRadius;
         double totalPiesWidth = pieCount * pieWidth + (pieCount - 1) * this.spacing;
-        double startX = -totalPiesWidth / 2.0;
+        double startX = centre.getX() - totalPiesWidth / 2.0;
 
         // Étape 4 : Pour chaque DataSet, créer un camembert et le positionner
         for (int i = 0; i < this.data.size(); i++) {
             // Position du centre du camembert courant
             double centerX = startX + i * (pieWidth + this.spacing) + this.pieRadius;
-            Point pieCenter = new Point(centerX, 0.0);
+            Point pieCenter = new Point(centerX, centre.getY());
 
             // Créer une vue pie pour ce dataset
             PieDataSetView pieView = new PieDataSetView(pieCenter, this.pieRadius);
