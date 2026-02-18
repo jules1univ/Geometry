@@ -1,12 +1,12 @@
-# 📊 Geometry
+# 📊 VectorReport
 
 > Generate SVG charts from CSV files.
 
-![C](https://img.shields.io/github/languages/top/jules1univ/Geometry?label=Java%20🔥)
+![C](https://img.shields.io/github/languages/top/jules1univ/VectorReport?label=Java%20🔥)
 ![Platform](https://img.shields.io/badge/Platform%20🌍-Windows%20|%20Linux%20|%20MacOS-purple)
-![Charts](https://img.shields.io/badge/Charts%20📊-Geometry-green)
-[![Build](https://github.com/jules1univ/Geometry/actions/workflows/build-jar.yml/badge.svg)](https://github.com/jules1univ/Geometry/actions/workflows/build-jar.yml)
-[![Test](https://github.com/jules1univ/Geometry/actions/workflows/test-junit.yml/badge.svg)](https://github.com/jules1univ/Geometry/actions/workflows/test-junit.yml)
+![Charts](https://img.shields.io/badge/Charts%20📊-VectorReport-green)
+[![Build](https://github.com/jules1univ/VectorReport/actions/workflows/build-jar.yml/badge.svg)](https://github.com/jules1univ/VectorReport/actions/workflows/build-jar.yml)
+[![Test](https://github.com/jules1univ/VectorReport/actions/workflows/test-junit.yml/badge.svg)](https://github.com/jules1univ/VectorReport/actions/workflows/test-junit.yml)
 
 <!-- > Preview 🎥 -->
 <!-- TODO: ajouter des images du projet ici -->
@@ -26,13 +26,13 @@
 ### Cloner le dépôt
 
 ```bash
-git clone https://github.com/jules1univ/Geometry.git
-cd Geometry
+git clone https://github.com/jules1univ/VectorReport.git
+cd VectorReport
 ```
 
 ### Ouvrir le projet
 
-- Ouvrir le dossier `Geometry` dans **VS Code**
+- Ouvrir le dossier `VectorReport` dans **VS Code**
 - Vérifier que le JDK est bien configuré (`java --version`)
 
 ### Librairies

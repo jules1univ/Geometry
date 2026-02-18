@@ -21,10 +21,10 @@ jobs:
       - name: Create JAR
         run: |
           echo "Main-Class: fr.univrennes.istic.l2gen.geometry.app.App" > manifest.txt
-          jar cfm Geometry.jar manifest.txt -C out .
+          jar cfm VectorReport.jar manifest.txt -C out .
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: Geometry
-          path: Geometry.jar
+          name: VectorReport
+          path: VectorReport.jar
