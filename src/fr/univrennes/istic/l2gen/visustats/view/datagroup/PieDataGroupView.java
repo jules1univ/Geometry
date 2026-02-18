@@ -33,6 +33,7 @@ public class PieDataGroupView extends AbstractDataGroupView {
     public PieDataGroupView(DataGroup data, double spacing, double pieRadius) {
         super(data, spacing);
         this.pieRadius = pieRadius;
+        this.update();
     }
 
     /**
