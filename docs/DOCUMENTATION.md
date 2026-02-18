@@ -6,10 +6,10 @@
 
 - [Architecture générale](#architecture-générale)
 - [Module: geometry](#module-geometry)
-- [Module: svg](#module-svg)
-- [Module: io](#module-io)
-- [Module: visustats](#module-visustats)
-- [Module: application](#module-application)
+- [Module SVG](#module-svg)
+- [Module IO](#module-io)
+- [Module Visustats](#module-visustats)
+- [Module Application](#module-application)
 - [Diagramme de dépendances](#diagramme-de-dépendances)
 - [Flux de travail typique](#flux-de-travail-typique)
 
@@ -379,7 +379,7 @@ public class MyShape implements ISVGShape {
 // <myCustomShape cx="..." cy="..." r="..." style="..." transform="...">label</myCustomShape>
 ```
 
-## Module IO (Input/Output)
+## Module IO
 
 ### Emplacement
 
@@ -533,7 +533,7 @@ List<CSVRow> rows = table.getRows();
 List<String> headers = table.getHeaders();
 ```
 
-## Module Visustats (Visualisation de données)
+## Module Visustats
 
 ### Emplacement
 
@@ -612,7 +612,7 @@ SVGExport
 SVG (fichier final)
 ```
 
-## Module Application (Point d'entrée)
+## Module Application
 
 ### Emplacement
 
