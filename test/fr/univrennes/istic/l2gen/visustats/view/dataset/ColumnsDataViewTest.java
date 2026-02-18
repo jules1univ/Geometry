@@ -1,6 +1,7 @@
 package fr.univrennes.istic.l2gen.visustats.view.dataset;
 
 import fr.univrennes.istic.l2gen.geometry.Point;
+import fr.univrennes.istic.l2gen.visustats.data.Label;
 
 public class ColumnsDataViewTest extends AbstractDataSetViewTest<ColumnsDataSetView> {
 

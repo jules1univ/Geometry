@@ -1,0 +1,772 @@
+2026.02.18 10:49:19 INFO  Started: Metals version 1.5.2 in folders '/private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN' for client Visual Studio Code 1.101.2.
+2026.02.18 10:49:23 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:49:23 WARN  no build tool detected in workspace '/private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. 
+2026.02.18 10:49:23 WARN  Build server is not auto-connectable.
+2026.02.18 10:49:23 WARN  no build target for: /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/test/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupViewTest.java
+2026.02.18 10:49:23 WARN  no build target for: /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/dataset/ColumnsDataSetView.java
+2026.02.18 10:49:23 WARN  no build target for: /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/BarDataGroupView.java
+2026.02.18 10:49:23 WARN  no build target for: /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/test/fr/univrennes/istic/l2gen/geometry/PathTest.java
+2026.02.18 10:49:23 WARN  no build target for: /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/test/fr/univrennes/istic/l2gen/visustats/view/dataset/ColumnsDataViewTest.java
+2026.02.18 10:49:23 WARN  no build target for: /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java
+2026.02.18 10:49:25 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+févr. 18, 2026 10:49:25 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+AVERTISSEMENT: Unmatched cancel notification for request id 2
+2026.02.18 10:49:25 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:49:25 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:49:25 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:49:25 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:49:25 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+Exception in thread "pool-6-thread-1" java.lang.InterruptedException
+	at scala.meta.internal.metals.FutureCancelToken.checkCanceled(FutureCancelToken.scala:29)
+	at scala.meta.internal.pc.CompilerAccess.onCompilerJobQueue$$anonfun$1(CompilerAccess.scala:244)
+	at scala.meta.internal.pc.CompilerJobQueue$Job.run(CompilerJobQueue.scala:153)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+févr. 18, 2026 10:49:25 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+AVERTISSEMENT: Unmatched cancel notification for request id 4
+2026.02.18 10:49:25 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+févr. 18, 2026 10:49:25 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+AVERTISSEMENT: Unmatched cancel notification for request id 14
+2026.02.18 10:49:25 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+févr. 18, 2026 10:49:25 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+AVERTISSEMENT: Unmatched cancel notification for request id 8
+févr. 18, 2026 10:49:25 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+AVERTISSEMENT: Unmatched cancel notification for request id 10
+2026.02.18 10:49:25 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:49:25 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+févr. 18, 2026 10:49:25 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+AVERTISSEMENT: Unmatched cancel notification for request id 17
+2026.02.18 10:49:25 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+févr. 18, 2026 10:49:25 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+AVERTISSEMENT: Unmatched cancel notification for request id 18
+2026.02.18 10:49:25 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:49:26 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/BarDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:49:26 WARN  no build target for: /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/data/Label.java
+2026.02.18 10:49:26 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/data/Label.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:49:26 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/data/Label.java. Using presentation compiler with project's scala-library version: 3.3.5
+févr. 18, 2026 10:49:27 AM scala.meta.internal.pc.CompilerAccess handleError
+GRAVE: next on empty iterator
+java.util.NoSuchElementException: next on empty iterator
+	at scala.collection.Iterator$$anon$19.next(Iterator.scala:973)
+	at scala.collection.Iterator$$anon$19.next(Iterator.scala:971)
+	at scala.collection.mutable.MutationTracker$CheckedIterator.next(MutationTracker.scala:76)
+	at scala.collection.IterableOps.head(Iterable.scala:222)
+	at scala.collection.IterableOps.head$(Iterable.scala:222)
+	at scala.collection.AbstractIterable.head(Iterable.scala:935)
+	at dotty.tools.dotc.interactive.InteractiveDriver.run(InteractiveDriver.scala:164)
+	at dotty.tools.pc.CachingDriver.run(CachingDriver.scala:45)
+	at dotty.tools.pc.HoverProvider$.hover(HoverProvider.scala:40)
+	at dotty.tools.pc.ScalaPresentationCompiler.hover$$anonfun$1(ScalaPresentationCompiler.scala:389)
+
+févr. 18, 2026 10:49:27 AM scala.meta.internal.pc.CompilerAccess handleError
+GRAVE: next on empty iterator
+java.util.NoSuchElementException: next on empty iterator
+	at scala.collection.Iterator$$anon$19.next(Iterator.scala:973)
+	at scala.collection.Iterator$$anon$19.next(Iterator.scala:971)
+	at scala.collection.mutable.MutationTracker$CheckedIterator.next(MutationTracker.scala:76)
+	at scala.collection.IterableOps.head(Iterable.scala:222)
+	at scala.collection.IterableOps.head$(Iterable.scala:222)
+	at scala.collection.AbstractIterable.head(Iterable.scala:935)
+	at dotty.tools.dotc.interactive.InteractiveDriver.run(InteractiveDriver.scala:164)
+	at dotty.tools.pc.CachingDriver.run(CachingDriver.scala:45)
+	at dotty.tools.pc.WithCompilationUnit.<init>(WithCompilationUnit.scala:31)
+	at dotty.tools.pc.SimpleCollector.<init>(PcCollector.scala:351)
+	at dotty.tools.pc.PcSemanticTokensProvider$Collector$.<init>(PcSemanticTokensProvider.scala:63)
+	at dotty.tools.pc.PcSemanticTokensProvider.Collector$lzyINIT1(PcSemanticTokensProvider.scala:63)
+	at dotty.tools.pc.PcSemanticTokensProvider.Collector(PcSemanticTokensProvider.scala:63)
+	at dotty.tools.pc.PcSemanticTokensProvider.provide(PcSemanticTokensProvider.scala:88)
+	at dotty.tools.pc.ScalaPresentationCompiler.semanticTokens$$anonfun$1(ScalaPresentationCompiler.scala:111)
+
+févr. 18, 2026 10:49:27 AM scala.meta.internal.pc.CompilerAccess handleError
+GRAVE: next on empty iterator
+java.util.NoSuchElementException: next on empty iterator
+	at scala.collection.Iterator$$anon$19.next(Iterator.scala:973)
+	at scala.collection.Iterator$$anon$19.next(Iterator.scala:971)
+	at scala.collection.mutable.MutationTracker$CheckedIterator.next(MutationTracker.scala:76)
+	at scala.collection.IterableOps.head(Iterable.scala:222)
+	at scala.collection.IterableOps.head$(Iterable.scala:222)
+	at scala.collection.AbstractIterable.head(Iterable.scala:935)
+	at dotty.tools.dotc.interactive.InteractiveDriver.run(InteractiveDriver.scala:164)
+	at dotty.tools.pc.CachingDriver.run(CachingDriver.scala:45)
+	at dotty.tools.pc.HoverProvider$.hover(HoverProvider.scala:40)
+	at dotty.tools.pc.ScalaPresentationCompiler.hover$$anonfun$1(ScalaPresentationCompiler.scala:389)
+
+févr. 18, 2026 10:49:27 AM scala.meta.internal.pc.CompilerAccess handleError
+GRAVE: next on empty iterator
+java.util.NoSuchElementException: next on empty iterator
+	at scala.collection.Iterator$$anon$19.next(Iterator.scala:973)
+	at scala.collection.Iterator$$anon$19.next(Iterator.scala:971)
+	at scala.collection.mutable.MutationTracker$CheckedIterator.next(MutationTracker.scala:76)
+	at scala.collection.IterableOps.head(Iterable.scala:222)
+	at scala.collection.IterableOps.head$(Iterable.scala:222)
+	at scala.collection.AbstractIterable.head(Iterable.scala:935)
+	at dotty.tools.dotc.interactive.InteractiveDriver.run(InteractiveDriver.scala:164)
+	at dotty.tools.pc.CachingDriver.run(CachingDriver.scala:45)
+	at dotty.tools.pc.HoverProvider$.hover(HoverProvider.scala:40)
+	at dotty.tools.pc.ScalaPresentationCompiler.hover$$anonfun$1(ScalaPresentationCompiler.scala:389)
+
+févr. 18, 2026 10:49:27 AM scala.meta.internal.pc.CompilerAccess handleError
+GRAVE: next on empty iterator
+java.util.NoSuchElementException: next on empty iterator
+	at scala.collection.Iterator$$anon$19.next(Iterator.scala:973)
+	at scala.collection.Iterator$$anon$19.next(Iterator.scala:971)
+	at scala.collection.mutable.MutationTracker$CheckedIterator.next(MutationTracker.scala:76)
+	at scala.collection.IterableOps.head(Iterable.scala:222)
+	at scala.collection.IterableOps.head$(Iterable.scala:222)
+	at scala.collection.AbstractIterable.head(Iterable.scala:935)
+	at dotty.tools.dotc.interactive.InteractiveDriver.run(InteractiveDriver.scala:164)
+	at dotty.tools.pc.CachingDriver.run(CachingDriver.scala:45)
+	at dotty.tools.pc.HoverProvider$.hover(HoverProvider.scala:40)
+	at dotty.tools.pc.ScalaPresentationCompiler.hover$$anonfun$1(ScalaPresentationCompiler.scala:389)
+
+févr. 18, 2026 10:49:27 AM scala.meta.internal.pc.CompilerAccess handleError
+GRAVE: A severe compiler error occurred, full details of the error can be found in the error report /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/.metals/.reports/metals-full/2026-02-18/r_compiler-error_10-49-26-991.md
+févr. 18, 2026 10:49:27 AM scala.meta.internal.pc.CompilerAccess handleError
+GRAVE: A severe compiler error occurred, full details of the error can be found in the error report /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/.metals/.reports/metals-full/2026-02-18/r_compiler-error_10-49-26-990.md
+févr. 18, 2026 10:49:27 AM scala.meta.internal.pc.CompilerAccess handleError
+GRAVE: A severe compiler error occurred, full details of the error can be found in the error report /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/.metals/.reports/metals-full/2026-02-18/r_compiler-error_10-49-27-021.md
+2026.02.18 10:49:27 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/data/Label.java. Using presentation compiler with project's scala-library version: 3.3.5
+févr. 18, 2026 10:49:27 AM scala.meta.internal.pc.CompilerAccess handleError
+GRAVE: A severe compiler error occurred, full details of the error can be found in the error report /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/.metals/.reports/metals-full/2026-02-18/r_compiler-error_10-49-27-475.md
+2026.02.18 10:49:29 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/data/Label.java. Using presentation compiler with project's scala-library version: 3.3.5
+févr. 18, 2026 10:49:29 AM scala.meta.internal.pc.CompilerAccess handleError
+GRAVE: A severe compiler error occurred, full details of the error can be found in the error report /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/.metals/.reports/metals-full/2026-02-18/r_compiler-error_10-49-29-967.md
+2026.02.18 10:49:30 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/data/Label.java. Using presentation compiler with project's scala-library version: 3.3.5
+févr. 18, 2026 10:49:30 AM scala.meta.internal.pc.CompilerAccess handleError
+GRAVE: A severe compiler error occurred, full details of the error can be found in the error report /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/.metals/.reports/metals-full/2026-02-18/r_compiler-error_10-49-30-987.md
+2026.02.18 10:49:32 WARN  no build target for: /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/test/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupViewTest.java
+2026.02.18 10:49:32 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/test/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupViewTest.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:49:32 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/test/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupViewTest.java. Using presentation compiler with project's scala-library version: 3.3.5
+févr. 18, 2026 10:49:32 AM scala.meta.internal.pc.CompilerAccess handleError
+GRAVE: A severe compiler error occurred, full details of the error can be found in the error report /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/.metals/.reports/metals-full/2026-02-18/r_compiler-error_10-49-32-742.md
+2026.02.18 10:49:32 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/test/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupViewTest.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:49:32 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/test/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupViewTest.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:49:32 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/test/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupViewTest.java. Using presentation compiler with project's scala-library version: 3.3.5
+févr. 18, 2026 10:49:33 AM scala.meta.internal.pc.CompilerAccess handleError
+GRAVE: A severe compiler error occurred, full details of the error can be found in the error report /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/.metals/.reports/metals-full/2026-02-18/r_compiler-error_10-49-33-573.md
+2026.02.18 10:49:33 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/test/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupViewTest.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:49:34 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/test/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupViewTest.java. Using presentation compiler with project's scala-library version: 3.3.5
+févr. 18, 2026 10:49:35 AM scala.meta.internal.pc.CompilerAccess handleError
+GRAVE: A severe compiler error occurred, full details of the error can be found in the error report /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/.metals/.reports/metals-full/2026-02-18/r_compiler-error_10-49-35-053.md
+2026.02.18 10:49:34 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/test/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupViewTest.java. Using presentation compiler with project's scala-library version: 3.3.5
+févr. 18, 2026 10:49:35 AM scala.meta.internal.pc.CompilerAccess handleError
+GRAVE: A severe compiler error occurred, full details of the error can be found in the error report /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/.metals/.reports/metals-full/2026-02-18/r_compiler-error_10-49-35-304.md
+2026.02.18 10:49:34 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/test/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupViewTest.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:49:36 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/test/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupViewTest.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:49:36 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/test/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupViewTest.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:49:36 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/test/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupViewTest.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:49:36 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/test/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupViewTest.java. Using presentation compiler with project's scala-library version: 3.3.5
+févr. 18, 2026 10:49:36 AM scala.meta.internal.pc.CompilerAccess handleError
+GRAVE: A severe compiler error occurred, full details of the error can be found in the error report /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/.metals/.reports/metals-full/2026-02-18/r_compiler-error_10-49-36-597.md
+2026.02.18 10:49:36 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/test/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupViewTest.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:49:36 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/test/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupViewTest.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:49:36 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/test/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupViewTest.java. Using presentation compiler with project's scala-library version: 3.3.5
+févr. 18, 2026 10:49:36 AM scala.meta.internal.pc.CompilerAccess handleError
+GRAVE: A severe compiler error occurred, full details of the error can be found in the error report /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/.metals/.reports/metals-full/2026-02-18/r_compiler-error_10-49-36-913.md
+2026.02.18 10:49:36 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/test/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupViewTest.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:49:37 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/test/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupViewTest.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:49:36 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/test/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupViewTest.java. Using presentation compiler with project's scala-library version: 3.3.5
+févr. 18, 2026 10:49:37 AM scala.meta.internal.pc.CompilerAccess handleError
+GRAVE: A severe compiler error occurred, full details of the error can be found in the error report /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/.metals/.reports/metals-full/2026-02-18/r_compiler-error_10-49-37-212.md
+2026.02.18 10:49:37 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/test/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupViewTest.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:49:37 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/test/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupViewTest.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:49:37 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/test/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupViewTest.java. Using presentation compiler with project's scala-library version: 3.3.5
+févr. 18, 2026 10:49:37 AM scala.meta.internal.pc.CompilerAccess handleError
+GRAVE: A severe compiler error occurred, full details of the error can be found in the error report /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/.metals/.reports/metals-full/2026-02-18/r_compiler-error_10-49-37-541.md
+2026.02.18 10:49:37 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/test/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupViewTest.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:49:37 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/test/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupViewTest.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:49:37 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/test/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupViewTest.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:49:37 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/test/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupViewTest.java. Using presentation compiler with project's scala-library version: 3.3.5
+févr. 18, 2026 10:49:37 AM scala.meta.internal.pc.CompilerAccess handleError
+GRAVE: A severe compiler error occurred, full details of the error can be found in the error report /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/.metals/.reports/metals-full/2026-02-18/r_compiler-error_10-49-37-950.md
+2026.02.18 10:49:37 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/test/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupViewTest.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:49:37 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/test/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupViewTest.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:49:37 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/test/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupViewTest.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:49:37 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/test/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupViewTest.java. Using presentation compiler with project's scala-library version: 3.3.5
+févr. 18, 2026 10:49:38 AM scala.meta.internal.pc.CompilerAccess handleError
+GRAVE: A severe compiler error occurred, full details of the error can be found in the error report /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/.metals/.reports/metals-full/2026-02-18/r_compiler-error_10-49-38-347.md
+2026.02.18 10:49:38 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/test/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupViewTest.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:49:38 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/test/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupViewTest.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:49:38 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/test/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupViewTest.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:49:38 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/test/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupViewTest.java. Using presentation compiler with project's scala-library version: 3.3.5
+févr. 18, 2026 10:49:38 AM scala.meta.internal.pc.CompilerAccess handleError
+GRAVE: A severe compiler error occurred, full details of the error can be found in the error report /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/.metals/.reports/metals-full/2026-02-18/r_compiler-error_10-49-38-775.md
+2026.02.18 10:49:38 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/test/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupViewTest.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:49:38 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/test/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupViewTest.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:49:38 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/test/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupViewTest.java. Using presentation compiler with project's scala-library version: 3.3.5
+févr. 18, 2026 10:49:39 AM scala.meta.internal.pc.CompilerAccess handleError
+GRAVE: A severe compiler error occurred, full details of the error can be found in the error report /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/.metals/.reports/metals-full/2026-02-18/r_compiler-error_10-49-39-206.md
+2026.02.18 10:49:38 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/test/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupViewTest.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:49:38 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/test/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupViewTest.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:49:39 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/test/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupViewTest.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:49:39 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/test/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupViewTest.java. Using presentation compiler with project's scala-library version: 3.3.5
+févr. 18, 2026 10:49:39 AM scala.meta.internal.pc.CompilerAccess handleError
+GRAVE: A severe compiler error occurred, full details of the error can be found in the error report /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/.metals/.reports/metals-full/2026-02-18/r_compiler-error_10-49-39-741.md
+2026.02.18 10:49:39 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/test/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupViewTest.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:49:39 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/test/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupViewTest.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:49:40 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/test/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupViewTest.java. Using presentation compiler with project's scala-library version: 3.3.5
+févr. 18, 2026 10:49:40 AM scala.meta.internal.pc.CompilerAccess handleError
+GRAVE: A severe compiler error occurred, full details of the error can be found in the error report /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/.metals/.reports/metals-full/2026-02-18/r_compiler-error_10-49-40-206.md
+2026.02.18 10:49:39 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/test/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupViewTest.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:49:39 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/test/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupViewTest.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:49:40 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/test/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupViewTest.java. Using presentation compiler with project's scala-library version: 3.3.5
+févr. 18, 2026 10:49:40 AM scala.meta.internal.pc.CompilerAccess handleError
+GRAVE: A severe compiler error occurred, full details of the error can be found in the error report /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/.metals/.reports/metals-full/2026-02-18/r_compiler-error_10-49-40-569.md
+2026.02.18 10:49:40 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/test/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupViewTest.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:49:40 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/test/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupViewTest.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:49:40 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/test/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupViewTest.java. Using presentation compiler with project's scala-library version: 3.3.5
+févr. 18, 2026 10:49:41 AM scala.meta.internal.pc.CompilerAccess handleError
+GRAVE: A severe compiler error occurred, full details of the error can be found in the error report /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/.metals/.reports/metals-full/2026-02-18/r_compiler-error_10-49-41-053.md
+2026.02.18 10:49:40 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/test/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupViewTest.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:49:42 WARN  no build target for: /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java
+2026.02.18 10:49:42 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:49:42 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+févr. 18, 2026 10:49:43 AM scala.meta.internal.pc.CompilerAccess handleError
+GRAVE: A severe compiler error occurred, full details of the error can be found in the error report /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/.metals/.reports/metals-full/2026-02-18/r_compiler-error_10-49-43-061.md
+2026.02.18 10:49:42 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:49:42 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:49:46 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:49:46 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:49:46 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+févr. 18, 2026 10:49:46 AM scala.meta.internal.pc.CompilerAccess handleError
+GRAVE: A severe compiler error occurred, full details of the error can be found in the error report /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/.metals/.reports/metals-full/2026-02-18/r_compiler-error_10-49-46-587.md
+2026.02.18 10:49:46 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:49:46 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:49:47 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:49:47 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+févr. 18, 2026 10:49:47 AM scala.meta.internal.pc.CompilerAccess handleError
+GRAVE: A severe compiler error occurred, full details of the error can be found in the error report /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/.metals/.reports/metals-full/2026-02-18/r_compiler-error_10-49-47-394.md
+2026.02.18 10:49:47 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:49:47 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:49:48 WARN  no build target for: /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java
+2026.02.18 10:49:48 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+févr. 18, 2026 10:49:48 AM scala.meta.internal.pc.CompilerAccess handleError
+GRAVE: A severe compiler error occurred, full details of the error can be found in the error report /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/.metals/.reports/metals-full/2026-02-18/r_compiler-error_10-49-48-548.md
+2026.02.18 10:49:49 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:49:49 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+févr. 18, 2026 10:49:49 AM scala.meta.internal.pc.CompilerAccess handleError
+GRAVE: A severe compiler error occurred, full details of the error can be found in the error report /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/.metals/.reports/metals-full/2026-02-18/r_compiler-error_10-49-49-576.md
+2026.02.18 10:49:50 WARN  no build target for: /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/test/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupViewTest.java
+2026.02.18 10:49:49 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/test/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupViewTest.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:49:50 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/test/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupViewTest.java. Using presentation compiler with project's scala-library version: 3.3.5
+févr. 18, 2026 10:49:50 AM scala.meta.internal.pc.CompilerAccess handleError
+GRAVE: A severe compiler error occurred, full details of the error can be found in the error report /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/.metals/.reports/metals-full/2026-02-18/r_compiler-error_10-49-50-198.md
+2026.02.18 10:49:49 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/test/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupViewTest.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:49:50 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/test/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupViewTest.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:49:51 WARN  no build target for: /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/test/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupViewTest.java
+2026.02.18 10:49:51 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/test/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupViewTest.java. Using presentation compiler with project's scala-library version: 3.3.5
+févr. 18, 2026 10:49:51 AM scala.meta.internal.pc.CompilerAccess handleError
+GRAVE: A severe compiler error occurred, full details of the error can be found in the error report /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/.metals/.reports/metals-full/2026-02-18/r_compiler-error_10-49-51-273.md
+2026.02.18 10:49:51 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/test/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupViewTest.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:50:07 WARN  no build target for: /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/geometry/Path.java
+2026.02.18 10:50:07 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/test/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupViewTest.java. Using presentation compiler with project's scala-library version: 3.3.5
+févr. 18, 2026 10:50:07 AM scala.meta.internal.pc.CompilerAccess handleError
+GRAVE: A severe compiler error occurred, full details of the error can be found in the error report /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/.metals/.reports/metals-full/2026-02-18/r_compiler-error_10-50-07-581.md
+2026.02.18 10:50:13 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/test/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupViewTest.java. Using presentation compiler with project's scala-library version: 3.3.5
+févr. 18, 2026 10:50:13 AM scala.meta.internal.pc.CompilerAccess handleError
+GRAVE: A severe compiler error occurred, full details of the error can be found in the error report /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/.metals/.reports/metals-full/2026-02-18/r_compiler-error_10-50-13-691.md
+2026.02.18 10:50:27 WARN  no build target for: /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java
+2026.02.18 10:50:27 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:50:27 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+févr. 18, 2026 10:50:27 AM scala.meta.internal.pc.CompilerAccess handleError
+GRAVE: A severe compiler error occurred, full details of the error can be found in the error report /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/.metals/.reports/metals-full/2026-02-18/r_compiler-error_10-50-27-370.md
+2026.02.18 10:50:27 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:50:27 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+févr. 18, 2026 10:50:27 AM scala.meta.internal.pc.CompilerAccess handleError
+GRAVE: A severe compiler error occurred, full details of the error can be found in the error report /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/.metals/.reports/metals-full/2026-02-18/r_compiler-error_10-50-27-744.md
+2026.02.18 10:50:27 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:50:28 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+févr. 18, 2026 10:50:28 AM scala.meta.internal.pc.CompilerAccess handleError
+GRAVE: A severe compiler error occurred, full details of the error can be found in the error report /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/.metals/.reports/metals-full/2026-02-18/r_compiler-error_10-50-28-342.md
+2026.02.18 10:50:28 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+févr. 18, 2026 10:50:29 AM scala.meta.internal.pc.CompilerAccess handleError
+GRAVE: A severe compiler error occurred, full details of the error can be found in the error report /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/.metals/.reports/metals-full/2026-02-18/r_compiler-error_10-50-29-316.md
+2026.02.18 10:50:29 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+févr. 18, 2026 10:50:30 AM scala.meta.internal.pc.CompilerAccess handleError
+GRAVE: A severe compiler error occurred, full details of the error can be found in the error report /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/.metals/.reports/metals-full/2026-02-18/r_compiler-error_10-50-30-001.md
+févr. 18, 2026 10:50:37 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleNotification
+AVERTISSEMENT: Notification threw an exception: {
+  "jsonrpc": "2.0",
+  "method": "metals/didFocusTextDocument",
+  "params": [
+    "vscode-chat-code-block://4c76c1c6-45f7-4d69-bc34-ed938221a7d7/response_3cd78d2a-302d-427d-9fa4-3c5bd5235272/1#%7B%22references%22%3A%5B%5D%7D"
+  ]
+}
+java.nio.file.FileSystemNotFoundException: Provider "vscode-chat-code-block" not installed
+	at java.base/java.nio.file.Path.of(Path.java:213)
+	at java.base/java.nio.file.Paths.get(Paths.java:98)
+	at scala.meta.internal.mtags.MtagsEnrichments$XtensionURIMtags.toAbsolutePath(MtagsEnrichments.scala:130)
+	at scala.meta.internal.mtags.MtagsEnrichments$XtensionStringMtags.toAbsolutePath(MtagsEnrichments.scala:190)
+	at scala.meta.internal.metals.MetalsEnrichments$XtensionString.toAbsolutePath(MetalsEnrichments.scala:777)
+	at scala.meta.internal.metals.MetalsEnrichments$XtensionString.toAbsolutePath(MetalsEnrichments.scala:774)
+	at scala.meta.internal.metals.WorkspaceLspService.didFocus(WorkspaceLspService.scala:775)
+	at scala.meta.metals.lsp.DelegatingScalaService.didFocus(DelegatingScalaService.scala:42)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint.lambda$recursiveFindRpcMethods$0(GenericEndpoint.java:65)
+	at org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint.notify(GenericEndpoint.java:160)
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.handleNotification(RemoteEndpoint.java:231)
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.consume(RemoteEndpoint.java:198)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.handleMessage(StreamMessageProducer.java:185)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.listen(StreamMessageProducer.java:97)
+	at org.eclipse.lsp4j.jsonrpc.json.ConcurrentMessageProcessor.run(ConcurrentMessageProcessor.java:114)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+
+2026.02.18 10:50:42 WARN  no build target for: /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java
+2026.02.18 10:50:42 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+févr. 18, 2026 10:50:42 AM scala.meta.internal.pc.CompilerAccess handleError
+GRAVE: A severe compiler error occurred, full details of the error can be found in the error report /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/.metals/.reports/metals-full/2026-02-18/r_compiler-error_10-50-42-243.md
+2026.02.18 10:50:42 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:50:42 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:50:42 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:50:43 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+févr. 18, 2026 10:50:43 AM scala.meta.internal.pc.CompilerAccess handleError
+GRAVE: A severe compiler error occurred, full details of the error can be found in the error report /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/.metals/.reports/metals-full/2026-02-18/r_compiler-error_10-50-43-849.md
+2026.02.18 10:50:45 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:50:45 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:50:45 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:50:46 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:50:45 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+févr. 18, 2026 10:50:46 AM scala.meta.internal.pc.CompilerAccess handleError
+GRAVE: A severe compiler error occurred, full details of the error can be found in the error report /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/.metals/.reports/metals-full/2026-02-18/r_compiler-error_10-50-46-472.md
+2026.02.18 10:50:46 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:50:46 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:50:46 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:50:46 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+févr. 18, 2026 10:50:46 AM scala.meta.internal.pc.CompilerAccess handleError
+GRAVE: A severe compiler error occurred, full details of the error can be found in the error report /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/.metals/.reports/metals-full/2026-02-18/r_compiler-error_10-50-46-975.md
+2026.02.18 10:50:46 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:50:46 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:50:47 WARN  no build target for: /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java
+2026.02.18 10:50:47 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:50:47 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+févr. 18, 2026 10:50:48 AM scala.meta.internal.pc.CompilerAccess handleError
+GRAVE: A severe compiler error occurred, full details of the error can be found in the error report /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/.metals/.reports/metals-full/2026-02-18/r_compiler-error_10-50-48-153.md
+2026.02.18 10:50:48 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:50:51 WARN  no build target for: /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/test/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupViewTest.java
+2026.02.18 10:50:51 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/test/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupViewTest.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:50:51 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/test/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupViewTest.java. Using presentation compiler with project's scala-library version: 3.3.5
+févr. 18, 2026 10:50:51 AM scala.meta.internal.pc.CompilerAccess handleError
+GRAVE: A severe compiler error occurred, full details of the error can be found in the error report /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/.metals/.reports/metals-full/2026-02-18/r_compiler-error_10-50-51-401.md
+2026.02.18 10:50:51 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/test/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupViewTest.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:50:51 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/test/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupViewTest.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:50:56 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/data/Label.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:51:03 WARN  no build target for: /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java
+2026.02.18 10:51:03 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:51:03 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+févr. 18, 2026 10:51:03 AM scala.meta.internal.pc.CompilerAccess handleError
+GRAVE: A severe compiler error occurred, full details of the error can be found in the error report /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/.metals/.reports/metals-full/2026-02-18/r_compiler-error_10-51-03-872.md
+2026.02.18 10:51:03 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:51:03 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:51:03 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+févr. 18, 2026 10:51:04 AM scala.meta.internal.pc.CompilerAccess handleError
+GRAVE: A severe compiler error occurred, full details of the error can be found in the error report /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/.metals/.reports/metals-full/2026-02-18/r_compiler-error_10-51-04-574.md
+2026.02.18 10:51:05 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+févr. 18, 2026 10:51:05 AM scala.meta.internal.pc.CompilerAccess handleError
+GRAVE: A severe compiler error occurred, full details of the error can be found in the error report /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/.metals/.reports/metals-full/2026-02-18/r_compiler-error_10-51-05-510.md
+2026.02.18 10:51:05 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:51:08 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:51:12 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:51:12 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:51:13 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+févr. 18, 2026 10:51:13 AM scala.meta.internal.pc.CompilerAccess handleError
+GRAVE: A severe compiler error occurred, full details of the error can be found in the error report /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/.metals/.reports/metals-full/2026-02-18/r_compiler-error_10-51-13-726.md
+2026.02.18 10:51:14 WARN  no build target for: /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java
+2026.02.18 10:51:14 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+févr. 18, 2026 10:51:14 AM scala.meta.internal.pc.CompilerAccess handleError
+GRAVE: A severe compiler error occurred, full details of the error can be found in the error report /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/.metals/.reports/metals-full/2026-02-18/r_compiler-error_10-51-14-471.md
+2026.02.18 10:51:14 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+févr. 18, 2026 10:51:14 AM scala.meta.internal.pc.CompilerAccess handleError
+GRAVE: A severe compiler error occurred, full details of the error can be found in the error report /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/.metals/.reports/metals-full/2026-02-18/r_compiler-error_10-51-14-681.md
+2026.02.18 10:51:14 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:51:15 WARN  no build target for: /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java
+2026.02.18 10:51:15 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+févr. 18, 2026 10:51:15 AM scala.meta.internal.pc.CompilerAccess handleError
+GRAVE: A severe compiler error occurred, full details of the error can be found in the error report /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/.metals/.reports/metals-full/2026-02-18/r_compiler-error_10-51-15-423.md
+2026.02.18 10:51:16 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+févr. 18, 2026 10:51:16 AM scala.meta.internal.pc.CompilerAccess handleError
+GRAVE: A severe compiler error occurred, full details of the error can be found in the error report /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/.metals/.reports/metals-full/2026-02-18/r_compiler-error_10-51-16-536.md
+2026.02.18 10:51:18 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:51:18 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:51:18 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:51:19 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+févr. 18, 2026 10:51:19 AM scala.meta.internal.pc.CompilerAccess handleError
+GRAVE: A severe compiler error occurred, full details of the error can be found in the error report /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/.metals/.reports/metals-full/2026-02-18/r_compiler-error_10-51-19-405.md
+2026.02.18 10:51:19 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:51:19 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:51:20 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+févr. 18, 2026 10:51:20 AM scala.meta.internal.pc.CompilerAccess handleError
+GRAVE: A severe compiler error occurred, full details of the error can be found in the error report /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/.metals/.reports/metals-full/2026-02-18/r_compiler-error_10-51-20-087.md
+2026.02.18 10:51:19 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:51:19 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+févr. 18, 2026 10:51:20 AM scala.meta.internal.pc.CompilerAccess handleError
+GRAVE: A severe compiler error occurred, full details of the error can be found in the error report /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/.metals/.reports/metals-full/2026-02-18/r_compiler-error_10-51-20-229.md
+2026.02.18 10:51:19 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:51:20 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+févr. 18, 2026 10:51:20 AM scala.meta.internal.pc.CompilerAccess handleError
+GRAVE: A severe compiler error occurred, full details of the error can be found in the error report /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/.metals/.reports/metals-full/2026-02-18/r_compiler-error_10-51-20-499.md
+2026.02.18 10:51:20 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:51:21 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:51:21 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:51:22 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+févr. 18, 2026 10:51:23 AM scala.meta.internal.pc.CompilerAccess handleError
+GRAVE: A severe compiler error occurred, full details of the error can be found in the error report /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/.metals/.reports/metals-full/2026-02-18/r_compiler-error_10-51-23-083.md
+2026.02.18 10:51:24 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:51:24 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:51:24 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+févr. 18, 2026 10:51:24 AM scala.meta.internal.pc.CompilerAccess handleError
+GRAVE: A severe compiler error occurred, full details of the error can be found in the error report /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/.metals/.reports/metals-full/2026-02-18/r_compiler-error_10-51-24-945.md
+2026.02.18 10:51:25 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:51:25 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+févr. 18, 2026 10:51:25 AM scala.meta.internal.pc.CompilerAccess handleError
+GRAVE: A severe compiler error occurred, full details of the error can be found in the error report /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/.metals/.reports/metals-full/2026-02-18/r_compiler-error_10-51-25-657.md
+2026.02.18 10:51:25 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:51:25 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:51:25 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:51:25 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:51:25 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:51:25 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:51:25 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:51:25 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:51:25 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:51:26 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+févr. 18, 2026 10:51:26 AM scala.meta.internal.pc.CompilerAccess handleError
+GRAVE: A severe compiler error occurred, full details of the error can be found in the error report /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/.metals/.reports/metals-full/2026-02-18/r_compiler-error_10-51-26-467.md
+2026.02.18 10:51:26 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:51:27 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+févr. 18, 2026 10:51:27 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+AVERTISSEMENT: Unmatched cancel notification for request id 331
+2026.02.18 10:51:27 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:51:27 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+févr. 18, 2026 10:51:27 AM scala.meta.internal.pc.CompilerAccess handleError
+GRAVE: A severe compiler error occurred, full details of the error can be found in the error report /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/.metals/.reports/metals-full/2026-02-18/r_compiler-error_10-51-27-860.md
+févr. 18, 2026 10:51:27 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+AVERTISSEMENT: Unmatched cancel notification for request id 335
+2026.02.18 10:51:27 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+févr. 18, 2026 10:51:27 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+AVERTISSEMENT: Unmatched cancel notification for request id 334
+févr. 18, 2026 10:51:27 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+AVERTISSEMENT: Unmatched cancel notification for request id 337
+2026.02.18 10:51:27 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:51:27 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+févr. 18, 2026 10:51:27 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+AVERTISSEMENT: Unmatched cancel notification for request id 341
+2026.02.18 10:51:29 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+févr. 18, 2026 10:51:29 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+AVERTISSEMENT: Unmatched cancel notification for request id 343
+2026.02.18 10:51:29 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:51:29 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:51:29 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+févr. 18, 2026 10:51:29 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+AVERTISSEMENT: Unmatched cancel notification for request id 346
+2026.02.18 10:51:29 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:51:29 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:51:29 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+févr. 18, 2026 10:51:29 AM scala.meta.internal.pc.CompilerAccess handleError
+GRAVE: A severe compiler error occurred, full details of the error can be found in the error report /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/.metals/.reports/metals-full/2026-02-18/r_compiler-error_10-51-29-370.md
+févr. 18, 2026 10:51:30 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+AVERTISSEMENT: Unmatched cancel notification for request id 348
+2026.02.18 10:51:30 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:51:30 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:51:30 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:51:30 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+févr. 18, 2026 10:51:30 AM scala.meta.internal.pc.CompilerAccess handleError
+GRAVE: A severe compiler error occurred, full details of the error can be found in the error report /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/.metals/.reports/metals-full/2026-02-18/r_compiler-error_10-51-30-846.md
+févr. 18, 2026 10:51:30 AM scala.meta.internal.pc.CompilerAccess handleError
+GRAVE: A severe compiler error occurred, full details of the error can be found in the error report /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/.metals/.reports/metals-full/2026-02-18/r_compiler-error_10-51-30-848.md
+févr. 18, 2026 10:51:30 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+AVERTISSEMENT: Unmatched cancel notification for request id 353
+2026.02.18 10:51:30 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+févr. 18, 2026 10:51:32 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+AVERTISSEMENT: Unmatched cancel notification for request id 358
+févr. 18, 2026 10:51:32 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+AVERTISSEMENT: Unmatched cancel notification for request id 359
+2026.02.18 10:51:32 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+févr. 18, 2026 10:51:32 AM scala.meta.internal.pc.CompilerAccess handleError
+GRAVE: A severe compiler error occurred, full details of the error can be found in the error report /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/.metals/.reports/metals-full/2026-02-18/r_compiler-error_10-51-32-337.md
+2026.02.18 10:51:32 INFO  time: code lens generation in 4.49s
+2026.02.18 10:51:32 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:51:32 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:51:32 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:51:32 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+févr. 18, 2026 10:51:32 AM scala.meta.internal.pc.CompilerAccess handleError
+GRAVE: A severe compiler error occurred, full details of the error can be found in the error report /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/.metals/.reports/metals-full/2026-02-18/r_compiler-error_10-51-32-378.md
+févr. 18, 2026 10:51:32 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+AVERTISSEMENT: Unmatched cancel notification for request id 362
+févr. 18, 2026 10:51:32 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+AVERTISSEMENT: Unmatched cancel notification for request id 342
+2026.02.18 10:51:32 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+févr. 18, 2026 10:51:32 AM scala.meta.internal.pc.CompilerAccess handleError
+GRAVE: A severe compiler error occurred, full details of the error can be found in the error report /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/.metals/.reports/metals-full/2026-02-18/r_compiler-error_10-51-32-396.md
+2026.02.18 10:51:33 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:51:33 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+févr. 18, 2026 10:51:33 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+AVERTISSEMENT: Unmatched cancel notification for request id 367
+2026.02.18 10:51:33 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:51:33 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:51:35 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+févr. 18, 2026 10:51:35 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+AVERTISSEMENT: Unmatched cancel notification for request id 370
+2026.02.18 10:51:35 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:51:35 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:51:35 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:51:35 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+févr. 18, 2026 10:51:36 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+AVERTISSEMENT: Unmatched cancel notification for request id 357
+févr. 18, 2026 10:51:36 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+AVERTISSEMENT: Unmatched cancel notification for request id 375
+févr. 18, 2026 10:51:36 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+AVERTISSEMENT: Unmatched cancel notification for request id 373
+2026.02.18 10:51:36 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:51:36 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+févr. 18, 2026 10:51:36 AM scala.meta.internal.pc.CompilerAccess handleError
+GRAVE: A severe compiler error occurred, full details of the error can be found in the error report /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/.metals/.reports/metals-full/2026-02-18/r_compiler-error_10-51-36-959.md
+févr. 18, 2026 10:51:36 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+AVERTISSEMENT: Unmatched cancel notification for request id 378
+2026.02.18 10:51:36 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+févr. 18, 2026 10:51:36 AM scala.meta.internal.pc.CompilerAccess handleError
+GRAVE: A severe compiler error occurred, full details of the error can be found in the error report /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/.metals/.reports/metals-full/2026-02-18/r_compiler-error_10-51-36-974.md
+2026.02.18 10:51:38 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+févr. 18, 2026 10:51:38 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+AVERTISSEMENT: Unmatched cancel notification for request id 377
+févr. 18, 2026 10:51:39 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+AVERTISSEMENT: Unmatched cancel notification for request id 380
+févr. 18, 2026 10:51:39 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+AVERTISSEMENT: Unmatched cancel notification for request id 382
+2026.02.18 10:51:39 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:51:40 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:51:39 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:51:40 INFO  time: code lens generation in 9.1s
+févr. 18, 2026 10:51:40 AM scala.meta.internal.pc.CompilerAccess handleError
+GRAVE: A severe compiler error occurred, full details of the error can be found in the error report /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/.metals/.reports/metals-full/2026-02-18/r_compiler-error_10-51-39-999.md
+févr. 18, 2026 10:51:40 AM scala.meta.internal.pc.CompilerAccess handleError
+GRAVE: A severe compiler error occurred, full details of the error can be found in the error report /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/.metals/.reports/metals-full/2026-02-18/r_compiler-error_10-51-40-000.md
+févr. 18, 2026 10:51:40 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+AVERTISSEMENT: Unmatched cancel notification for request id 387
+2026.02.18 10:51:39 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:51:41 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+févr. 18, 2026 10:51:41 AM scala.meta.internal.pc.CompilerAccess handleError
+GRAVE: A severe compiler error occurred, full details of the error can be found in the error report /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/.metals/.reports/metals-full/2026-02-18/r_compiler-error_10-51-41-516.md
+févr. 18, 2026 10:51:41 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+AVERTISSEMENT: Unmatched cancel notification for request id 384
+2026.02.18 10:51:41 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+févr. 18, 2026 10:51:43 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+AVERTISSEMENT: Unmatched cancel notification for request id 392
+2026.02.18 10:51:44 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+févr. 18, 2026 10:51:44 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+AVERTISSEMENT: Unmatched cancel notification for request id 395
+2026.02.18 10:51:46 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+févr. 18, 2026 10:51:47 AM scala.meta.internal.pc.CompilerAccess handleError
+GRAVE: A severe compiler error occurred, full details of the error can be found in the error report /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/.metals/.reports/metals-full/2026-02-18/r_compiler-error_10-51-46-131.md
+2026.02.18 10:51:47 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+févr. 18, 2026 10:51:50 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+AVERTISSEMENT: Unmatched cancel notification for request id 385
+févr. 18, 2026 10:51:50 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+AVERTISSEMENT: Unmatched cancel notification for request id 398
+2026.02.18 10:51:52 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+févr. 18, 2026 10:51:52 AM scala.meta.internal.pc.CompilerAccess handleError
+GRAVE: next on empty iterator
+java.util.NoSuchElementException: next on empty iterator
+	at scala.collection.Iterator$$anon$19.next(Iterator.scala:973)
+	at scala.collection.Iterator$$anon$19.next(Iterator.scala:971)
+	at scala.collection.mutable.MutationTracker$CheckedIterator.next(MutationTracker.scala:76)
+	at scala.collection.IterableOps.head(Iterable.scala:222)
+	at scala.collection.IterableOps.head$(Iterable.scala:222)
+	at scala.collection.AbstractIterable.head(Iterable.scala:935)
+	at dotty.tools.dotc.interactive.InteractiveDriver.run(InteractiveDriver.scala:164)
+	at dotty.tools.pc.completions.CompletionProvider.completions(CompletionProvider.scala:72)
+	at dotty.tools.pc.ScalaPresentationCompiler.complete$$anonfun$1(ScalaPresentationCompiler.scala:150)
+
+févr. 18, 2026 10:51:52 AM scala.meta.internal.pc.CompilerAccess handleError
+GRAVE: A severe compiler error occurred, full details of the error can be found in the error report /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/.metals/.reports/metals-full/2026-02-18/r_compiler-error_10-51-52-442.md
+févr. 18, 2026 10:51:52 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+AVERTISSEMENT: Unmatched cancel notification for request id 396
+2026.02.18 10:51:52 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+févr. 18, 2026 10:51:57 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+AVERTISSEMENT: Unmatched cancel notification for request id 400
+2026.02.18 10:51:57 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+févr. 18, 2026 10:51:58 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+AVERTISSEMENT: Unmatched cancel notification for request id 404
+2026.02.18 10:51:58 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+févr. 18, 2026 10:51:58 AM scala.meta.internal.pc.CompilerAccess handleError
+GRAVE: A severe compiler error occurred, full details of the error can be found in the error report /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/.metals/.reports/metals-full/2026-02-18/r_compiler-error_10-51-58-679.md
+févr. 18, 2026 10:52:00 AM scala.meta.internal.pc.CompilerAccess handleError
+GRAVE: A severe compiler error occurred, full details of the error can be found in the error report /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/.metals/.reports/metals-full/2026-02-18/r_compiler-error_10-52-00-208.md
+2026.02.18 10:51:58 WARN  Running javac-semanticdb failed for file:///private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Output:
+
+2026.02.18 10:52:01 INFO  time: code lens generation in 32s
+févr. 18, 2026 10:52:04 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+AVERTISSEMENT: Unmatched cancel notification for request id 407
+févr. 18, 2026 10:52:04 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+AVERTISSEMENT: Unmatched cancel notification for request id 405
+2026.02.18 10:52:04 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+févr. 18, 2026 10:52:06 AM scala.meta.internal.pc.CompilerAccess handleError
+GRAVE: A severe compiler error occurred, full details of the error can be found in the error report /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/.metals/.reports/metals-full/2026-02-18/r_compiler-error_10-52-06-502.md
+févr. 18, 2026 10:52:04 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+AVERTISSEMENT: Unmatched cancel notification for request id 408
+2026.02.18 10:52:07 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+févr. 18, 2026 10:52:09 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+AVERTISSEMENT: Unmatched cancel notification for request id 409
+févr. 18, 2026 10:52:09 AM scala.meta.internal.pc.CompilerAccess handleError
+GRAVE: A severe compiler error occurred, full details of the error can be found in the error report /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/.metals/.reports/metals-full/2026-02-18/r_compiler-error_10-52-07-946.md
+2026.02.18 10:52:09 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:52:18 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+févr. 18, 2026 10:52:20 AM scala.meta.internal.pc.CompilerAccess handleError
+GRAVE: A severe compiler error occurred, full details of the error can be found in the error report /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/.metals/.reports/metals-full/2026-02-18/r_compiler-error_10-52-20-200.md
+2026.02.18 10:52:23 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+févr. 18, 2026 10:52:31 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+AVERTISSEMENT: Unmatched cancel notification for request id 412
+févr. 18, 2026 10:52:31 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+AVERTISSEMENT: Unmatched cancel notification for request id 410
+févr. 18, 2026 10:52:31 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+AVERTISSEMENT: Unmatched cancel notification for request id 401
+2026.02.18 10:52:35 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+févr. 18, 2026 10:52:42 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+AVERTISSEMENT: Unmatched cancel notification for request id 414
+févr. 18, 2026 10:52:42 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+AVERTISSEMENT: Unmatched cancel notification for request id 411
+2026.02.18 10:52:42 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+Exception in thread "pool-1-thread-33" java.lang.OutOfMemoryError: Java heap space: failed reallocation of scalar replaced objects
+févr. 18, 2026 10:53:07 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint fallbackResponseError
+GRAVE: Internal error: An unexpected exception occurred while executing jsonrpc method public abstract java.util.concurrent.CompletableFuture scala.meta.metals.lsp.TextDocumentService.codeAction(org.eclipse.lsp4j.CodeActionParams)
+java.lang.IllegalStateException: An unexpected exception occurred while executing jsonrpc method public abstract java.util.concurrent.CompletableFuture scala.meta.metals.lsp.TextDocumentService.codeAction(org.eclipse.lsp4j.CodeActionParams)
+	at org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint.lambda$recursiveFindRpcMethods$0(GenericEndpoint.java:73)
+	at org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint.request(GenericEndpoint.java:128)
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.handleRequest(RemoteEndpoint.java:271)
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.consume(RemoteEndpoint.java:201)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.handleMessage(StreamMessageProducer.java:185)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.listen(StreamMessageProducer.java:97)
+	at org.eclipse.lsp4j.jsonrpc.json.ConcurrentMessageProcessor.run(ConcurrentMessageProcessor.java:114)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+Caused by: org.h2.jdbc.JdbcSQLNonTransientConnectionException: Mémoire insuffisante.
+Out of memory. [90108-232]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:690)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:212)
+	at org.h2.engine.Database.throwLastBackgroundException(Database.java:1816)
+	at org.h2.engine.SessionLocal.beforeCommitOrRollback(SessionLocal.java:770)
+	at org.h2.engine.SessionLocal.commit(SessionLocal.java:685)
+	at org.h2.command.Command.stop(Command.java:162)
+	at org.h2.command.Command.executeQuery(Command.java:235)
+	at org.h2.jdbc.JdbcPreparedStatement.executeQuery(JdbcPreparedStatement.java:130)
+	at scala.meta.internal.metals.JdbcEnrichments$XtensionConnection.query(JdbcEnrichments.scala:37)
+	at scala.meta.internal.metals.DependencySources.getBuildTarget(DependencySources.scala:27)
+	at scala.meta.internal.metals.BuildTargets.$anonfun$inverseSources$2(BuildTargets.scala:260)
+	at scala.Option.flatMap(Option.scala:283)
+	at scala.meta.internal.metals.BuildTargets.inverseSources(BuildTargets.scala:260)
+	at scala.meta.internal.metals.Compilers.fromBuildTarget$1(Compilers.scala:1175)
+	at scala.meta.internal.metals.Compilers.loadCompiler(Compilers.scala:1200)
+	at scala.meta.internal.metals.Compilers.supportedCodeActions(Compilers.scala:981)
+	at scala.meta.internal.metals.codeactions.CodeActionProvider.actionsForParams(CodeActionProvider.scala:53)
+	at scala.meta.internal.metals.codeactions.CodeActionProvider.codeActions(CodeActionProvider.scala:70)
+	at scala.meta.internal.metals.MetalsLspService.$anonfun$codeAction$1(MetalsLspService.scala:1165)
+	at scala.meta.internal.metals.CancelTokens$.future(CancelTokens.scala:38)
+	at scala.meta.internal.metals.MetalsLspService.codeAction(MetalsLspService.scala:1164)
+	at scala.meta.internal.metals.WorkspaceLspService.codeAction(WorkspaceLspService.scala:593)
+	at scala.meta.metals.lsp.DelegatingScalaService.codeAction(DelegatingScalaService.scala:142)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint.lambda$recursiveFindRpcMethods$0(GenericEndpoint.java:65)
+	... 11 more
+Caused by: org.h2.message.DbException: Mémoire insuffisante.
+Out of memory. [90108-232]
+	at org.h2.message.DbException.get(DbException.java:212)
+	at org.h2.message.DbException.convert(DbException.java:401)
+	at org.h2.mvstore.db.Store.lambda$new$0(Store.java:122)
+	at org.h2.mvstore.MVStore.handleException(MVStore.java:1546)
+	at org.h2.mvstore.FileStore.writeInBackground(FileStore.java:1847)
+	at org.h2.mvstore.FileStore$BackgroundWriterThread.run(FileStore.java:2256)
+Caused by: org.h2.jdbc.JdbcSQLNonTransientConnectionException: Mémoire insuffisante.
+Out of memory. [90108-232]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:690)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	... 6 more
+Caused by: java.lang.OutOfMemoryError: Java heap space
+
+2026.02.18 10:53:07 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+févr. 18, 2026 10:53:07 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+AVERTISSEMENT: Unmatched cancel notification for request id 420
+févr. 18, 2026 10:53:07 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+AVERTISSEMENT: Unmatched cancel notification for request id 418
+févr. 18, 2026 10:53:07 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+AVERTISSEMENT: Unmatched cancel notification for request id 417
+2026.02.18 10:53:07 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:53:07 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+févr. 18, 2026 10:53:07 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+AVERTISSEMENT: Unmatched cancel notification for request id 423
+2026.02.18 10:53:07 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:53:07 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:53:07 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:53:07 INFO  time: code lens generation in 1m39s
+2026.02.18 10:53:07 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:53:07 WARN  Running javac-semanticdb failed for file:///private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Output:
+
+2026.02.18 10:53:07 INFO  time: code lens generation in 44s
+2026.02.18 10:53:07 INFO  time: code lens generation in 1m9s
+2026.02.18 10:53:07 INFO  time: code lens generation in 1m24s
+2026.02.18 10:53:07 INFO  time: code lens generation in 1m29s
+2026.02.18 10:53:07 INFO  time: code lens generation in 1m30s
+2026.02.18 10:53:07 INFO  time: code lens generation in 1m16s
+2026.02.18 10:53:07 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:53:07 INFO  time: code lens generation in 1m35s
+févr. 18, 2026 10:53:07 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+AVERTISSEMENT: Unmatched cancel notification for request id 432
+2026.02.18 10:53:07 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:53:07 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+févr. 18, 2026 10:53:07 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+AVERTISSEMENT: Unmatched cancel notification for request id 434
+2026.02.18 10:53:07 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+févr. 18, 2026 10:53:07 AM scala.meta.internal.pc.CompilerAccess handleError
+GRAVE: A severe compiler error occurred, full details of the error can be found in the error report /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/.metals/.reports/metals-full/2026-02-18/r_compiler-error_10-53-07-737.md
+févr. 18, 2026 10:53:07 AM scala.meta.internal.pc.CompilerAccess handleError
+GRAVE: A severe compiler error occurred, full details of the error can be found in the error report /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/.metals/.reports/metals-full/2026-02-18/r_compiler-error_10-53-07-753.md
+févr. 18, 2026 10:53:07 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+AVERTISSEMENT: Unmatched cancel notification for request id 430
+2026.02.18 10:53:07 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+févr. 18, 2026 10:53:07 AM scala.meta.internal.pc.CompilerAccess handleError
+GRAVE: A severe compiler error occurred, full details of the error can be found in the error report /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/.metals/.reports/metals-full/2026-02-18/r_compiler-error_10-53-07-768.md
+2026.02.18 10:53:07 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+févr. 18, 2026 10:53:07 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+AVERTISSEMENT: Unmatched cancel notification for request id 422
+2026.02.18 10:53:07 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+févr. 18, 2026 10:53:07 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+AVERTISSEMENT: Unmatched cancel notification for request id 421
+2026.02.18 10:53:07 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+févr. 18, 2026 10:53:07 AM scala.meta.internal.pc.CompilerAccess handleError
+GRAVE: A severe compiler error occurred, full details of the error can be found in the error report /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/.metals/.reports/metals-full/2026-02-18/r_compiler-error_10-53-07-796.md
+févr. 18, 2026 10:53:07 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+AVERTISSEMENT: Unmatched cancel notification for request id 440
+2026.02.18 10:53:07 WARN  Running javac-semanticdb failed for file:///private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Output:
+
+févr. 18, 2026 10:53:07 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+AVERTISSEMENT: Unmatched cancel notification for request id 439
+févr. 18, 2026 10:53:07 AM scala.meta.internal.pc.CompilerAccess handleError
+GRAVE: A severe compiler error occurred, full details of the error can be found in the error report /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/.metals/.reports/metals-full/2026-02-18/r_compiler-error_10-53-07-800.md
+févr. 18, 2026 10:53:07 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+AVERTISSEMENT: Unmatched cancel notification for request id 443
+2026.02.18 10:53:07 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+févr. 18, 2026 10:53:07 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+AVERTISSEMENT: Unmatched cancel notification for request id 442
+févr. 18, 2026 10:53:07 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+AVERTISSEMENT: Unmatched cancel notification for request id 445
+2026.02.18 10:53:07 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:53:07 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+févr. 18, 2026 10:53:07 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+AVERTISSEMENT: Unmatched cancel notification for request id 441
+févr. 18, 2026 10:53:07 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+AVERTISSEMENT: Unmatched cancel notification for request id 446
+2026.02.18 10:53:07 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:53:07 INFO  no build target found for /private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Using presentation compiler with project's scala-library version: 3.3.5
+2026.02.18 10:53:07 WARN  Running javac-semanticdb failed for file:///private/student/r/er/ebarbier/Documents/GEN/CloneGit/GEN/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java. Output:
+
+févr. 18, 2026 10:53:07 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint consume
+AVERTISSEMENT: Unkown message type.

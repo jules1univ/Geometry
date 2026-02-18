@@ -1,3 +1,15 @@
+file://<WORKSPACE>/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java
+### java.util.NoSuchElementException: next on empty iterator
+
+occurred in the presentation compiler.
+
+presentation compiler configuration:
+
+
+action parameters:
+uri: file://<WORKSPACE>/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java
+text:
+```scala
 package fr.univrennes.istic.l2gen.visustats.view.datagroup;
 
 import java.util.ArrayList;
@@ -57,9 +69,41 @@ public class ColumnsDataGroupView extends AbstractDataGroupView {
 
             offsetX += elWidth + spacing;
         }
-        Point titlePoint = new Point(center.getX(), center.getY() - maxHeight * 2 / 3);
-        this.elements.add(this.data.title().createTitle(titlePoint));
+        Text titleText = new Text(center.getX(), center.getY() - maxHeight / 1.5, this.title.name());
+        titleText.getStyle()
+                .fillColor(Color.BLACK)
+                .textAnchor("middle")
+                .fontSize(18)
+                .fontFamily("Arial");
+        this.elements.add(titleText);
 
     }
 
 }
+
+```
+
+
+
+#### Error stacktrace:
+
+```
+scala.collection.Iterator$$anon$19.next(Iterator.scala:973)
+	scala.collection.Iterator$$anon$19.next(Iterator.scala:971)
+	scala.collection.mutable.MutationTracker$CheckedIterator.next(MutationTracker.scala:76)
+	scala.collection.IterableOps.head(Iterable.scala:222)
+	scala.collection.IterableOps.head$(Iterable.scala:222)
+	scala.collection.AbstractIterable.head(Iterable.scala:935)
+	dotty.tools.dotc.interactive.InteractiveDriver.run(InteractiveDriver.scala:164)
+	dotty.tools.pc.CachingDriver.run(CachingDriver.scala:45)
+	dotty.tools.pc.WithCompilationUnit.<init>(WithCompilationUnit.scala:31)
+	dotty.tools.pc.SimpleCollector.<init>(PcCollector.scala:351)
+	dotty.tools.pc.PcSemanticTokensProvider$Collector$.<init>(PcSemanticTokensProvider.scala:63)
+	dotty.tools.pc.PcSemanticTokensProvider.Collector$lzyINIT1(PcSemanticTokensProvider.scala:63)
+	dotty.tools.pc.PcSemanticTokensProvider.Collector(PcSemanticTokensProvider.scala:63)
+	dotty.tools.pc.PcSemanticTokensProvider.provide(PcSemanticTokensProvider.scala:88)
+	dotty.tools.pc.ScalaPresentationCompiler.semanticTokens$$anonfun$1(ScalaPresentationCompiler.scala:111)
+```
+#### Short summary: 
+
+java.util.NoSuchElementException: next on empty iterator

@@ -68,6 +68,7 @@ public class ColumnsDataSetView extends AbstractDataSetView {
 
             this.elements.add(bar);
         }
+
     }
 
     @Override

@@ -18,5 +18,9 @@
   "umlGenerator.outputDirectory": "./uml",
   "[html]": {
     "editor.defaultFormatter": "vscode.html-language-features"
+  },
+  "java.debug.settings.onBuildFailureProceed": true,
+  "files.watcherExclude": {
+    "**/target": true
   }
 }
