@@ -9,5 +9,3 @@
 | BARBIER    | Elouan | Marsu2      | elouan.barbier.1@etudiant.univ-rennes1.fr | Developer     |
 | GALLON     | Paul   | MarcoPaulot | paul.gallon@etudiant.univ-rennes.fr       | Developer     |
 | GUEMENE    | Basile | Astala-Boom | basile.guemene@etudiant.univ-rennes1.fr   | Developer     |
-
-# Communication
