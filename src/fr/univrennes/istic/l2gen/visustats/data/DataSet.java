@@ -5,10 +5,10 @@ import java.util.List;
 
 import fr.univrennes.istic.l2gen.svg.color.Color;
 
-public record DataSet(List<Value> values) {
+public record DataSet(List<Value> values, Label title) {
 
-    public DataSet() {
-        this(new ArrayList<>());
+    public DataSet(Label title) {
+        this(new ArrayList<>(), title);
     }
 
     public double sum() {

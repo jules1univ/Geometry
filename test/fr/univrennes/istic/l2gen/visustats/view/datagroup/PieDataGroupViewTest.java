@@ -20,7 +20,7 @@ public class PieDataGroupViewTest {
 
     @Test
     public void testSVG() {
-        PieDataGroupView pieView = new PieDataGroupView(createDataGroup(3, 10, 150), 20, 80, new Point(500, 300));
+        PieDataGroupView pieView = new PieDataGroupView(createDataGroup(5, 10, 150), 20, 80, new Point(500, 500));
         SVGExportTestUtil.export(pieView);
     }
 }

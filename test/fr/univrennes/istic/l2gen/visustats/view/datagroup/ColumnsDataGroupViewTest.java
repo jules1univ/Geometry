@@ -25,7 +25,8 @@ public class ColumnsDataGroupViewTest {
 
     @Test
     public void testSVG() {
-        ColumnsDataGroupView colview = new ColumnsDataGroupView(createDataGroup(3, 10, 150), new Point(500, 500), 5, 10,
+        ColumnsDataGroupView colview = new ColumnsDataGroupView(createDataGroup(3, 10, 150), new Point(500, 500), 15,
+                10,
                 100);
         SVGExportTestUtil.export(colview);
     }

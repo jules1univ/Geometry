@@ -34,6 +34,10 @@ public record DataGroup(List<DataSet> datasets, Label title, List<Label> legends
         this.legends.add(colorLabel);
     }
 
+    public int maxSize() {
+        return this.datasets.stream().mapToInt(ds -> ds.size()).max().orElse(0);
+    }
+
     public int size() {
         return this.datasets.size();
     }

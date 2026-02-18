@@ -1,3 +1,16 @@
+file://<WORKSPACE>/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java
+### java.lang.OutOfMemoryError: Java heap space
+
+occurred in the presentation compiler.
+
+presentation compiler configuration:
+
+
+action parameters:
+offset: 2144
+uri: file://<WORKSPACE>/src/fr/univrennes/istic/l2gen/visustats/view/datagroup/ColumnsDataGroupView.java
+text:
+```scala
 package fr.univrennes.istic.l2gen.visustats.view.datagroup;
 
 import java.util.ArrayList;
@@ -57,9 +70,29 @@ public class ColumnsDataGroupView extends AbstractDataGroupView {
 
             offsetX += elWidth + spacing;
         }
-        Point titlePoint = new Point(center.getX(), center.getY() - maxHeight * 2 / 3);
-        this.elements.add(this.data.title().createTitle(titlePoint));
-
+        
+        this.elements.add(this.data.)
+    @@
     }
 
 }
+
+```
+
+
+
+#### Error stacktrace:
+
+```
+dotty.tools.dotc.util.WeakHashSet.<init>(WeakHashSet.scala:54)
+	dotty.tools.dotc.core.Uniques.<init>(Uniques.scala:11)
+	dotty.tools.dotc.core.Contexts$ContextState.<init>(Contexts.scala:962)
+	dotty.tools.dotc.core.Contexts$ContextBase.<init>(Contexts.scala:860)
+	dotty.tools.dotc.Driver.initCtx(Driver.scala:60)
+	dotty.tools.dotc.interactive.InteractiveDriver.<init>(InteractiveDriver.scala:34)
+	dotty.tools.pc.CachingDriver.<init>(CachingDriver.scala:30)
+	dotty.tools.pc.ScalaPresentationCompiler.$init$$$anonfun$1(ScalaPresentationCompiler.scala:85)
+```
+#### Short summary: 
+
+java.lang.OutOfMemoryError: Java heap space
