@@ -11,5 +11,3 @@
 | GUEMENE    | Basile | Astala-Boom | basile.guemene@etudiant.univ-rennes1.fr   | Developer     |
 
 # Communication
-
-La communication du projet s'effectue principalement via [le chat du repo](https://talktogithub.com/jules1univ/Geometry).
