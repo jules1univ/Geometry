@@ -6,6 +6,7 @@ import org.junit.Test;
 import fr.univrennes.istic.l2gen.io.svg.SVGExportTestUtil;
 import fr.univrennes.istic.l2gen.svg.color.Color;
 import fr.univrennes.istic.l2gen.visustats.data.DataSet;
+import fr.univrennes.istic.l2gen.visustats.data.Label;
 import fr.univrennes.istic.l2gen.visustats.data.Value;
 
 @Ignore("Abstract DataSet View Test")
@@ -15,7 +16,7 @@ public abstract class AbstractDataSetViewTest<DataSetView extends IDataSetView> 
 
     public final static DataSet createDataSet(int size, double minValue, double maxValue) {
 
-        DataSet dataset = new DataSet();
+        DataSet dataset = new DataSet(new Label("Test title"));
         for (int i = 0; i < size; i++) {
             double value = Math.random() * (maxValue - minValue) + minValue;
             dataset.values().add(new Value(value, Color.random()));

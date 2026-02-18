@@ -36,6 +36,7 @@ public class ColumnsDataGroupView extends AbstractDataGroupView {
         this.elements.clear();
 
         double barSpacing = spacing * 0.8;
+        //
         double elWidth = (barWidth + barSpacing) * data.maxSize();
         int n = data.size();
         double totalWidth = elWidth * n + spacing * Math.max(0, n - 1);
