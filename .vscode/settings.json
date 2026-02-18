@@ -15,5 +15,8 @@
   "java.project.referencedLibraries": ["lib/**/*.jar"],
   "java.project.sourcePaths": ["src", "test"],
   "java.compile.nullAnalysis.mode": "automatic",
-  "umlGenerator.outputDirectory": "./uml"
+  "umlGenerator.outputDirectory": "./uml",
+  "[html]": {
+    "editor.defaultFormatter": "vscode.html-language-features"
+  }
 }

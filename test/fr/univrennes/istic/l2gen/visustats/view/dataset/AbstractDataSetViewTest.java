@@ -13,7 +13,7 @@ public abstract class AbstractDataSetViewTest<DataSetView extends IDataSetView> 
 
     public abstract DataSetView create();
 
-    private final DataSet createDataSet(int size, double minValue, double maxValue) {
+    public final static DataSet createDataSet(int size, double minValue, double maxValue) {
 
         DataSet dataset = new DataSet();
         for (int i = 0; i < size; i++) {
