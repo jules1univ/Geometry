@@ -131,7 +131,7 @@ public final class FilterDialog extends JDialog {
         conditionRowsPanel.setLayout(new BoxLayout(conditionRowsPanel, BoxLayout.Y_AXIS));
 
         JButton addConditionButton = new JButton(Lang.get("filter.add_condition"));
-        addConditionButton.addActionListener(event -> appendConditionInputRow(true));
+        addConditionButton.addActionListener(event -> appendConditionInputRow());
 
         JPanel addConditionPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 8, 4));
         addConditionPanel.add(addConditionButton);
@@ -143,15 +143,15 @@ public final class FilterDialog extends JDialog {
         wrapper.add(scrollPane, BorderLayout.CENTER);
         wrapper.add(addConditionPanel, BorderLayout.SOUTH);
 
-        appendConditionInputRow(false);
+        appendConditionInputRow();
 
         return wrapper;
     }
 
-    private void appendConditionInputRow(boolean showLogicToggle) {
+    private void appendConditionInputRow() {
         DataType columnType = getSelectedColumnType();
         int realColumnIndex = getSelectedRealColumnIndex();
-        ConditionInputRow row = new ConditionInputRow(this, columnType, realColumnIndex, showLogicToggle);
+        ConditionInputRow row = new ConditionInputRow(this, columnType, realColumnIndex);
         conditionInputRows.add(row);
         conditionRowsPanel.add(row.getPanel());
         conditionRowsPanel.revalidate();
@@ -276,7 +276,7 @@ public final class FilterDialog extends JDialog {
         conditionRowsPanel.removeAll();
         conditionRowsPanel.revalidate();
         conditionRowsPanel.repaint();
-        appendConditionInputRow(false);
+        appendConditionInputRow();
     }
 
     private void addFilterCard(Filter filter) {
@@ -311,7 +311,7 @@ public final class FilterDialog extends JDialog {
         DataType columnType = table.getColumnType(realColumnIndex);
         for (int i = 0; i < conditions.size(); i++) {
             FilterCondition condition = conditions.get(i);
-            ConditionInputRow row = new ConditionInputRow(this, columnType, realColumnIndex, i > 0);
+            ConditionInputRow row = new ConditionInputRow(this, columnType, realColumnIndex);
             row.loadCondition(condition);
             conditionInputRows.add(row);
             conditionRowsPanel.add(row.getPanel());

@@ -53,7 +53,6 @@ public final class ConditionInputRow {
     private final FilterDialog owner;
     private DataType columnType;
     private int realColumnIndex;
-    private final boolean showLogicToggle;
 
     private JPanel panel;
     private JComboBox<String> logicComboBox;
@@ -67,11 +66,10 @@ public final class ConditionInputRow {
     private JSpinner dateValueSpinner;
     private JComboBox<String> booleanValueComboBox;
 
-    public ConditionInputRow(FilterDialog owner, DataType columnType, int realColumnIndex, boolean showLogicToggle) {
+    public ConditionInputRow(FilterDialog owner, DataType columnType, int realColumnIndex) {
         this.owner = owner;
         this.columnType = columnType;
         this.realColumnIndex = realColumnIndex;
-        this.showLogicToggle = showLogicToggle;
         buildPanel();
     }
 
@@ -83,20 +81,11 @@ public final class ConditionInputRow {
         JPanel leftSection = new JPanel(new FlowLayout(FlowLayout.LEFT, 4, 0));
         leftSection.setOpaque(false);
 
-        if (showLogicToggle) {
-            logicComboBox = new JComboBox<>(new String[] {
-                    Lang.get("filter.logic_operator.and"),
-                    Lang.get("filter.logic_operator.or")
-            });
-            logicComboBox.setPreferredSize(new Dimension(60, 26));
-            leftSection.add(logicComboBox);
-        } else {
-            JLabel placeholderLabel = new JLabel();
-            placeholderLabel.setForeground(UIManager.getColor("Label.disabledForeground"));
-            placeholderLabel.setPreferredSize(new Dimension(60, 26));
-            placeholderLabel.setHorizontalAlignment(SwingConstants.CENTER);
-            leftSection.add(placeholderLabel);
-        }
+        JLabel placeholderLabel = new JLabel();
+        placeholderLabel.setForeground(UIManager.getColor("Label.disabledForeground"));
+        placeholderLabel.setPreferredSize(new Dimension(60, 26));
+        placeholderLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        leftSection.add(placeholderLabel);
 
         operatorComboBox = new JComboBox<>(buildOperatorArray(columnType));
         operatorComboBox.setRenderer(new FilterOperatorRenderer());

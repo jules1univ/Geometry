@@ -75,6 +75,7 @@
 Voici la vue principale de \textbf{Pangol1}. Elle se compose de plusieurs sections cl\'es:
 
 \begin{itemize}
+  \item \textbf{Tutoriel}: A la premi\`ere ouverture de l'application, un tutoriel interactif s'affiche pour vous guider \`a travers les fonctionnalit\'es principales du logiciel. Vous pouvez choisir de suivre le tutoriel ou de le fermer pour explorer l'application par vous-m\^eme.
   \item \textbf{Barre de menu} : Acc\`es aux fonctionnalit\'es principales (Fichier, Affichage, Aide).
   \newline Elle se situe en haut de l'interface et permet d'acc\'eder \`a toutes les fonctionnalit\'es du logiciel.
   \item \textbf{Barre d'information} : Affiche des informations sur les donn\'ees import\'ees et les analyses en cours.
@@ -85,6 +86,39 @@ Voici la vue principale de \textbf{Pangol1}. Elle se compose de plusieurs sectio
   \newline Il est situ\'e sur la partie droite de l'interface.
 \end{itemize}
 
+\subsection{Tutoriel}
+Lors de la premi\`ere ouverture de l'application, un tutoriel interactif s'affiche pour vous guider \`a travers les fonctionnalit\'es principales du logiciel. Au cours du tutoriel, vous passerez en revue les principales sections de l'interface et les fonctionnalit\'es de base pour vous familiariser avec l'application. Vous pouvez choisir de suivre le tutoriel ou de le fermer pour explorer l'application par vous-m\^eme.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\linewidth]{quickstart_main.png}
+  \caption{Tutoriel interactif}
+\end{figure}
+
+Si vous choisissez de suivre le tutoriel, vous serez guid\'e \'etape par \'etape comme ici:
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\linewidth]{quickstart_step1.png}
+  \caption{Tutoriel interactif - Premi\`ere \'etape}
+\end{figure}
+
+A tout moment vous pouvez cliquer sur le boutton ``Passer'' pour fermer le tutoriel et acc\'eder directement \`a l'interface principale de l'application.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\linewidth]{quickstart_step2.png}
+  \caption{Tutoriel interactif - Deuxi\`eme \'etape}
+\end{figure}
+
+Une fois le tutoriel compl\'et\'e, cliquez sur le boutton ``Terminer'' .
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\linewidth]{quickstart_step_end.png}
+  \caption{Fin du tutoriel interactif}
+\end{figure}
+
 \subsection{Barre de menu}
 \subsubsection*{Menu Fichier}
 Le menu ``Fichier'' permet d'ouvrir de nouvelles tables de donn\'ees, ou des tables r\'ecemment ouvertes ou encore d'acc\'eder aux param\`etres de configuration de l'application.
@@ -94,6 +128,15 @@ Le menu ``Fichier'' permet d'ouvrir de nouvelles tables de donn\'ees, ou des tab
   \includegraphics[width=0.8\linewidth]{topbar_menu_file.png}
   \caption{Menu Fichier}
 \end{figure}
+
+Une fois que vous avez ouvert plusieurs tables, le menu ``Fichier'' vous propose de charger directement des tables r\'ecemment ouvertes:
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\linewidth]{topbar_menu_file_recent.png}
+  \caption{Menu Fichier - Tables r\'ecemment ouvertes}
+\end{figure}
+
 
 \subsubsection*{Menu Affichage}
 Le menu ``Affichage'' permet de personnaliser la disposition des \`elements de l'interface, d'afficher ou de masquer le carnet de notes, la table de donn\'ees, etc.
@@ -307,7 +350,8 @@ Voici les r\'esum\'e des options disponibles dans les param\`etres d'apparance :
 \end{itemize}
 
 \subsection{Raccourcis clavier}
-Pangol1 ne permet pas encore de personnaliser les raccourcis clavier, mais voici la liste des raccourcis disponibles par d\'efaut :
+
+Vous pouvez configurer les raccourcis clavier pour les actions courantes dans l'application. Cela vous permet d'acc\'eder rapidement \`a ces actions sans avoir \`a naviguer dans les menus. Voici un r\'esum\'e des raccourcis clavier par d\'efaut pour les actions courantes dans Pangol1:
 
 \begin{center}
 \begin{tabularx}{0.9\linewidth}{@{}lX@{}}
@@ -331,6 +375,24 @@ R\'etablir une action dans le carnet de notes & Ctrl + Y \\
   \includegraphics[width=0.8\linewidth]{settings_shortcuts.png}
   \caption{Param\`etres des raccourcis clavier}
 \end{figure}
+
+
+Pour modifier un raccourci, cliquer sur un \'element de la liste dans la colonne ``Raccourci''.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\linewidth]{settings_shortcuts_edit.png}
+  \caption{Modification d'un raccourci clavier}
+\end{figure}
+
+Ensuite composer votre raccourci et valider une fois que vous avez termin\'e.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\linewidth]{settings_shortcuts_done.png}
+  \caption{Raccourci clavier modifi\'e}
+\end{figure}
+
 
 \subsection{Param\`etres avanc\'es}
 Les param\`etres avanc\'es permettent de configurer des options plus techniques et sp\'ecifiques pour les utilisateurs exp\'eriment\'es. Voici un r\'esum\'e des options disponibles dans les param\`etres avanc\'es :
@@ -362,6 +424,7 @@ La barre d'outils contient 4 boutons principaux pour manipuler les donn\'ees du 
 \begin{itemize}
   \item \textbf{Filtres} : Permet d'ouvrir le cr\'eateur de filtres pour appliquer des filtres avanc\'es sur les donn\'ees du tableau.
   \item \textbf{Sous-table} : Permet de cr\'eer une sous-table \`a partir des donn\'ees s\'electionn\'ees dans le tableau.
+  \item \textbf{Fusion}: Permet de fusionner deux tables de donn\'ees en une seule table.
   \item \textbf{Afficher/Masquer les colonnes vides} : Permet d'afficher ou de masquer les colonnes qui ne contiennent aucune donn\'ee.
   \item \textbf{Fermer la table} : Permet de fermer le tableau de donn\'ees actuellement ouvert.
 \end{itemize}
@@ -383,13 +446,21 @@ Voici un exemple de filtrage avanc\'e sur les donn\'ees du tableau:
   \caption{Exemple de filtrage avanc\'e}
 \end{figure}
 
-S\'election du filtre \`a appliquer, par exemple entre une \textbf{Intervale}:
-
+S\'election du filtre \`a appliquer, par exemple qui contient une cat\'egorie ou une autre cat\'egorie:
 \begin{figure}[H]
   \centering
   \includegraphics[width=0.8\linewidth]{filter_choose.png}
   \caption{Exemple de filtrage avanc\'e}
 \end{figure}
+
+Ensuite ajouter votre filtre aux filtres globaux pour l'appliquer sur la table:
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\linewidth]{filter_add.png}
+  \caption{Ajout du filtre aux filtres globaux}
+\end{figure}
+
 
 Comme les colonnes sont typ\'ees le cr\'eateur de filtres est intelligent et ne propose que des op\'erateurs et des champs pertinent en fonction du type de la colonne s\'electionn\'ee.
 
@@ -443,6 +514,40 @@ Ensuite notre sous-table s'affiche comme un nouvelle table classique et elle est
   \includegraphics[width=0.8\linewidth]{subtable_newtable.png}
   \caption{Sous-table cr\'e\'ee}
 \end{figure}
+
+\subsubsection*{Fusion de tables}
+La fusion de tables permet de combiner les donn\'ees de deux tables en une seule table. Vous pouvez choisir la mani\`ere dont les tables seront fusionn\'ees, par exemple en utilisant une jointure interne (inner join) pour ne conserver que les lignes qui ont des correspondances dans les deux tables, ou une jointure externe (outer join) pour conserver toutes les lignes de l'une ou l'autre table, etc.
+Par d\'efaut, la fusion de tables est d\'esactiv\'ee tant que vous n'avez pas au moins deux tables ouvertes:
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\linewidth]{table_toolbar_merge_disable.png}
+  \caption{Fusion de tables d\'esactiv\'ee}
+\end{figure}
+
+Ensuite une fois que vous avez au moins deux tables ouvertes, le boutton de fusion devient actif et vous pouvez cliquer dessus pour ouvrir le menu de fusion de tables:
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\linewidth]{table_toolbar_merge.png}
+  \caption{Fusion de tables activ\'ee}
+\end{figure}
+
+Enfin vous pouvez entrer les param\`etres de votre fusion de tables:
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\linewidth]{merge_main.png}
+  \caption{Menu de fusion de tables}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\linewidth]{merge_select.png}
+  \caption{Sélection du type de jointure}
+\end{figure}
+
+
 
 \subsubsection*{Afficher/Masquer les colonnes vides}
 Si votre table contient de nombreuses colonnes vides, cela peut rendre la navigation et l'analyse des donn\'ees plus difficile. En activant cette option, vous pouvez choisir d'afficher toutes les colonnes ou bien de masquer les colonnes qui ne contiennent aucune donn\'ee.
@@ -687,7 +792,25 @@ Si vous aviez envie de modifier votre graphique, double-cliquez simplement dessu
   \caption{Modifier un graphique dans le carnet de notes}
 \end{figure}
 
+Les labelles de l'axe X et de l'axe Y sont choisit automatiquement en fonction des colonnes s\'electionn\'ees, mais vous pouvez les modifier manuellement si vous le souhaitez:
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\linewidth]{report_chart_setting_auto_label.png}
+  \caption{G\'en\'eration automatique des labelles de l'axe X et de l'axe Y}
+\end{figure}
+
+Me\^me chose pour le titre du graphique qui est g\'en\'er\'e automatiquement en fonction des colonnes:
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\linewidth]{report_chart_setting_auto_title.png}
+  \caption{G\'en\'eration automatique du titre du graphique}
+\end{figure}
+
 Une fois terminer cliquer simplement sur ``Modifier'' pour appliquer les modifications \`a votre graphique.
+
+\subsection{Types de graphiques disponibles}
 Voici les diff\'erents graphiques que \textbf{Pangol1} propose:
 
 \begin{figure}[H]
